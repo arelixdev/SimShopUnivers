@@ -26,8 +26,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform boxHoldPoint;
 
     [SerializeField] private float waitToPlaceStock;
-    private float placeStockCounter; 
+    [SerializeField] private LayerMask whatIsTrash;
+    [SerializeField] private LayerMask whatIsFurniture;
+    [SerializeField] private Transform furniturePoint;
+    private float placeStockCounter;
     private StockBoxController heldBox;
+    private GameObject heldFurniture;
     
 
     private StockObject heldPickup;
@@ -51,9 +55,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(UIController.instance.updatePricePanel != null)
+        if (UIController.instance.updatePricePanel != null)
         {
-            if(UIController.instance.updatePricePanel.activeSelf)
+            if (UIController.instance.updatePricePanel.activeSelf)
+            {
+                return;
+            }
+        }
+        if(UIController.instance.buyMenuScreen != null)
+        {
+            if(UIController.instance.buyMenuScreen.activeSelf)
             {
                 return;
             }
@@ -112,43 +123,52 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
-        if(heldPickup == null && heldBox == null)
+        if(heldPickup == null && heldBox == null && heldFurniture == null)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
                 {
-                    heldPickup = hit.collider.GetComponent<StockObject>();
-                    heldPickup.transform.SetParent(holdPoint);
-                    heldPickup.Pickup();
+                    if(hit.collider.GetComponent<StockObject>() != null)
+                    {
+                        heldPickup = hit.collider.GetComponent<StockObject>();
+                        heldPickup.transform.SetParent(holdPoint);
+                        heldPickup.Pickup();
+                    }
 
                     return;
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsStockBox))
                 {
-                    heldBox = hit.collider.GetComponent<StockBoxController>();
-                    heldBox.transform.SetParent(boxHoldPoint);
-                    heldBox.Pickup();
-
-
-                    if (!heldBox.openBox.activeSelf)
+                    if(hit.collider.GetComponent<StockBoxController>())
                     {
-                        heldBox.OpenClose();
-                    }
+                        heldBox = hit.collider.GetComponent<StockBoxController>();
+                        heldBox.transform.SetParent(boxHoldPoint);
+                        heldBox.Pickup();
 
+
+                        if (!heldBox.openBox.activeSelf)
+                        {
+                            heldBox.OpenClose();
+                        }
+                    }
 
                     return;
 
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
                 {
-                    heldPickup = hit.collider.GetComponent<ShelfSpaceController>().GetStock();
-
-                    if (heldPickup != null)
+                    if(hit.collider.GetComponent<ShelfSpaceController>() != null)
                     {
-                        heldPickup.transform.SetParent(holdPoint);
-                        heldPickup.Pickup();
+                        heldPickup = hit.collider.GetComponent<ShelfSpaceController>().GetStock();
+
+                        if (heldPickup != null)
+                        {
+                            heldPickup.transform.SetParent(holdPoint);
+                            heldPickup.Pickup();
+                        }
                     }
+                    
                 }
             }
 
@@ -156,15 +176,30 @@ public class PlayerController : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsStockBox))
                 {
-                    hit.collider.GetComponent<StockBoxController>().OpenClose();
+                    if(hit.collider.GetComponent<StockBoxController>() != null)
+                        hit.collider.GetComponent<StockBoxController>().OpenClose();
                 }
             }
-            
-            if(Keyboard.current.eKey.wasPressedThisFrame)
+
+            if (Keyboard.current.eKey.wasPressedThisFrame)
             {
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
                 {
-                    hit.collider.GetComponent<ShelfSpaceController>().StartPriceUpdate();
+                    if (hit.collider.GetComponent<ShelfSpaceController>() != null)
+                        hit.collider.GetComponent<ShelfSpaceController>().StartPriceUpdate();
+                }
+            }
+            
+            if(Keyboard.current.rKey.wasPressedThisFrame)
+            {
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsFurniture))
+                {
+                    heldFurniture = hit.transform.gameObject;
+
+                    heldFurniture.transform.SetParent(furniturePoint);
+                    heldFurniture.transform.localPosition = Vector3.zero;
+                    heldFurniture.transform.localRotation = Quaternion.identity;
+
                 }
             }
         } else
@@ -175,11 +210,15 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
                     {
-                        hit.transform.GetComponent<ShelfSpaceController>().PlaceStock(heldPickup);
-                        if(heldPickup.GetIsPlaced())
+                        if(hit.transform.GetComponent<ShelfSpaceController>() != null)
                         {
-                            heldPickup = null;
+                            hit.transform.GetComponent<ShelfSpaceController>().PlaceStock(heldPickup);
+                            if(heldPickup.GetIsPlaced())
+                            {
+                                heldPickup = null;
+                            }
                         }
+                        
                     }
                 }
 
@@ -192,21 +231,34 @@ public class PlayerController : MonoBehaviour
                     heldPickup = null;
                 }
             }
-            if(heldBox != null)
+            if (heldBox != null)
             {
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
+                    if (heldBox.GetStockInBoxCount() > 0)
                     {
-                        heldBox.PlaceStockOnShelf(hit.collider.GetComponent<ShelfSpaceController>());
+                        if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
+                        {
+                            heldBox.PlaceStockOnShelf(hit.collider.GetComponent<ShelfSpaceController>());
 
-                        placeStockCounter = waitToPlaceStock;
+                            placeStockCounter = waitToPlaceStock;
+                        }
                     }
+                    else
+                    {
+                        if (Physics.Raycast(ray, out hit, interactionRange, whatIsTrash))
+                        {
+                            Destroy(heldBox.gameObject);
+                            heldBox = null;
+                        }
+                    }
+
+
                 }
-                if(Mouse.current.leftButton.isPressed)
+                if (Mouse.current.leftButton.isPressed)
                 {
                     placeStockCounter -= Time.deltaTime;
-                    if(placeStockCounter <= 0)
+                    if (placeStockCounter <= 0)
                     {
                         if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
                         {
@@ -218,7 +270,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Mouse.current.rightButton.wasPressedThisFrame)
                 {
-                    if(heldBox.openBox.activeSelf)
+                    if (heldBox.openBox.activeSelf)
                     {
                         heldBox.OpenClose();
                     }
@@ -230,9 +282,21 @@ public class PlayerController : MonoBehaviour
                     heldBox = null;
                 }
 
-                if(Keyboard.current.eKey.wasPressedThisFrame)
+                if (Keyboard.current.eKey.wasPressedThisFrame)
                 {
                     heldBox.OpenClose();
+                }
+            }
+            
+            if(heldFurniture != null)
+            {
+                heldFurniture.transform.position = new Vector3(furniturePoint.position.x, 0f, furniturePoint.position.z);
+                heldFurniture.transform.LookAt(new Vector3(transform.position.x, 0f, transform.position.z));
+
+                if(Mouse.current.leftButton.wasPressedThisFrame || Keyboard.current.rKey.wasPressedThisFrame)
+                {
+                    heldFurniture.transform.SetParent(null);
+                    heldFurniture = null;
                 }
             }
         }

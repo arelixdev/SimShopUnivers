@@ -22,6 +22,11 @@ public class StockBoxController : MonoBehaviour
 
     private bool isHeld;
 
+    public int GetStockInBoxCount()
+    {
+        return stockInBox.Count;
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,7 +35,7 @@ public class StockBoxController : MonoBehaviour
 
     private void Start()
     {
-        SetupBox(info);
+        
     }
 
     private void Update() {
@@ -112,7 +117,7 @@ public class StockBoxController : MonoBehaviour
             closeBox.SetActive(false);
         }
     }
-    
+
     public void PlaceStockOnShelf(ShelfSpaceController shelf)
     {
         if (stockInBox.Count > 0)
@@ -124,10 +129,28 @@ public class StockBoxController : MonoBehaviour
                 stockInBox.RemoveAt(stockInBox.Count - 1);
             }
         }
-        
-        if(closeBox.activeSelf)
+
+        if (closeBox.activeSelf)
         {
             OpenClose();
         }
+    }
+    
+    public int GetStockAmount(StockInfo.StockType type)
+    {
+        int toReturn = 0;
+
+        switch(type)
+        {
+            case StockInfo.StockType.cereal:
+                toReturn = boxPoints.Count;
+                break;
+            case StockInfo.StockType.drink:
+                toReturn = drinkPoints.Count;
+                break;
+            case StockInfo.StockType.fruit:
+                break;
+        }
+        return toReturn;
     }
 }
