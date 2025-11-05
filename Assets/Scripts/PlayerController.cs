@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private LayerMask whatIsStockBox;
     [SerializeField] private Transform boxHoldPoint;
+
+    [SerializeField] private float waitToPlaceStock;
+    private float placeStockCounter; 
     private StockBoxController heldBox;
     
 
@@ -109,7 +112,7 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
-        if(heldPickup == null)
+        if(heldPickup == null && heldBox == null)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -118,6 +121,24 @@ public class PlayerController : MonoBehaviour
                     heldPickup = hit.collider.GetComponent<StockObject>();
                     heldPickup.transform.SetParent(holdPoint);
                     heldPickup.Pickup();
+
+                    return;
+                }
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsStockBox))
+                {
+                    heldBox = hit.collider.GetComponent<StockBoxController>();
+                    heldBox.transform.SetParent(boxHoldPoint);
+                    heldBox.Pickup();
+
+
+                    if (!heldBox.openBox.activeSelf)
+                    {
+                        heldBox.OpenClose();
+                    }
+
+
+                    return;
+
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
                 {
@@ -130,6 +151,14 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+
+            if (Mouse.current.rightButton.wasPressedThisFrame)
+            {
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsStockBox))
+                {
+                    hit.collider.GetComponent<StockBoxController>().OpenClose();
+                }
+            }
             
             if(Keyboard.current.eKey.wasPressedThisFrame)
             {
@@ -140,25 +169,71 @@ public class PlayerController : MonoBehaviour
             }
         } else
         {
-            if(Mouse.current.leftButton.wasPressedThisFrame)
+            if(heldPickup != null)
             {
-                if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
+                if(Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    hit.transform.GetComponent<ShelfSpaceController>().PlaceStock(heldPickup);
-                    if(heldPickup.GetIsPlaced())
+                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
                     {
-                        heldPickup = null;
+                        hit.transform.GetComponent<ShelfSpaceController>().PlaceStock(heldPickup);
+                        if(heldPickup.GetIsPlaced())
+                        {
+                            heldPickup = null;
+                        }
                     }
                 }
+
+                if (Mouse.current.rightButton.wasPressedThisFrame)
+                {
+                    heldPickup.Release();
+                    heldPickup.GetComponent<Rigidbody>().AddForce(cam.transform.forward * throwForce, ForceMode.Impulse);
+
+                    heldPickup.transform.SetParent(null);
+                    heldPickup = null;
+                }
             }
-
-            if (Mouse.current.rightButton.wasPressedThisFrame)
+            if(heldBox != null)
             {
-                heldPickup.Release();
-                heldPickup.GetComponent<Rigidbody>().AddForce(cam.transform.forward * throwForce, ForceMode.Impulse);
+                if (Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
+                    {
+                        heldBox.PlaceStockOnShelf(hit.collider.GetComponent<ShelfSpaceController>());
 
-                heldPickup.transform.SetParent(null);
-                heldPickup = null;
+                        placeStockCounter = waitToPlaceStock;
+                    }
+                }
+                if(Mouse.current.leftButton.isPressed)
+                {
+                    placeStockCounter -= Time.deltaTime;
+                    if(placeStockCounter <= 0)
+                    {
+                        if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
+                        {
+                            heldBox.PlaceStockOnShelf(hit.collider.GetComponent<ShelfSpaceController>());
+
+                            placeStockCounter = waitToPlaceStock;
+                        }
+                    }
+                }
+                if (Mouse.current.rightButton.wasPressedThisFrame)
+                {
+                    if(heldBox.openBox.activeSelf)
+                    {
+                        heldBox.OpenClose();
+                    }
+
+                    heldBox.Release();
+                    heldBox.GetComponent<Rigidbody>().AddForce(cam.transform.forward * throwForce, ForceMode.Impulse);
+
+                    heldBox.transform.SetParent(null);
+                    heldBox = null;
+                }
+
+                if(Keyboard.current.eKey.wasPressedThisFrame)
+                {
+                    heldBox.OpenClose();
+                }
             }
         }
 

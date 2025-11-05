@@ -43,16 +43,13 @@ public class UIController : MonoBehaviour
     
     public void ApplyPriceUpdate()
     {
-        if(priceInputfield.text == "" || priceInputfield.text == string.Empty)
-        {
-            activeStockInfo.currentPrice = float.Parse(priceInputfield.text);
+        activeStockInfo.currentPrice = float.Parse(priceInputfield.text);
 
-            currentPriceText.text = activeStockInfo.currentPrice.ToString("F2") + " €";
+        currentPriceText.text = activeStockInfo.currentPrice.ToString("F2") + " €";
 
-            StockInfoController.instance.UpdatePrice(activeStockInfo.name, activeStockInfo.currentPrice);
+        StockInfoController.instance.UpdatePrice(activeStockInfo.name, activeStockInfo.currentPrice);
 
-            CloseUpdatePrice();
-        }
+        CloseUpdatePrice();
         
     }
 }

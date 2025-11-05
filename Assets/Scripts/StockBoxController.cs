@@ -5,6 +5,8 @@ public class StockBoxController : MonoBehaviour
 {
     [SerializeField] private StockInfo info;
 
+    public GameObject openBox, closeBox;
+
     [SerializeField] private List<Transform> boxPoints;
     [SerializeField] private List<Transform> drinkPoints;
 
@@ -20,9 +22,15 @@ public class StockBoxController : MonoBehaviour
 
     private bool isHeld;
 
-    private void Awake() {
+    private void Awake()
+    {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+    }
+
+    private void Start()
+    {
+        SetupBox(info);
     }
 
     private void Update() {
@@ -81,11 +89,45 @@ public class StockBoxController : MonoBehaviour
 
         isHeld = true;
     }
-    
+
     public void Release()
     {
         rb.isKinematic = false;
         col.enabled = true;
         isHeld = false;
+    }
+
+    public void OpenClose()
+    {
+        if (openBox.activeSelf)
+        {
+            openBox.SetActive(false);
+            closeBox.SetActive(true);
+            return;
+        }
+
+        if (closeBox.activeSelf)
+        {
+            openBox.SetActive(true);
+            closeBox.SetActive(false);
+        }
+    }
+    
+    public void PlaceStockOnShelf(ShelfSpaceController shelf)
+    {
+        if (stockInBox.Count > 0)
+        {
+            shelf.PlaceStock(stockInBox[stockInBox.Count - 1]);
+
+            if (stockInBox[stockInBox.Count - 1].GetIsPlaced())
+            {
+                stockInBox.RemoveAt(stockInBox.Count - 1);
+            }
+        }
+        
+        if(closeBox.activeSelf)
+        {
+            OpenClose();
+        }
     }
 }
