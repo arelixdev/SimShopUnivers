@@ -1659,7 +1659,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5a1f8d563ad7446b24149c909db0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: []
+  points:
+  - point: {fileID: 795683026}
+    waitTime: 1
+  - point: {fileID: 1958348262}
+    waitTime: 0.2
+  - point: {fileID: 1547148410}
+    waitTime: 3
+  - point: {fileID: 1958348262}
+    waitTime: 0.2
+  - point: {fileID: 795683026}
+    waitTime: 0.5
+  - point: {fileID: 1292325967}
+    waitTime: 0
+  moveSpeed: 3
 --- !u!4 &1170532741
 Transform:
   m_ObjectHideFlags: 0
