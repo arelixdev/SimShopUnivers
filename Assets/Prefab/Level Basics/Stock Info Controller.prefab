@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8782304936171396683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1171485029679065021}
+  - component: {fileID: 881558458227048181}
+  m_Layer: 0
+  m_Name: Stock Info Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1171485029679065021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782304936171396683}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5772314, y: 2.5859911, z: 4.3699145}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &881558458227048181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782304936171396683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90e93d2e871fb64da19ddcc2705fa8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  produceInfo:
+  - name: Box Test
+    typeOfStock: 0
+    price: 3.59
+    currentPrice: 0
+    stockObject: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+  - name: Juice
+    typeOfStock: 1
+    price: 2.39
+    currentPrice: 0
+    stockObject: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
