@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,8 @@ public class StoreController : MonoBehaviour
     public static StoreController instance;
     [SerializeField] private float currentMoney = 1000;
     [SerializeField] private Transform stockSpawnPoint, furnitureSpawnPoint;
+
+    public List<FurnitureController> shelvingCases = new List<FurnitureController>();
 
     public Transform GetStockSpawnPoint()
     {

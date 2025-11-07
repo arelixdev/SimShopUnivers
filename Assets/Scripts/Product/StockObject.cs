@@ -9,6 +9,8 @@ public class StockObject : MonoBehaviour
     private Rigidbody rb;
     private Collider col;
 
+    private bool inBag;
+
     public bool GetIsPlaced()
     {
         return isPlaced;
@@ -26,10 +28,15 @@ public class StockObject : MonoBehaviour
     }
     
     private void Update() {
-        if(isPlaced)
+        if (isPlaced)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, moveSpeed * Time.deltaTime);
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.identity, moveSpeed * Time.deltaTime);
+        }
+        
+        if(inBag)
+        {
+            transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.zero, Time.deltaTime);
         }
     }
 
@@ -61,5 +68,11 @@ public class StockObject : MonoBehaviour
     {
         rb.isKinematic = true;
         col.enabled = false;
+    }
+
+    public void PlaceInBag()
+    {
+        inBag = true;
+        MakePlace();
     }
 }
