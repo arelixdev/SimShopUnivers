@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsTrash;
     [SerializeField] private LayerMask whatIsFurniture;
     [SerializeField] private Transform furniturePoint;
+    [SerializeField] private LayerMask whatIsCheckout;
     private float placeStockCounter;
     private StockBoxController heldBox;
     private FurnitureController heldFurniture;
@@ -123,13 +124,13 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
-        if(heldPickup == null && heldBox == null && heldFurniture == null)
+        if (heldPickup == null && heldBox == null && heldFurniture == null)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
                 {
-                    if(hit.collider.GetComponent<StockObject>() != null)
+                    if (hit.collider.GetComponent<StockObject>() != null)
                     {
                         heldPickup = hit.collider.GetComponent<StockObject>();
                         heldPickup.transform.SetParent(holdPoint);
@@ -140,7 +141,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsStockBox))
                 {
-                    if(hit.collider.GetComponent<StockBoxController>())
+                    if (hit.collider.GetComponent<StockBoxController>())
                     {
                         heldBox = hit.collider.GetComponent<StockBoxController>();
                         heldBox.transform.SetParent(boxHoldPoint);
@@ -158,7 +159,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
                 {
-                    if(hit.collider.GetComponent<ShelfSpaceController>() != null)
+                    if (hit.collider.GetComponent<ShelfSpaceController>() != null)
                     {
                         heldPickup = hit.collider.GetComponent<ShelfSpaceController>().GetStock();
 
@@ -168,7 +169,12 @@ public class PlayerController : MonoBehaviour
                             heldPickup.Pickup();
                         }
                     }
-                    
+
+                    return;
+                }
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsCheckout))
+                {
+                    hit.collider.GetComponent<Checkout>().CheckoutCustomer();
                 }
             }
 
@@ -176,7 +182,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsStockBox))
                 {
-                    if(hit.collider.GetComponent<StockBoxController>() != null)
+                    if (hit.collider.GetComponent<StockBoxController>() != null)
                         hit.collider.GetComponent<StockBoxController>().OpenClose();
                 }
             }
@@ -189,8 +195,8 @@ public class PlayerController : MonoBehaviour
                         hit.collider.GetComponent<ShelfSpaceController>().StartPriceUpdate();
                 }
             }
-            
-            if(Keyboard.current.rKey.wasPressedThisFrame)
+
+            if (Keyboard.current.rKey.wasPressedThisFrame)
             {
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsFurniture))
                 {
@@ -204,23 +210,24 @@ public class PlayerController : MonoBehaviour
 
                 }
             }
-        } else
+        }
+        else
         {
-            if(heldPickup != null)
+            if (heldPickup != null)
             {
-                if(Mouse.current.leftButton.wasPressedThisFrame)
+                if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
                     if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
                     {
-                        if(hit.transform.GetComponent<ShelfSpaceController>() != null)
+                        if (hit.transform.GetComponent<ShelfSpaceController>() != null)
                         {
                             hit.transform.GetComponent<ShelfSpaceController>().PlaceStock(heldPickup);
-                            if(heldPickup.GetIsPlaced())
+                            if (heldPickup.GetIsPlaced())
                             {
                                 heldPickup = null;
                             }
                         }
-                        
+
                     }
                 }
 
@@ -289,23 +296,23 @@ public class PlayerController : MonoBehaviour
                     heldBox.OpenClose();
                 }
             }
-            
-            if(heldFurniture != null)
+
+            if (heldFurniture != null)
             {
                 heldFurniture.transform.position = new Vector3(furniturePoint.position.x, 0f, furniturePoint.position.z);
                 heldFurniture.transform.LookAt(new Vector3(transform.position.x, 0f, transform.position.z));
 
-                if(Mouse.current.leftButton.wasPressedThisFrame || Keyboard.current.rKey.wasPressedThisFrame)
+                if (Mouse.current.leftButton.wasPressedThisFrame || Keyboard.current.rKey.wasPressedThisFrame)
                 {
                     heldFurniture.transform.SetParent(null);
 
                     heldFurniture.PlaceFurniture();
-                    
+
                     heldFurniture = null;
                 }
             }
         }
 
-        
     }
+    
 }

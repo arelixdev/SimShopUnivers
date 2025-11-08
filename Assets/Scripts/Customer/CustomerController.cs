@@ -31,6 +31,8 @@ public class CustomerController : MonoBehaviour
     private float currentWaitTime;
     private bool hasGrabbed;
 
+    private Vector3 queuePoint;
+
 
 
     private void Start()
@@ -84,15 +86,30 @@ public class CustomerController : MonoBehaviour
                             GetBrowsePoint();
                         } else
                         {
-                            StartLeaving(); 
+                            if(stockInBag.Count > 0)
+                            {
+                                Checkout.instance.AddCustomerToQueue(this);
+
+                                currentState = CustomerState.queuing;
+                            } else
+                            {
+                                StartLeaving();
+                            }
                         }
                     }
-                    
-
-                    
                 }
                 break;
             case CustomerState.queuing:
+                transform.position = Vector3.MoveTowards(transform.position, queuePoint, moveSpeed * Time.deltaTime);
+                
+                if(Vector3.Distance(transform.position, queuePoint) > .1f)
+                {
+                    animator.SetBool("IsMoving", true);
+                } else
+                {
+                    animator.SetBool("IsMoving", false);
+                }
+
                 break;
             case CustomerState.atCheckout:
                 break;
@@ -175,17 +192,17 @@ public class CustomerController : MonoBehaviour
 
         currentShelfCase = StoreController.instance.shelvingCases[selectedShelf];
     }
-    
+
     public void GrabStock()
     {
-        
+
         hasGrabbed = true;
 
         int shelf = UnityEngine.Random.Range(0, currentShelfCase.shelves.Count);
 
         StockObject stock = currentShelfCase.shelves[shelf].GetStock();
 
-        if(stock != null)
+        if (stock != null)
         {
             stock.transform.SetParent(shoppingBag.transform);
             stockInBag.Add(stock);
@@ -199,9 +216,26 @@ public class CustomerController : MonoBehaviour
             points[0].waitTime = waitAfterGrabbing * UnityEngine.Random.Range(0.75f, 1.25f);
             currentWaitTime = points[0].waitTime;
         }
+    }
 
-        
-        
+    public void UpdateQueuePoint(Vector3 newPoint)
+    {
+        queuePoint = newPoint;
+        transform.LookAt(queuePoint);
+    }
+    
+    public float GetTotalSpend()
+    {
+        float total = 0;
+
+
+        foreach(StockObject stock in stockInBag)
+        {
+            total += stock.info.currentPrice;
+        }
+
+
+        return total;
     }
 }
 
