@@ -945,7 +945,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45f64d2f88911645bf61d4cb6c0daa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorElement: {fileID: 39056442}
 --- !u!1 &287985144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,8 +1803,8 @@ Transform:
   m_GameObject: {fileID: 683467711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.60035044, z: 0, w: 0.7997371}
-  m_LocalPosition: {x: -4.11, y: 1.763, z: 0.32}
-  m_LocalScale: {x: 2.5, y: 3.5, z: 2.5}
+  m_LocalPosition: {x: -6.46, y: 0.65, z: 0.19}
+  m_LocalScale: {x: 1.0195, y: 1.4273, z: 1.0195}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

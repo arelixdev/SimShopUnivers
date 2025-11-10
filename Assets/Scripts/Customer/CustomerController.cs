@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CustomerController : MonoBehaviour
 {
@@ -33,7 +34,12 @@ public class CustomerController : MonoBehaviour
 
     private Vector3 queuePoint;
 
+    private NavMeshAgent agent;
 
+    void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     private void Start()
     {
@@ -127,45 +133,39 @@ public class CustomerController : MonoBehaviour
 
     public void MoveToPoint()
     {
-        if(points.Count > 0)
+        if (points.Count == 0) return;
+
+        Vector3 targetPosition = new Vector3(points[0].point.position.x, transform.position.y, points[0].point.position.z);
+        agent.SetDestination(targetPosition);
+        animator.SetBool("IsMoving", agent.velocity.magnitude > 0.1f);
+
+        // Vérifier si le client est arrivé
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            bool isMoving = true;
+            agent.isStopped = true;
+            currentWaitTime -= Time.deltaTime;
 
-            Vector3 targetPosition = new Vector3(points[0].point.position.x, transform.position.y, points[0].point.position.z);
-
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            transform.LookAt(targetPosition);
-
-            if (Vector3.Distance(transform.position, targetPosition) < 0.25f)
-            {
-                isMoving = false;
-                currentWaitTime -= Time.deltaTime;
-
-                if (currentWaitTime <= 0)
-                {
-                    StartNextPoint();
-                }
-            }
-            animator.SetBool("IsMoving", isMoving);
-        } else
-        {
-            StartNextPoint();
+            if (currentWaitTime <= 0)
+                StartNextPoint();
         }
-        
-
-        
+        else
+        {
+            agent.isStopped = false;
+        }
     }
 
     public void StartNextPoint()
     {
+        if (points.Count > 0) points.RemoveAt(0);
+
         if (points.Count > 0)
         {
-            points.RemoveAt(0);
-
-            if (points.Count > 0)
-            {
-                currentWaitTime = points[0].waitTime;
-            }
+            currentWaitTime = points[0].waitTime;
+            agent.isStopped = false;
+        }
+        else if (currentState == CustomerState.leaving)
+        {
+            Destroy(gameObject);
         }
     }
 
