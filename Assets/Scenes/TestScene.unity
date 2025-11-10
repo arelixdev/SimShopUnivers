@@ -4776,7 +4776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 736553657936973075, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.781
       objectReference: {fileID: 0}
     - target: {fileID: 736553657936973075, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4808,30 +4808,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 736553657936973075, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
-      propertyPath: testFill
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
-      propertyPath: info.data
-      value: 
-      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
-    - target: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
-      propertyPath: info.name
-      value: Box Test
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
-      propertyPath: info.price
-      value: 3.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
-      propertyPath: info.stockObject
-      value: 
-      objectReference: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
-    - target: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
-      propertyPath: info.typeOfStock
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4559903602683820660, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}

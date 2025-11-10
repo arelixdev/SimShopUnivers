@@ -604,7 +604,7 @@ MonoBehaviour:
   - {fileID: 6307997248921122354}
   - {fileID: 8738007246541696631}
   moveSpeed: 5
-  testFill: 0
+  testFill: 1
 --- !u!65 &5680501975665315631
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1131,7 +1131,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 64652619112514394, guid: 108ccdcd5dc85fb41a73af6bea087649, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
