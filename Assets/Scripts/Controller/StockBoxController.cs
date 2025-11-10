@@ -120,7 +120,7 @@ public class StockBoxController : MonoBehaviour
 
     public void PlaceStockOnShelf(ShelfSpaceController shelf)
     {
-        if (stockInBox.Count > 0)
+        if (stockInBox.Count > 0 && shelf != null)
         {
             shelf.PlaceStock(stockInBox[stockInBox.Count - 1]);
 

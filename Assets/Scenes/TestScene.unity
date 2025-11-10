@@ -247,6 +247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -482,6 +486,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -842,6 +850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -852,6 +864,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1178387442574066099, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
   m_PrefabInstance: {fileID: 250121984}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &252855338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 252855339}
+  m_Layer: 0
+  m_Name: Doors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &252855339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252855338}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 259209928}
+  - {fileID: 750007492}
+  - {fileID: 1649696111}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &259209927
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +931,7 @@ Transform:
   - {fileID: 334290373}
   - {fileID: 39056442}
   - {fileID: 864998815}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 252855339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &259209929
 MonoBehaviour:
@@ -1054,6 +1100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1116,6 +1166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1315,6 +1369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1498,6 +1556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1560,6 +1622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1622,6 +1688,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1734,8 +1804,8 @@ Transform:
   m_GameObject: {fileID: 683467711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.60035044, z: 0, w: 0.7997371}
-  m_LocalPosition: {x: 7.47, y: 1.763, z: -6.85}
-  m_LocalScale: {x: 2.5, y: 3.5, z: 1.5}
+  m_LocalPosition: {x: -4.11, y: 1.763, z: 0.32}
+  m_LocalScale: {x: 2.5, y: 3.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1792,6 +1862,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1854,6 +1928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1896,7 +1974,7 @@ Transform:
   - {fileID: 223699312}
   - {fileID: 2089925389}
   - {fileID: 1215407708}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 252855339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &790877754 stripped
 Transform:
@@ -2267,6 +2345,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2470,6 +2552,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2620,6 +2706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2682,6 +2772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2704,6 +2798,8 @@ GameObject:
   - component: {fileID: 1139870169}
   - component: {fileID: 1139870168}
   - component: {fileID: 1139870167}
+  - component: {fileID: 1139870171}
+  - component: {fileID: 1139870172}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -2801,6 +2897,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1139870171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139870166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 16375
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: b3b9130b68c4e5e49a2e11ef416b5a86, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!114 &1139870172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139870166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a434c1a1b44d61b49ba33ae1ebfc625b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1143739986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2991,6 +3131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3320,6 +3464,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3382,6 +3530,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3444,6 +3596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3506,6 +3662,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3778,6 +3938,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3871,6 +4035,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3913,7 +4081,7 @@ Transform:
   - {fileID: 219383729}
   - {fileID: 1000769010}
   - {fileID: 1497616595}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 252855339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1725003516
 PrefabInstance:
@@ -3967,6 +4135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4029,6 +4201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4177,6 +4353,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825284886}
   m_CullTransparentMesh: 1
+--- !u!1 &1918570085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2418127373565366051, guid: 41819dc4b028e634da0b5e35ba00a211, type: 3}
+  m_PrefabInstance: {fileID: 8587654859081737443}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1918570089
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918570085}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &1950191016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4229,6 +4432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4406,6 +4613,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4604,6 +4815,10 @@ PrefabInstance:
       propertyPath: testFill
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
+      propertyPath: info.data
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
     - target: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
       propertyPath: info.name
       value: Box Test
@@ -4873,6 +5088,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: startingStock.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'startingStock.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'startingStock.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
     - target: {fileID: 1171485029679065021, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5772314
@@ -5307,9 +5534,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2350547402632919464, guid: 41819dc4b028e634da0b5e35ba00a211, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2418127373565366051, guid: 41819dc4b028e634da0b5e35ba00a211, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418127373565366051, guid: 41819dc4b028e634da0b5e35ba00a211, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5721355354820984082, guid: 41819dc4b028e634da0b5e35ba00a211, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5354,7 +5589,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2418127373565366051, guid: 41819dc4b028e634da0b5e35ba00a211, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1918570089}
   m_SourcePrefab: {fileID: 100100000, guid: 41819dc4b028e634da0b5e35ba00a211, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -5377,6 +5615,4 @@ SceneRoots:
   - {fileID: 123914344}
   - {fileID: 831086729}
   - {fileID: 1178293872}
-  - {fileID: 259209928}
-  - {fileID: 750007492}
-  - {fileID: 1649696111}
+  - {fileID: 252855339}
