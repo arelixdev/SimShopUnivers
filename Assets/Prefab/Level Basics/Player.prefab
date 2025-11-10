@@ -182,7 +182,8 @@ GameObject:
   - component: {fileID: 1810125756598125447}
   - component: {fileID: 6199939804581811383}
   - component: {fileID: 4595938749401918644}
-  - component: {fileID: 3883975926375915361}
+  - component: {fileID: 1201579613727742067}
+  - component: {fileID: 6059895671893061347}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -258,7 +259,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3883975926375915361
+--- !u!54 &1201579613727742067
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2350547402632919464}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &6059895671893061347
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,7 +303,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -331,6 +359,7 @@ MonoBehaviour:
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   moveSpeed: 5
   jumpForce: 4
   lookSpeed: 10
@@ -357,6 +386,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   furniturePoint: {fileID: 4329818180047324414}
+  whatIsCheckout:
+    serializedVersion: 2
+    m_Bits: 4096
+  whatIsDoor:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!143 &3851611711718886752
 CharacterController:
   m_ObjectHideFlags: 0
@@ -375,8 +410,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.85
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

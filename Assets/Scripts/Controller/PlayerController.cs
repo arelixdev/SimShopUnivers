@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference lookAction;
+    [SerializeField] private InputActionReference interactAction;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsFurniture;
     [SerializeField] private Transform furniturePoint;
     [SerializeField] private LayerMask whatIsCheckout;
+
+    [SerializeField] private LayerMask whatIsDoor;
     private float placeStockCounter;
     private StockBoxController heldBox;
     private FurnitureController heldFurniture;
@@ -187,12 +190,19 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Keyboard.current.eKey.wasPressedThisFrame)
+            if (interactAction.action.WasPressedThisFrame())
             {
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
                 {
                     if (hit.collider.GetComponent<ShelfSpaceController>() != null)
                         hit.collider.GetComponent<ShelfSpaceController>().StartPriceUpdate();
+                }
+
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsDoor))
+                {
+                    var door = hit.collider.GetComponent<DoorController>();
+                    if (door != null)
+                        door.OpenDoor();
                 }
             }
 
@@ -213,6 +223,18 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if (interactAction.action.WasPressedThisFrame())
+            {
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsDoor))
+                {
+                    var door = hit.collider.GetComponent<DoorController>();
+                    if (door != null)
+                        door.OpenDoor();
+
+                    return;
+                }
+            }
+
             if (heldPickup != null)
             {
                 if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -291,7 +313,7 @@ public class PlayerController : MonoBehaviour
                     heldBox = null;
                 }
 
-                if (Keyboard.current.eKey.wasPressedThisFrame)
+                if (interactAction.action.WasPressedThisFrame())
                 {
                     heldBox.OpenClose();
                 }
