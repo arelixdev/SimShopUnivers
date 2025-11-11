@@ -22,12 +22,12 @@ public class CustomersManager : MonoBehaviour
 
     private void Update()
     {
-        /*spawnCounter -= Time.deltaTime;
+        spawnCounter -= Time.deltaTime;
 
         if(spawnCounter <= 0)
         {
             SpawnCustomer();
-        }*/
+        }
     }
 
     public void SpawnCustomer()

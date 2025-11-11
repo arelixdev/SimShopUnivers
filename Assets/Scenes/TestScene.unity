@@ -131,6 +131,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Shopfront_Door_05
       objectReference: {fileID: 0}
+    - target: {fileID: 1005485792341690, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478186514984076, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4503543861227314, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.95
@@ -178,6 +186,10 @@ PrefabInstance:
     - target: {fileID: 4503543861227314, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65373854923906446, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2577,6 +2589,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Shopfront_Door_05
       objectReference: {fileID: 0}
+    - target: {fileID: 1005485792341690, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478186514984076, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4503543861227314, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.73099995
@@ -2915,7 +2935,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 16375
+    m_Bits: 7863
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -2924,7 +2944,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: b3b9130b68c4e5e49a2e11ef416b5a86, type: 2}
   m_BuildHeightMesh: 0
@@ -4492,6 +4512,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 1478186514984076, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4503543861227314, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.73099995
@@ -4776,7 +4800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 736553657936973075, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.781
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 736553657936973075, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
       propertyPath: m_LocalPosition.z

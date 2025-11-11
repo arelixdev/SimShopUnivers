@@ -149,6 +149,7 @@ public class PlayerController : MonoBehaviour
                         heldBox = hit.collider.GetComponent<StockBoxController>();
                         heldBox.transform.SetParent(boxHoldPoint);
                         heldBox.Pickup();
+                        
 
 
                         if (!heldBox.openBox.activeSelf)
@@ -329,6 +330,8 @@ public class PlayerController : MonoBehaviour
                     heldFurniture.transform.SetParent(null);
 
                     heldFurniture.PlaceFurniture();
+
+                    NavMeshcontroller.instance.RebuildNavMesh();
 
                     heldFurniture = null;
                 }

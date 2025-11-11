@@ -4,18 +4,14 @@ using UnityEngine.InputSystem;
 
 public class NavMeshcontroller : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    public static NavMeshcontroller instance;
+
+    private void Awake() {
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RebuildNavMesh()
     {
-        if(Keyboard.current.fKey.wasPressedThisFrame)
-        {
-            GetComponent<NavMeshSurface>().BuildNavMesh();
-        }
+        GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 }
