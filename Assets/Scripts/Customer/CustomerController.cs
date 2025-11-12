@@ -66,12 +66,19 @@ public class CustomerController : MonoBehaviour
                     MoveToPoint();
                 } else
                 {
-                    currentState = CustomerState.browsing;
+                    if(StoreController.instance.GetIsOpen())
+                    {
+                        currentState = CustomerState.browsing;
 
-                    browsePointsRemain = UnityEngine.Random.Range(1, maxBrowsePoints + 1);
-                    browsePointsRemain = Mathf.Clamp(browsePointsRemain, 1, StoreController.instance.shelvingCases.Count);
+                        browsePointsRemain = UnityEngine.Random.Range(1, maxBrowsePoints + 1);
+                        browsePointsRemain = Mathf.Clamp(browsePointsRemain, 1, StoreController.instance.shelvingCases.Count);
 
-                    GetBrowsePoint();
+                        GetBrowsePoint();
+                    } else
+                    {
+                        StartLeaving();
+                    }
+                    
                 }
                 break;
             case CustomerState.browsing:

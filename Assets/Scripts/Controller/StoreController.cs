@@ -10,6 +10,13 @@ public class StoreController : MonoBehaviour
 
     public List<FurnitureController> shelvingCases = new List<FurnitureController>();
 
+    private bool isOpen;
+
+    public bool GetIsOpen()
+    {
+        return isOpen;
+    }
+
     public Transform GetStockSpawnPoint()
     {
         return stockSpawnPoint;
@@ -20,6 +27,12 @@ public class StoreController : MonoBehaviour
         return furnitureSpawnPoint;
     }
 
+    public void OpenStore()
+    {
+        isOpen = true;
+        TimeController.instance.isRunning = true;
+    }
+
     private void Awake()
     {
         instance = this;
@@ -28,6 +41,8 @@ public class StoreController : MonoBehaviour
     private void Start()
     {
         UIController.instance.UpdateMoney(currentMoney);
+
+        TimeController.instance.OnTimeFinished += EndOfDay;
     }
 
     void Update()
@@ -65,7 +80,7 @@ public class StoreController : MonoBehaviour
 
         UIController.instance.UpdateMoney(currentMoney);
     }
-    
+
     public bool CheckMoneyAvailable(float amountToCheck)
     {
         bool hasEnough = false;
@@ -76,5 +91,11 @@ public class StoreController : MonoBehaviour
         }
 
         return hasEnough;
+    }
+    
+    void EndOfDay()
+    {
+        isOpen = false;
+        Debug.Log("La journée est terminée !");
     }
 }

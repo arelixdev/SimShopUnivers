@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsCheckout;
 
     [SerializeField] private LayerMask whatIsDoor;
+    [SerializeField] private LayerMask whatIsSignOpen;
     private float placeStockCounter;
     private StockBoxController heldBox;
     private FurnitureController heldFurniture;
@@ -179,6 +180,11 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsCheckout))
                 {
                     hit.collider.GetComponent<Checkout>().CheckoutCustomer();
+                }
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsSignOpen))
+                {
+                    Debug.Log("Open");
+                    StoreController.instance.OpenStore();
                 }
             }
 

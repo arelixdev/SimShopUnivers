@@ -17,11 +17,11 @@ public class CustomersManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnCustomer();
     }
 
     private void Update()
     {
+
         spawnCounter -= Time.deltaTime;
 
         if(spawnCounter <= 0)
