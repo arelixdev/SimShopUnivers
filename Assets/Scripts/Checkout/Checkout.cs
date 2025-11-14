@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Checkout : MonoBehaviour
 {
@@ -23,9 +24,16 @@ public class Checkout : MonoBehaviour
 
     public List<CustomerController> customersInQueue = new List<CustomerController>();
     public List<StockObject> objectsInQueue = new List<StockObject>();
+
+    [Header("UI Checkout")]
+    [SerializeField] private Transform contentZone;
+    [SerializeField] private GameObject layoutElementScan;
     void Start()
     {
-        HidePrice();
+        for (int i = contentZone.childCount - 1; i >= 0; i--)
+        {
+            Destroy(contentZone.GetChild(i).gameObject);
+        }
     }
 
     void Update()
@@ -52,23 +60,12 @@ public class Checkout : MonoBehaviour
         customer.MarkObjectsAsTransferred();
     }
 
-    public void ShowPrice(float priceTotal)
-    {
-        checkoutScreen.SetActive(true);
 
-        priceText.text = priceTotal.ToString("F2") + " €";
-    }
-
-    public void HidePrice()
-    {
-        checkoutScreen.SetActive(false);
-    }
 
     public void CheckoutCustomer()
     {
         if(checkoutScreen.activeSelf && customersInQueue.Count > 0)
         {
-            HidePrice();
             StoreController.instance.AddMoney(customersInQueue[0].GetTotalSpend());
             customersInQueue[0].StartLeaving();
             customersInQueue.RemoveAt(0);
@@ -130,7 +127,10 @@ public class Checkout : MonoBehaviour
 
     public void UpdateScreen(StockObject obj)
     {
-        Debug.Log("ICI on update le screen avec les objet " + obj.info.name);
+        ScanLineCheckout line = Instantiate(layoutElementScan, contentZone).GetComponent<ScanLineCheckout>();
+        line.UpdateLine(obj.info);
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(contentZone as RectTransform);
     }
 
     private void SetLayerRecursively(GameObject obj, int newLayer)
