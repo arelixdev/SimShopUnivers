@@ -36,6 +36,20 @@ public class CustomerController : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    private bool objectsTransferred = false;
+
+    public bool HasNotTransferredObjectsYet => !objectsTransferred;
+
+    public List<StockObject> GetStockInBag()
+    {
+        return stockInBag;
+    }
+
+    public void MarkObjectsAsTransferred()
+    {
+        objectsTransferred = true;
+    }
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -225,6 +239,13 @@ public class CustomerController : MonoBehaviour
         }
     }
 
+    public void GrabCheckout(StockObject obj)
+    {
+        obj.transform.SetParent(shoppingBag.transform);
+        stockInBag.Add(obj);
+        obj.PlaceInBag();
+}
+
     public void UpdateQueuePoint(Vector3 newPoint)
     {
         queuePoint = newPoint;
@@ -243,6 +264,11 @@ public class CustomerController : MonoBehaviour
 
 
         return total;
+    }
+
+    public void AddObjectToBag(StockObject obj)
+    {
+        obj.PlaceInBag();
     }
 }
 

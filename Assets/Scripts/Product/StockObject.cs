@@ -11,6 +11,8 @@ public class StockObject : MonoBehaviour
 
     private bool inBag;
 
+    private bool isAtCheckout = false;
+
     public bool GetIsPlaced()
     {
         return isPlaced;
@@ -28,6 +30,9 @@ public class StockObject : MonoBehaviour
     }
     
     private void Update() {
+        if (isAtCheckout)
+            return;
+
         if (isPlaced)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, moveSpeed * Time.deltaTime);
@@ -74,5 +79,23 @@ public class StockObject : MonoBehaviour
     {
         inBag = true;
         MakePlace();
+    }
+
+    public void MarkAsCheckoutItem()
+    {
+        isAtCheckout = true;
+        isPlaced = false;
+        inBag = false;
+
+        rb.isKinematic = true;
+        col.enabled = true;
+    }
+
+    public void OutCheckout()
+    {
+        isAtCheckout = false;
+
+        rb.isKinematic = false;
+        col.enabled = false;
     }
 }

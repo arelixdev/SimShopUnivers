@@ -3,10 +3,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference lookAction;
     [SerializeField] private InputActionReference interactAction;
+    [SerializeField] private InputActionReference escapeAction;
+
+    [SerializeField] private Camera playerCam;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -34,12 +38,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private LayerMask whatIsDoor;
     [SerializeField] private LayerMask whatIsSignOpen;
+    [SerializeField] private LayerMask whatIsCheckoutStock;
     private float placeStockCounter;
     private StockBoxController heldBox;
     private FurnitureController heldFurniture;
-    
+
 
     private StockObject heldPickup;
+
+    private Checkout checkOutElement;
 
     private Camera cam;
     private CharacterController charCon;
@@ -50,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         charCon = GetComponent<CharacterController>();
         cam = Camera.main;
     }
@@ -67,16 +76,34 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
-        if(UIController.instance.buyMenuScreen != null)
+        if (UIController.instance.buyMenuScreen != null)
         {
-            if(UIController.instance.buyMenuScreen.activeSelf)
+            if (UIController.instance.buyMenuScreen.activeSelf)
             {
                 return;
             }
         }
+
+        if (escapeAction.action.WasPressedThisFrame() && !playerCam.gameObject.activeSelf)
+        {
+            CloseCheckout();
+        }
+        
+        if (!playerCam.gameObject.activeSelf)
+            return;
+            
         CharLook();
         CharMove();
         CheckForPickup();
+    }
+
+    public void CloseCheckout()
+    {
+        playerCam.gameObject.SetActive(true);
+        checkOutElement.DesactivateCam();
+        Cursor.lockState = CursorLockMode.Locked;
+        UIController.instance.TooglePlayerDot();
+        checkOutElement = null;
     }
 
     private void CharLook()
@@ -132,6 +159,20 @@ public class PlayerController : MonoBehaviour
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsCheckoutStock))
+                {
+                    StockObject obj = hit.collider.GetComponent<StockObject>();
+
+                    if (obj != null)
+                    {
+                        if (Checkout.instance.customersInQueue.Count > 0)
+                        {
+                            obj.OutCheckout();
+                            Checkout.instance.customersInQueue[0].GrabCheckout(obj);
+                            Checkout.instance.UpdateScreen(obj);
+                        }
+                    }
+                }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
                 {
                     if (hit.collider.GetComponent<StockObject>() != null)
@@ -179,11 +220,15 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsCheckout))
                 {
-                    hit.collider.GetComponent<Checkout>().CheckoutCustomer();
+                    //hit.collider.GetComponent<Checkout>().CheckoutCustomer();
+                    playerCam.gameObject.SetActive(false);
+                    checkOutElement = hit.collider.GetComponent<Checkout>();
+                    checkOutElement.ActiveCam();
+                    Cursor.lockState = CursorLockMode.None;
+                    UIController.instance.TooglePlayerDot();
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsSignOpen))
                 {
-                    Debug.Log("Open");
                     StoreController.instance.OpenStore();
                 }
             }

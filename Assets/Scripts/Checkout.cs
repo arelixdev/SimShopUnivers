@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Checkout : MonoBehaviour
@@ -15,8 +17,12 @@ public class Checkout : MonoBehaviour
     [SerializeField] private GameObject checkoutScreen;
 
     [SerializeField] private Transform queuePoint;
+    [SerializeField] private Transform objectPoint;
+
+    [SerializeField] private Camera checkoutCamera;
 
     public List<CustomerController> customersInQueue = new List<CustomerController>();
+    public List<StockObject> objectsInQueue = new List<StockObject>();
     void Start()
     {
         HidePrice();
@@ -26,11 +32,24 @@ public class Checkout : MonoBehaviour
     {
         if(customersInQueue.Count > 0 && !checkoutScreen.activeSelf)
         {
+            CustomerController first = customersInQueue[0];
+
             if(Vector3.Distance(customersInQueue[0].transform.position, queuePoint.position) < 0.1f)
             {
-                ShowPrice(customersInQueue[0].GetTotalSpend());
+                if (first.HasNotTransferredObjectsYet)
+                {
+                    TransferCustomerObjects(first);
+                }
+
+                //ShowPrice(customersInQueue[0].GetTotalSpend());
             }
         }
+    }
+
+    private void TransferCustomerObjects(CustomerController customer)
+    {
+        AddObjectToQueue(customer.GetStockInBag());
+        customer.MarkObjectsAsTransferred();
     }
 
     public void ShowPrice(float priceTotal)
@@ -63,12 +82,79 @@ public class Checkout : MonoBehaviour
         customersInQueue.Add(newCust);
         UpdateQueue();
     }
-    
+
     public void UpdateQueue()
     {
         for (int i = 0; i < customersInQueue.Count; i++)
         {
             customersInQueue[i].UpdateQueuePoint(queuePoint.position + (queuePoint.forward * i * 1.2f));
         }
+    }
+
+    public void AddObjectToQueue(List<StockObject> objs)
+    {
+        foreach (StockObject obj in objs)
+        {
+            obj.transform.SetParent(objectPoint);
+            obj.transform.localScale = Vector3.one;
+
+            obj.MarkAsCheckoutItem();
+        }
+        objectsInQueue.AddRange(objs);
+        UpdateObjectsQueue(); 
+    }
+
+    public void RemoveObjectFromQueue(StockObject obj)
+    {
+        if (objectsInQueue.Contains(obj))
+            objectsInQueue.Remove(obj);
+    }
+
+    public void UpdateObjectsQueue()
+    {
+        for (int i = 0; i < objectsInQueue.Count; i++)
+        {
+            StockObject obj = objectsInQueue[i];
+
+            // SECURITÉ → au cas où un script interne remettrait un scale foireux
+            obj.transform.localScale = Vector3.one;
+
+            Vector3 newPos = objectPoint.position + (objectPoint.forward * i * 0.5f);
+
+            obj.transform.position = newPos;
+            obj.transform.rotation = objectPoint.rotation;
+
+            SetLayerRecursively(obj.gameObject, LayerMask.NameToLayer("CheckoutStock"));
+        }
+    }
+
+    public void UpdateScreen(StockObject obj)
+    {
+        Debug.Log("ICI on update le screen avec les objet " + obj.info.name);
+    }
+
+    private void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
+    public void ActiveCam()
+    {
+        checkoutCamera.gameObject.SetActive(true);
+    }
+
+    internal void DesactivateCam()
+    {
+        checkoutCamera.gameObject.SetActive(false);
+    }
+
+    public void CloseCheckout()
+    {
+        PlayerController.instance.CloseCheckout();
     }
 }

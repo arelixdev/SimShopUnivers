@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
 
     [SerializeField] private TMP_Text basePriceText, currentPriceText;
     [SerializeField] private TMP_InputField priceInputfield;
+    [SerializeField] private GameObject dotPlayer;
 
     
 
@@ -82,6 +83,17 @@ public class UIController : MonoBehaviour
         {
             buyMenuScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    public void TooglePlayerDot()
+    {
+        if(dotPlayer.activeSelf)
+        {
+            dotPlayer.SetActive(false);
+        } else
+        {
+            dotPlayer.SetActive(true);
         }
     }
 }
