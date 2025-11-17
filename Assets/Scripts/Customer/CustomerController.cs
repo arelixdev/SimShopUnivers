@@ -40,6 +40,8 @@ public class CustomerController : MonoBehaviour
 
     public bool HasNotTransferredObjectsYet => !objectsTransferred;
 
+    private bool payWithCard;
+
     public List<StockObject> GetStockInBag()
     {
         return stockInBag;
@@ -50,6 +52,11 @@ public class CustomerController : MonoBehaviour
         objectsTransferred = true;
     }
 
+    public bool GetPayWithCard()
+    {
+        return payWithCard;
+    }
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -57,6 +64,12 @@ public class CustomerController : MonoBehaviour
 
     private void Start()
     {
+        int randVal = UnityEngine.Random.Range(0,100);
+        if(randVal >= 50)
+        {
+            payWithCard = true;
+        }
+
         points.Clear();
         points.AddRange(CustomersManager.instance.GetEntryPoints());
 

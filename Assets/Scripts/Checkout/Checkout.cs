@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Checkout : MonoBehaviour
 {
@@ -32,6 +33,14 @@ public class Checkout : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalTxtValue;
     private float totalValue;
     [SerializeField] private Button paymentButton;
+    [SerializeField] private GameObject cashRegister;
+
+    [Header("Terminal")]
+    [SerializeField] private GameObject terminalScreen;
+    [SerializeField] private TextMeshProUGUI totalPriceDisplay;
+    [SerializeField] private TextMeshProUGUI enteredPriceDisplay;
+
+    private string enteredValue = "";
     private int numberObjectScan;
     void Start()
     {
@@ -39,6 +48,8 @@ public class Checkout : MonoBehaviour
         {
             Destroy(contentZone.GetChild(i).gameObject);
         }
+
+        terminalScreen.SetActive(false);
     }
 
     void Update()
@@ -155,6 +166,34 @@ public class Checkout : MonoBehaviour
         totalTxtValue.text = totalValue.ToString("F2") + " €";
     }
 
+    public void ClickPaymentBtn()
+    {
+        Debug.Log("Payment state" + customersInQueue[0].GetPayWithCard());
+        if (!customersInQueue[0].GetPayWithCard())
+        {
+            Debug.Log("Open Cash register");
+
+            cashRegister.transform.DOLocalMoveZ(
+            cashRegister.transform.localPosition.z + 0.4f,
+            0.5f
+            ).SetEase(Ease.OutQuad);
+        } else
+        {
+            Debug.Log("Display screen card system");
+            OpenTerminal();
+        }
+    }
+
+    void OpenTerminal()
+    {
+        terminalScreen.SetActive(true);
+
+        totalPriceDisplay.text = totalValue.ToString("F2") + " €";
+
+        enteredValue = "";
+        enteredPriceDisplay.text = "0,00 €";
+    }
+
     private void SetLayerRecursively(GameObject obj, int newLayer)
     {
         obj.layer = newLayer;
@@ -163,6 +202,68 @@ public class Checkout : MonoBehaviour
         {
             SetLayerRecursively(child.gameObject, newLayer);
         }
+    }
+
+    public void PressNumber(int num)
+    {
+        if (enteredValue.Length >= 8 || !terminalScreen.activeSelf) return; // limite de sécurité
+
+        enteredValue += num.ToString();
+
+        UpdateEnteredDisplay();
+    }
+
+    public void PressDelete()
+    {
+        if (enteredValue.Length > 0)
+            enteredValue = enteredValue.Substring(0, enteredValue.Length - 1);
+
+        UpdateEnteredDisplay();
+    }
+
+    public void PressValidate()
+    {
+        float entered = float.Parse(enteredValue) / 100f;
+
+        if (Mathf.Abs(entered - totalValue) < 0.01f)
+        {
+            Debug.Log("Paiement accepté !");
+            ValidatePayment();
+        }
+        else
+        {
+            Debug.Log("Montant incorrect !");
+            // vibration / rouge / feedback si tu veux
+        }
+    }
+
+    private void ValidatePayment()
+    {
+        // Ajouter l’argent au magasin
+        StoreController.instance.AddMoney(totalValue);
+
+        // Le client part
+        customersInQueue[0].StartLeaving();
+        customersInQueue.RemoveAt(0);
+
+        // On nettoie le terminal
+        terminalScreen.SetActive(false);
+        enteredValue = "";
+
+        // Mise à jour de la file
+        UpdateQueue();
+    }
+
+    private void UpdateEnteredDisplay()
+    {
+        if (enteredValue == "")
+        {
+            enteredPriceDisplay.text = "0.00 €";
+            return;
+        }
+
+        float val = float.Parse(enteredValue) / 100f;   // ex. 1350 → 13.50
+        enteredPriceDisplay.text = val.ToString("F2") + " €";
     }
 
     public void ActiveCam()
