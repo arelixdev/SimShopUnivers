@@ -242,7 +242,6 @@ public class CustomerController : MonoBehaviour
     public void GrabCheckout(StockObject obj)
     {
         obj.transform.SetParent(shoppingBag.transform);
-        stockInBag.Add(obj);
         obj.PlaceInBag();
 }
 

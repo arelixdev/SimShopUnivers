@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,10 @@ public class Checkout : MonoBehaviour
     [Header("UI Checkout")]
     [SerializeField] private Transform contentZone;
     [SerializeField] private GameObject layoutElementScan;
+    [SerializeField] private TextMeshProUGUI totalTxtValue;
+    private float totalValue;
+    [SerializeField] private Button paymentButton;
+    private int numberObjectScan;
     void Start()
     {
         for (int i = contentZone.childCount - 1; i >= 0; i--)
@@ -131,6 +136,23 @@ public class Checkout : MonoBehaviour
         line.UpdateLine(obj.info);
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentZone as RectTransform);
+
+        totalValue += obj.info.currentPrice;
+
+        UpdateTotalValue();
+
+
+        numberObjectScan++;
+        if(numberObjectScan >= customersInQueue[0].GetStockInBag().Count)
+        {
+            numberObjectScan = 0;
+            paymentButton.interactable = true;
+        }
+    }
+
+    void UpdateTotalValue()
+    {
+        totalTxtValue.text = totalValue.ToString("F2") + " €";
     }
 
     private void SetLayerRecursively(GameObject obj, int newLayer)
