@@ -8939,6 +8939,9 @@ MonoBehaviour:
   checkoutCamera: {fileID: 942571343}
   customersInQueue: []
   objectsInQueue: []
+  whatIsCheckoutStock:
+    serializedVersion: 2
+    m_Bits: 65536
   contentZone: {fileID: 403672654}
   layoutElementScan: {fileID: 7667665039575713005, guid: c07b645e73d61854c912e6cc2b321904, type: 3}
   totalTxtValue: {fileID: 1649845259}

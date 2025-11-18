@@ -65,7 +65,7 @@ public class CustomerController : MonoBehaviour
     private void Start()
     {
         int randVal = UnityEngine.Random.Range(0,100);
-        if(randVal >= 50)
+        if(randVal >= 1)
         {
             payWithCard = true;
         }

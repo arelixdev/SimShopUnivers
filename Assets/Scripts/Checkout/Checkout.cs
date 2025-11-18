@@ -6,6 +6,7 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class Checkout : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Checkout : MonoBehaviour
 
     public List<CustomerController> customersInQueue = new List<CustomerController>();
     public List<StockObject> objectsInQueue = new List<StockObject>();
+    [SerializeField] private LayerMask whatIsCheckoutStock;
 
     [Header("UI Checkout")]
     [SerializeField] private Transform contentZone;
@@ -66,6 +68,31 @@ public class Checkout : MonoBehaviour
                 }
 
                 //ShowPrice(customersInQueue[0].GetTotalSpend());
+            }
+        }
+
+        Ray ray = checkoutCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (Physics.Raycast(ray, out hit, 5, whatIsCheckoutStock))
+            {
+                StockObject obj = hit.collider.GetComponent<StockObject>();
+
+                if (obj != null)
+                {
+                    if (Checkout.instance.customersInQueue.Count > 0)
+                    {
+                        obj.OutCheckout();
+                        Checkout.instance.customersInQueue[0].GrabCheckout(obj);
+                        Checkout.instance.UpdateScreen(obj);
+
+                        Checkout.instance.RemoveObjectFromQueue(obj);
+
+                        Checkout.instance.UpdateObjectsQueue();
+                    }
+                }
             }
         }
     }
@@ -246,12 +273,34 @@ public class Checkout : MonoBehaviour
         customersInQueue[0].StartLeaving();
         customersInQueue.RemoveAt(0);
 
+        ResetCheckout();
+
         // On nettoie le terminal
         terminalScreen.SetActive(false);
         enteredValue = "";
 
         // Mise à jour de la file
         UpdateQueue();
+    }
+
+    public void ResetCheckout()
+    {
+        // 1. Reset UI scan list
+        for (int i = contentZone.childCount - 1; i >= 0; i--)
+            Destroy(contentZone.GetChild(i).gameObject);
+
+        // 2. Reset total value
+        totalValue = 0f;
+        UpdateTotalValue();
+
+        // 3. Clear objects on the checkout belt
+        objectsInQueue.Clear();
+
+        // Optionnel : reset le nombre d’objets scannés
+        numberObjectScan = 0;
+
+        // Optionnel : désactiver le bouton payer
+        paymentButton.interactable = false;
     }
 
     private void UpdateEnteredDisplay()

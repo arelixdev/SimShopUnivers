@@ -170,6 +170,10 @@ public class PlayerController : MonoBehaviour
                             obj.OutCheckout();
                             Checkout.instance.customersInQueue[0].GrabCheckout(obj);
                             Checkout.instance.UpdateScreen(obj);
+
+                            Checkout.instance.RemoveObjectFromQueue(obj);
+
+                            Checkout.instance.UpdateObjectsQueue();
                         }
                     }
                 }
