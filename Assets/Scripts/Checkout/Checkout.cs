@@ -33,6 +33,7 @@ public class Checkout : MonoBehaviour
     [SerializeField] private Transform contentZone;
     [SerializeField] private GameObject layoutElementScan;
     [SerializeField] private TextMeshProUGUI totalTxtValue;
+    [SerializeField] private GameObject checkoutScanScreen;
     private float totalValue;
     [SerializeField] private Button paymentButton;
     [SerializeField] private GameObject cashRegister;
@@ -42,8 +43,22 @@ public class Checkout : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalPriceDisplay;
     [SerializeField] private TextMeshProUGUI enteredPriceDisplay;
 
+    [Header("Money Pay")]
+    [SerializeField] private GameObject moneyPayScreen;
+    [SerializeField] private TextMeshProUGUI quantityTotalObjectTxt;
+    [SerializeField] private TextMeshProUGUI valueTotalObjectTxt;
+    [SerializeField] private TextMeshProUGUI customerValueGiveTxt;
+    [SerializeField] private TextMeshProUGUI differenceValueTxt;
+    [SerializeField] private LayerMask whatIsCheckoutMoney;
+
+    [Header("Cash Random Pay")]
+    [SerializeField, Range(0f, 1f)] private float exactPayProbability = 0.25f;
+    [SerializeField, Range(0f, 100f)] private float minOverPercent = 5f;
+    [SerializeField, Range(0f, 100f)] private float maxOverPercent = 30f;
+
     private string enteredValue = "";
     private int numberObjectScan;
+    private float diffTotalCustomer;
     void Start()
     {
         for (int i = contentZone.childCount - 1; i >= 0; i--)
@@ -82,18 +97,48 @@ public class Checkout : MonoBehaviour
 
                 if (obj != null)
                 {
-                    if (Checkout.instance.customersInQueue.Count > 0)
+                    if (customersInQueue.Count > 0)
                     {
                         obj.OutCheckout();
-                        Checkout.instance.customersInQueue[0].GrabCheckout(obj);
-                        Checkout.instance.UpdateScreen(obj);
+                        customersInQueue[0].GrabCheckout(obj);
+                        UpdateScreen(obj);
 
-                        Checkout.instance.RemoveObjectFromQueue(obj);
+                        RemoveObjectFromQueue(obj);
 
-                        Checkout.instance.UpdateObjectsQueue();
+                        UpdateObjectsQueue();
                     }
                 }
             }
+            if (Physics.Raycast(ray, out hit, 5, whatIsCheckoutMoney))
+            {
+                if(moneyPayScreen.activeSelf)
+                {
+                    MoneyItem item = hit.transform.GetComponent<MoneyItem>();
+                    if (item != null)
+                    {
+                        float v = item.GetValue();
+                        HandleMoneyClick(v);
+                    }
+                }
+                
+            }
+        }
+    }
+
+    private void HandleMoneyClick(float value)
+    {
+        if (value > diffTotalCustomer)
+         return;
+        // On retire la valeur donnée
+        diffTotalCustomer -= value;
+
+        // Mise à jour UI
+        differenceValueTxt.text = "-" + diffTotalCustomer.ToString("F2") + " €";
+
+        // Si montant réglé → valider paiement
+        if (diffTotalCustomer <= 0.01f)
+        {
+            ValidatePayment();
         }
     }
 
@@ -183,7 +228,7 @@ public class Checkout : MonoBehaviour
         numberObjectScan++;
         if(numberObjectScan >= customersInQueue[0].GetStockInBag().Count)
         {
-            numberObjectScan = 0;
+            //numberObjectScan = 0;
             paymentButton.interactable = true;
         }
     }
@@ -195,20 +240,66 @@ public class Checkout : MonoBehaviour
 
     public void ClickPaymentBtn()
     {
-        Debug.Log("Payment state" + customersInQueue[0].GetPayWithCard());
+        if (Mathf.Abs(diffTotalCustomer) < 0.01f && moneyPayScreen.activeSelf)
+        {
+            ValidatePayment();
+            return;
+        }
+
         if (!customersInQueue[0].GetPayWithCard())
         {
-            Debug.Log("Open Cash register");
-
-            cashRegister.transform.DOLocalMoveZ(
-            cashRegister.transform.localPosition.z + 0.4f,
-            0.5f
-            ).SetEase(Ease.OutQuad);
+            OpenCashRegister();
         } else
         {
-            Debug.Log("Display screen card system");
             OpenTerminal();
         }
+    }
+
+    void OpenCashRegister()
+    {
+        cashRegister.transform.DOLocalMoveZ(
+        cashRegister.transform.localPosition.z + 0.4f,
+        0.5f
+        ).SetEase(Ease.OutQuad);
+
+        checkoutScanScreen.SetActive(false);
+        moneyPayScreen.SetActive(true);
+
+        quantityTotalObjectTxt.text = numberObjectScan.ToString();
+        valueTotalObjectTxt.text = totalValue.ToString("F2") + " €";
+
+        // --- NOUVEAU : valeur donnée par le client ---
+        float customerValue = GenerateCustomerGivenValue();
+
+        customerValueGiveTxt.text = customerValue.ToString("F2") + " €";
+
+        // Différence (monnaie à rendre)
+        float diff = customerValue - totalValue;
+        differenceValueTxt.text = "-"  + diff.ToString("F2") + " €";
+
+        diffTotalCustomer = diff;
+    }
+
+    private float GenerateCustomerGivenValue()
+    {
+        float rand = UnityEngine.Random.value;
+
+        // 25% de chance de payer le montant exact
+        if (rand < exactPayProbability)
+        {
+            return totalValue;
+        }
+
+        // Sinon : on calcule un compte rond supérieur avec un surcoût random
+        float percent = UnityEngine.Random.Range(minOverPercent, maxOverPercent);
+        float multiplier = 1f + (percent / 100f);
+
+        float value = totalValue * multiplier;
+
+        // On arrondit au centime supérieur
+        value = Mathf.Round(value * 10f) / 10f;
+
+        return value;
     }
 
     void OpenTerminal()
@@ -266,6 +357,17 @@ public class Checkout : MonoBehaviour
 
     private void ValidatePayment()
     {
+        if(moneyPayScreen.activeSelf)
+        {
+            checkoutScanScreen.SetActive(true);
+            moneyPayScreen.SetActive(false);
+
+            cashRegister.transform.DOLocalMoveZ(
+            cashRegister.transform.localPosition.z - 0.4f,
+            0.5f
+            ).SetEase(Ease.OutQuad);
+        }
+
         // Ajouter l’argent au magasin
         StoreController.instance.AddMoney(totalValue);
 
