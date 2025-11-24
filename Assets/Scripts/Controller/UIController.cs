@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_InputField priceInputfield;
     [SerializeField] private GameObject dotPlayer;
 
+
+    [SerializeField] private GameObject shopLvlPanel;
+    [SerializeField] private TMP_Text shopNameTxt;
+    [SerializeField] private TMP_Text shopLvlTxt;
+    [SerializeField] private Slider shopLvlBar;
+
     
 
     private StockInfo activeStockInfo;
@@ -24,6 +31,7 @@ public class UIController : MonoBehaviour
         instance = this;
         CloseUpdatePrice();
         buyMenuScreen.SetActive(false);
+        shopLvlPanel.SetActive(false);
     }
 
     private void Update() {
@@ -94,6 +102,21 @@ public class UIController : MonoBehaviour
         } else
         {
             dotPlayer.SetActive(true);
+        }
+    }
+
+    public void UpdateShopUI(string shopName, int shopLevel, int xpAct)
+    {
+        if(shopName != "")
+        {
+            shopLvlPanel.SetActive(true);
+            shopNameTxt.text = shopName;
+            shopLvlTxt.text = "LVL " + shopLevel;
+            shopLvlBar.maxValue = StoreController.instance.GetXpRequiered()[shopLevel-1];
+            shopLvlBar.value = xpAct;
+        } else
+        {
+            shopLvlPanel.SetActive(false);
         }
     }
 }

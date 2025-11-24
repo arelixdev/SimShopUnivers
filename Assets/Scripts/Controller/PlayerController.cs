@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsDoor;
     [SerializeField] private LayerMask whatIsSignOpen;
     [SerializeField] private LayerMask whatIsCheckoutStock;
+    [SerializeField] private LayerMask whatIsShopName;
     private float placeStockCounter;
     private StockBoxController heldBox;
     private FurnitureController heldFurniture;
@@ -234,6 +235,10 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsSignOpen))
                 {
                     StoreController.instance.OpenStore();
+                }
+                if (Physics.Raycast(ray, out hit, 20, whatIsShopName))
+                {
+                    Debug.Log("Open Shop Namming Panel");
                 }
             }
 

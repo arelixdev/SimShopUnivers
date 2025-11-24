@@ -7,10 +7,16 @@ public class StoreController : MonoBehaviour
     public static StoreController instance;
     [SerializeField] private float currentMoney = 1000;
     [SerializeField] private Transform stockSpawnPoint, furnitureSpawnPoint;
+    [SerializeField] private List<int> levelXpRequiered = new List<int>();
 
     public List<FurnitureController> shelvingCases = new List<FurnitureController>();
 
     private bool isOpen;
+
+    public List<int> GetXpRequiered()
+    {
+        return levelXpRequiered;
+    }
 
     public bool GetIsOpen()
     {
