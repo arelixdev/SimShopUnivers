@@ -15,6 +15,17 @@ public class ShopZone : MonoBehaviour
     private int xpAct = 0;
     private bool playerIn;
 
+    public string GetNameShop()
+    {
+        return nameShop;
+    }
+
+    public void SetNameShop(string nameMod)
+    {
+        nameShop = nameMod;
+        nameObj.text = nameShop.ToUpper();
+    }
+
 
      void Awake()
     {
@@ -38,10 +49,10 @@ public class ShopZone : MonoBehaviour
 
         nameObj.transform.position = newPos;
 
-        if(playerIn && Keyboard.current.pKey.wasPressedThisFrame)
+        /*if(playerIn && Keyboard.current.pKey.wasPressedThisFrame)
         {
             AddXp(60);
-        }
+        }*/
     }
 
     void OnDrawGizmos()

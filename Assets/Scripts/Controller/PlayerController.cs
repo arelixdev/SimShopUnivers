@@ -84,6 +84,13 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        if (UIController.instance.nameShopScreen != null)
+        {
+            if (UIController.instance.nameShopScreen.activeSelf)
+            {
+                return;
+            }
+        }
 
         if (escapeAction.action.WasPressedThisFrame() && !playerCam.gameObject.activeSelf)
         {
@@ -160,6 +167,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
+                
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsCheckoutStock))
                 {
                     StockObject obj = hit.collider.GetComponent<StockObject>();
@@ -236,10 +244,13 @@ public class PlayerController : MonoBehaviour
                 {
                     StoreController.instance.OpenStore();
                 }
-                if (Physics.Raycast(ray, out hit, 20, whatIsShopName))
+
+                if (Physics.Raycast(ray, out hit, 10, whatIsShopName))
                 {
-                    Debug.Log("Open Shop Namming Panel");
+                    UIController.instance.OpenCloseNameShop(hit.transform.parent.GetComponent<ShopZone>());
+                    Cursor.lockState = CursorLockMode.None;
                 }
+                
             }
 
             if (Mouse.current.rightButton.wasPressedThisFrame)
