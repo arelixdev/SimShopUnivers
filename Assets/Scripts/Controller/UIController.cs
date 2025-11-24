@@ -16,6 +16,9 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_InputField priceInputfield;
     [SerializeField] private GameObject dotPlayer;
 
+    [SerializeField] private TMP_Text lvlGeneralTxt;
+    [SerializeField] private Slider lvlGeneralBar;
+
 
     [SerializeField] private GameObject shopLvlPanel;
     [SerializeField] private TMP_Text shopNameTxt;
@@ -107,6 +110,13 @@ public class UIController : MonoBehaviour
         {
             dotPlayer.SetActive(true);
         }
+    }
+
+    public void UpdateXpGeneralUI(int level, int xpAct)
+    {
+        lvlGeneralTxt.text = "LVL " + level;
+        lvlGeneralBar.maxValue = StoreController.instance.levelXpGeneral[level-1];
+        lvlGeneralBar.value = xpAct;
     }
 
     public void UpdateShopUI(string shopName, int shopLevel, int xpAct)

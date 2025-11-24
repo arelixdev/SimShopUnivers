@@ -7,7 +7,13 @@ public class StoreController : MonoBehaviour
     public static StoreController instance;
     [SerializeField] private float currentMoney = 1000;
     [SerializeField] private Transform stockSpawnPoint, furnitureSpawnPoint;
-    [SerializeField] private List<int> levelXpRequiered = new List<int>();
+    [SerializeField] private List<int> levelXpRequiered = new List<int>(); //TODO rename var
+
+    //TODO add serializeField for clean
+    public int levelGeneral;
+    public List<int> levelXpGeneral = new List<int>();
+
+    public int xpAct;
 
     public List<FurnitureController> shelvingCases = new List<FurnitureController>();
 
@@ -49,6 +55,8 @@ public class StoreController : MonoBehaviour
         UIController.instance.UpdateMoney(currentMoney);
 
         TimeController.instance.OnTimeFinished += EndOfDay;
+
+        UIController.instance.UpdateXpGeneralUI(levelGeneral, xpAct);
     }
 
     void Update()
@@ -66,6 +74,25 @@ public class StoreController : MonoBehaviour
             }
             
         }
+
+        if(Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            AddXp(60);
+        }
+    }
+
+    void AddXp(int val)
+    {
+        xpAct += val;
+
+
+        if(xpAct >= levelXpGeneral[levelGeneral-1])
+        {
+            int diffVal = xpAct - levelXpGeneral[levelGeneral-1];
+            levelGeneral++;
+            xpAct = diffVal;
+        }
+        UIController.instance.UpdateXpGeneralUI( levelGeneral, xpAct);
     }
 
     public void AddMoney(float amountToAdd)
