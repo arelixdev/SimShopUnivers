@@ -127,8 +127,6 @@ public class Checkout : MonoBehaviour
 
     private void HandleMoneyClick(float value)
     {
-        if (value > diffTotalCustomer)
-         return;
         // On retire la valeur donnée
         diffTotalCustomer -= value;
 
@@ -136,7 +134,7 @@ public class Checkout : MonoBehaviour
         differenceValueTxt.text = "-" + diffTotalCustomer.ToString("F2") + " €";
 
         // Si montant réglé → valider paiement
-        if (diffTotalCustomer <= 0.01f)
+        if (diffTotalCustomer < 0.1f)
         {
             ValidatePayment();
         }
