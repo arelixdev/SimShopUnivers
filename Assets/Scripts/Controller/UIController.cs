@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour
     public GameObject updatePricePanel;
     public GameObject buyMenuScreen;
 
+    public  GameObject wheelTools;
+
     [SerializeField] private TMP_Text basePriceText, currentPriceText;
     [SerializeField] private TMP_InputField priceInputfield;
     [SerializeField] private GameObject dotPlayer;
@@ -39,12 +41,21 @@ public class UIController : MonoBehaviour
         buyMenuScreen.SetActive(false);
         shopLvlPanel.SetActive(false);
         nameShopScreen.SetActive(false);
+        //wheelTools.SetActive(false);
     }
 
     private void Update() {
         if(Keyboard.current.tabKey.wasPressedThisFrame)
         {
             OpenCloseBuyMenu();
+        }
+        if(Keyboard.current.tKey.wasPressedThisFrame)
+        {
+            OpenWheelToolMenu();
+        }
+        if(Keyboard.current.tKey.wasReleasedThisFrame)
+        {
+            CloseWheelToolMenu();
         }
     }
 
@@ -164,5 +175,17 @@ public class UIController : MonoBehaviour
     {
         shopTemp.SetNameShop(nameShopInputfield.text);
         OpenCloseNameShop();
+    }
+
+    public void OpenWheelToolMenu()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        wheelTools.SetActive(true);
+    }
+
+    public void CloseWheelToolMenu()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        wheelTools.SetActive(false);
     }
 }

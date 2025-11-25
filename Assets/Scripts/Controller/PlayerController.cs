@@ -92,6 +92,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if(UIController.instance.wheelTools != null)
+        {
+            if(UIController.instance.wheelTools.activeSelf)
+            {
+                return;
+            }
+        }
+
         if (escapeAction.action.WasPressedThisFrame() && !playerCam.gameObject.activeSelf)
         {
             CloseCheckout();
