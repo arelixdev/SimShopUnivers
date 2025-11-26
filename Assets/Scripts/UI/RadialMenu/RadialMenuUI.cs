@@ -98,7 +98,6 @@ public class RadialMenuUI : MonoBehaviour
 
     public void Open(RadialActionContext ctx)
     {
-        Debug.Log("OPEN" + ctx.player);
         currentContext = ctx;
     }
 }

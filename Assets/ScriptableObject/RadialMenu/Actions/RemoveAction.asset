@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ec987985cd75c54486d55034d7db5bc, type: 3}
-  m_Name: ScanAction
+  m_Script: {fileID: 11500000, guid: 846f7fae49424ab47be38bcbab7dac48, type: 3}
+  m_Name: RemoveAction
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 648c2f5f2166de748abb1b6e43f9f8ef, type: 3}
+  icon: {fileID: 21300000, guid: 0fbe9490ead8afa42baa91cd8ed02f34, type: 3}

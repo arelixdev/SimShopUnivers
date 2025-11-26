@@ -40,12 +40,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsSignOpen;
     [SerializeField] private LayerMask whatIsCheckoutStock;
     [SerializeField] private LayerMask whatIsShopName;
+    [SerializeField] private LayerMask whatIsMopAction;
 
     public Transform mopHand;
     private float placeStockCounter;
     private StockBoxController heldBox;
     private FurnitureController heldFurniture;
     private Transform mopObj;
+    private bool mopClean;
+    private GameObject mopTrashElement;
 
 
     private StockObject heldPickup;
@@ -179,7 +182,7 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
-        if (heldPickup == null && heldBox == null && heldFurniture == null)
+        if (heldPickup == null && heldBox == null && heldFurniture == null && mopObj == null)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -424,12 +427,33 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if(mopObj != null)
+            if(mopObj != null && !mopClean)
             {
                 mopObj.transform.position = new Vector3(mopHand.position.x, 0f, mopHand.position.z);
+                mopObj.transform.LookAt(new Vector3(transform.position.x, 0f, transform.position.z));
+                if(Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsMopAction))
+                    {
+                        mopObj.SetParent(null);
+                        mopTrashElement = hit.transform.gameObject;
+                        mopObj.transform.position = hit.transform.position;
+                        mopObj.transform.rotation = Quaternion.identity;
+                        mopClean = true;
+                        mopObj.GetComponentInChildren<Animator>().SetTrigger("Cleanning");
+                    }
+                }
             }
         }
+    }
 
+    public void CleanMop()
+    {
+        mopObj.transform.position = Vector3.zero;
+        mopObj.transform.rotation = Quaternion.identity;
+        mopObj.SetParent(mopHand);
+        mopClean = false;
+        Destroy(mopTrashElement);
     }
     
 }
