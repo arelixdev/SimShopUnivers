@@ -23924,18 +23924,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a80c3a1c85362439e255c0702663f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCount: 6
+  actions:
+  - {fileID: 11400000, guid: 92a94b3ce5d8c894f8020da167714253, type: 2}
+  - {fileID: 11400000, guid: cddf2eefbbf462946bee0fc7a403c208, type: 2}
+  - {fileID: 11400000, guid: 490f8a8d0c5f41f4e86178ce00b0d3ad, type: 2}
+  - {fileID: 11400000, guid: f2affd55bbd407240ae221f983dda669, type: 2}
+  - {fileID: 11400000, guid: e901f95b7e9884647bf4fde615a8cf20, type: 2}
+  - {fileID: 11400000, guid: a488dfd8ebfa7c940b0904dc704e1046, type: 2}
   innerRadius: 40
   outerRadius: 65
   gapAngle: 2
-  clockwise: 1
-  icons:
-  - {fileID: 21300000, guid: 0d945a289f0c80046ba6dc2ab110a48b, type: 3}
-  - {fileID: 21300000, guid: 8d5ead93a1a6c154aa3cffae9271fafd, type: 3}
-  - {fileID: 21300000, guid: 1c110586beeadec499ccd8f7542403bf, type: 3}
-  - {fileID: 21300000, guid: 648c2f5f2166de748abb1b6e43f9f8ef, type: 3}
-  - {fileID: 21300000, guid: 96628b21fd9128f4e89e22a265d102d8, type: 3}
-  - {fileID: 21300000, guid: 762e5ebc738bcf148a0bd7c4709ef93d, type: 3}
   iconSize: {x: 15, y: 15}
   sliceColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
 --- !u!1001 &2124337552

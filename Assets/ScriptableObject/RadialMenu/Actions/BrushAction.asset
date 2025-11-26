@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505020fab58c33d49a277797b9f98594, type: 3}
+  m_Name: BrushAction
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 8d5ead93a1a6c154aa3cffae9271fafd, type: 3}

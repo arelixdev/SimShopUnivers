@@ -4,22 +4,21 @@ using System.Collections.Generic;
 
 public class RadialMenuUI : MonoBehaviour
 {
+    public List<RadialAction> actions;
     [Header("Slices")]
-    public int itemCount = 6;
-    public float innerRadius = 80f;
-    public float outerRadius = 150f;
+    private int itemCount;
+    [SerializeField] private float innerRadius = 80f;
+    [SerializeField] private float outerRadius = 150f;
 
     [Header("Gap Between Slices")]
-    public float gapAngle = 2f;
-
-    public bool clockwise = true;
+    [SerializeField] private float gapAngle = 2f;
 
     [Header("Icons")]
-    public List<Sprite> icons;
-    public Vector2 iconSize = new Vector2(60, 60);
+
+    [SerializeField] private Vector2 iconSize = new Vector2(60, 60);
 
     [Header("Slice Color")]
-    public Color sliceColor = Color.white;
+    [SerializeField] private Color sliceColor = Color.white;
 
     void Start()
     {
@@ -28,6 +27,8 @@ public class RadialMenuUI : MonoBehaviour
 
     public void Generate()
     {
+        itemCount = actions.Count;
+
         for (int i = transform.childCount - 1; i >= 0; i--)
         Destroy(transform.GetChild(i).gameObject);
 
@@ -61,10 +62,12 @@ public class RadialMenuUI : MonoBehaviour
             interact.hoverColor = new Color(sliceColor.r, sliceColor.g, sliceColor.b, 0.6f);
 
             // event click
-            interact.onClick = (id) =>
+            /*interact.onClick = (id) =>
             {
             Debug.Log("Slice clicked: " + id);
-            };
+            };*/
+
+            slice.onClick = actions[i].Execute;
 
             RectTransform rt = sliceObj.GetComponent<RectTransform>();
             rt.anchorMin = Vector2.zero;
@@ -79,8 +82,7 @@ public class RadialMenuUI : MonoBehaviour
             Image iconImg = iconObj.GetComponent<Image>();
             RectTransform iconRT = iconObj.GetComponent<RectTransform>();
 
-            if (icons != null && i < icons.Count)
-                iconImg.sprite = icons[i];
+            iconImg.sprite = actions[i].icon;
 
             iconRT.sizeDelta = iconSize;
 
