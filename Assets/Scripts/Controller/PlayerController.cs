@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
     }
     
     private void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void SetMopObj(Transform mopObjAdd)
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         playerCam.gameObject.SetActive(true);
         checkOutElement.DesactivateCam();
-        Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UIController.instance.TooglePlayerDot();
         checkOutElement = null;
     }
@@ -256,7 +257,7 @@ public class PlayerController : MonoBehaviour
                     playerCam.gameObject.SetActive(false);
                     checkOutElement = hit.collider.GetComponent<Checkout>();
                     checkOutElement.ActiveCam();
-                    Cursor.lockState = CursorLockMode.None;
+                    UnityEngine.Cursor.lockState = CursorLockMode.None;
                     UIController.instance.TooglePlayerDot();
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsSignOpen))
@@ -267,7 +268,7 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, 10, whatIsShopName))
                 {
                     UIController.instance.OpenCloseNameShop(hit.transform.parent.GetComponent<ShopZone>());
-                    Cursor.lockState = CursorLockMode.None;
+                    UnityEngine.Cursor.lockState = CursorLockMode.None;
                 }
                 
             }
@@ -454,6 +455,15 @@ public class PlayerController : MonoBehaviour
         mopObj.SetParent(mopHand);
         mopClean = false;
         Destroy(mopTrashElement);
+    }
+
+    public void RemoveTools()
+    {
+        if(mopObj != null)
+        {
+            Destroy(mopObj.gameObject);
+            mopObj = null;
+        }
     }
     
 }

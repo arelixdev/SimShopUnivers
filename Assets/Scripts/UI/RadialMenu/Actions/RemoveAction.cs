@@ -5,6 +5,9 @@ public class RemoveAction : RadialAction
 {
    public override void Execute(RadialActionContext context)
     {
-        Debug.Log("REMOVE TOOL");
+        if(context.player != null)
+        {
+            context.player.GetComponent<PlayerController>().RemoveTools();
+        }
     } 
 }

@@ -8,6 +8,7 @@ public class MopAction : RadialAction
     {
         if(context.mopHand != null)
         {
+            context.player.GetComponent<PlayerController>().RemoveTools();
             Transform mop = Instantiate(mopPrefab, context.mopHand).transform;
             context.player.GetComponent<PlayerController>().SetMopObj(mop);
         }
