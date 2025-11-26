@@ -41,7 +41,6 @@ public class UIController : MonoBehaviour
         buyMenuScreen.SetActive(false);
         shopLvlPanel.SetActive(false);
         nameShopScreen.SetActive(false);
-        //wheelTools.SetActive(false);
     }
 
     private void Update() {
@@ -52,6 +51,7 @@ public class UIController : MonoBehaviour
         if(Keyboard.current.tKey.wasPressedThisFrame)
         {
             OpenWheelToolMenu();
+
         }
         if(Keyboard.current.tKey.wasReleasedThisFrame)
         {
@@ -181,6 +181,12 @@ public class UIController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         wheelTools.SetActive(true);
+
+        RadialActionContext ctx = new RadialActionContext();
+        ctx.player = PlayerController.instance.gameObject;
+        ctx.mopHand = PlayerController.instance.mopHand;
+
+        wheelTools.GetComponent<RadialMenuUI>().Open(ctx);
     }
 
     public void CloseWheelToolMenu()

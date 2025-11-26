@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class RadialMenuUI : MonoBehaviour
 {
     public List<RadialAction> actions;
+    public RadialActionContext currentContext;
     [Header("Slices")]
     private int itemCount;
     [SerializeField] private float innerRadius = 80f;
@@ -40,9 +41,6 @@ public class RadialMenuUI : MonoBehaviour
             float end = (i + 1) * anglePerSlice;
 
 
-
-
-            // ----- 1. CREATE SLICE -----
             GameObject sliceObj = new GameObject("Slice " + i);
             sliceObj.transform.SetParent(transform, false);
 
@@ -54,7 +52,7 @@ public class RadialMenuUI : MonoBehaviour
             slice.gapAngle = gapAngle;
             slice.color = sliceColor;
 
-            // ----- ADD INTERACTION SCRIPT -----
+        
             RadialSliceInteract interact = sliceObj.AddComponent<RadialSliceInteract>();
             interact.slice = slice;
             interact.index = i;
@@ -62,12 +60,8 @@ public class RadialMenuUI : MonoBehaviour
             interact.hoverColor = new Color(sliceColor.r, sliceColor.g, sliceColor.b, 0.6f);
 
             // event click
-            /*interact.onClick = (id) =>
-            {
-            Debug.Log("Slice clicked: " + id);
-            };*/
-
-            slice.onClick = actions[i].Execute;
+            int index = i;
+            slice.onClick = () => actions[index].Execute(currentContext);
 
             RectTransform rt = sliceObj.GetComponent<RectTransform>();
             rt.anchorMin = Vector2.zero;
@@ -75,7 +69,6 @@ public class RadialMenuUI : MonoBehaviour
             rt.offsetMin = Vector2.zero;
             rt.offsetMax = Vector2.zero;
 
-            // ----- 2. CREATE ICON -----
             GameObject iconObj = new GameObject("Icon", typeof(RectTransform), typeof(Image));
             iconObj.transform.SetParent(sliceObj.transform, false);
 
@@ -101,5 +94,11 @@ public class RadialMenuUI : MonoBehaviour
             iconRT.anchoredPosition = pos;
         }
         UIController.instance.CloseWheelToolMenu();
+    }
+
+    public void Open(RadialActionContext ctx)
+    {
+        Debug.Log("OPEN" + ctx.player);
+        currentContext = ctx;
     }
 }

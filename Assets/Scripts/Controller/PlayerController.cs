@@ -40,9 +40,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsSignOpen;
     [SerializeField] private LayerMask whatIsCheckoutStock;
     [SerializeField] private LayerMask whatIsShopName;
+
+    public Transform mopHand;
     private float placeStockCounter;
     private StockBoxController heldBox;
     private FurnitureController heldFurniture;
+    private Transform mopObj;
 
 
     private StockObject heldPickup;
@@ -66,6 +69,11 @@ public class PlayerController : MonoBehaviour
     
     private void Start() {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void SetMopObj(Transform mopObjAdd)
+    {
+        mopObj = mopObjAdd;
     }
 
     private void Update()
@@ -414,6 +422,11 @@ public class PlayerController : MonoBehaviour
 
                     heldFurniture = null;
                 }
+            }
+
+            if(mopObj != null)
+            {
+                mopObj.transform.position = new Vector3(mopHand.position.x, 0f, mopHand.position.z);
             }
         }
 

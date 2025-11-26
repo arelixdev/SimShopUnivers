@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MopAction
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 762e5ebc738bcf148a0bd7c4709ef93d, type: 3}
-  mopPrefab: {fileID: 0}
+  mopPrefab: {fileID: 2948615072222813441, guid: 63018f805aa8f0043af39eccfcd0d93f, type: 3}
