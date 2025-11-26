@@ -55,6 +55,10 @@ MonoBehaviour:
   currentShelfCase: {fileID: 0}
   shoppingBag: {fileID: 5937213763329421275}
   waitAfterGrabbing: 0.5
+  waterTrash: {fileID: 7752940050254590865, guid: 6a39496bd68570248b1bfa80a324e67a, type: 3}
+  minTrashInterval: 8
+  maxTrashInterval: 15
+  trashSpawnChance: 0.3
 --- !u!195 &-4671994133124710119
 NavMeshAgent:
   m_ObjectHideFlags: 0

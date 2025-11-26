@@ -27,6 +27,16 @@ public class CustomerController : MonoBehaviour
 
     [SerializeField] private float waitAfterGrabbing = 0.5f;
 
+    [Header("Trash Customer")]
+
+    [SerializeField] private GameObject waterTrash;
+    [SerializeField] private float minTrashInterval = 8f;
+    [SerializeField] private float maxTrashInterval = 15f;
+
+    [SerializeField] private float trashSpawnChance = 0.3f; 
+
+    private float nextTrashTime = 0f;
+
     private List<StockObject> stockInBag = new List<StockObject>();
 
     private float currentWaitTime;
@@ -80,7 +90,7 @@ public class CustomerController : MonoBehaviour
             currentWaitTime = points[0].waitTime;
         }
 
-        //points.AddRange(CustomersManager.instance.GetExitPoints());
+        nextTrashTime = Time.time + UnityEngine.Random.Range(minTrashInterval, maxTrashInterval);
     }
 
     void Update()
@@ -162,6 +172,45 @@ public class CustomerController : MonoBehaviour
                     Destroy(gameObject);
                 }
                 break;
+        }
+        HandleTrashSpawn();
+    }
+
+    private void HandleTrashSpawn()
+    {
+        if (waterTrash == null) return;
+
+        if (Time.time >= nextTrashTime)
+        {
+            float rand = UnityEngine.Random.Range(0f, 1f);
+
+            Debug.Log("rand" + rand);
+
+            if (rand <= trashSpawnChance)
+            {
+                Vector3 rayOrigin = transform.position + Vector3.up * 1f;
+
+                if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 5f))
+                {
+                    Vector3 spawnPos = hit.point;
+
+                    GameObject trash = Instantiate(waterTrash, spawnPos, Quaternion.identity);
+
+                    float randomY = UnityEngine.Random.Range(0f, 360f);
+                    trash.transform.rotation = Quaternion.Euler(0, randomY, 0);
+
+                    float randomScale = UnityEngine.Random.Range(0.8f, 1.2f);
+                    trash.transform.localScale = Vector3.one * randomScale;
+                }
+                else
+                {
+                    Vector3 fallbackPos = transform.position + new Vector3(0, -0.05f, 0);
+
+                    GameObject trash = Instantiate(waterTrash, fallbackPos, Quaternion.identity);
+                }
+            }
+
+            nextTrashTime = Time.time + UnityEngine.Random.Range(minTrashInterval, maxTrashInterval);
         }
     }
 
