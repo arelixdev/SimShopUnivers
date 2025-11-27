@@ -41,15 +41,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsSignOpen;
     [SerializeField] private LayerMask whatIsCheckoutStock;
     [SerializeField] private LayerMask whatIsShopName;
-    [SerializeField] private LayerMask whatIsMopAction;
+    [SerializeField] private string whatIsMopActionTag;
+    [SerializeField] private string whatIsBroomActionTag;
 
     public Transform mopHand;
+    public Transform broomHand;
     private float placeStockCounter;
     private StockBoxController heldBox;
     private FurnitureController heldFurniture;
     private Transform mopObj;
+    private Transform broomObj;
     private bool mopClean;
+    private bool broomClean;
     private GameObject mopTrashElement;
+    private GameObject broomTrashElement;
 
 
     private StockObject heldPickup;
@@ -78,6 +83,11 @@ public class PlayerController : MonoBehaviour
     public void SetMopObj(Transform mopObjAdd)
     {
         mopObj = mopObjAdd;
+    }
+
+    public void SetBroomObj(Transform broomObjAdd)
+    {
+        broomObj = broomObjAdd;
     }
 
     private void Update()
@@ -183,7 +193,7 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
-        if (heldPickup == null && heldBox == null && heldFurniture == null && mopObj == null)
+        if (heldPickup == null && heldBox == null && heldFurniture == null && mopObj == null && broomObj == null)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -434,14 +444,38 @@ public class PlayerController : MonoBehaviour
                 mopObj.transform.LookAt(new Vector3(transform.position.x, 0f, transform.position.z));
                 if(Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsMopAction))
+                    if (Physics.Raycast(ray, out hit, interactionRange))
                     {
-                        mopObj.SetParent(null);
-                        mopTrashElement = hit.transform.gameObject;
-                        mopObj.transform.position = hit.transform.position;
-                        mopObj.transform.rotation = Quaternion.identity;
-                        mopClean = true;
-                        mopObj.GetComponentInChildren<Animator>().SetTrigger("Cleanning");
+                        if(hit.transform.tag == whatIsMopActionTag)
+                        {
+                            mopObj.SetParent(null);
+                            mopTrashElement = hit.transform.gameObject;
+                            mopObj.transform.position = hit.transform.position;
+                            mopObj.transform.rotation = Quaternion.identity;
+                            mopClean = true;
+                            mopObj.GetComponentInChildren<Animator>().SetTrigger("Cleanning");
+                        }
+                    }
+                }
+            }
+
+            if(broomObj != null && !broomClean)
+            {
+                broomObj.transform.position = new Vector3(broomHand.position.x, 0f, broomHand.position.z);
+                broomObj.transform.LookAt(new Vector3(transform.position.x, 0f, transform.position.z));
+                if(Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    if (Physics.Raycast(ray, out hit, interactionRange))
+                    {
+                        if(hit.transform.tag == whatIsBroomActionTag)
+                        {
+                            broomObj.SetParent(null);
+                            broomTrashElement = hit.transform.gameObject;
+                            broomObj.transform.position = hit.transform.position;
+                            broomObj.transform.rotation = Quaternion.identity;
+                            broomClean = true;
+                            broomObj.GetComponentInChildren<Animator>().SetTrigger("Cleanning");
+                        }
                     }
                 }
             }
@@ -457,13 +491,30 @@ public class PlayerController : MonoBehaviour
         Destroy(mopTrashElement);
     }
 
+    public void CleanBroom()
+    {
+        broomObj.transform.position = Vector3.zero;
+        broomObj.transform.rotation = Quaternion.identity;
+        broomObj.SetParent(broomHand);
+        broomClean = false;
+        Destroy(broomTrashElement);
+    }
+
     public void RemoveTools()
     {
         if(mopObj != null)
         {
             Destroy(mopObj.gameObject);
+            mopClean = false;
             mopObj = null;
         }
+        if(broomObj != null)
+        {
+            Destroy(broomObj.gameObject);
+            broomClean = false;
+            broomObj = null;
+        }
+
     }
     
 }

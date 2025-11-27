@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6930862613679765308}
   - component: {fileID: 941210743201413871}
   - component: {fileID: 4399490253654717081}
-  m_Layer: 19
+  m_Layer: 0
   m_Name: Water_Puddle
-  m_TagString: Untagged
+  m_TagString: MopAction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

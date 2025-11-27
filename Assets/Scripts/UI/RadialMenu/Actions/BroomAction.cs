@@ -3,8 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Radial/Actions/Broom")]
 public class BroomAction : RadialAction
 {
+    public GameObject broomPrefab;
     public override void Execute(RadialActionContext context)
     {
-        Debug.Log("TAKE BROOM");
+        if(context.broomHand != null)
+        {
+            context.player.GetComponent<PlayerController>().RemoveTools();
+            Transform broom = Instantiate(broomPrefab, context.broomHand).transform;
+            context.player.GetComponent<PlayerController>().SetBroomObj(broom);
+        }
     }
 }
