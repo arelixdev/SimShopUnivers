@@ -184,8 +184,6 @@ public class CustomerController : MonoBehaviour
         {
             float rand = UnityEngine.Random.Range(0f, 1f);
 
-            Debug.Log("rand" + rand);
-
             if (rand <= trashSpawnChance)
             {
                 Vector3 rayOrigin = transform.position + Vector3.up * 1f;

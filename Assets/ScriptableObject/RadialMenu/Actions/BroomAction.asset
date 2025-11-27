@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BroomAction
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 0d945a289f0c80046ba6dc2ab110a48b, type: 3}
+  broomPrefab: {fileID: 5603230601343469855, guid: c131cc5fc62bd67408cddb35d6e5d06a, type: 3}
