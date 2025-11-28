@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BrushAction
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 8d5ead93a1a6c154aa3cffae9271fafd, type: 3}
+  brushPrefab: {fileID: 1297966766020854709, guid: fb10077e6f8ce604385c4423db017256, type: 3}

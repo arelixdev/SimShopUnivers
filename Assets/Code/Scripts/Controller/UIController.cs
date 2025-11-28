@@ -186,6 +186,7 @@ public class UIController : MonoBehaviour
         ctx.player = PlayerController.instance.gameObject;
         ctx.mopHand = PlayerController.instance.mopHand;
         ctx.broomHand = PlayerController.instance.broomHand;
+        ctx.brushHand = PlayerController.instance.brushHand;
 
         wheelTools.GetComponent<RadialMenuUI>().Open(ctx);
     }

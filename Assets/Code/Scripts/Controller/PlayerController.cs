@@ -41,16 +41,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsSignOpen;
     [SerializeField] private LayerMask whatIsCheckoutStock;
     [SerializeField] private LayerMask whatIsShopName;
+    [SerializeField] private LayerMask whatIsEnvironment;
     [SerializeField] private string whatIsMopActionTag;
     [SerializeField] private string whatIsBroomActionTag;
 
     public Transform mopHand;
     public Transform broomHand;
+    public Transform brushHand;
     private float placeStockCounter;
     private StockBoxController heldBox;
     private FurnitureController heldFurniture;
     private Transform mopObj;
     private Transform broomObj;
+    private Transform brushObj;
     private bool mopClean;
     private bool broomClean;
     private GameObject mopTrashElement;
@@ -88,6 +91,11 @@ public class PlayerController : MonoBehaviour
     public void SetBroomObj(Transform broomObjAdd)
     {
         broomObj = broomObjAdd;
+    }
+
+    public void SetBrushObj(Transform brushObjAdd)
+    {
+        brushObj = brushObjAdd;
     }
 
     private void Update()
@@ -193,7 +201,7 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
-        if (heldPickup == null && heldBox == null && heldFurniture == null && mopObj == null && broomObj == null)
+        if (heldPickup == null && heldBox == null && heldFurniture == null && mopObj == null && broomObj == null && brushObj == null)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -479,6 +487,17 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+
+            if(brushObj != null)
+            {
+                if(Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsEnvironment))
+                    {
+                        Debug.Log("Open Panel Paint Environment");
+                    }
+                }
+            }
         }
     }
 
@@ -513,6 +532,11 @@ public class PlayerController : MonoBehaviour
             Destroy(broomObj.gameObject);
             broomClean = false;
             broomObj = null;
+        }
+        if(brushObj != null)
+        {
+            Destroy(brushObj.gameObject);
+            brushObj = null;
         }
 
     }
