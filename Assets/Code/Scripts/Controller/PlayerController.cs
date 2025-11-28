@@ -494,7 +494,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Physics.Raycast(ray, out hit, interactionRange, whatIsEnvironment))
                     {
-                        Debug.Log("Open Panel Paint Environment");
+                        Debug.Log("Open Panel Paint Environment " + hit.transform.name );
                     }
                 }
             }
