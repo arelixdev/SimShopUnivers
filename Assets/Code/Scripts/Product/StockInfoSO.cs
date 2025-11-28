@@ -1,16 +1,20 @@
 using UnityEngine;
 
-public class StockInfoSO : MonoBehaviour
+[CreateAssetMenu(menuName = "Object/New Object")]
+public class StockInfoSO : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public string name;
+
+    public enum StockType
     {
-        
+        cereal,
+        drink,
+        fruit,
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public StockType typeOfStock;
+    public float price;
+    public float currentPrice;
+
+    public StockObject stockObject;
 }

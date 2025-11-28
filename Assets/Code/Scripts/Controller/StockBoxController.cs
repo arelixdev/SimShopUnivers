@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StockBoxController : MonoBehaviour
 {
-    [SerializeField] private StockInfo info;
+    [SerializeField] private StockInfoSO info;
 
     public GameObject openBox, closeBox;
 
@@ -53,7 +53,7 @@ public class StockBoxController : MonoBehaviour
         }
     }
 
-    public void SetupBox(StockInfo stockType)
+    public void SetupBox(StockInfoSO stockType)
     {
         info = stockType;
 
@@ -61,13 +61,13 @@ public class StockBoxController : MonoBehaviour
 
         switch (info.typeOfStock)
         {
-            case StockInfo.StockType.cereal:
+            case StockInfoSO.StockType.cereal:
                 activePoints.AddRange(boxPoints);
                 break;
-            case StockInfo.StockType.drink:
+            case StockInfoSO.StockType.drink:
                 activePoints.AddRange(drinkPoints);
                 break;
-            case StockInfo.StockType.fruit:
+            case StockInfoSO.StockType.fruit:
                 break;
         }
 
@@ -76,6 +76,7 @@ public class StockBoxController : MonoBehaviour
             for (int i = 0; i < activePoints.Count; i++)
             {
                 StockObject stock = Instantiate(stockType.stockObject, activePoints[i]);
+                stock.info = info;
                 stock.transform.localPosition = Vector3.zero;
                 stock.transform.localRotation = Quaternion.identity;
 
@@ -136,19 +137,19 @@ public class StockBoxController : MonoBehaviour
         }
     }
     
-    public int GetStockAmount(StockInfo.StockType type)
+    public int GetStockAmount(StockInfoSO.StockType type)
     {
         int toReturn = 0;
 
         switch(type)
         {
-            case StockInfo.StockType.cereal:
+            case StockInfoSO.StockType.cereal:
                 toReturn = boxPoints.Count;
                 break;
-            case StockInfo.StockType.drink:
+            case StockInfoSO.StockType.drink:
                 toReturn = drinkPoints.Count;
                 break;
-            case StockInfo.StockType.fruit:
+            case StockInfoSO.StockType.fruit:
                 break;
         }
         return toReturn;

@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class BuyStockFrame : MonoBehaviour
 {
-    public StockInfo info;
+    public StockInfoSO info;
 
     [SerializeField] private TMP_Text nameText, priceText, amountInBoxText, boxPriceText, buttonText;
 

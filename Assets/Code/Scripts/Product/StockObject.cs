@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StockObject : MonoBehaviour
 {
-    public StockInfo info;
+    public StockInfoSO info;
     [SerializeField] private float moveSpeed;
 
     private bool isPlaced;

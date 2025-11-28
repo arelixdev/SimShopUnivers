@@ -32,7 +32,7 @@ public class UIController : MonoBehaviour
 
     
 
-    private StockInfo activeStockInfo;
+    private StockInfoSO activeStockInfo;
 
     private void Awake()
     {
@@ -59,7 +59,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void OpenUpdatePrice(StockInfo stockToUpdate)
+    public void OpenUpdatePrice(StockInfoSO stockToUpdate)
     {
         updatePricePanel.SetActive(true);
 

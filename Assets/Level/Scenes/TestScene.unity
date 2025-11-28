@@ -674,6 +674,10 @@ PrefabInstance:
       value: Juice (7)
       objectReference: {fileID: 0}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
@@ -1334,6 +1338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
@@ -2621,12 +2629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Juice
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 778685671}
   priceText: {fileID: 2020727281}
   amountInBoxText: {fileID: 616378761}
@@ -2910,7 +2913,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.0007492999}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 340}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &144754013
 MonoBehaviour:
@@ -3632,9 +3635,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 680126899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -93}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &215231858
@@ -4286,9 +4289,9 @@ RectTransform:
   m_Father: {fileID: 109555308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &234308721
 MonoBehaviour:
@@ -4393,6 +4396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
@@ -5125,6 +5132,10 @@ PrefabInstance:
       value: Juice (12)
       objectReference: {fileID: 0}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
@@ -5529,6 +5540,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
@@ -6571,9 +6586,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1380520789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -93}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &394456942
@@ -6628,6 +6643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
@@ -8266,6 +8285,10 @@ PrefabInstance:
       value: Juice (8)
       objectReference: {fileID: 0}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
@@ -9075,12 +9098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Juice
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 1960026133}
   priceText: {fileID: 1233551241}
   amountInBoxText: {fileID: 306497799}
@@ -9722,12 +9740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Box Test
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 743550340}
   priceText: {fileID: 37086133}
   amountInBoxText: {fileID: 1318535816}
@@ -10425,6 +10438,10 @@ PrefabInstance:
       value: Juice (13)
       objectReference: {fileID: 0}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
@@ -10490,6 +10507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
@@ -10681,10 +10702,10 @@ RectTransform:
   - {fileID: 733952731}
   m_Father: {fileID: 144754012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 170, y: -170}
+  m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &680126900
 MonoBehaviour:
@@ -10698,12 +10719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Box Test
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
   nameText: {fileID: 1509576763}
   priceText: {fileID: 197247603}
   amountInBoxText: {fileID: 1594876121}
@@ -11374,6 +11390,10 @@ PrefabInstance:
       value: Juice (11)
       objectReference: {fileID: 0}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
@@ -11421,9 +11441,9 @@ RectTransform:
   - {fileID: 1535243129}
   m_Father: {fileID: 680126899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -262}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &733952732
@@ -11783,6 +11803,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
@@ -13763,6 +13787,10 @@ PrefabInstance:
       value: Cereal (4)
       objectReference: {fileID: 0}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
@@ -15181,6 +15209,10 @@ PrefabInstance:
       value: Cereal (10)
       objectReference: {fileID: 0}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
@@ -15475,6 +15507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
@@ -15981,7 +16017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1046753596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16735,6 +16771,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
@@ -17713,6 +17753,10 @@ PrefabInstance:
       value: Cereal (11)
       objectReference: {fileID: 0}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
@@ -17857,9 +17901,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 680126899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -209}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1166450364
@@ -18087,12 +18131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Box Test
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 1388650977}
   priceText: {fileID: 97486636}
   amountInBoxText: {fileID: 518867633}
@@ -19257,12 +19296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Juice
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 1369401119}
   priceText: {fileID: 1973873853}
   amountInBoxText: {fileID: 702505771}
@@ -19703,12 +19737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Juice
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 476537185}
   priceText: {fileID: 844057571}
   amountInBoxText: {fileID: 1402500219}
@@ -20888,6 +20917,10 @@ PrefabInstance:
       value: Cereal (5)
       objectReference: {fileID: 0}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
@@ -20953,6 +20986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
@@ -21370,9 +21407,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1380520789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -35}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1362161294
@@ -21749,10 +21786,10 @@ RectTransform:
   - {fileID: 2103931731}
   m_Father: {fileID: 144754012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 510, y: -170}
+  m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1380520790
 MonoBehaviour:
@@ -21766,12 +21803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Juice
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
   nameText: {fileID: 1360523291}
   priceText: {fileID: 388820047}
   amountInBoxText: {fileID: 1469827935}
@@ -22152,6 +22184,10 @@ PrefabInstance:
       value: Cereal (9)
       objectReference: {fileID: 0}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
@@ -22223,12 +22259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Box Test
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 231746421}
   priceText: {fileID: 665003648}
   amountInBoxText: {fileID: 228742046}
@@ -22584,6 +22615,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
@@ -23328,9 +23363,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1380520789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -151}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1470698947
@@ -23972,12 +24007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Juice
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 2125732527}
   priceText: {fileID: 1832074920}
   amountInBoxText: {fileID: 854526322}
@@ -24131,6 +24161,10 @@ PrefabInstance:
       value: Cereal (7)
       objectReference: {fileID: 0}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 771fefb5b8fa5e44db13018dbc72fae6, type: 2}
@@ -24275,9 +24309,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 680126899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -35}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1511705008
@@ -25544,9 +25578,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1380520789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -209}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1586907404
@@ -25751,9 +25785,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 680126899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -151}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1596454052
@@ -26061,6 +26095,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
@@ -26617,12 +26655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Box Test
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 1944225946}
   priceText: {fileID: 1125835796}
   amountInBoxText: {fileID: 457347277}
@@ -26848,12 +26881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14bc133998fa0a44901d69d25ccda50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    name: Box Test
-    typeOfStock: 0
-    price: 0
-    currentPrice: 0
-    stockObject: {fileID: 0}
+  info: {fileID: 0}
   nameText: {fileID: 516312429}
   priceText: {fileID: 1932985616}
   amountInBoxText: {fileID: 801677173}
@@ -27282,6 +27310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cereal (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
     - target: {fileID: 5597986825156452643, guid: b4d174d08605042418a1cc0b25de9a68, type: 3}
       propertyPath: info.data
       value: 
@@ -27817,6 +27849,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juice (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
@@ -31295,6 +31331,10 @@ PrefabInstance:
       value: Juice (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
@@ -33357,9 +33397,9 @@ RectTransform:
   - {fileID: 1348600490}
   m_Father: {fileID: 1380520789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -262}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2103931732
@@ -34188,6 +34228,10 @@ PrefabInstance:
       value: Juice (4)
       objectReference: {fileID: 0}
     - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
+    - target: {fileID: 2992817135213529197, guid: abc1d61f922f59145bc4fa7223d786a9, type: 3}
       propertyPath: info.data
       value: 
       objectReference: {fileID: 11400000, guid: 304da4c46b557c842b0b5c9efad6802c, type: 2}
@@ -34234,7 +34278,7 @@ RectTransform:
   m_Father: {fileID: 1623317377}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -34537,6 +34581,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
     - target: {fileID: 4559903602683820660, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
       propertyPath: m_Name
       value: Box Of Stock
@@ -34790,6 +34838,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'produceInfo.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'produceInfo.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 1171485029679065021, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5772314
@@ -34885,15 +34941,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1551062909874954809, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1551062909874954809, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1551062909874954809, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1708173852461536627, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_SizeDelta.x
@@ -35053,15 +35109,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3703055379969658945, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3703055379969658945, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3703055379969658945, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3992597670418921783, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -35079,6 +35135,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4589713401184647115, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
     - target: {fileID: 4801861676139512253, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -35335,6 +35395,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8523250233864881510, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 8663830969559946273, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

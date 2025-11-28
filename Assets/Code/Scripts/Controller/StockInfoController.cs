@@ -5,9 +5,9 @@ using UnityEngine;
 public class StockInfoController : MonoBehaviour
 {
     public static StockInfoController instance;
-    [SerializeField] private List<StockInfo> produceInfo;
+    [SerializeField] private List<StockInfoSO> produceInfo;
 
-    private List<StockInfo> allStock = new List<StockInfo>();
+    private List<StockInfoSO> allStock = new List<StockInfoSO>();
     private void Awake()
     {
         instance = this;
@@ -23,9 +23,9 @@ public class StockInfoController : MonoBehaviour
         }
     }
 
-    public StockInfo GetInfo(string stockName)
+    public StockInfoSO GetInfo(string stockName)
     {
-        StockInfo infoToReturn = null;
+        StockInfoSO infoToReturn = null;
 
         for (int i = 0; i < allStock.Count; i++)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShelfSpaceController : MonoBehaviour
 {
-    public StockInfo info;
+    public StockInfoSO info;
     public List<StockObject> objectsOnShelf;
 
     [SerializeField] private List<Transform> boxPoints;
@@ -34,19 +34,19 @@ public class ShelfSpaceController : MonoBehaviour
 
                 switch(info.typeOfStock)
                 {
-                    case StockInfo.StockType.cereal:
+                    case StockInfoSO.StockType.cereal:
                         if(objectsOnShelf.Count >= boxPoints.Count)
                         {
                             preventPlacing = true;
                         }
                         break;
-                    case StockInfo.StockType.drink:
+                    case StockInfoSO.StockType.drink:
                         if(objectsOnShelf.Count >= drinkPoints.Count)
                         {
                             preventPlacing = true;
                         }
                         break;
-                    case StockInfo.StockType.fruit:
+                    case StockInfoSO.StockType.fruit:
                         if(objectsOnShelf.Count >= drinkPoints.Count)
                         {
                             preventPlacing = true;
@@ -65,13 +65,13 @@ public class ShelfSpaceController : MonoBehaviour
 
             switch(info.typeOfStock)
             {
-                case StockInfo.StockType.cereal:
+                case StockInfoSO.StockType.cereal:
                     objectToPlace.transform.SetParent(boxPoints[objectsOnShelf.Count]);
                     break;
-                case StockInfo.StockType.drink:
+                case StockInfoSO.StockType.drink:
                     objectToPlace.transform.SetParent(drinkPoints[objectsOnShelf.Count]);
                     break;
-                case StockInfo.StockType.fruit:
+                case StockInfoSO.StockType.fruit:
                     /*if(objectsOnShelf.Count >= drinkPoints.Count)
                     {
                         preventPlacing = true;
