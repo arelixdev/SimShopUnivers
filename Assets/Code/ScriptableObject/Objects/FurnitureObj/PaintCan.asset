@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507d0dc1afe27a94d9540248c21637bc, type: 3}
+  m_Name: PaintCan
+  m_EditorClassIdentifier: 
+  name: Paint Can Small
+  typeOfStock: 3
+  price: 10
+  currentPrice: 0
+  stockObject: {fileID: 1965975596620132117, guid: 2f987acb16eeb7d44bf22f6f82f260e7, type: 3}

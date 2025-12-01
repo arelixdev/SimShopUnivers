@@ -12,8 +12,9 @@ public class BuyStockFrame : MonoBehaviour
 
     private float boxCost;
 
-    public void Start()
+    public void AddStockFrame(StockInfoSO obj)
     {
+        info = obj;
         UpdateFrameInfo();
     }
 

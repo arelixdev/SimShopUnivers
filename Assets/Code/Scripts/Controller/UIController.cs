@@ -108,6 +108,7 @@ public class UIController : MonoBehaviour
         } else
         {
             buyMenuScreen.SetActive(true);
+            buyMenuScreen.GetComponent<BuyMenuController>().InitStock();
             Cursor.lockState = CursorLockMode.None;
         }
     }

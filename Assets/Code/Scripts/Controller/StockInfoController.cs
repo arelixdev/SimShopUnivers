@@ -23,6 +23,11 @@ public class StockInfoController : MonoBehaviour
         }
     }
 
+    public List<StockInfoSO> GetAllStock()
+    {
+        return allStock;
+    }
+
     public StockInfoSO GetInfo(string stockName)
     {
         StockInfoSO infoToReturn = null;

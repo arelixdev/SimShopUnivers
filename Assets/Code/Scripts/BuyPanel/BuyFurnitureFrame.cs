@@ -17,8 +17,9 @@ public class BuyFurnitureFrame : MonoBehaviour
         if(StoreController.instance.CheckMoneyAvailable(furniture.price))
         {
             StoreController.instance.SpendMoney(furniture.price);
-
+            
             Instantiate(furniture, StoreController.instance.GetFurnitureSpawnPoint().position, Quaternion.identity);
+            
         }
     }
 }

@@ -10,6 +10,7 @@ public class StockInfoSO : ScriptableObject
         cereal,
         drink,
         fruit,
+        paintCan,
     }
 
     public StockType typeOfStock;
