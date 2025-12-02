@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MopAction
   - BroomAction
+  - PaintCan
   layers:
   - Default
   - TransparentFX

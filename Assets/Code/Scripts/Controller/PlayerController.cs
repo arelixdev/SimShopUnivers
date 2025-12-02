@@ -361,12 +361,22 @@ public class PlayerController : MonoBehaviour
                         }
 
                     }
+
+                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsTrash))
+                    {
+                        Destroy(heldPickup.gameObject);
+                        heldPickup = null;
+                    }
                 }
 
                 if (Mouse.current.rightButton.wasPressedThisFrame)
                 {
                     heldPickup.Release();
-                    heldPickup.GetComponent<Rigidbody>().AddForce(cam.transform.forward * throwForce, ForceMode.Impulse);
+                    if(heldPickup.gameObject.tag != "PaintCan")
+                    {
+                        heldPickup.GetComponent<Rigidbody>().AddForce(cam.transform.forward * throwForce, ForceMode.Impulse);
+                    }
+                    
 
                     heldPickup.transform.SetParent(null);
                     heldPickup = null;
@@ -490,12 +500,41 @@ public class PlayerController : MonoBehaviour
 
             if(brushObj != null)
             {
+                PaintBrush brush = brushObj.GetComponent<PaintBrush>();
                 if(Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsEnvironment))
+                     if (Physics.Raycast(ray, out hit, interactionRange, whatIsEnvironment))
                     {
-                        Debug.Log("Open Panel Paint Environment " + hit.transform.name );
+                        if (brush.HasPaint()) 
+                        {
+                            WorldCustomElement custom = hit.transform.GetComponent<WorldCustomElement>();
+
+                            if(hit.transform.GetComponentInParent<WorldCustomElement>())
+                            {
+                                custom = hit.transform.GetComponentInParent<WorldCustomElement>();
+                            }
+
+                            if (custom != null)
+                            {
+                                custom.PaintElement();
+                                brush.RemovePaintOnBrush(); 
+                            }
+                        }
                     }
+
+                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
+                    {
+                        if (hit.transform.CompareTag("PaintCan"))
+                        {
+                            PaintCan paintCan = hit.transform.GetComponent<PaintCan>();
+
+                            if (paintCan != null && paintCan.UsePaintCan())
+                            {
+                                brush.AddPaintOnBrush();
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
