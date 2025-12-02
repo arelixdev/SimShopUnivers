@@ -7,6 +7,8 @@ TagManager:
   - MopAction
   - BroomAction
   - PaintCan
+  - WallFaceA
+  - WallFaceB
   layers:
   - Default
   - TransparentFX

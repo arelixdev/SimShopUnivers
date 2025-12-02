@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 507d0dc1afe27a94d9540248c21637bc, type: 3}
-  m_Name: PaintCan
+  m_Name: PaintCanMat1
   m_EditorClassIdentifier: 
-  name: Paint Can Small
+  name: Paint Can Mat 1 Small
   typeOfStock: 3
   price: 10
   currentPrice: 0

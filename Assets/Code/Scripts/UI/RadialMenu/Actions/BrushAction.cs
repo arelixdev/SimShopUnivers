@@ -6,7 +6,6 @@ public class BrushAction : RadialAction
     public GameObject brushPrefab;
     public override void Execute(RadialActionContext context)
     {
-        Debug.Log("TAKE BRUSH");
         if(context.brushHand != null)
         {
             context.player.GetComponent<PlayerController>().RemoveTools();

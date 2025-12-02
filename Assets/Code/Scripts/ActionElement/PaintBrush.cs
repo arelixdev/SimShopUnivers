@@ -4,10 +4,12 @@ public class PaintBrush : MonoBehaviour
 {
     [SerializeField] private GameObject paintObj;
     [SerializeField] private bool hasPaint;
+    public Material brushPaintMat;
 
-    public void AddPaintOnBrush()
+    public void AddPaintOnBrush(Material paintMat)
     {
         paintObj.SetActive(true);
+        brushPaintMat = paintMat;
         hasPaint = true;
     }
 

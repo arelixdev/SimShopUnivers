@@ -508,15 +508,23 @@ public class PlayerController : MonoBehaviour
                         if (brush.HasPaint()) 
                         {
                             WorldCustomElement custom = hit.transform.GetComponent<WorldCustomElement>();
+                            int face = -1;
 
                             if(hit.transform.GetComponentInParent<WorldCustomElement>())
                             {
                                 custom = hit.transform.GetComponentInParent<WorldCustomElement>();
+                                if(hit.transform.CompareTag("WallFaceA"))
+                                {
+                                    face = 0;
+                                } else if (hit.transform.CompareTag("WallFaceB"))
+                                {
+                                    face = 1;
+                                }
                             }
 
                             if (custom != null)
                             {
-                                custom.PaintElement();
+                                custom.PaintElement(brushObj.GetComponent<PaintBrush>().brushPaintMat, face);
                                 brush.RemovePaintOnBrush(); 
                             }
                         }
@@ -530,7 +538,7 @@ public class PlayerController : MonoBehaviour
 
                             if (paintCan != null && paintCan.UsePaintCan())
                             {
-                                brush.AddPaintOnBrush();
+                                brush.AddPaintOnBrush(paintCan.matPaint);
                             }
                         }
                     }
