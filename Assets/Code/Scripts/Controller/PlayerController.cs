@@ -114,6 +114,13 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        if(UIController.instance.mapMenuScreen != null)
+        {
+            if (UIController.instance.mapMenuScreen.activeSelf)
+            {
+                return;
+            }
+        }
         if (UIController.instance.nameShopScreen != null)
         {
             if (UIController.instance.nameShopScreen.activeSelf)

@@ -9,6 +9,7 @@ TagManager:
   - PaintCan
   - WallFaceA
   - WallFaceB
+  - BlueprintElement
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - CheckoutMoney
   - ShopName
   - Environment
-  - 
+  - BluePrint
   - 
   - 
   - 

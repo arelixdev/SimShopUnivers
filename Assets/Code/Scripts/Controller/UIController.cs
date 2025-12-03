@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour
     public GameObject updatePricePanel;
     public GameObject buyMenuScreen;
 
+    public GameObject mapMenuScreen;
+
     public  GameObject wheelTools;
 
     [SerializeField] private TMP_Text basePriceText, currentPriceText;
@@ -20,8 +22,6 @@ public class UIController : MonoBehaviour
 
     [SerializeField] private TMP_Text lvlGeneralTxt;
     [SerializeField] private Slider lvlGeneralBar;
-
-
     [SerializeField] private GameObject shopLvlPanel;
     [SerializeField] private TMP_Text shopNameTxt;
     [SerializeField] private TMP_Text shopLvlTxt;
@@ -56,6 +56,11 @@ public class UIController : MonoBehaviour
         if(Keyboard.current.tKey.wasReleasedThisFrame)
         {
             CloseWheelToolMenu();
+        }
+
+        if(Keyboard.current.yKey.wasPressedThisFrame)
+        {
+            OpenCloseMapMenu();
         }
     }
 
@@ -97,6 +102,19 @@ public class UIController : MonoBehaviour
     public void UpdateMoney(float currentMoney)
     {
         moneyText.text = currentMoney.ToString("F2") + " €";
+    }
+
+    public void OpenCloseMapMenu()
+    {
+        if(mapMenuScreen.activeSelf)
+        {
+            mapMenuScreen.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        } else
+        {
+            mapMenuScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     
     public void OpenCloseBuyMenu()
