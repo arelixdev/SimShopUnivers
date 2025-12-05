@@ -9,47 +9,42 @@ public class PanelShopMaster : MonoBehaviour
     [SerializeField] private GameObject mapPanelElement;
     [SerializeField] private GameObject linePanel;
 
-    public Dictionary<Vector3, BlueprintGroundElement>  grid;
-    public List<BlueprintGroundElement> selectedElements = new List<BlueprintGroundElement>();
+    public Dictionary<Vector2Int, BlueprintGroundElement> grid = new();
+    public List<BlueprintGroundElement> selectedElements = new();
 
     public bool customActivate;
 
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
+    }
+
+    void Start()
+    {
+        CleanPanel();
         BuildGrid();
     }
 
     void BuildGrid()
     {
         grid.Clear();
-
         BlueprintGroundElement[] elements = FindObjectsOfType<BlueprintGroundElement>();
 
-        foreach(var el in elements)
+        foreach (var el in elements)
         {
-            if(!grid.ContainsKey(el.gridPos))
-            {
-                grid.Add(el.gridPos, el);
-            }
+            if (!grid.ContainsKey(el.gridIndex))
+                grid.Add(el.gridIndex, el);
             else
-            {
-                Debug.LogWarning("Deux elements ont la meme position : " + el.gridPos + " " + el.name);
-            }
+                Debug.LogWarning("Duplicate grid pos: " + el.gridIndex + " " + el.name);
         }
-    }
 
-
-    void Start()
-    {
-       CleanPanel(); 
     }
 
     public void CleanPanel()
     {
         for (int i = transform.childCount - 3; i >= 0; i--)
-        {
             Destroy(transform.GetChild(i).gameObject);
-        }
+
         linePanel.SetActive(false);
     }
 
@@ -58,10 +53,8 @@ public class PanelShopMaster : MonoBehaviour
         GameObject newElement = Instantiate(mapPanelElement, transform);
         newElement.transform.SetSiblingIndex(transform.childCount - 3);
 
-        if(!linePanel.activeSelf)
-        {
+        if (!linePanel.activeSelf)
             linePanel.SetActive(true);
-        }
 
         StartCoroutine(RebuildNextFrame());
     }
@@ -75,54 +68,35 @@ public class PanelShopMaster : MonoBehaviour
 
     public void TrySelect(BlueprintGroundElement element)
     {
-        if(selectedElements.Count == 0)
+        if (selectedElements.Count == 0)
         {
             AddToSelection(element);
             return;
         }
 
-        if(IsConnectedToSelection(element))
-        {
+        if (IsConnectedToSelection(element))
             AddToSelection(element);
-        } else
-        {
+        else
             Debug.Log("Element non connecté -> impossible à selectionner");
-        }
     }
 
     void AddToSelection(BlueprintGroundElement element)
     {
-        if(!selectedElements.Contains(element))
+        if (!selectedElements.Contains(element))
         {
             selectedElements.Add(element);
-            element.isSelected = true;
+            element.ToogleSelected();
 
-            //TODO SHOW HIGHLIGHT
+            // TODO : show highlight
         }
     }
 
-    public bool IsConnectedToSelection(BlueprintGroundElement newElement)
+    bool IsConnectedToSelection(BlueprintGroundElement newElement)
     {
-        HashSet<BlueprintGroundElement> visited = new HashSet<BlueprintGroundElement>();
-        Queue<BlueprintGroundElement> queue = new Queue<BlueprintGroundElement>();
-
-        foreach(var el in selectedElements)
-            queue.Enqueue(el);
-
-        while(queue.Count > 0)
+        foreach (var neighbor in newElement.GetNeighbors(grid))
         {
-            var current = queue.Dequeue();
-            if(current == newElement)
-                return true;
-
-            foreach(var n in current.GetNeighbors(grid))
-            {
-                if(!visited.Contains(n))
-                {
-                    visited.Add(n);
-                    queue.Enqueue(n);
-                }
-            }
+            if (selectedElements.Contains(neighbor))
+                return true; // il touche au moins un élément déjà sélectionné
         }
 
         return false;

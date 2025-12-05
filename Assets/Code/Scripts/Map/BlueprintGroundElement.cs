@@ -5,26 +5,66 @@ using UnityEngine.AI;
 
 public class BlueprintGroundElement : MonoBehaviour
 {
-    public Vector3 gridPos;
-    public bool isSelected;
+    [HideInInspector]
+    public Vector2Int gridIndex;
+    private bool isSelected;
 
-    public List<BlueprintGroundElement> GetNeighbors(Dictionary<Vector3, BlueprintGroundElement> grid)
+    [SerializeField] private GameObject objGround;
+
+    [SerializeField] private Material matUnselected;
+    [SerializeField] private Material matSelected;
+
+    private void Awake()
     {
-        List<BlueprintGroundElement> result = new List<BlueprintGroundElement>();
+        float cellSize = 2.5f;
 
-        Vector3[] dirs =
+        gridIndex = new Vector2Int(
+            Mathf.RoundToInt(transform.position.x / cellSize),
+            Mathf.RoundToInt(transform.position.z / cellSize)
+        );
+    }
+
+    public void ToogleSelected()
+    {
+        isSelected = !isSelected;
+
+        if(isSelected)
         {
-            Vector3.right * 2.5f, Vector3.left * 2.5f, Vector3.forward * 2.5f, Vector3.back * 2.5f
-            //new Vector3(0,0,2.5f), new Vector3(0,0,-2.5f), new Vector3(2.5f,0,0), new Vector3(-2.5f,0,0)
+            objGround.GetComponent<MeshRenderer>().material = matSelected;
+        } else
+        {
+            objGround.GetComponent<MeshRenderer>().material = matUnselected;
+        }
+    }
+
+    public List<BlueprintGroundElement> GetNeighbors(Dictionary<Vector2Int, BlueprintGroundElement> grid)
+    {
+        List<BlueprintGroundElement> neighbors = new();
+
+        Vector2Int[] dirs =
+        {
+            new Vector2Int(1,0),
+            new Vector2Int(-1,0),
+            new Vector2Int(0,1),
+            new Vector2Int(0,-1),
         };
 
-        foreach(var dir in dirs)
+        foreach (var dir in dirs)
         {
-            var check = gridPos + dir;
-            if(grid.ContainsKey(check))
-                result.Add(grid[check]);
+            Vector2Int check = gridIndex + dir;
+            if (grid.TryGetValue(check, out var neighbor))
+            {
+                if (neighbor != this)
+                    neighbors.Add(neighbor);
+            }
         }
 
-        return result;
+        return neighbors;
+    }
+
+    // Optionnel : world position
+    public Vector3 WorldPosition(float cellSize = 2.5f)
+    {
+        return new Vector3(gridIndex.x * cellSize, 0, gridIndex.y * cellSize);
     }
 }

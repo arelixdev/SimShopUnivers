@@ -153,3 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe752815050eb02429bf97bd3a5cdf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridIndex: {x: 0, y: 0}
+  objGround: {fileID: 3559297972759851505}
+  matUnselected: {fileID: 2100000, guid: bb9c192d50b76804a971f380b67e1b10, type: 2}
+  matSelected: {fileID: 2100000, guid: 0063c8ef13fffa546887cd4c493d2f6b, type: 2}

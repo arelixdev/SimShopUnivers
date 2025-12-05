@@ -4,21 +4,19 @@ using UnityEngine.UI;
 
 public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
 {
-    public Camera renderTextureCamera;   // La caméra utilisée pour le RenderTexture
-    public RawImage rawImage;            // L'image de l'UI
-
-    public LayerMask blueprintLayerMask; 
+    public Camera renderTextureCamera;
+    public RawImage rawImage;
+    public LayerMask blueprintLayerMask;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         RectTransform rect = rawImage.rectTransform;
-        
-        Vector2 localPoint;
+
         if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 rect,
                 eventData.position,
                 eventData.pressEventCamera,
-                out localPoint))
+                out Vector2 localPoint))
             return;
 
         float uvX = (localPoint.x / rect.rect.width) + 0.5f;
@@ -30,14 +28,12 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
         Ray ray = renderTextureCamera.ScreenPointToRay(new Vector3(pixelX, pixelY, 0));
 
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, blueprintLayerMask))
-        { 
+        {
             if (hit.collider.CompareTag("BlueprintElement") && PanelShopMaster.instance.customActivate)
             {
                 var element = hit.collider.GetComponent<BlueprintGroundElement>();
-                if(element != null)
-                {
+                if (element != null)
                     PanelShopMaster.instance.TrySelect(element);
-                }
             }
         }
     }
