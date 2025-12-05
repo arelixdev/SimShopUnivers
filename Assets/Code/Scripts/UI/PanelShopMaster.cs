@@ -15,8 +15,10 @@ public class PanelShopMaster : MonoBehaviour
     [SerializeField] private GameObject mapPanelElement;
     [SerializeField] private GameObject linePanel;
 
-    public Dictionary<Vector2Int, BlueprintGroundElement> grid = new();
-    public List<BlueprintGroundElement> selectedElements = new();
+    public Dictionary<Vector2Int, BlueprintGroundElement> grid = new Dictionary<Vector2Int, BlueprintGroundElement>();
+
+    private Dictionary<WallKey, GameObject> createdWalls = new Dictionary<WallKey, GameObject>();
+    public List<BlueprintGroundElement> selectedElements = new List<BlueprintGroundElement>();
 
     public bool customActivate;
 
@@ -75,6 +77,11 @@ public class PanelShopMaster : MonoBehaviour
         if (!linePanel.activeSelf)
             linePanel.SetActive(true);
 
+        StartCoroutine(RebuildNextFrame());
+    }
+
+    public void RebuildShopMaster()
+    {
         StartCoroutine(RebuildNextFrame());
     }
 
@@ -205,6 +212,12 @@ public class PanelShopMaster : MonoBehaviour
 
     private void CreateWallBetween(BlueprintGroundElement cell, Vector2Int dir)
     {
+        WallKey key = new WallKey(cell.gridIndex, dir);
+
+        // ❌️ Si le mur existe déjà → on ne le recrée pas
+        if (createdWalls.ContainsKey(key))
+            return;
+
         Vector3 basePos = cell.WorldPosition(cellSize);
 
         Vector3 wallPos = Vector3.zero;
@@ -266,8 +279,37 @@ public class PanelShopMaster : MonoBehaviour
 
         GameObject wall = Instantiate(wallPrefab, wallPos, rot, wallsParent);
         Instantiate(wallPrefabGame, wallPos, rotGame, wallsParentGame);
+
+        createdWalls.Add(key, wall);
+    }
+}
+
+public struct WallKey
+{
+    public Vector2Int a;
+    public Vector2Int b;
+
+    public WallKey(Vector2Int cell, Vector2Int dir)
+    {
+        a = cell;
+        b = cell + dir;
+
+        // On normalise : toujours a < b
+        if (a.x > b.x || (a.x == b.x && a.y > b.y))
+        {
+            (a, b) = (b, a);
+        }
     }
 
-    
+    public override bool Equals(object obj)
+    {
+        if (obj is WallKey other)
+            return a.Equals(other.a) && b.Equals(other.b);
+        return false;
+    }
 
+    public override int GetHashCode()
+    {
+        return a.GetHashCode() ^ (b.GetHashCode() << 1);
+    }
 }

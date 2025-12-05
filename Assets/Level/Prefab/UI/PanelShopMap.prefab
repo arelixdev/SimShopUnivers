@@ -518,7 +518,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8873568525473972757}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1467776211767647298}
+        m_TargetAssemblyTypeName: PanelShopElement, Assembly-CSharp
+        m_MethodName: TooglePanelShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &965923795440802182
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,7 +573,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 212, y: -90}
-  m_SizeDelta: {x: 404, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6388397438939108261
 MonoBehaviour:
@@ -2444,9 +2456,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3d836e60f14344596b64453bec1059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  retractBtn: {fileID: 0}
+  retractTxt: {fileID: 0}
   nameShopInputfield: {fileID: 7516023698921477565}
+  customElement: {fileID: 7749656625383102267}
   customBtn: {fileID: 6554673028491077254}
   customLineBuyElement: {fileID: 3254962300514864978}
+  shopTypeElement: {fileID: 5317468166025491304}
   addElementPart: {fileID: 4795680488771236856}
 --- !u!1 &6130929532709248516
 GameObject:
@@ -3272,7 +3288,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6238438108991903092}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.81333333
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3525,7 +3541,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 213.351, y: -30}
-  m_SizeDelta: {x: 426.702, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1413924271165597419
 MonoBehaviour:

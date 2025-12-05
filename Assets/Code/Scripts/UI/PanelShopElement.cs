@@ -6,13 +6,19 @@ using UnityEngine.UI;
 
 public class PanelShopElement : MonoBehaviour
 {
+    [SerializeField] private Image retractBtn;
+    [SerializeField] private TMP_Text retractTxt;
     [SerializeField] private TMP_InputField nameShopInputfield;
+
+    [SerializeField] private GameObject customElement;
     [SerializeField] private Image customBtn;
     [SerializeField] private GameObject customLineBuyElement;
+    [SerializeField] private GameObject shopTypeElement;
     [SerializeField] private GameObject addElementPart;
-
-
     List<BlueprintGroundElement> groundElementShop = new List<BlueprintGroundElement>();
+
+    private bool isRetracted;
+    private bool isBuy;
     
 
     void Start()
@@ -61,6 +67,55 @@ public class PanelShopElement : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
 
+    public void TooglePanelShop()
+    {
+        //If retract
+        isRetracted = !isRetracted;
+
+        if(isRetracted)
+        {
+            customElement.SetActive(false);
+            shopTypeElement.SetActive(false);
+            addElementPart.SetActive(false);
+
+            var tempColor = GetComponent<Image>().color;
+            tempColor.a = 0f;
+            GetComponent<Image>().color = tempColor;
+
+            tempColor = retractBtn.color;
+            tempColor.a = 0f;
+            retractBtn.color = tempColor;
+
+            retractTxt.text = "+";
+
+            nameShopInputfield.interactable = false;
+        } else
+        {
+            customElement.SetActive(true);
+            shopTypeElement.SetActive(true);
+            if(!isBuy)
+                addElementPart.SetActive(false);
+            else
+                addElementPart.SetActive(true);
+
+            var tempColor = GetComponent<Image>().color;
+            tempColor.a = 1f;
+            GetComponent<Image>().color = tempColor;
+
+            tempColor = retractBtn.color;
+            tempColor.a = 1f;
+            retractBtn.color = tempColor;
+
+            retractTxt.text = "-";
+
+            nameShopInputfield.interactable = true;
+        }
+        
+        //if deploy
+
+        PanelShopMaster.instance.RebuildShopMaster();
+    }
+
     public void OnBuyButton()
     {
         if (!PanelShopMaster.instance.CheckSelectionConnectivity())
@@ -70,10 +125,10 @@ public class PanelShopElement : MonoBehaviour
         }
 
         //TODO faire la partie argent
-        //TODO construire les murs ! 
 
         groundElementShop = PanelShopMaster.instance.GetCurrentSelection();
 
+        //TODO ajouter tout les mur map et game dans des listes pour pouvoir supprimer
         PanelShopMaster.instance.BuildWallsAroundZone(groundElementShop);
 
         foreach(var ges in groundElementShop)
@@ -88,6 +143,7 @@ public class PanelShopElement : MonoBehaviour
         if(groundElementShop.Count > 0)
         {
             addElementPart.SetActive(true);
+            isBuy = true;
         }
     }
 }
