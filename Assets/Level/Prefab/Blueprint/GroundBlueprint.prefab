@@ -157,3 +157,4 @@ MonoBehaviour:
   objGround: {fileID: 3559297972759851505}
   matUnselected: {fileID: 2100000, guid: bb9c192d50b76804a971f380b67e1b10, type: 2}
   matSelected: {fileID: 2100000, guid: 0063c8ef13fffa546887cd4c493d2f6b, type: 2}
+  matBuy: {fileID: 2100000, guid: 6726f54bdc13b714186c002e72d9867a, type: 2}

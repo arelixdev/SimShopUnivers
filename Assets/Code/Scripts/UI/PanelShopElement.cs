@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,9 @@ public class PanelShopElement : MonoBehaviour
     [SerializeField] private Image customBtn;
     [SerializeField] private GameObject customLineBuyElement;
     [SerializeField] private GameObject addElementPart;
+
+
+    List<BlueprintGroundElement> groundElementShop = new List<BlueprintGroundElement>();
     
 
     void Start()
@@ -55,5 +59,35 @@ public class PanelShopElement : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+    }
+
+    public void OnBuyButton()
+    {
+        if (!PanelShopMaster.instance.CheckSelectionConnectivity())
+        {
+            Debug.LogError("La sélection n'est pas entièrement connectée !");
+            return;
+        }
+
+        //TODO faire la partie argent
+        //TODO construire les murs ! 
+
+        groundElementShop = PanelShopMaster.instance.GetCurrentSelection();
+
+        PanelShopMaster.instance.BuildWallsAroundZone(groundElementShop);
+
+        foreach(var ges in groundElementShop)
+        {
+            ges.GroundBuy();
+        }
+
+        PanelShopMaster.instance.ClearSelection();
+
+        ToogleCustom();
+
+        if(groundElementShop.Count > 0)
+        {
+            addElementPart.SetActive(true);
+        }
     }
 }

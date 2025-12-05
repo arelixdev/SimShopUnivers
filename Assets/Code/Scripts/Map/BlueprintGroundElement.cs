@@ -8,11 +8,15 @@ public class BlueprintGroundElement : MonoBehaviour
     [HideInInspector]
     public Vector2Int gridIndex;
     private bool isSelected;
+    public bool IsSelected => isSelected;
 
     [SerializeField] private GameObject objGround;
 
     [SerializeField] private Material matUnselected;
     [SerializeField] private Material matSelected;
+    [SerializeField] private Material matBuy;
+
+    private bool isBuy;
 
     private void Awake()
     {
@@ -27,14 +31,23 @@ public class BlueprintGroundElement : MonoBehaviour
     public void ToogleSelected()
     {
         isSelected = !isSelected;
-
-        if(isSelected)
+        if(!isBuy)
         {
-            objGround.GetComponent<MeshRenderer>().material = matSelected;
-        } else
-        {
-            objGround.GetComponent<MeshRenderer>().material = matUnselected;
+            if(isSelected)
+            {
+                objGround.GetComponent<MeshRenderer>().material = matSelected;
+            } else
+            {
+                objGround.GetComponent<MeshRenderer>().material = matUnselected;
+            }
         }
+    }
+
+    public void GroundBuy()
+    {
+        isSelected = false;
+        isBuy = true;
+        objGround.GetComponent<MeshRenderer>().material = matBuy;
     }
 
     public List<BlueprintGroundElement> GetNeighbors(Dictionary<Vector2Int, BlueprintGroundElement> grid)
