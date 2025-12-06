@@ -109,7 +109,11 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                     PanelShopMaster.instance.TrySelect(element);
             } else if(hit.collider.CompareTag("BlueprintElement") && hit.collider.GetComponent<BlueprintWallElement>() != null)
             {
-                Debug.Log("Click wall");
+                if (activePlaceable != null)
+                {
+                    activePlaceable.TryPlace();
+                    return;
+                }
             }
         }
     }

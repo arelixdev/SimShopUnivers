@@ -164,6 +164,21 @@ public abstract class ShopPlaceableElement : MonoBehaviour
         OnPlaced();
     }
 
+    public void TryPlace()
+    {
+        if (!isPlacing)
+            return;
+
+        if (currentWallSnap.GetComponent<BlueprintWallElement>().groundLink == null)
+        {
+            Debug.Log("Impossible : ce mur n'appartient pas à votre zone achetée.");
+            return;
+        }
+
+        // 3. OK → placer
+        Place();
+    }
+
     protected virtual void OnPlaced()
     {
         // override dans les enfants si besoin

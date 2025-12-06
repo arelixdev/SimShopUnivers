@@ -150,6 +150,7 @@ public class PanelShopElement : MonoBehaviour
         if(groundElementShop.Count > 0)
         {
             addElementPart.SetActive(true);
+            PanelShopMaster.instance.lastBoughtZone = new List<BlueprintGroundElement>(groundElementShop);
             isBuy = true;
         }
     }

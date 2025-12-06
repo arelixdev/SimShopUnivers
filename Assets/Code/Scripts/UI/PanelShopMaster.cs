@@ -29,6 +29,8 @@ public class PanelShopMaster : MonoBehaviour
 
     public bool customActivate;
 
+    public List<BlueprintGroundElement> lastBoughtZone;
+
     public List<BlueprintGroundElement> GetCurrentSelection()
     {
         return new List<BlueprintGroundElement>(selectedElements);
@@ -309,6 +311,61 @@ public class PanelShopMaster : MonoBehaviour
 
         createdWalls.Add(key, wall);
     }
+
+    public bool IsWallTouchingZone(Transform wallTransform)
+{
+    BlueprintWallElement wall = wallTransform.GetComponent<BlueprintWallElement>();
+    if (wall == null)
+        return false;
+
+    Vector3 wp = wallTransform.position;
+    float size = 2.5f;  // 2.5
+    float eps = 0.05f;
+
+    foreach (var zone in lastBoughtZone)
+    {
+        Vector3 zp = zone.transform.position;
+
+        float westX  = zp.x;
+        float eastX  = zp.x + size;
+        float southZ = zp.z;
+        float northZ = zp.z + size;
+
+        switch (wall.direction)
+        {
+            case BlueprintWallElement.WallDirection.West:
+                // pivot = (tile.x, tile.z)
+                if (Mathf.Abs(wp.x - westX) < eps &&
+                    wp.z >= southZ - eps && wp.z < northZ + eps)
+                    return true;
+                break;
+
+            case BlueprintWallElement.WallDirection.East:
+                // pivot = (tile.x + size, tile.z)
+                if (Mathf.Abs(wp.x - eastX) < eps &&
+                    wp.z >= southZ - eps && wp.z < northZ + eps)
+                    return true;
+                break;
+
+            case BlueprintWallElement.WallDirection.South:
+                // pivot = (tile.x, tile.z)
+                if (Mathf.Abs(wp.z - southZ) < eps &&
+                    wp.x >= westX - eps && wp.x < eastX + eps)
+                    return true;
+                break;
+
+            case BlueprintWallElement.WallDirection.North:
+                // pivot = (tile.x, tile.z + size)
+                if (Mathf.Abs(wp.z - northZ) < eps &&
+                    wp.x >= westX - eps && wp.x < eastX + eps)
+                    return true;
+                break;
+        }
+    }
+
+    return false;
+}
+
 }
 
 public struct WallKey

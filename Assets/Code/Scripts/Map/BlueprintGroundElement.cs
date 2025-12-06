@@ -16,7 +16,10 @@ public class BlueprintGroundElement : MonoBehaviour
     [SerializeField] private Material matSelected;
     [SerializeField] private Material matBuy;
 
-    private bool isBuy;
+
+    public bool isBuy;
+
+    //TODO savoir quelle magasin l'a acheter peut etre utile pour eviter de faire n'importe quoi avec la pose des portes 
 
     private void Awake()
     {
