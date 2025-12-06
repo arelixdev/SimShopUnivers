@@ -7,6 +7,12 @@ public class PanelShopMaster : MonoBehaviour
 {
     public static PanelShopMaster instance;
 
+    public List<ShopElementDefinition> elementDatabase = new List<ShopElementDefinition>();
+    public Transform mapMenuPanel;
+    public Transform planParent;
+
+    
+
     [SerializeField] private GameObject wallPrefab;
     [SerializeField] private GameObject wallPrefabGame;
     [SerializeField] private Transform wallsParent;
@@ -16,15 +22,28 @@ public class PanelShopMaster : MonoBehaviour
     [SerializeField] private GameObject linePanel;
 
     public Dictionary<Vector2Int, BlueprintGroundElement> grid = new Dictionary<Vector2Int, BlueprintGroundElement>();
-
     private Dictionary<WallKey, GameObject> createdWalls = new Dictionary<WallKey, GameObject>();
     public List<BlueprintGroundElement> selectedElements = new List<BlueprintGroundElement>();
+
+    private PanelShopElement panelShopSelected;
 
     public bool customActivate;
 
     public List<BlueprintGroundElement> GetCurrentSelection()
     {
         return new List<BlueprintGroundElement>(selectedElements);
+    }
+
+    public ShopPlaceableElement GetElementById(string id)
+    {
+        foreach (var def in elementDatabase)
+        {
+            if (def.id == id)
+                return def.prefab;
+        }
+
+        Debug.LogError("Element ID introuvable : " + id);
+        return null;
     }
 
     public void ClearSelection()
@@ -74,10 +93,22 @@ public class PanelShopMaster : MonoBehaviour
         GameObject newElement = Instantiate(mapPanelElement, transform);
         newElement.transform.SetSiblingIndex(transform.childCount - 3);
 
+        ChangePanelSelected(newElement);
+
         if (!linePanel.activeSelf)
             linePanel.SetActive(true);
 
         StartCoroutine(RebuildNextFrame());
+    }
+
+    public void ChangePanelSelected(GameObject newElement)
+    {
+        if(panelShopSelected != null && panelShopSelected.gameObject != newElement && !panelShopSelected.GetIsRetracted())
+        {
+            panelShopSelected.TooglePanelShop();
+        }
+
+        panelShopSelected = newElement.GetComponent<PanelShopElement>();
     }
 
     public void RebuildShopMaster()
@@ -197,10 +228,8 @@ public class PanelShopMaster : MonoBehaviour
             {
                 Vector2Int checkIndex = cell.gridIndex + dir;
 
-                // On regarde si la case voisine existe dans la grille
                 if (grid.TryGetValue(checkIndex, out BlueprintGroundElement neighbor))
                 {
-                    // Si le voisin ne fait PAS partie de la zone → on crée un mur entre les deux
                     if (!zoneSet.Contains(neighbor))
                     {
                         CreateWallBetween(cell, dir);
@@ -214,7 +243,6 @@ public class PanelShopMaster : MonoBehaviour
     {
         WallKey key = new WallKey(cell.gridIndex, dir);
 
-        // ❌️ Si le mur existe déjà → on ne le recrée pas
         if (createdWalls.ContainsKey(key))
             return;
 
@@ -224,7 +252,7 @@ public class PanelShopMaster : MonoBehaviour
         Quaternion rot = Quaternion.identity;
         Quaternion rotGame = Quaternion.identity;
 
-        // MUR EST (droite)
+        // MUR EST 
         if (dir.x == 1)
         {
             wallPos = new Vector3(
@@ -236,7 +264,7 @@ public class PanelShopMaster : MonoBehaviour
             rotGame = Quaternion.Euler(0, 0, 0);
         }
 
-        // MUR OUEST (gauche)
+        // MUR OUEST 
         else if (dir.x == -1)
         {
             wallPos = new Vector3(
@@ -248,7 +276,7 @@ public class PanelShopMaster : MonoBehaviour
             rotGame = Quaternion.Euler(0, 0, 0);
         }
 
-        // MUR NORD (haut)
+        // MUR NORD 
         else if (dir.y == 1)
         {
             wallPos = new Vector3(
@@ -260,7 +288,7 @@ public class PanelShopMaster : MonoBehaviour
             rotGame = Quaternion.Euler(0, 90, 0);
         }
 
-        // MUR SUD (bas)
+        // MUR SUD 
         else if (dir.y == -1)
         {
             wallPos = new Vector3(
@@ -272,7 +300,6 @@ public class PanelShopMaster : MonoBehaviour
             rotGame = Quaternion.Euler(0, 90, 0);
         }
 
-        // 🔥 Correction universelle du décalage de ton prefab
         rot *= Quaternion.Euler(0, 90, 0);
         rotGame *= Quaternion.Euler(0, 90, 0);
         
@@ -312,4 +339,11 @@ public struct WallKey
     {
         return a.GetHashCode() ^ (b.GetHashCode() << 1);
     }
+}
+
+[System.Serializable]
+public class ShopElementDefinition
+{
+    public string id;                      // ex: "door", "table"
+    public ShopPlaceableElement prefab;    // le prefab contenant ton script
 }

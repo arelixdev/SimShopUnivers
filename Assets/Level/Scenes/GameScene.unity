@@ -995,6 +995,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (23)
@@ -1559,6 +1563,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -3195,6 +3203,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (41)
@@ -4204,6 +4216,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (75)
@@ -4588,6 +4604,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -9001,6 +9021,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (71)
@@ -10266,6 +10290,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (13)
@@ -10450,6 +10478,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -12334,6 +12366,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (50)
@@ -13469,6 +13505,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -25358,6 +25398,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (74)
@@ -25615,6 +25659,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -27987,6 +28035,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -32663,6 +32715,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (15)
@@ -33646,6 +33702,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (69)
@@ -34190,6 +34250,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -36614,6 +36678,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -39535,6 +39603,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (31)
@@ -41060,6 +41132,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (66)
@@ -41997,6 +42073,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -43968,6 +44048,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -50003,6 +50087,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (10)
@@ -50823,6 +50911,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -54147,6 +54239,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (49)
@@ -56214,6 +56310,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -58856,6 +58956,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (26)
@@ -59226,6 +59330,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -61202,6 +61310,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -66011,6 +66123,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (2)
@@ -66587,6 +66703,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -70909,6 +71029,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -77197,6 +77321,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (40)
@@ -77444,6 +77572,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -78835,6 +78967,7 @@ Transform:
   - {fileID: 1212434928}
   - {fileID: 2062522199}
   - {fileID: 1442937454}
+  - {fileID: 1889805183}
   - {fileID: 449683594}
   - {fileID: 1785251151}
   - {fileID: 336012513}
@@ -78868,7 +79001,6 @@ Transform:
   - {fileID: 535532304}
   - {fileID: 480873579}
   - {fileID: 1209625341}
-  - {fileID: 1964356746}
   - {fileID: 935099167}
   - {fileID: 1606173095}
   - {fileID: 1864427799}
@@ -79983,6 +80115,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -85328,6 +85464,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (72)
@@ -89608,6 +89748,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (27)
@@ -91801,6 +91945,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -95499,6 +95647,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -103641,6 +103793,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (67)
@@ -103763,6 +103919,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -104489,6 +104649,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -106115,6 +106279,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -108054,6 +108222,7 @@ MonoBehaviour:
   blueprintLayerMask:
     serializedVersion: 2
     m_Bits: 1048576
+  activePlaceable: {fileID: 0}
 --- !u!1001 &1627688341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109168,6 +109337,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -114830,6 +115003,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (1)
@@ -116229,6 +116406,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (47)
@@ -116347,6 +116528,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -117004,6 +117189,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (30)
@@ -117542,6 +117731,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d467432fb33a4b458d9ef7793f5756c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elementDatabase:
+  - id: Door
+    prefab: {fileID: 3252020683741321155, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+  mapMenuPanel: {fileID: 1627672563}
+  planParent: {fileID: 1205330109}
   wallPrefab: {fileID: 1300626297417503932, guid: 986486bd31e38a949b3392f42c745003, type: 3}
   wallPrefabGame: {fileID: 5603544376809677042, guid: e0db4663738475c4b9db5825408ca68d, type: 3}
   wallsParent: {fileID: 1205330109}
@@ -119591,6 +119785,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (11)
@@ -119772,6 +119970,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (16)
@@ -119862,7 +120064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1792769473
 Transform:
   m_ObjectHideFlags: 0
@@ -119929,6 +120131,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -121062,6 +121268,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -124051,6 +124261,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (17)
@@ -124790,6 +125004,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -126636,6 +126854,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10884088532523418edc9a5862473d9, type: 3}
+--- !u!1001 &1889805182
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1205330109}
+    m_Modifications:
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.156
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339840206017018779, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+      propertyPath: m_Name
+      value: GroundBlueprint (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+--- !u!4 &1889805183 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+  m_PrefabInstance: {fileID: 1889805182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1892527703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130410,6 +130690,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (4)
@@ -130779,6 +131063,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -131772,68 +132060,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964355201}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1964356745
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1205330109}
-    m_Modifications:
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.15599911
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6339840206017018779, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-      propertyPath: m_Name
-      value: GroundBlueprint (50)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
---- !u!4 &1964356746 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5676203696783685116, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
-  m_PrefabInstance: {fileID: 1964356745}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1964493407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135499,6 +135725,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (35)
@@ -136495,6 +136725,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -138967,6 +139201,10 @@ PrefabInstance:
     - target: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
@@ -142783,6 +143021,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior (51)
@@ -143771,6 +144013,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a4b724d16fd6e2499cb5cee0f3a5ac2, type: 3}
+--- !u!1001 &1697023722887621485
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4620823254898998949, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_Name
+      value: PlacementDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 786.22424
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 330.76178
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -98.51729
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430038359379322456, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
 --- !u!4 &1931450993926909575 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 208481114091009134, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
@@ -144616,6 +144915,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4368371967229905701, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
       propertyPath: m_Name
       value: WallBlueprintInterior
@@ -144697,3 +145000,4 @@ SceneRoots:
   - {fileID: 1261153892}
   - {fileID: 1281137114}
   - {fileID: 1205330109}
+  - {fileID: 1697023722887621485}

@@ -19,6 +19,11 @@ public class PanelShopElement : MonoBehaviour
 
     private bool isRetracted;
     private bool isBuy;
+
+    public bool GetIsRetracted()
+    {
+        return isRetracted;
+    }
     
 
     void Start()
@@ -102,6 +107,8 @@ public class PanelShopElement : MonoBehaviour
             tempColor.a = 1f;
             GetComponent<Image>().color = tempColor;
 
+            PanelShopMaster.instance.ChangePanelSelected(gameObject);
+
             tempColor = retractBtn.color;
             tempColor.a = 1f;
             retractBtn.color = tempColor;
@@ -145,5 +152,27 @@ public class PanelShopElement : MonoBehaviour
             addElementPart.SetActive(true);
             isBuy = true;
         }
+    }
+
+    public void AddElementBtn(string typeButton)
+    {
+        // récupérer le prefab depuis la base de données
+        var prefab = PanelShopMaster.instance.GetElementById(typeButton);
+
+        if (prefab == null)
+            return;
+
+        // instancier l'élément placeable
+        var element = Instantiate(prefab);
+
+        // donner les parents
+        element.Init(
+            uiParent: PanelShopMaster.instance.mapMenuPanel,
+            planParent: PanelShopMaster.instance.planParent
+        );
+
+        // commencer le placement
+        element.StartPlacing();
+
     }
 }
