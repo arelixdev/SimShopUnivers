@@ -723,10 +723,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Base_Wall_Door_01
       objectReference: {fileID: 0}
-    - target: {fileID: 1551236314114912, guid: 21e845a0ffc00a04fbe1215baa09ba9d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4608302220801362, guid: 21e845a0ffc00a04fbe1215baa09ba9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -767,10 +763,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 23781718041622966, guid: 21e845a0ffc00a04fbe1215baa09ba9d, type: 3}
-      propertyPath: 'm_Materials.Array.data[2]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 6a29cc58c1ca59c4b8a02506ae936879, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
