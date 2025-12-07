@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   groundLink: {fileID: 0}
+  wallAppearance: {fileID: 3158001256940871252}
 --- !u!54 &1096467111826374303
 Rigidbody:
   m_ObjectHideFlags: 0

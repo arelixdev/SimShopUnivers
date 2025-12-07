@@ -12,7 +12,12 @@ public class BlueprintWallElement : MonoBehaviour
 
     public WallDirection direction = WallDirection.North;
 
+    [SerializeField] public WallInMallElement wallInGame;
+
+    [HideInInspector]
     public GameObject groundLink;
+
+    [SerializeField] private GameObject wallAppearance;
 
     private void OnTriggerStay(Collider other) {
         BlueprintGroundElement groundElement = other.GetComponent<BlueprintGroundElement>();
@@ -21,6 +26,19 @@ public class BlueprintWallElement : MonoBehaviour
             groundLink = groundElement.gameObject;
         }
     }
+
+    public void HideWall()
+    {
+        wallAppearance.SetActive(false);
+
+    }
+
+    public void CreateDoor()
+    {
+        wallInGame.ShowDoor();
+    }
+
+    
 }
 
 

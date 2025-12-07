@@ -135,7 +135,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -158,3 +158,5 @@ MonoBehaviour:
   matUnselected: {fileID: 2100000, guid: bb9c192d50b76804a971f380b67e1b10, type: 2}
   matSelected: {fileID: 2100000, guid: 0063c8ef13fffa546887cd4c493d2f6b, type: 2}
   matBuy: {fileID: 2100000, guid: 6726f54bdc13b714186c002e72d9867a, type: 2}
+  isBuy: 0
+  nameShop: 

@@ -48,6 +48,11 @@ public class PanelShopMaster : MonoBehaviour
         return null;
     }
 
+    public PanelShopElement GetPanelShopSelected()
+    {
+        return panelShopSelected;
+    }
+
     public void ClearSelection()
     {
         foreach (var e in selectedElements)

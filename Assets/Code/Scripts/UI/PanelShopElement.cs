@@ -24,6 +24,11 @@ public class PanelShopElement : MonoBehaviour
     {
         return isRetracted;
     }
+
+    public string GetShopName()
+    {
+        return nameShopInputfield.text;
+    }
     
 
     void Start()
@@ -140,7 +145,7 @@ public class PanelShopElement : MonoBehaviour
 
         foreach(var ges in groundElementShop)
         {
-            ges.GroundBuy();
+            ges.GroundBuy(nameShopInputfield.text);
         }
 
         PanelShopMaster.instance.ClearSelection();

@@ -59,7 +59,7 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                 {
                     lastWallHover = wall;
 
-                    if (activePlaceable != null)
+                    if (activePlaceable != null && activePlaceable.GetIsPlacing())
                     {
                         activePlaceable.HideUI(); 
                         activePlaceable.SnapToWall(wall.transform); 
@@ -74,7 +74,7 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
         {
             lastWallHover = null;
 
-            if (activePlaceable != null)
+            if (activePlaceable != null && activePlaceable.GetIsPlacing()  )
             {
                 activePlaceable.ShowUI(); 
             }

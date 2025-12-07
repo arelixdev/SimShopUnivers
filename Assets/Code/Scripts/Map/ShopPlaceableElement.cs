@@ -17,6 +17,11 @@ public abstract class ShopPlaceableElement : MonoBehaviour
     protected bool isSnappingToWall = false;
     protected Transform currentWallSnap = null;
 
+    public bool GetIsPlacing()
+    {
+        return isPlacing;
+    }
+
     public virtual void Init(Transform uiParent, Transform planParent)
     {
         this.uiParent = uiParent;
@@ -174,6 +179,15 @@ public abstract class ShopPlaceableElement : MonoBehaviour
             Debug.Log("Impossible : ce mur n'appartient pas à votre zone achetée.");
             return;
         }
+
+        if(currentWallSnap.GetComponent<BlueprintWallElement>().groundLink.GetComponent<BlueprintGroundElement>().nameShop != PanelShopMaster.instance.GetPanelShopSelected().GetShopName())
+        {
+            Debug.Log("Impossible : vous posez pas sur la zone correspondante.");
+            return;
+        }
+
+        currentWallSnap.GetComponent<BlueprintWallElement>().HideWall();
+        currentWallSnap.GetComponent<BlueprintWallElement>().CreateDoor();
 
         // 3. OK → placer
         Place();

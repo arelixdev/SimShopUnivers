@@ -18,6 +18,7 @@ public class BlueprintGroundElement : MonoBehaviour
 
 
     public bool isBuy;
+    public string nameShop;
 
     //TODO savoir quelle magasin l'a acheter peut etre utile pour eviter de faire n'importe quoi avec la pose des portes 
 
@@ -46,9 +47,10 @@ public class BlueprintGroundElement : MonoBehaviour
         }
     }
 
-    public void GroundBuy()
+    public void GroundBuy(string nsi)
     {
         isSelected = false;
+        nameShop = nsi;
         isBuy = true;
         objGround.GetComponent<MeshRenderer>().material = matBuy;
     }
