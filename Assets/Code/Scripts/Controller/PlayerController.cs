@@ -526,6 +526,9 @@ public class PlayerController : MonoBehaviour
                                 } else if (hit.transform.CompareTag("WallFaceB"))
                                 {
                                     face = 1;
+                                } else if(hit.transform.CompareTag("WallFaceC"))
+                                {
+                                    face = 2;
                                 }
                             }
 

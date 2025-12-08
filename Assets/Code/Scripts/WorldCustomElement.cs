@@ -96,6 +96,9 @@ public class WorldCustomElement : MonoBehaviour
         else if (val == 1)
         {
             mats[2] = mat;
+        }else if (val == 2)
+        {
+            mats[1] = mat;
         }
     }
 
