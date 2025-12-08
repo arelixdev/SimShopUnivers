@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6430038359379322456}
   - component: {fileID: 3252020683741321155}
   m_Layer: 0
-  m_Name: PlacementDoor
+  m_Name: PlacementWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fbf73898ebffdc40828f7b2f240d3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPrefab: {fileID: 5552454938454617104, guid: d7793d63ec01b63419f192847a673c23, type: 3}
-  planPrefab: {fileID: 3681417478700480197, guid: 4a19e2df39612ae4f9930a5f9f7d9572, type: 3}
-  typeOfElement: 1
+  uiPrefab: {fileID: 5552454938454617104, guid: 7d9948800a253bb4fa7f3b9decc5d136, type: 3}
+  planPrefab: {fileID: 1339565126027378787, guid: d08d326e3db8af8418a1f5e7b2428c0b, type: 3}
+  typeOfElement: 2

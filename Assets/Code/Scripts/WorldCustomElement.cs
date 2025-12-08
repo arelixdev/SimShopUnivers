@@ -4,6 +4,7 @@ public enum ElementType
 {
     Wall,
     Door,
+    Window,
     Ground
 }
 

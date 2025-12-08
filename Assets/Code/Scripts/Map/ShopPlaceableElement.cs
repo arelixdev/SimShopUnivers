@@ -6,6 +6,8 @@ public abstract class ShopPlaceableElement : MonoBehaviour
     public GameObject uiPrefab;
     public GameObject planPrefab;
 
+    [SerializeField] private ElementType typeOfElement;
+
     protected GameObject uiInstance;
     protected GameObject planInstance;
 
@@ -187,7 +189,19 @@ public abstract class ShopPlaceableElement : MonoBehaviour
         }
 
         currentWallSnap.GetComponent<BlueprintWallElement>().HideWall();
-        currentWallSnap.GetComponent<BlueprintWallElement>().CreateDoor();
+        //TODO recup type of element 
+        switch(typeOfElement)
+        {
+            case ElementType.Wall:
+                break;
+            case ElementType.Door:
+                currentWallSnap.GetComponent<BlueprintWallElement>().CreateDoor();
+                break;
+            case ElementType.Window:
+                currentWallSnap.GetComponent<BlueprintWallElement>().CreateWindow();
+                break;
+        }
+        
 
         // 3. OK → placer
         Place();

@@ -30,12 +30,21 @@ public class BlueprintWallElement : MonoBehaviour
     public void HideWall()
     {
         wallAppearance.SetActive(false);
+    }
 
+    public void ShowWall()
+    {
+        wallAppearance.SetActive(true);
     }
 
     public void CreateDoor()
     {
         wallInGame.ShowDoor();
+    }
+
+    public void CreateWindow()
+    {
+        wallInGame.ShowWindow();
     }
 
     

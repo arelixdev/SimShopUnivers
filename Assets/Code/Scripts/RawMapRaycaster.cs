@@ -46,6 +46,7 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
         float pixelX = uvX * renderTextureCamera.targetTexture.width;
         float pixelY = uvY * renderTextureCamera.targetTexture.height;
 
+
         Ray ray = renderTextureCamera.ScreenPointToRay(new Vector3(pixelX, pixelY, 0));
 
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, blueprintLayerMask))
