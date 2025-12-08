@@ -24401,7 +24401,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1941355844}
   m_HandleRect: {fileID: 1941355843}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -111102,6 +111102,8 @@ MonoBehaviour:
     prefab: {fileID: 3252020683741321155, guid: 2152ae5ef9b1878478a6b716c11bd11d, type: 3}
   - id: Window
     prefab: {fileID: 3252020683741321155, guid: 8773bbd20b1e92a4f902780b2becda1a, type: 3}
+  - id: Shop Window
+    prefab: {fileID: 3252020683741321155, guid: 3df6c89010c9ebe4e8f7782bd4e740d2, type: 3}
   mapMenuPanel: {fileID: 1627672563}
   planParent: {fileID: 1205330109}
   wallPrefab: {fileID: 1300626297417503932, guid: 986486bd31e38a949b3392f42c745003, type: 3}

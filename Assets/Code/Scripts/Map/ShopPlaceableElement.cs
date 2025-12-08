@@ -200,6 +200,9 @@ public abstract class ShopPlaceableElement : MonoBehaviour
             case ElementType.Window:
                 currentWallSnap.GetComponent<BlueprintWallElement>().CreateWindow();
                 break;
+            case ElementType.ShopWindow:
+                currentWallSnap.GetComponent<BlueprintWallElement>().CreateShopWindow();
+                break;
         }
         
 

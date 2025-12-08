@@ -47,6 +47,11 @@ public class BlueprintWallElement : MonoBehaviour
         wallInGame.ShowWindow();
     }
 
+    public void CreateShopWindow()
+    {
+        wallInGame.ShowShopWindow();
+    }
+
     
 }
 

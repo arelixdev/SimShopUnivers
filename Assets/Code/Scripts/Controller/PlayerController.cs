@@ -515,6 +515,10 @@ public class PlayerController : MonoBehaviour
                         if (brush.HasPaint()) 
                         {
                             WorldCustomElement custom = hit.transform.GetComponent<WorldCustomElement>();
+
+                            if(custom.elementType == ElementType.ShopWindow)
+                                return;
+                                
                             int face = -1;
 
                             if(hit.transform.GetComponentInParent<WorldCustomElement>())

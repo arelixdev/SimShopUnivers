@@ -5,6 +5,7 @@ public enum ElementType
     Wall,
     Door,
     Window,
+    ShopWindow,
     Ground
 }
 

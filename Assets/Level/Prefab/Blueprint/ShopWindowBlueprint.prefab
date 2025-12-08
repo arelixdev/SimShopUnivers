@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2809049231928546397}
   - component: {fileID: 1416777967016426499}
   m_Layer: 20
-  m_Name: WindowBluepprint
+  m_Name: ShopWindowBlueprint
   m_TagString: BlueprintElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +118,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e5b9ececec14f534a9461740957c914d, type: 2}
+  - {fileID: 2100000, guid: e533318bdc207554e970b68004c51111, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
