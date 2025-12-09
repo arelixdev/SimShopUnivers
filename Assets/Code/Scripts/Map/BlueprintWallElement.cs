@@ -29,11 +29,13 @@ public class BlueprintWallElement : MonoBehaviour
 
     public void HideWall()
     {
+        GetComponent<BoxCollider>().enabled = false;
         wallAppearance.SetActive(false);
     }
 
     public void ShowWall()
     {
+        GetComponent<BoxCollider>().enabled = true;
         wallAppearance.SetActive(true);
     }
 

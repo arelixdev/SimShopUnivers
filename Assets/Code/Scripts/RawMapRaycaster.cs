@@ -8,13 +8,17 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
 {
     public static RawMapRaycaster instance;
 
-    public Camera renderTextureCamera;
-    public RawImage rawImage;
-    public LayerMask blueprintLayerMask;
+    [SerializeField] private Camera renderTextureCamera;
+    [SerializeField] private RawImage rawImage;
+    [SerializeField] private LayerMask blueprintLayerMask;
 
     private BlueprintWallElement lastWallHover = null;
+    private MapTooltipsElement lastTooltipHover = null;
 
+    //[HideInInspector]
     public ShopPlaceableElement activePlaceable;
+
+    [SerializeField] private MapTooltipsPanel mapTooltipsPanel;
 
     void Awake()
     {
@@ -51,6 +55,9 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
 
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, blueprintLayerMask))
         {
+            // if(hit.collider != null)
+            //     Debug.Log("hit: " + hit.collider.gameObject);
+
             var wall = hit.collider.GetComponent<BlueprintWallElement>();
 
             if (wall != null)
@@ -67,8 +74,32 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                     }
                 }
 
+                if (lastTooltipHover != null)
+                {
+                    mapTooltipsPanel.HideTooltips();
+                    lastTooltipHover = null;
+                }
+
+                return;
+            } 
+            var tooltipElement = hit.collider.GetComponent<MapTooltipsElement>();
+
+            if (tooltipElement != null && activePlaceable == null)
+            {
+                // Si on change d'élément tooltip
+                if (lastTooltipHover != tooltipElement)
+                {
+                    lastTooltipHover = tooltipElement;
+                    mapTooltipsPanel.ShowTooltips(tooltipElement);
+                }
                 return;
             }
+        }
+
+        if (lastTooltipHover != null)
+        {
+            mapTooltipsPanel.HideTooltips();
+            lastTooltipHover = null;
         }
 
         if (lastWallHover != null)
@@ -115,7 +146,16 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                     activePlaceable.TryPlace();
                     return;
                 }
+            } else if (hit.collider.CompareTag("BlueprintElement") && hit.collider.GetComponent<MapTooltipsElement>() != null)
+            {
+                mapTooltipsPanel.FixTooltips();
             }
         }
+    }
+
+    public void CleanActivePlaceable()
+    {
+        Destroy(activePlaceable.gameObject);
+        activePlaceable = null;
     }
 }

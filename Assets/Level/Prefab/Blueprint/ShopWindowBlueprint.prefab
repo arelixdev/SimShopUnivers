@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2809049231928546397}
   - component: {fileID: 1416777967016426499}
+  - component: {fileID: -1968914264199717127}
   m_Layer: 20
   m_Name: ShopWindowBlueprint
   m_TagString: BlueprintElement
@@ -54,6 +55,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5, y: 0.1, z: 0.45919323}
   m_Center: {x: 1.25, y: 0, z: 0.025516033}
+--- !u!114 &-1968914264199717127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339565126027378787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23749d3c73d205a43bed0cf3acbd51eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 3
+  elementSprite: {fileID: 21300000, guid: b8907aa4629e80d41b97d53a6c202ef1, type: 3}
 --- !u!1 &1844783003209082442
 GameObject:
   m_ObjectHideFlags: 0

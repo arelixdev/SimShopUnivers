@@ -516,8 +516,6 @@ public class PlayerController : MonoBehaviour
                         {
                             WorldCustomElement custom = hit.transform.GetComponent<WorldCustomElement>();
 
-                            if(custom.elementType == ElementType.ShopWindow)
-                                return;
                                 
                             int face = -1;
 
@@ -536,7 +534,7 @@ public class PlayerController : MonoBehaviour
                                 }
                             }
 
-                            if (custom != null)
+                            if (custom != null && custom.elementType != ElementType.ShopWindow)
                             {
                                 custom.PaintElement(brushObj.GetComponent<PaintBrush>().brushPaintMat, face);
                                 brush.RemovePaintOnBrush(); 

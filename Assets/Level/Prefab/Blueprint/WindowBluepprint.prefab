@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2809049231928546397}
   - component: {fileID: 1416777967016426499}
+  - component: {fileID: 5073820300720814935}
   m_Layer: 20
   m_Name: WindowBluepprint
   m_TagString: BlueprintElement
@@ -52,8 +53,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 0.1, z: 0.45919323}
-  m_Center: {x: 1.25, y: 0, z: 0.025516033}
+  m_Size: {x: 2.5, y: 0.1537095, z: 0.8031187}
+  m_Center: {x: 1.25, y: 0.026854753, z: 0}
+--- !u!114 &5073820300720814935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339565126027378787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23749d3c73d205a43bed0cf3acbd51eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 2
+  elementSprite: {fileID: 21300000, guid: 8db993b5ac608a7439b33282607cfb12, type: 3}
 --- !u!1 &1844783003209082442
 GameObject:
   m_ObjectHideFlags: 0

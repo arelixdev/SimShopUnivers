@@ -158,14 +158,14 @@ public abstract class ShopPlaceableElement : MonoBehaviour
     {
         isPlacing = false;
 
+        RawMapRaycaster.instance.CleanActivePlaceable();
+
         if (uiInstance != null)
         {
-            // tu peux faire un ajustement si nécessaire
         }
 
         if (planInstance != null)
         {
-            // verrouillage de position
         }
 
         OnPlaced();
@@ -206,7 +206,6 @@ public abstract class ShopPlaceableElement : MonoBehaviour
         }
         
 
-        // 3. OK → placer
         Place();
     }
 
