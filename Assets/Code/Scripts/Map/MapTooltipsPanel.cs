@@ -50,18 +50,27 @@ public class MapTooltipsPanel : MonoBehaviour
 
     public void SetPosition(MapTooltipsElement elem)
     {
-        Vector3 screenPos = renderTextureCamera.WorldToScreenPoint(elem.transform.position);
-        RectTransform rect = rawImage.rectTransform;
+        RectTransform tooltipParent = transform.parent as RectTransform;
+        RectTransform tooltipRect = GetComponent<RectTransform>();
+        RectTransform rawRect = rawImage.rectTransform;
+        
+        Vector3 viewportPos = renderTextureCamera.WorldToViewportPoint(elem.transform.position);
 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            rect,
-            screenPos,
-            null,
-            out Vector2 uiPos
+        Vector2 rawLocalPos = new Vector2(
+            (viewportPos.x - 0.5f) * rawRect.rect.width,
+            (viewportPos.y - 0.5f) * rawRect.rect.height
         );
 
-        
-        GetComponent<RectTransform>().anchoredPosition = uiPos + offset;
+        Vector2 screenPos = rawRect.TransformPoint(rawLocalPos);
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            tooltipParent,
+            screenPos,
+            null,
+            out Vector2 canvasLocalPos
+        );
+
+        tooltipRect.anchoredPosition = canvasLocalPos + offset;
     }
 
     void InitTooltips()
