@@ -19,6 +19,8 @@ public abstract class ShopPlaceableElement : MonoBehaviour
     protected bool isSnappingToWall = false;
     protected Transform currentWallSnap = null;
 
+    public bool ignoreWallSnap = false;
+
     public bool GetIsPlacing()
     {
         return isPlacing;
@@ -56,6 +58,11 @@ public abstract class ShopPlaceableElement : MonoBehaviour
     {
         if (isPlacing)
             FollowMouse();
+    }
+
+    public virtual void OnGroundHover(BlueprintGroundElement ground)
+    {
+        
     }
 
     protected virtual void FollowMouse()

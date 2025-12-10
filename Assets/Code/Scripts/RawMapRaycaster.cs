@@ -62,15 +62,17 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
 
             if (wall != null)
             {
-
                 if (lastWallHover != wall)
                 {
                     lastWallHover = wall;
 
                     if (activePlaceable != null && activePlaceable.GetIsPlacing())
                     {
-                        activePlaceable.HideUI(); 
-                        activePlaceable.SnapToWall(wall.transform); 
+                        if (!activePlaceable.ignoreWallSnap)
+                        {
+                            activePlaceable.HideUI();
+                            activePlaceable.SnapToWall(wall.transform);
+                        }
                     }
                 }
 
@@ -81,7 +83,17 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                 }
 
                 return;
-            } 
+            }
+            var ground = hit.collider.GetComponent<BlueprintGroundElement>();
+            if (ground != null)
+            {
+                // Si l’élément actif existe et ignore le snap mur (donc PlacementWallElement)
+                if (activePlaceable != null && activePlaceable.GetIsPlacing() && activePlaceable.ignoreWallSnap)
+                {
+                    activePlaceable.OnGroundHover(ground);
+                    return;
+                }
+            }
             var tooltipElement = hit.collider.GetComponent<MapTooltipsElement>();
 
             if (tooltipElement != null && activePlaceable == null)
@@ -106,9 +118,10 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
         {
             lastWallHover = null;
 
-            if (activePlaceable != null && activePlaceable.GetIsPlacing()  )
+            if (activePlaceable != null && activePlaceable.GetIsPlacing())
             {
-                activePlaceable.ShowUI(); 
+                if (!activePlaceable.ignoreWallSnap)
+                    activePlaceable.ShowUI();
             }
         }
     }

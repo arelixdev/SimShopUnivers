@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6430038359379322456}
-  - component: {fileID: 3252020683741321155}
+  - component: {fileID: 2573215915015989948}
   m_Layer: 0
   m_Name: PlacementWall
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3252020683741321155
+--- !u!114 &2573215915015989948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4620823254898998949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fbf73898ebffdc40828f7b2f240d3af, type: 3}
+  m_Script: {fileID: 11500000, guid: 35581ea38b3845e46bb73896a5801f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   uiPrefab: {fileID: 5552454938454617104, guid: c633a91d3da0cdf41904e3a5aa25b1fc, type: 3}
-  planPrefab: {fileID: 6782927823613956271, guid: 2c01aadea5a5ec049b863502dc14c68b, type: 3}
+  planPrefab: {fileID: 1300626297417503932, guid: 986486bd31e38a949b3392f42c745003, type: 3}
   typeOfElement: 0
+  wallConstructor: {fileID: 2018747570141617359, guid: ec7a7736bc9bef84c807ec35df187685, type: 3}
