@@ -7,17 +7,27 @@ using UnityEngine.UI;
 
 public class MapTooltipsPanel : MonoBehaviour
 {
+    public static MapTooltipsPanel instance;
     [SerializeField] private Image titleIcn;
     [SerializeField] private TextMeshProUGUI titleTxt;
+    [SerializeField] private Image imgElement;
     [SerializeField] private GameObject doorPrivateZone;
     [SerializeField] private Camera renderTextureCamera;
     [SerializeField] private RawImage rawImage;
+
+    [SerializeField] private MapTooltipsSelectElement panelSelectElement;
 
     [SerializeField] private Vector2 offset = new Vector2(250, 225f);
 
 
     private MapTooltipsElement selectedElement;
+    private Transform wallElement;
+
     private bool isFix;
+
+    private void Awake() {
+        instance = this;
+    }
 
     private void Start() {
         HideTooltips();
@@ -34,7 +44,7 @@ public class MapTooltipsPanel : MonoBehaviour
 
     public void CustomElementBtn()
     {
-        Debug.Log("Custom panel open");
+        panelSelectElement.ShowMenu(selectedElement.elementType);
     }
 
     public void ShowTooltips(MapTooltipsElement elem)
@@ -45,7 +55,10 @@ public class MapTooltipsPanel : MonoBehaviour
         selectedElement = elem;
         SetPosition(elem);
         InitTooltips();
-
+        if(imgElement.sprite == null)
+        {
+            imgElement.enabled = false;
+        }
     }
 
     public void SetPosition(MapTooltipsElement elem)
@@ -101,10 +114,28 @@ public class MapTooltipsPanel : MonoBehaviour
         selectedElement = null;
     }
 
-    public void FixTooltips()
+    public void FixTooltips(Transform wallElem)
     {
         isFix = true;
+        wallElement = wallElem;
     }
+
+    public void CreateElement(int val)
+    {
+        switch(selectedElement.elementType)
+        {
+            case ElementType.Door:
+                imgElement.sprite = StockInfoController.instance.allDoors[val].spriteElement;
+                wallElement.GetComponent<BlueprintWallElement>().wallInGame.GetComponent<WallInMallElement>().CreateDoor(val);
+                break;
+        }
+        
+        imgElement.enabled = true;
+        
+        panelSelectElement.HideMenu();
+    }
+
+
 
     private IEnumerator RebuildNextFrame()
     {

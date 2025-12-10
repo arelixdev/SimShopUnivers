@@ -434,15 +434,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3108469376653581258}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.5, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2141857858503371829}
   - {fileID: 7146138441042290460}
   - {fileID: 2307723479809241504}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6711861418428479231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallDownObject: {fileID: 2188484527027240249}
+  doorPivot: {fileID: 2141857858503371829}
 --- !u!1 &3386275572711060570
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +857,37 @@ Transform:
   - {fileID: 2223152708796306886}
   m_Father: {fileID: 7146138441042290460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7437583686870263833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2141857858503371829}
+  m_Layer: 0
+  m_Name: DoorPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2141857858503371829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7437583686870263833}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.7500001, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2687203368507045098}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8768564041305449069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,6 +1262,10 @@ PrefabInstance:
     - target: {fileID: 1869539160788820, guid: 1143fd2808fa2c5489fe47111a8ff77f, type: 3}
       propertyPath: m_Name
       value: SM_Bld_House_Wall_Door_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869539160788820, guid: 1143fd2808fa2c5489fe47111a8ff77f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4675879439505872, guid: 1143fd2808fa2c5489fe47111a8ff77f, type: 3}
       propertyPath: m_LocalScale.y

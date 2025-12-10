@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7a8c8b827747d47bc9d85460ffe14e, type: 3}
+  m_Name: Doors8
+  m_EditorClassIdentifier: 
+  elementType: 1
+  spriteElement: {fileID: 21300000, guid: 8ed62d6e78f7bbc429de42922ec7d0b5, type: 3}
+  elementPrefab: {fileID: 1005485792341690, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}

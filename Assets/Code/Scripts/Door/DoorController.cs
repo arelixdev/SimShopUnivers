@@ -20,7 +20,7 @@ public class DoorController : MonoBehaviour
         activeTween?.Kill();
 
         // Ouvre
-        activeTween = transform.DORotate(new Vector3(0, openAngle, 0), animationDuration)
+        activeTween = transform.DOLocalRotate(new Vector3(0, openAngle, 0), animationDuration)
             .SetEase(Ease.OutCubic)
             .OnComplete(() =>
             {
@@ -33,7 +33,7 @@ public class DoorController : MonoBehaviour
     {
         // Fermer
         activeTween?.Kill();
-        activeTween = transform.DORotate(Vector3.zero, animationDuration)
+        activeTween = transform.DOLocalRotate(Vector3.zero, animationDuration)
             .SetEase(Ease.OutCubic)
             .OnComplete(() => isOpen = false);
     }

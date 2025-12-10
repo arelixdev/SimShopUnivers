@@ -15,7 +15,7 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
     private BlueprintWallElement lastWallHover = null;
     private MapTooltipsElement lastTooltipHover = null;
 
-    //[HideInInspector]
+    [HideInInspector]
     public ShopPlaceableElement activePlaceable;
 
     [SerializeField] private MapTooltipsPanel mapTooltipsPanel;
@@ -148,7 +148,7 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                 }
             } else if (hit.collider.CompareTag("BlueprintElement") && hit.collider.GetComponent<MapTooltipsElement>() != null)
             {
-                mapTooltipsPanel.FixTooltips();
+                mapTooltipsPanel.FixTooltips(hit.collider.GetComponent<MapTooltipsElement>().wallElement);
             }
         }
     }

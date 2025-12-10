@@ -24,6 +24,11 @@ public abstract class ShopPlaceableElement : MonoBehaviour
         return isPlacing;
     }
 
+    public Transform GetCurrentWallSnap()
+    {
+        return currentWallSnap;
+    }
+
     public virtual void Init(Transform uiParent, Transform planParent)
     {
         this.uiParent = uiParent;
@@ -159,6 +164,7 @@ public abstract class ShopPlaceableElement : MonoBehaviour
         isPlacing = false;
 
         RawMapRaycaster.instance.CleanActivePlaceable();
+        
 
         if (uiInstance != null)
         {
@@ -166,6 +172,7 @@ public abstract class ShopPlaceableElement : MonoBehaviour
 
         if (planInstance != null)
         {
+            planInstance.GetComponent<MapTooltipsElement>().wallElement = currentWallSnap;
         }
 
         OnPlaced();

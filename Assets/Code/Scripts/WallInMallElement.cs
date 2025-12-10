@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class WallInMallElement : MonoBehaviour
 {
     [SerializeField] private GameObject wallDownObject;
+    [SerializeField] private Transform doorPivot;
 
     private WorldCustomElement downElement;
 
@@ -53,5 +55,13 @@ public class WallInMallElement : MonoBehaviour
         downElement.listWalls[2].SetActive(false);
         downElement.listWalls[3].SetActive(false);
         downElement.elementType = ElementType.Wall;
+    }
+
+    internal void CreateDoor(int val)
+    {
+        foreach (Transform child in doorPivot) {
+            Destroy(child.gameObject);
+        }
+        Instantiate(StockInfoController.instance.allDoors[val].elementPrefab, doorPivot);
     }
 }

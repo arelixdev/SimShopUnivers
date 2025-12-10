@@ -7,6 +7,8 @@ public class StockInfoController : MonoBehaviour
     public static StockInfoController instance;
     [SerializeField] private List<StockInfoSO> produceInfo;
 
+    public List<ElementSO> allDoors = new List<ElementSO>();
+
     private List<StockInfoSO> allStock = new List<StockInfoSO>();
     private void Awake()
     {
