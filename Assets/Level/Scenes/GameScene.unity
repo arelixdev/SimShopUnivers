@@ -22527,7 +22527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4226928876797611459, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 326.06
+      value: 326.0599
       objectReference: {fileID: 0}
     - target: {fileID: 4753627721827162590, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -22605,6 +22605,18 @@ PrefabInstance:
       propertyPath: wallsParentGame
       value: 
       objectReference: {fileID: 1792769473}
+    - target: {fileID: 5002296201681351940, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+      propertyPath: elementDatabase.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002296201681351940, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+      propertyPath: elementDatabase.Array.data[3].id
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002296201681351940, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+      propertyPath: elementDatabase.Array.data[3].prefab
+      value: 
+      objectReference: {fileID: 3252020683741321155, guid: c54fba3f417d16b4d884e787567caa9f, type: 3}
     - target: {fileID: 6018486842584139795, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -113385,7 +113397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1792769473
 Transform:
   m_ObjectHideFlags: 0
