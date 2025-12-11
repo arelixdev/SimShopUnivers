@@ -130,19 +130,19 @@ public abstract class ShopPlaceableElement : MonoBehaviour
             // Définir rotation et offset selon la direction
             switch (wallElement.direction)
             {
-                case BlueprintWallElement.WallDirection.North:
+                case Direc.North:
                     yRotation = 0f;
                     localOffset = Vector3.zero; 
                     break;
-                case BlueprintWallElement.WallDirection.East:
+                case Direc.East:
                     yRotation = 90f;
                     localOffset = new Vector3(0, 0, 2.5f); 
                     break;
-                case BlueprintWallElement.WallDirection.South:
+                case Direc.South:
                     yRotation = 180f;
                     localOffset = new Vector3(0, 0, 2.5f); 
                     break;
-                case BlueprintWallElement.WallDirection.West:
+                case Direc.West:
                     yRotation = -90f;
                     localOffset = Vector3.zero; 
                     break;
@@ -166,6 +166,7 @@ public abstract class ShopPlaceableElement : MonoBehaviour
         if (uiInstance != null)
             uiInstance.SetActive(false);
     }
+    
     public virtual void Place()
     {
         isPlacing = false;

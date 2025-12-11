@@ -1,8 +1,5 @@
 using UnityEngine;
-
-public class BlueprintWallElement : MonoBehaviour
-{
-    public enum WallDirection
+public enum Direc
     {
         North,
         East,
@@ -10,7 +7,11 @@ public class BlueprintWallElement : MonoBehaviour
         West
     }
 
-    public WallDirection direction = WallDirection.North;
+public class BlueprintWallElement : MonoBehaviour
+{
+    
+
+    public Direc direction = Direc.North;
 
     [SerializeField] public WallInMallElement wallInGame;
 

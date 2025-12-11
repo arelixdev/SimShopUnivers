@@ -14,15 +14,15 @@ public class PanelShopMaster : MonoBehaviour
     
 
     [SerializeField] private GameObject wallPrefab;
-    [SerializeField] private GameObject wallPrefabGame;
+    public GameObject wallPrefabGame;
     [SerializeField] private Transform wallsParent;
-    [SerializeField] private Transform wallsParentGame;
-    [SerializeField] private float cellSize = 2.5f;
+    public Transform wallsParentGame;
+    public float cellSize = 2.5f;
     [SerializeField] private GameObject mapPanelElement;
     [SerializeField] private GameObject linePanel;
 
     public Dictionary<Vector2Int, BlueprintGroundElement> grid = new Dictionary<Vector2Int, BlueprintGroundElement>();
-    private Dictionary<WallKey, GameObject> createdWalls = new Dictionary<WallKey, GameObject>();
+    public Dictionary<WallKey, GameObject> createdWalls = new Dictionary<WallKey, GameObject>();
     public List<BlueprintGroundElement> selectedElements = new List<BlueprintGroundElement>();
 
     private PanelShopElement panelShopSelected;
@@ -30,6 +30,7 @@ public class PanelShopMaster : MonoBehaviour
     public bool customActivate;
 
     public List<BlueprintGroundElement> lastBoughtZone;
+
 
     public List<BlueprintGroundElement> GetCurrentSelection()
     {
@@ -338,28 +339,28 @@ public class PanelShopMaster : MonoBehaviour
 
         switch (wall.direction)
         {
-            case BlueprintWallElement.WallDirection.West:
+            case Direc.West:
                 // pivot = (tile.x, tile.z)
                 if (Mathf.Abs(wp.x - westX) < eps &&
                     wp.z >= southZ - eps && wp.z < northZ + eps)
                     return true;
                 break;
 
-            case BlueprintWallElement.WallDirection.East:
+            case Direc.East:
                 // pivot = (tile.x + size, tile.z)
                 if (Mathf.Abs(wp.x - eastX) < eps &&
                     wp.z >= southZ - eps && wp.z < northZ + eps)
                     return true;
                 break;
 
-            case BlueprintWallElement.WallDirection.South:
+            case Direc.South:
                 // pivot = (tile.x, tile.z)
                 if (Mathf.Abs(wp.z - southZ) < eps &&
                     wp.x >= westX - eps && wp.x < eastX + eps)
                     return true;
                 break;
 
-            case BlueprintWallElement.WallDirection.North:
+            case Direc.North:
                 // pivot = (tile.x, tile.z + size)
                 if (Mathf.Abs(wp.z - northZ) < eps &&
                     wp.x >= westX - eps && wp.x < eastX + eps)

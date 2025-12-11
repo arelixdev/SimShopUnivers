@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3886927789512334020}
   - component: {fileID: 4466444951735537353}
   - component: {fileID: 5324588119407276909}
+  - component: {fileID: 6304306964957571909}
   m_Layer: 20
   m_Name: WallNorth
   m_TagString: Untagged
@@ -140,6 +141,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6304306964957571909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841436364752893766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9c64b1d71a4d44caf1373adb1e251f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotDirection: 0
 --- !u!1 &2018747570141617359
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +233,7 @@ GameObject:
   - component: {fileID: 1361049708123121729}
   - component: {fileID: 4157556543548705915}
   - component: {fileID: 460324205519148800}
+  - component: {fileID: 770476020899277871}
   m_Layer: 20
   m_Name: WallSouth
   m_TagString: Untagged
@@ -315,6 +330,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &770476020899277871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4527986234049039831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9c64b1d71a4d44caf1373adb1e251f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotDirection: 2
 --- !u!1 &6172445352720288994
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +387,7 @@ GameObject:
   - component: {fileID: 884622647672587208}
   - component: {fileID: 2336314718948648555}
   - component: {fileID: 8102937350545843027}
+  - component: {fileID: 8169025234759448123}
   m_Layer: 20
   m_Name: WallWest
   m_TagString: Untagged
@@ -455,6 +484,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8169025234759448123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6598108182471468963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9c64b1d71a4d44caf1373adb1e251f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotDirection: 3
 --- !u!1 &6642536501833607087
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +541,7 @@ GameObject:
   - component: {fileID: 3898785743529546290}
   - component: {fileID: 2669321980233563112}
   - component: {fileID: 3073156272406061628}
+  - component: {fileID: 6009646023013928733}
   m_Layer: 20
   m_Name: WallEast
   m_TagString: Untagged
@@ -595,3 +638,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6009646023013928733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896373341452335147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9c64b1d71a4d44caf1373adb1e251f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotDirection: 1

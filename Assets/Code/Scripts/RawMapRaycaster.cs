@@ -94,6 +94,16 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                     return;
                 }
             }
+
+            var pivot = hit.collider.GetComponent<WallConstructorPivot>();
+            if (pivot != null)
+            {
+                if (activePlaceable != null && activePlaceable.GetIsPlacing() && activePlaceable.ignoreWallSnap)
+                {
+                    (activePlaceable as PlacementWallElement)?.OnPivotHover(pivot);
+                    return;
+                }
+            }
             var tooltipElement = hit.collider.GetComponent<MapTooltipsElement>();
 
             if (tooltipElement != null && activePlaceable == null)
@@ -147,6 +157,14 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
 
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, blueprintLayerMask))
         {
+
+             var pivot = hit.collider.GetComponent<WallConstructorPivot>();
+            if (pivot != null && activePlaceable is PlacementWallElement lwe)
+            {
+                lwe.SelectPivot(pivot);
+                return;
+            }
+            
             if (hit.collider.CompareTag("BlueprintElement") && PanelShopMaster.instance.customActivate)
             {
                 var element = hit.collider.GetComponent<BlueprintGroundElement>();
