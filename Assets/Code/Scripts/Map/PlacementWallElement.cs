@@ -95,9 +95,6 @@ public class PlacementWallElement : ShopPlaceableElement
             Vector3 wallPos = basePos;
             Quaternion rotGame = Quaternion.identity;
 
-            Debug.Log("DIT MOI LA DIRECTION " + hoveredDirection);
-
-            // Position + rotation comme dans CreateWallBetween
             switch (hoveredDirection)
             {
                 case Direc.East:  wallPos += new Vector3(PanelShopMaster.instance.cellSize, 0, PanelShopMaster.instance.cellSize); rotGame = Quaternion.Euler(0,0,0); break;
@@ -108,7 +105,6 @@ public class PlacementWallElement : ShopPlaceableElement
 
             rotGame *= Quaternion.Euler(0, -90, 0);
 
-            // Mur visible dans la scène
             GameObject wallGame = Instantiate(
                 PanelShopMaster.instance.wallPrefabGame,
                 wallPos,

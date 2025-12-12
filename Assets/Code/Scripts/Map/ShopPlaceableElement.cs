@@ -21,6 +21,8 @@ public abstract class ShopPlaceableElement : MonoBehaviour
 
     public bool ignoreWallSnap = false;
 
+    public System.Action onPlaced;
+
     public bool GetIsPlacing()
     {
         return isPlacing;
@@ -181,6 +183,12 @@ public abstract class ShopPlaceableElement : MonoBehaviour
         if (planInstance != null)
         {
             planInstance.GetComponent<MapTooltipsElement>().wallElement = currentWallSnap;
+
+            GameObject elementBlueprintOnWall = planInstance.GetComponent<MapTooltipsElement>().wallElement.GetComponent<BlueprintWallElement>().wallInGame.GetComponent<WallInMallElement>().elementBlueprintOnWall;
+            if(elementBlueprintOnWall != null)
+                Destroy(elementBlueprintOnWall);
+
+            planInstance.GetComponent<MapTooltipsElement>().wallElement.GetComponent<BlueprintWallElement>().wallInGame.GetComponent<WallInMallElement>().elementBlueprintOnWall = planInstance;
         }
 
         OnPlaced();
@@ -220,7 +228,7 @@ public abstract class ShopPlaceableElement : MonoBehaviour
                 break;
         }
         
-
+        onPlaced?.Invoke();
         Place();
     }
 

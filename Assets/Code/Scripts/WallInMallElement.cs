@@ -6,6 +6,8 @@ public class WallInMallElement : MonoBehaviour
     [SerializeField] private GameObject wallDownObject;
     [SerializeField] private Transform doorPivot;
 
+    public GameObject elementBlueprintOnWall;
+
     private WorldCustomElement downElement;
 
     void Start()

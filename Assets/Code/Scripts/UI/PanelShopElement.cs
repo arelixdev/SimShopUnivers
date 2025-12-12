@@ -177,8 +177,15 @@ public class PanelShopElement : MonoBehaviour
             planParent: PanelShopMaster.instance.planParent
         );
 
+        PanelShopMaster.instance.SetTooltipWallsColliders(true);
+
         // commencer le placement
         element.StartPlacing();
+
+        element.onPlaced += () =>
+        {
+            PanelShopMaster.instance.SetTooltipWallsColliders(false);
+        };
 
     }
 }

@@ -184,6 +184,21 @@ public class PanelShopMaster : MonoBehaviour
         return false;
     }
 
+    public void SetTooltipWallsColliders(bool state)
+    {
+        MapTooltipsElement[] tooltips = FindObjectsOfType<MapTooltipsElement>();
+
+        foreach (var t in tooltips)
+        {
+            if (t.wallElement != null)
+            {
+                Collider col = t.wallElement.GetComponent<Collider>();
+                if (col != null)
+                    col.enabled = state;
+            }
+        }
+    }
+
     public bool CheckSelectionConnectivity()
     {
         if (selectedElements.Count <= 1)

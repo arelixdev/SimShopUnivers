@@ -59,6 +59,7 @@ public class MapTooltipsPanel : MonoBehaviour
         {
             imgElement.enabled = false;
         }
+        UpdateElement();
     }
 
     public void SetPosition(MapTooltipsElement elem)
@@ -129,10 +130,26 @@ public class MapTooltipsPanel : MonoBehaviour
                 wallElement.GetComponent<BlueprintWallElement>().wallInGame.GetComponent<WallInMallElement>().CreateDoor(val);
                 break;
         }
+
+        selectedElement.valueElement = val;
         
         imgElement.enabled = true;
         
         panelSelectElement.HideMenu();
+    }
+
+    public void UpdateElement()
+    {
+        if(selectedElement.valueElement == -1)
+            imgElement.sprite = null;
+            return;
+
+        switch(selectedElement.elementType)
+        {
+            case ElementType.Door:
+                imgElement.sprite = StockInfoController.instance.allDoors[selectedElement.valueElement].spriteElement;
+                break;
+        }
     }
 
 
