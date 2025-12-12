@@ -14,8 +14,6 @@ public class BlueprintWallElement : MonoBehaviour
     public Direc direction = Direc.North;
 
     [SerializeField] public WallInMallElement wallInGame;
-
-    [HideInInspector]
     public GameObject groundLink;
 
     [SerializeField] private GameObject wallAppearance;
@@ -36,6 +34,7 @@ public class BlueprintWallElement : MonoBehaviour
 
     public void ShowWall()
     {
+        
         GetComponent<BoxCollider>().enabled = true;
         wallAppearance.SetActive(true);
     }

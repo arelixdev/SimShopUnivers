@@ -10,9 +10,6 @@ public class PanelShopMaster : MonoBehaviour
     public List<ShopElementDefinition> elementDatabase = new List<ShopElementDefinition>();
     public Transform mapMenuPanel;
     public Transform planParent;
-
-    
-
     [SerializeField] private GameObject wallPrefab;
     public GameObject wallPrefabGame;
     [SerializeField] private Transform wallsParent;
@@ -28,6 +25,7 @@ public class PanelShopMaster : MonoBehaviour
     private PanelShopElement panelShopSelected;
 
     public bool customActivate;
+    public bool deleteToolActive;
 
     public List<BlueprintGroundElement> lastBoughtZone;
 

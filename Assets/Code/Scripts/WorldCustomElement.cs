@@ -6,7 +6,8 @@ public enum ElementType
     Door,
     Window,
     ShopWindow,
-    Ground
+    Ground,
+    Delete
 }
 
 public class WorldCustomElement : MonoBehaviour

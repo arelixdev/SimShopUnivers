@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -234,6 +235,14 @@ public abstract class ShopPlaceableElement : MonoBehaviour
 
     protected virtual void OnPlaced()
     {
-        // override dans les enfants si besoin
+        
+    }
+
+    internal void ClearElement()
+    {
+        Destroy(planInstance);
+        Destroy(uiInstance);
+
+        Destroy(gameObject);
     }
 }

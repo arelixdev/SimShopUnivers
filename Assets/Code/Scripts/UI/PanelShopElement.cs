@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PanelShopElement : MonoBehaviour
@@ -16,6 +17,8 @@ public class PanelShopElement : MonoBehaviour
     [SerializeField] private GameObject shopTypeElement;
     [SerializeField] private GameObject addElementPart;
     List<BlueprintGroundElement> groundElementShop = new List<BlueprintGroundElement>();
+
+    private ShopPlaceableElement element;
 
     private bool isRetracted;
     private bool isBuy;
@@ -34,6 +37,15 @@ public class PanelShopElement : MonoBehaviour
     void Start()
     {
         InitializePanelShop();
+    }
+
+    void Update()
+    {
+        if(Mouse.current.rightButton.wasPressedThisFrame && element != null)
+        {
+            element.ClearElement();
+            PanelShopMaster.instance.deleteToolActive = false;
+        }
     }
 
     void InitializePanelShop()
@@ -96,7 +108,7 @@ public class PanelShopElement : MonoBehaviour
             tempColor.a = 0f;
             retractBtn.color = tempColor;
 
-            retractTxt.text = "+";
+            retractTxt.text = ">";
 
             nameShopInputfield.interactable = false;
         } else
@@ -118,7 +130,7 @@ public class PanelShopElement : MonoBehaviour
             tempColor.a = 1f;
             retractBtn.color = tempColor;
 
-            retractTxt.text = "-";
+            retractTxt.text = "<";
 
             nameShopInputfield.interactable = true;
         }
@@ -162,24 +174,25 @@ public class PanelShopElement : MonoBehaviour
 
     public void AddElementBtn(string typeButton)
     {
-        // récupérer le prefab depuis la base de données
         var prefab = PanelShopMaster.instance.GetElementById(typeButton);
 
         if (prefab == null)
             return;
 
-        // instancier l'élément placeable
-        var element = Instantiate(prefab);
+        element = Instantiate(prefab);
 
-        // donner les parents
+        if(typeButton == "Delete")
+            PanelShopMaster.instance.deleteToolActive = true;
+
+
         element.Init(
             uiParent: PanelShopMaster.instance.mapMenuPanel,
             planParent: PanelShopMaster.instance.planParent
         );
 
-        PanelShopMaster.instance.SetTooltipWallsColliders(true);
+        if(typeButton != "Delete")
+            PanelShopMaster.instance.SetTooltipWallsColliders(true);
 
-        // commencer le placement
         element.StartPlacing();
 
         element.onPlaced += () =>

@@ -164,12 +164,27 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                 lwe.SelectPivot(pivot);
                 return;
             }
+
+            
+
+            //Select element (door / window / wall)
+            if(hit.collider.CompareTag("BlueprintElement") && PanelShopMaster.instance.deleteToolActive)
+            {
+                
+                var element = hit.collider.GetComponent<MapTooltipsElement>();
+
+                if(element != null)
+                    element.ClearElement();
+
+                return;
+            }
             
             if (hit.collider.CompareTag("BlueprintElement") && PanelShopMaster.instance.customActivate)
             {
                 var element = hit.collider.GetComponent<BlueprintGroundElement>();
                 if (element != null)
                     PanelShopMaster.instance.TrySelect(element);
+                    
             } else if(hit.collider.CompareTag("BlueprintElement") && hit.collider.GetComponent<BlueprintWallElement>() != null)
             {
                 if (activePlaceable != null)
