@@ -18,6 +18,8 @@ public class PanelShopMaster : MonoBehaviour
     [SerializeField] private GameObject mapPanelElement;
     [SerializeField] private GameObject linePanel;
 
+    [SerializeField] private GameObject sellPanel;
+
     public Dictionary<Vector2Int, BlueprintGroundElement> grid = new Dictionary<Vector2Int, BlueprintGroundElement>();
     public Dictionary<WallKey, GameObject> createdWalls = new Dictionary<WallKey, GameObject>();
     public List<BlueprintGroundElement> selectedElements = new List<BlueprintGroundElement>();
@@ -67,6 +69,8 @@ public class PanelShopMaster : MonoBehaviour
 
     void Start()
     {
+        sellPanel.SetActive(false);
+
         CleanPanel();
         BuildGrid();
     }
@@ -93,6 +97,23 @@ public class PanelShopMaster : MonoBehaviour
 
         linePanel.SetActive(false);
     }
+
+    public void ShowSellPanel()
+    {
+        sellPanel.SetActive(true);
+    }
+
+    public void BtnYesSellPanel()
+    {
+        Debug.Log("YES BTN");
+    }
+
+    public void CloseSellPanel()
+    {
+        sellPanel.SetActive(false);
+    }
+
+    
 
     public void AddShop()
     {

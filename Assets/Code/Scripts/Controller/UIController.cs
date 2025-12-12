@@ -14,6 +14,8 @@ public class UIController : MonoBehaviour
 
     public GameObject mapMenuScreen;
 
+    public PanelShopMaster panelShopMaster;
+
     public  GameObject wheelTools;
 
     [SerializeField] private TMP_Text basePriceText, currentPriceText;
@@ -110,6 +112,7 @@ public class UIController : MonoBehaviour
         {
             mapMenuScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            panelShopMaster.CloseSellPanel();
         } else
         {
             mapMenuScreen.SetActive(true);

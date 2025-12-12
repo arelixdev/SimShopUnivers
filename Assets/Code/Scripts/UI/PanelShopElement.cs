@@ -140,6 +140,11 @@ public class PanelShopElement : MonoBehaviour
         PanelShopMaster.instance.RebuildShopMaster();
     }
 
+    public void SellBtn()
+    {
+        PanelShopMaster.instance.ShowSellPanel();
+    }
+
     public void OnBuyButton()
     {
         if (!PanelShopMaster.instance.CheckSelectionConnectivity())
