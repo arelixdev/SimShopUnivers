@@ -89,9 +89,7 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                     selected = false;
                     unselected = true;
                     PanelShopMaster.instance.RemoveFromSelection(element);
-                }
-                    
-                    
+                } 
             } 
 
             var wall = hit.collider.GetComponent<BlueprintWallElement>();

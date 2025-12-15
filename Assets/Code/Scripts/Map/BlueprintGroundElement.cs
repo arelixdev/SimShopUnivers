@@ -52,6 +52,8 @@ public class BlueprintGroundElement : MonoBehaviour
         objGround.GetComponent<MeshRenderer>().material = matUnselected;
         nameShop = null;
         isBuy = false;
+        isSelected = false;
+        
     }
 
     public void GroundBuy(string nsi)

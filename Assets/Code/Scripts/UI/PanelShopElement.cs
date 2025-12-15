@@ -24,6 +24,8 @@ public class PanelShopElement : MonoBehaviour
 
     public List<MapTooltipsElement> allShopElement = new List<MapTooltipsElement>();
 
+    public List<GameObject> allElement = new List<GameObject>();
+
     private ShopPlaceableElement element;
 
     private bool selectInputfield;
@@ -70,9 +72,17 @@ public class PanelShopElement : MonoBehaviour
             allShopElement[i].ClearElement();
         }
 
+        for(int i = allElement.Count-1; i >= 0; i--)
+        {
+            Destroy(allElement[i]);
+        }
+
+
+
         groundElementShop.Clear();
         allWallShop.Clear();
         allWallGameShop.Clear();
+        allElement.Clear();
     }
     
 

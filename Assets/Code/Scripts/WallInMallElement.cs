@@ -64,6 +64,8 @@ public class WallInMallElement : MonoBehaviour
         foreach (Transform child in doorPivot) {
             Destroy(child.gameObject);
         }
-        Instantiate(StockInfoController.instance.allDoors[val].elementPrefab, doorPivot);
+        GameObject door = Instantiate(StockInfoController.instance.allDoors[val].elementPrefab, doorPivot);
+        PanelShopMaster.instance.AddElement(door);
+
     }
 }

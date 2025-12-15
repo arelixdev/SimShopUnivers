@@ -123,6 +123,11 @@ public class PanelShopMaster : MonoBehaviour
         sellPanel.SetActive(false);
     }
 
+    public void AddElement(GameObject obj)
+    {
+        panelShopSelected.allElement.Add(obj);
+    }
+
     
 
     public void AddShop()
