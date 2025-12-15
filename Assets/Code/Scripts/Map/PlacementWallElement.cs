@@ -112,6 +112,8 @@ public class PlacementWallElement : ShopPlaceableElement
                 PanelShopMaster.instance.wallsParentGame
             );
 
+            PanelShopMaster.instance.GetPanelShopSelected().allWallGameShop.Add(wallGame);
+
             PanelShopMaster.instance.createdWalls.Add(key, wallGame);
         }
 
@@ -131,6 +133,8 @@ public class PlacementWallElement : ShopPlaceableElement
             GameObject placed = Instantiate(planPrefab, planParent);
             placed.transform.position = t.position;
             placed.transform.rotation = t.rotation * Quaternion.Euler(0f, 90f, 0f);
+
+            PanelShopMaster.instance.GetPanelShopSelected().allWallShop.Add(placed);
         }
 
         planInstance?.SetActive(false);

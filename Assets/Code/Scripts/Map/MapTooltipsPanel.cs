@@ -142,14 +142,17 @@ public class MapTooltipsPanel : MonoBehaviour
     {
         if(selectedElement.valueElement == -1)
             imgElement.sprite = null;
-            return;
-
-        switch(selectedElement.elementType)
+        
+        else
         {
-            case ElementType.Door:
-                imgElement.sprite = StockInfoController.instance.allDoors[selectedElement.valueElement].spriteElement;
-                break;
+            switch(selectedElement.elementType)
+            {
+                case ElementType.Door:
+                    imgElement.sprite = StockInfoController.instance.allDoors[selectedElement.valueElement].spriteElement;
+                    break;
+            }
         }
+        
     }
 
 

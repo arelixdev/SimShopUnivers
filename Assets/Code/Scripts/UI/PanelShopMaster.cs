@@ -105,7 +105,22 @@ public class PanelShopMaster : MonoBehaviour
 
     public void BtnYesSellPanel()
     {
-        Debug.Log("YES BTN");
+        //Remove grid element 
+        if(panelShopSelected != null)
+        {
+            panelShopSelected.ClearShop();
+        }
+
+        //Remove wall but keep wall on other shop 
+
+        //Remove obj on list add shop
+
+        sellPanel.SetActive(false);
+        Destroy(panelShopSelected.gameObject);
+        if(transform.childCount <= 3)
+        {
+            linePanel.SetActive(false);
+        }
     }
 
     public void CloseSellPanel()
@@ -347,7 +362,13 @@ public class PanelShopMaster : MonoBehaviour
         
 
         GameObject wall = Instantiate(wallPrefab, wallPos, rot, wallsParent);
-        Instantiate(wallPrefabGame, wallPos, rotGame, wallsParentGame);
+        GameObject wallGame = Instantiate(wallPrefabGame, wallPos, rotGame, wallsParentGame);
+
+        if(panelShopSelected != null)
+        {
+            panelShopSelected.allWallShop.Add(wall);
+            panelShopSelected.allWallGameShop.Add(wallGame);
+        }
 
         createdWalls.Add(key, wall);
     }

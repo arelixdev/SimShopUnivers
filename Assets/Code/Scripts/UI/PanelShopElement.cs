@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,7 +17,12 @@ public class PanelShopElement : MonoBehaviour
     [SerializeField] private GameObject customLineBuyElement;
     [SerializeField] private GameObject shopTypeElement;
     [SerializeField] private GameObject addElementPart;
+    [SerializeField] private GameObject sellBtn;
     List<BlueprintGroundElement> groundElementShop = new List<BlueprintGroundElement>();
+    public List<GameObject> allWallShop = new List<GameObject>();
+    public List<GameObject> allWallGameShop = new List<GameObject>();
+
+    public List<MapTooltipsElement> allShopElement = new List<MapTooltipsElement>();
 
     private ShopPlaceableElement element;
 
@@ -31,6 +37,33 @@ public class PanelShopElement : MonoBehaviour
     public string GetShopName()
     {
         return nameShopInputfield.text;
+    }
+
+    public void ClearShop()
+    {
+        for (int i = groundElementShop.Count-1; i >= 0 ; i--)
+        {
+            groundElementShop[i].CleanGround();
+        }
+
+        for(int i = allWallShop.Count-1; i >= 0; i--)
+        {
+            Destroy(allWallShop[i]);
+        }
+
+        for(int i = allWallGameShop.Count-1; i >= 0; i--)
+        {
+            Destroy(allWallGameShop[i]);
+        }
+
+        for(int i = allShopElement.Count -1; i >= 0; i--)
+        {
+            allShopElement[i].ClearElement();
+        }
+
+        groundElementShop.Clear();
+        allWallShop.Clear();
+        allWallGameShop.Clear();
     }
     
 
@@ -52,6 +85,7 @@ public class PanelShopElement : MonoBehaviour
     {
         customLineBuyElement.SetActive(false);
         addElementPart.SetActive(false);
+        sellBtn.SetActive(false);
 
         var tempColor = customBtn.color;
         tempColor.a = 0f;
@@ -168,6 +202,8 @@ public class PanelShopElement : MonoBehaviour
         PanelShopMaster.instance.ClearSelection();
 
         ToogleCustom();
+
+        sellBtn.SetActive(true);
 
         if(groundElementShop.Count > 0)
         {

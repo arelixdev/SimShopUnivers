@@ -2595,6 +2595,9 @@ MonoBehaviour:
   customLineBuyElement: {fileID: 3254962300514864978}
   shopTypeElement: {fileID: 5317468166025491304}
   addElementPart: {fileID: 4795680488771236856}
+  sellBtn: {fileID: 6824471083178703382}
+  allWallShop: []
+  allWallGameShop: []
 --- !u!1 &6130929532709248516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,7 +3612,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6238438108991903092}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.81333333
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
