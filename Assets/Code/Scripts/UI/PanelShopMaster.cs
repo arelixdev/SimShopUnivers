@@ -105,15 +105,10 @@ public class PanelShopMaster : MonoBehaviour
 
     public void BtnYesSellPanel()
     {
-        //Remove grid element 
         if(panelShopSelected != null)
         {
             panelShopSelected.ClearShop();
         }
-
-        //Remove wall but keep wall on other shop 
-
-        //Remove obj on list add shop
 
         sellPanel.SetActive(false);
         Destroy(panelShopSelected.gameObject);
@@ -167,11 +162,6 @@ public class PanelShopMaster : MonoBehaviour
 
     public void TrySelect(BlueprintGroundElement element)
     {
-        if (element.IsSelected)
-        {
-            RemoveFromSelection(element);
-            return;
-        }
 
         if (selectedElements.Count == 0)
         {
@@ -196,7 +186,7 @@ public class PanelShopMaster : MonoBehaviour
         }
     }
 
-    void RemoveFromSelection(BlueprintGroundElement element)
+    public void RemoveFromSelection(BlueprintGroundElement element)
     {
         if (selectedElements.Contains(element))
         {

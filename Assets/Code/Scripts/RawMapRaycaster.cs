@@ -20,6 +20,10 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private MapTooltipsPanel mapTooltipsPanel;
 
+    private bool onClick;
+    private bool selected;
+    private bool unselected;
+
     void Awake()
     {
         instance = this;
@@ -28,6 +32,20 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
     private void Update()
     {
         HandleHover();
+        if(Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (PanelShopMaster.instance.customActivate)
+            {
+                onClick = true;
+            }
+        }
+
+        if(Mouse.current.leftButton.wasReleasedThisFrame)
+        {
+            selected = false;
+            unselected = false;
+            onClick = false;
+        }
     }
 
     private void HandleHover()
@@ -57,6 +75,24 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
         {
             // if(hit.collider != null)
             //     Debug.Log("hit: " + hit.collider.gameObject);
+            if (hit.collider.CompareTag("BlueprintElement") && PanelShopMaster.instance.customActivate && onClick)
+            {
+                var element = hit.collider.GetComponent<BlueprintGroundElement>();
+                if (element != null && !element.IsSelected && onClick && !unselected)
+                {
+                    selected = true;
+                    unselected = false;
+                    PanelShopMaster.instance.TrySelect(element);
+                }
+                else if(element != null && element.IsSelected && !selected && onClick)
+                {
+                    selected = false;
+                    unselected = true;
+                    PanelShopMaster.instance.RemoveFromSelection(element);
+                }
+                    
+                    
+            } 
 
             var wall = hit.collider.GetComponent<BlueprintWallElement>();
 
@@ -165,8 +201,6 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                 return;
             }
 
-            
-
             //Select element (door / window / wall)
             if(hit.collider.CompareTag("BlueprintElement") && PanelShopMaster.instance.deleteToolActive)
             {
@@ -179,13 +213,7 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                 return;
             }
             
-            if (hit.collider.CompareTag("BlueprintElement") && PanelShopMaster.instance.customActivate)
-            {
-                var element = hit.collider.GetComponent<BlueprintGroundElement>();
-                if (element != null)
-                    PanelShopMaster.instance.TrySelect(element);
-                    
-            } else if(hit.collider.CompareTag("BlueprintElement") && hit.collider.GetComponent<BlueprintWallElement>() != null)
+             else if(hit.collider.CompareTag("BlueprintElement") && hit.collider.GetComponent<BlueprintWallElement>() != null)
             {
                 if (activePlaceable != null)
                 {
@@ -197,6 +225,8 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                 mapTooltipsPanel.FixTooltips(hit.collider.GetComponent<MapTooltipsElement>().wallElement);
             }
         }
+
+        
     }
 
     public void CleanActivePlaceable()

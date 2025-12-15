@@ -26,6 +26,8 @@ public class PanelShopElement : MonoBehaviour
 
     private ShopPlaceableElement element;
 
+    private bool selectInputfield;
+
     private bool isRetracted;
     private bool isBuy;
 
@@ -37,6 +39,13 @@ public class PanelShopElement : MonoBehaviour
     public string GetShopName()
     {
         return nameShopInputfield.text;
+    }
+
+    public void ToogleSelectInputfield()
+    {
+        selectInputfield = !selectInputfield;
+
+        UIController.instance.InputfieldSelected(selectInputfield);
     }
 
     public void ClearShop()

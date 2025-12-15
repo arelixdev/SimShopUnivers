@@ -32,6 +32,8 @@ public class UIController : MonoBehaviour
     public GameObject nameShopScreen;
     [SerializeField] private TMP_InputField nameShopInputfield;
 
+    private bool inputfieldSelected;
+
     
 
     private StockInfoSO activeStockInfo;
@@ -45,7 +47,16 @@ public class UIController : MonoBehaviour
         nameShopScreen.SetActive(false);
     }
 
+    public void InputfieldSelected(bool isSelected)
+    {
+        inputfieldSelected = isSelected;
+    }
+
     private void Update() {
+
+        if(inputfieldSelected)
+            return;
+
         if(Keyboard.current.tabKey.wasPressedThisFrame)
         {
             OpenCloseBuyMenu();
