@@ -261,7 +261,7 @@ public class PanelShopMaster : MonoBehaviour
         return visited.Count == selectedElements.Count;
     }
 
-    public void BuildWallsAroundZone(List<BlueprintGroundElement> zone)
+    public void BuildWallsAroundZone(List<BlueprintGroundElement> zone, PanelShopElement shop)
     {
         HashSet<BlueprintGroundElement> zoneSet = new(zone);
 
@@ -284,14 +284,14 @@ public class PanelShopMaster : MonoBehaviour
                 {
                     if (!zoneSet.Contains(neighbor))
                     {
-                        CreateWallBetween(cell, dir);
+                        CreateWallBetween(cell, dir, shop);
                     }
                 }
             }
         }
     }
 
-    private void CreateWallBetween(BlueprintGroundElement cell, Vector2Int dir)
+    private void CreateWallBetween(BlueprintGroundElement cell, Vector2Int dir, PanelShopElement shop)
     {
         WallKey key = new WallKey(cell.gridIndex, dir);
 
@@ -359,13 +359,37 @@ public class PanelShopMaster : MonoBehaviour
         GameObject wall = Instantiate(wallPrefab, wallPos, rot, wallsParent);
         GameObject wallGame = Instantiate(wallPrefabGame, wallPos, rotGame, wallsParentGame);
 
-        if(panelShopSelected != null)
+        if (shop != null)
         {
-            panelShopSelected.allWallShop.Add(wall);
-            panelShopSelected.allWallGameShop.Add(wallGame);
+            shop.allWallShop.Add(wall);
+            shop.allWallGameShop.Add(wallGame);
+            shop.allWallKeys.Add(key);
         }
 
         createdWalls.Add(key, wall);
+    }
+
+    public void RebuildAllShopWalls()
+    {
+        // Nettoyage total
+        foreach (var wall in createdWalls.Values)
+        {
+            if (wall != null)
+                Destroy(wall);
+        }
+
+        createdWalls.Clear();
+
+        // Rebuild pour chaque shop actif
+        PanelShopElement[] shops = FindObjectsOfType<PanelShopElement>();
+
+        foreach (var shop in shops)
+        {
+            if (!shop.HasBoughtZone())
+                continue;
+
+            BuildWallsAroundZone(shop.GetGroundElements(), shop);
+        }
     }
 
     public bool IsWallTouchingZone(Transform wallTransform)

@@ -26,12 +26,24 @@ public class PanelShopElement : MonoBehaviour
 
     public List<GameObject> allElement = new List<GameObject>();
 
+    public List<WallKey> allWallKeys = new List<WallKey>();
+
     private ShopPlaceableElement element;
 
     private bool selectInputfield;
 
     private bool isRetracted;
     private bool isBuy;
+
+    public bool HasBoughtZone()
+    {
+        return groundElementShop != null && groundElementShop.Count > 0;
+    }
+
+    public List<BlueprintGroundElement> GetGroundElements()
+    {
+        return groundElementShop;
+    }
 
     public bool GetIsRetracted()
     {
@@ -77,12 +89,19 @@ public class PanelShopElement : MonoBehaviour
             Destroy(allElement[i]);
         }
 
+        foreach (var key in allWallKeys)
+        {
+            PanelShopMaster.instance.createdWalls.Remove(key);
+        }
+
 
 
         groundElementShop.Clear();
         allWallShop.Clear();
         allWallGameShop.Clear();
         allElement.Clear();
+
+        PanelShopMaster.instance.RebuildAllShopWalls();
     }
     
 
@@ -206,30 +225,65 @@ public class PanelShopElement : MonoBehaviour
             return;
         }
 
-        //TODO faire la partie argent
+        var selection = PanelShopMaster.instance.GetCurrentSelection();
 
-        groundElementShop = PanelShopMaster.instance.GetCurrentSelection();
+        if (selection.Count == 0)
+            return;
 
-        //TODO ajouter tout les mur map et game dans des listes pour pouvoir supprimer
-        PanelShopMaster.instance.BuildWallsAroundZone(groundElementShop);
-
-        foreach(var ges in groundElementShop)
+        // FIRST BUY
+        if (!isBuy)
         {
-            ges.GroundBuy(nameShopInputfield.text);
+            groundElementShop = new List<BlueprintGroundElement>(selection);
+
+            PanelShopMaster.instance.BuildWallsAroundZone(groundElementShop, this);
+
+            foreach (var tile in groundElementShop)
+                tile.GroundBuy(nameShopInputfield.text);
+
+            isBuy = true;
+            sellBtn.SetActive(true);
+            addElementPart.SetActive(true);
+        }
+        // EXTENSION
+        else
+        {
+            
+            foreach (var tile in selection)
+            {
+                if (!groundElementShop.Contains(tile))
+                {
+                    groundElementShop.Add(tile);
+                    tile.GroundBuy(nameShopInputfield.text);
+                }
+            }
+
+        
+            RebuildShopWalls();
         }
 
         PanelShopMaster.instance.ClearSelection();
-
         ToogleCustom();
+    }
 
-        sellBtn.SetActive(true);
-
-        if(groundElementShop.Count > 0)
+    public void RebuildShopWalls()
+    {
+        foreach (var key in allWallKeys)
         {
-            addElementPart.SetActive(true);
-            PanelShopMaster.instance.lastBoughtZone = new List<BlueprintGroundElement>(groundElementShop);
-            isBuy = true;
+            PanelShopMaster.instance.createdWalls.Remove(key);
         }
+
+        allWallKeys.Clear();
+
+        foreach (var wall in allWallShop)
+            Destroy(wall);
+
+        foreach (var wall in allWallGameShop)
+            Destroy(wall);
+
+        allWallShop.Clear();
+        allWallGameShop.Clear();
+
+        PanelShopMaster.instance.BuildWallsAroundZone(groundElementShop, this);
     }
 
     public void AddElementBtn(string typeButton)

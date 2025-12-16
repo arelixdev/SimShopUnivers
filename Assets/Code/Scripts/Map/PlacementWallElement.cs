@@ -113,6 +113,7 @@ public class PlacementWallElement : ShopPlaceableElement
             );
 
             PanelShopMaster.instance.GetPanelShopSelected().allWallGameShop.Add(wallGame);
+            PanelShopMaster.instance.GetPanelShopSelected().allWallKeys.Add(key);
 
             PanelShopMaster.instance.createdWalls.Add(key, wallGame);
         }
