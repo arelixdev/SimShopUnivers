@@ -93,27 +93,36 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
             } 
 
             var wall = hit.collider.GetComponent<BlueprintWallElement>();
-
             if (wall != null)
             {
                 if (lastWallHover != wall)
                 {
+                    // Réafficher le mur précédent uniquement s'il n'a pas d'objet dessus
+                    if (lastWallHover != null && lastWallHover.wallAppearance != null)
+                    {
+                        if (lastWallHover.wallInGame == null || lastWallHover.wallInGame.elementBlueprintOnWall == null)
+                            lastWallHover.ShowDisplayWall();
+                    }
+
                     lastWallHover = wall;
 
-                    if (activePlaceable != null && activePlaceable.GetIsPlacing())
-                    {
-                        if (!activePlaceable.ignoreWallSnap)
-                        {
-                            activePlaceable.HideUI();
-                            activePlaceable.SnapToWall(wall.transform);
-                        }
-                    }
-                }
+                    
 
-                if (lastTooltipHover != null)
-                {
-                    mapTooltipsPanel.HideTooltips();
-                    lastTooltipHover = null;
+                    // Snap vers mur si actif
+                    if (activePlaceable != null && activePlaceable.GetIsPlacing() && !activePlaceable.ignoreWallSnap)
+                    {
+                        if (wall.wallAppearance != null)
+                        {
+                            if(wall.wallInGame == null)
+                                return;
+                            if (wall.wallInGame != null || wall.wallInGame.elementBlueprintOnWall == null)
+                            {
+                                wall.HideDisplayWall();
+                            }
+                        }
+                        activePlaceable.HideUI();
+                        activePlaceable.SnapToWall(wall.transform);
+                    }
                 }
 
                 return;
@@ -160,6 +169,12 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
 
         if (lastWallHover != null)
         {
+            if(lastWallHover.wallInGame != null)
+            {
+                if (lastWallHover.wallInGame.elementBlueprintOnWall == null)
+                    lastWallHover.ShowDisplayWall();
+            }
+            
             lastWallHover = null;
 
             if (activePlaceable != null && activePlaceable.GetIsPlacing())

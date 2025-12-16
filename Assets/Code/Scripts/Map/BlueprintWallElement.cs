@@ -16,7 +16,7 @@ public class BlueprintWallElement : MonoBehaviour
     [SerializeField] public WallInMallElement wallInGame;
     public GameObject groundLink;
 
-    [SerializeField] private GameObject wallAppearance;
+    public GameObject wallAppearance;
 
     private void OnTriggerStay(Collider other) {
         BlueprintGroundElement groundElement = other.GetComponent<BlueprintGroundElement>();
@@ -29,13 +29,22 @@ public class BlueprintWallElement : MonoBehaviour
     public void HideWall()
     {
         GetComponent<BoxCollider>().enabled = false;
+        HideDisplayWall();
+    }
+
+    public void HideDisplayWall()
+    {
         wallAppearance.SetActive(false);
     }
 
     public void ShowWall()
     {
-        
+
         GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public void ShowDisplayWall()
+    {
         wallAppearance.SetActive(true);
     }
 
