@@ -46,6 +46,17 @@ public class PlacementWallElement : ShopPlaceableElement
         }
     }
 
+    internal override void ClearElement()
+    {
+        if (constructorInstance != null)
+        {
+            Destroy(constructorInstance);
+            constructorInstance = null;
+        }
+        
+        base.ClearElement();
+    }
+
     protected override void FollowMouse()
     {
         if (Mouse.current == null)

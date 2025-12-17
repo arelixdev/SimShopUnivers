@@ -241,7 +241,7 @@ public abstract class ShopPlaceableElement : MonoBehaviour
         
     }
 
-    internal void ClearElement()
+    internal virtual void ClearElement()
     {
         Destroy(planInstance);
         Destroy(uiInstance);
