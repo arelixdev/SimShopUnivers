@@ -11,6 +11,8 @@ public class PlacementWallElement : ShopPlaceableElement
     private BlueprintGroundElement hoveredCell = null;
     private Direc hoveredDirection = Direc.North;
 
+    private GameObject wallGame;
+
     public override void StartPlacing()
     {
         base.StartPlacing();
@@ -28,7 +30,14 @@ public class PlacementWallElement : ShopPlaceableElement
     {
         if (!isPlacing) return;
 
-        hoveredCell = ground; // stocker la tuile survolée
+        var shop = PanelShopMaster.instance.GetPanelShopSelected();
+        if (shop == null)
+            return;
+
+        if (!ground.isBuy || ground.nameShop != shop.GetShopName())
+            return;
+
+        hoveredCell = ground;
 
         if (constructorInstance != null)
         {
@@ -68,6 +77,14 @@ public class PlacementWallElement : ShopPlaceableElement
     {
         if (!isPlacing) return;
 
+        var shop = PanelShopMaster.instance.GetPanelShopSelected();
+
+        if (shop == null || hoveredCell == null)
+            return;
+
+        if (!hoveredCell.isBuy || hoveredCell.nameShop != shop.GetShopName())
+            return;
+
         // Désélection ancien pivot
         if (currentPivotHover != null && currentPivotHover != pivot)
             currentPivotHover.Hide();
@@ -105,8 +122,8 @@ public class PlacementWallElement : ShopPlaceableElement
 
             rotGame *= Quaternion.Euler(0, -90, 0);
 
-            GameObject wallGame = Instantiate(
-                PanelShopMaster.instance.wallPrefabGame,
+            wallGame = Instantiate(
+                PanelShopMaster.instance.wallPrefabGameInteriorShop,
                 wallPos,
                 rotGame,
                 PanelShopMaster.instance.wallsParentGame
@@ -134,6 +151,17 @@ public class PlacementWallElement : ShopPlaceableElement
             GameObject placed = Instantiate(planPrefab, planParent);
             placed.transform.position = t.position;
             placed.transform.rotation = t.rotation * Quaternion.Euler(0f, 90f, 0f);
+
+            
+
+            var blueprintWall = placed.GetComponent<BlueprintWallElement>();
+
+            blueprintWall.wallInGame = wallGame.GetComponent<WallInMallElement>();
+
+            blueprintWall.isInteriorWall = true;
+            blueprintWall.ownerShop = PanelShopMaster.instance.GetPanelShopSelected();
+            blueprintWall.wallKey = key;
+            blueprintWall.ComputeDirectionFromRotation();
 
             PanelShopMaster.instance.GetPanelShopSelected().allWallShop.Add(placed);
         }

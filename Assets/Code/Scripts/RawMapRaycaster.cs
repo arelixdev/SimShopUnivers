@@ -95,6 +95,7 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
             var wall = hit.collider.GetComponent<BlueprintWallElement>();
             if (wall != null)
             {
+                
                 if (lastWallHover != wall)
                 {
                     // Réafficher le mur précédent uniquement s'il n'a pas d'objet dessus
@@ -106,11 +107,10 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
 
                     lastWallHover = wall;
 
-                    
-
                     // Snap vers mur si actif
                     if (activePlaceable != null && activePlaceable.GetIsPlacing() && !activePlaceable.ignoreWallSnap)
                     {
+                        
                         if (wall.wallAppearance != null)
                         {
                             if(wall.wallInGame == null)
@@ -217,13 +217,24 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
             //Select element (door / window / wall)
             if(hit.collider.CompareTag("BlueprintElement") && PanelShopMaster.instance.deleteToolActive)
             {
-                
                 var element = hit.collider.GetComponent<MapTooltipsElement>();
 
                 if(element != null)
+                {
                     element.ClearElement();
+                    return;
+                }
+                    
+                
 
-                return;
+                var wall = hit.collider.GetComponent<BlueprintWallElement>();
+                if (wall != null && wall.isInteriorWall)
+                {
+                    PanelShopMaster.instance.DeleteInteriorWall(wall);
+                    return;
+                }
+                
+                
             }
             
              else if(hit.collider.CompareTag("BlueprintElement") && hit.collider.GetComponent<BlueprintWallElement>() != null)

@@ -9,20 +9,41 @@ public enum Direc
 
 public class BlueprintWallElement : MonoBehaviour
 {
-    
-
     public Direc direction = Direc.North;
 
-    [SerializeField] public WallInMallElement wallInGame;
+    public WallInMallElement wallInGame;
     public GameObject groundLink;
 
     public GameObject wallAppearance;
 
+    public bool isInteriorWall;
+    public PanelShopElement ownerShop;
+    public WallKey wallKey;
+
     private void OnTriggerStay(Collider other) {
         BlueprintGroundElement groundElement = other.GetComponent<BlueprintGroundElement>();
+    
         if(groundElement != null && groundElement.isBuy && groundLink == null)
         {
             groundLink = groundElement.gameObject;
+        }
+    }
+
+    public void ComputeDirectionFromRotation()
+    {
+        // forward du mur
+        Vector3 fwd = transform.forward;
+
+        // On regarde quel axe est dominant
+        if (Mathf.Abs(fwd.z) > Mathf.Abs(fwd.x))
+        {
+            // Mur vertical (Nord/Sud)
+            direction = Direc.East;
+        }
+        else
+        {
+            // Mur horizontal (Est/Ouest)
+            direction = Direc.North;
         }
     }
 

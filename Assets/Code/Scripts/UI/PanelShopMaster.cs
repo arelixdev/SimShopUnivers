@@ -12,6 +12,7 @@ public class PanelShopMaster : MonoBehaviour
     public Transform planParent;
     [SerializeField] private GameObject wallPrefab;
     public GameObject wallPrefabGame;
+    public GameObject wallPrefabGameInteriorShop;
     [SerializeField] private Transform wallsParent;
     public Transform wallsParentGame;
     public float cellSize = 2.5f;
@@ -47,6 +48,33 @@ public class PanelShopMaster : MonoBehaviour
 
         Debug.LogError("Element ID introuvable : " + id);
         return null;
+    }
+
+    public void DeleteInteriorWall(BlueprintWallElement wall)
+    {
+        var shop = GetPanelShopSelected();
+        if (shop == null)
+            return;
+
+        // sécurité : seulement le shop actif
+        if (wall.ownerShop != shop)
+            return;
+
+        // supprimer du dictionnaire global
+        if (createdWalls.ContainsKey(wall.wallKey))
+            createdWalls.Remove(wall.wallKey);
+
+        // supprimer des listes du shop
+        shop.allWallKeys.Remove(wall.wallKey);
+        shop.allWallShop.Remove(wall.gameObject);
+
+        if (wall.wallInGame != null)
+        {
+            shop.allWallGameShop.Remove(wall.wallInGame.gameObject);
+            Destroy(wall.wallInGame.gameObject);
+        }
+
+        Destroy(wall.gameObject);
     }
 
     public PanelShopElement GetPanelShopSelected()

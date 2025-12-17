@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPrefab: {fileID: 5552454938454617104, guid: c633a91d3da0cdf41904e3a5aa25b1fc, type: 3}
-  planPrefab: {fileID: 1300626297417503932, guid: 986486bd31e38a949b3392f42c745003, type: 3}
+  planPrefab: {fileID: 6782927823613956271, guid: eaa8c244cd58cf14aa216ca4a51df66d, type: 3}
   typeOfElement: 0
+  ignoreWallSnap: 0
   wallConstructor: {fileID: 2018747570141617359, guid: ec7a7736bc9bef84c807ec35df187685, type: 3}
