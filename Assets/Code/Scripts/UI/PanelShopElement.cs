@@ -139,7 +139,9 @@ public class PanelShopElement : MonoBehaviour
             customBtn.color = tempColor;
 
             customLineBuyElement.SetActive(true);
-            StartCoroutine(RebuildNextFrame());
+            UILayoutRebuildManager.instance.RequestRebuild(
+                GetComponent<RectTransform>()
+            );
             PanelShopMaster.instance.customActivate = true;
         } else
         {
@@ -148,7 +150,9 @@ public class PanelShopElement : MonoBehaviour
             customBtn.color = tempColor;
 
             customLineBuyElement.SetActive(false);
-            StartCoroutine(RebuildNextFrame());
+            UILayoutRebuildManager.instance.RequestRebuild(
+                GetComponent<RectTransform>()
+            );
             PanelShopMaster.instance.customActivate = false;
         }
         
@@ -156,9 +160,18 @@ public class PanelShopElement : MonoBehaviour
 
     private IEnumerator RebuildNextFrame()
     {
-        yield return new WaitForEndOfFrame();
+        var canvasGroup = GetComponent<CanvasGroup>();
 
+        if (canvasGroup == null)
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
+        canvasGroup.alpha = 0f;
+
+        yield return new WaitForEndOfFrame();
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+
+        yield return null;
+        canvasGroup.alpha = 1f;
     }
 
     public void TooglePanelShop()
@@ -209,7 +222,9 @@ public class PanelShopElement : MonoBehaviour
         
         //if deploy
 
-        PanelShopMaster.instance.RebuildShopMaster();
+        UILayoutRebuildManager.instance.RequestRebuild(
+            GetComponent<RectTransform>()
+        );
     }
 
     public void SellBtn()

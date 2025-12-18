@@ -26,6 +26,7 @@ public class PanelShopMaster : MonoBehaviour
     public List<BlueprintGroundElement> selectedElements = new List<BlueprintGroundElement>();
 
     private PanelShopElement panelShopSelected;
+    private bool rebuildQueued;
 
     public bool customActivate;
     public bool deleteToolActive;
@@ -168,7 +169,9 @@ public class PanelShopMaster : MonoBehaviour
         if (!linePanel.activeSelf)
             linePanel.SetActive(true);
 
-        StartCoroutine(RebuildNextFrame());
+        UILayoutRebuildManager.instance.RequestRebuild(
+            GetComponent<RectTransform>()
+        );
     }
 
     public void ChangePanelSelected(GameObject newElement)
@@ -179,18 +182,6 @@ public class PanelShopMaster : MonoBehaviour
         }
 
         panelShopSelected = newElement.GetComponent<PanelShopElement>();
-    }
-
-    public void RebuildShopMaster()
-    {
-        StartCoroutine(RebuildNextFrame());
-    }
-
-    private IEnumerator RebuildNextFrame()
-    {
-        yield return new WaitForEndOfFrame();
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
 
     public void TrySelect(BlueprintGroundElement element)

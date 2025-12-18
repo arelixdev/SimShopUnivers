@@ -17,7 +17,9 @@ public class MapTooltipsSelectElement : MonoBehaviour
 
         Init(type);
         
-        StartCoroutine(RebuildNextFrame());
+        UILayoutRebuildManager.instance.RequestRebuild(
+            GetComponent<RectTransform>()
+        );
     }
 
     private void Init(ElementType type)
@@ -45,12 +47,5 @@ public class MapTooltipsSelectElement : MonoBehaviour
     {
         gameObject.SetActive(false);
         
-    }
-
-    private IEnumerator RebuildNextFrame()
-    {
-        yield return new WaitForEndOfFrame();
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
 }

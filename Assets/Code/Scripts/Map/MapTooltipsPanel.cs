@@ -102,8 +102,9 @@ public class MapTooltipsPanel : MonoBehaviour
             default:
                 break;
         }
-
-        StartCoroutine(RebuildNextFrame());
+        UILayoutRebuildManager.instance.RequestRebuild(
+            GetComponent<RectTransform>()
+        );
     }
 
     public void HideTooltips()
@@ -153,14 +154,5 @@ public class MapTooltipsPanel : MonoBehaviour
             }
         }
         
-    }
-
-
-
-    private IEnumerator RebuildNextFrame()
-    {
-        yield return new WaitForEndOfFrame();
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
 }
