@@ -45,6 +45,14 @@ public class PanelShopElement : MonoBehaviour
         return groundElementShop;
     }
 
+    public void RemoveGround(BlueprintGroundElement ground)
+    {
+        if (groundElementShop.Contains(ground))
+        {
+            groundElementShop.Remove(ground);
+        }
+    }
+
     public bool GetIsRetracted()
     {
         return isRetracted;

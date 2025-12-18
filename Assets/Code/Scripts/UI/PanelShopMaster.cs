@@ -310,6 +310,29 @@ public class PanelShopMaster : MonoBehaviour
         }
     }
 
+    public void DeleteGroundFromShop(BlueprintGroundElement ground)
+    {
+        if (ground == null || !ground.isBuy)
+            return;
+
+        var shop = GetPanelShopSelected();
+        if (shop == null)
+            return;
+
+        // Sécurité : uniquement le shop actif
+        if (ground.nameShop != shop.GetShopName())
+            return;
+
+        // 1️⃣ Retirer le ground du shop
+        shop.RemoveGround(ground);
+
+        // 2️⃣ Réinitialiser le ground
+        ground.CleanGround();
+
+        // 3️⃣ Nettoyage global des murs
+        RebuildAllShopWalls();
+    }
+
     private void CreateWallBetween(BlueprintGroundElement cell, Vector2Int dir, PanelShopElement shop)
     {
         WallKey key = new WallKey(cell.gridIndex, dir);
@@ -411,59 +434,90 @@ public class PanelShopMaster : MonoBehaviour
         }
     }
 
-    public bool IsWallTouchingZone(Transform wallTransform)
-{
-    BlueprintWallElement wall = wallTransform.GetComponent<BlueprintWallElement>();
-    if (wall == null)
-        return false;
-
-    Vector3 wp = wallTransform.position;
-    float size = 2.5f;  // 2.5
-    float eps = 0.05f;
-
-    foreach (var zone in lastBoughtZone)
+    public bool CanRemoveGround(BlueprintGroundElement ground, PanelShopElement shop)
     {
-        Vector3 zp = zone.transform.position;
+        var list = new List<BlueprintGroundElement>(shop.GetGroundElements());
+        list.Remove(ground);
 
-        float westX  = zp.x;
-        float eastX  = zp.x + size;
-        float southZ = zp.z;
-        float northZ = zp.z + size;
+        if (list.Count <= 1)
+            return true;
 
-        switch (wall.direction)
+        Queue<BlueprintGroundElement> queue = new();
+        HashSet<BlueprintGroundElement> visited = new();
+
+        queue.Enqueue(list[0]);
+        visited.Add(list[0]);
+
+        while (queue.Count > 0)
         {
-            case Direc.West:
-                // pivot = (tile.x, tile.z)
-                if (Mathf.Abs(wp.x - westX) < eps &&
-                    wp.z >= southZ - eps && wp.z < northZ + eps)
-                    return true;
-                break;
+            var current = queue.Dequeue();
 
-            case Direc.East:
-                // pivot = (tile.x + size, tile.z)
-                if (Mathf.Abs(wp.x - eastX) < eps &&
-                    wp.z >= southZ - eps && wp.z < northZ + eps)
-                    return true;
-                break;
-
-            case Direc.South:
-                // pivot = (tile.x, tile.z)
-                if (Mathf.Abs(wp.z - southZ) < eps &&
-                    wp.x >= westX - eps && wp.x < eastX + eps)
-                    return true;
-                break;
-
-            case Direc.North:
-                // pivot = (tile.x, tile.z + size)
-                if (Mathf.Abs(wp.z - northZ) < eps &&
-                    wp.x >= westX - eps && wp.x < eastX + eps)
-                    return true;
-                break;
+            foreach (var neigh in current.GetNeighbors(grid))
+            {
+                if (list.Contains(neigh) && !visited.Contains(neigh))
+                {
+                    visited.Add(neigh);
+                    queue.Enqueue(neigh);
+                }
+            }
         }
+
+        return visited.Count == list.Count;
     }
 
-    return false;
-}
+    public bool IsWallTouchingZone(Transform wallTransform)
+    {
+        BlueprintWallElement wall = wallTransform.GetComponent<BlueprintWallElement>();
+        if (wall == null)
+            return false;
+
+        Vector3 wp = wallTransform.position;
+        float size = 2.5f;  // 2.5
+        float eps = 0.05f;
+
+        foreach (var zone in lastBoughtZone)
+        {
+            Vector3 zp = zone.transform.position;
+
+            float westX  = zp.x;
+            float eastX  = zp.x + size;
+            float southZ = zp.z;
+            float northZ = zp.z + size;
+
+            switch (wall.direction)
+            {
+                case Direc.West:
+                    // pivot = (tile.x, tile.z)
+                    if (Mathf.Abs(wp.x - westX) < eps &&
+                        wp.z >= southZ - eps && wp.z < northZ + eps)
+                        return true;
+                    break;
+
+                case Direc.East:
+                    // pivot = (tile.x + size, tile.z)
+                    if (Mathf.Abs(wp.x - eastX) < eps &&
+                        wp.z >= southZ - eps && wp.z < northZ + eps)
+                        return true;
+                    break;
+
+                case Direc.South:
+                    // pivot = (tile.x, tile.z)
+                    if (Mathf.Abs(wp.z - southZ) < eps &&
+                        wp.x >= westX - eps && wp.x < eastX + eps)
+                        return true;
+                    break;
+
+                case Direc.North:
+                    // pivot = (tile.x, tile.z + size)
+                    if (Mathf.Abs(wp.z - northZ) < eps &&
+                        wp.x >= westX - eps && wp.x < eastX + eps)
+                        return true;
+                    break;
+            }
+        }
+
+        return false;
+    }
 
 }
 

@@ -220,15 +220,19 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
             //Select element (door / window / wall)
             if(hit.collider.CompareTag("BlueprintElement") && PanelShopMaster.instance.deleteToolActive)
             {
+                var ground = hit.collider.GetComponent<BlueprintGroundElement>();
+                if (ground != null)
+                {
+                    PanelShopMaster.instance.DeleteGroundFromShop(ground);
+                    return;
+                }
+                
                 var element = hit.collider.GetComponent<MapTooltipsElement>();
-
                 if(element != null)
                 {
                     element.ClearElement();
                     return;
                 }
-                    
-                
 
                 var wall = hit.collider.GetComponent<BlueprintWallElement>();
                 if (wall != null && wall.isInteriorWall)
@@ -236,8 +240,6 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
                     PanelShopMaster.instance.DeleteInteriorWall(wall);
                     return;
                 }
-                
-                
             }
             
              else if(hit.collider.CompareTag("BlueprintElement") && hit.collider.GetComponent<BlueprintWallElement>() != null)
