@@ -22435,7 +22435,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4226928876797611459, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 326.06
+      value: 326.05988
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712262171244387384, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+      propertyPath: m_text
+      value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 4753627721827162590, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -23055,6 +23059,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8432245207050048729, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1685876125}
+    - targetCorrespondingSourceObject: {fileID: 5830839512549374473, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1348801197}
     - targetCorrespondingSourceObject: {fileID: 6031490116188272540, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1227990482}
@@ -85074,6 +85081,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3056207164330357723, guid: 5495963d845b73c429f89286e7711db6, type: 3}
   m_PrefabInstance: {fileID: 1348364980}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1348801193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5830839512549374473, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+  m_PrefabInstance: {fileID: 362627839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1348801197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348801193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:96998d17a9a5508479892b2729712907
+    m_TableEntryReference:
+      m_KeyId: 96569016320
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &1349887512
 PrefabInstance:
   m_ObjectHideFlags: 0
