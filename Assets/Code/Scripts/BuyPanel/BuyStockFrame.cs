@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UIElements;
 
 public class BuyStockFrame : MonoBehaviour
@@ -9,6 +10,11 @@ public class BuyStockFrame : MonoBehaviour
     [SerializeField] private TMP_Text nameText, priceText, amountInBoxText, boxPriceText, buttonText;
 
     [SerializeField] private StockBoxController boxToSpawn;
+
+    [Header("Localization")]
+    [SerializeField] private LocalizedString perBoxFormat;
+    [SerializeField] private LocalizedString boxPriceFormat;
+    [SerializeField] private LocalizedString payPriceFormat;
 
     private float boxCost;
 
@@ -26,13 +32,13 @@ public class BuyStockFrame : MonoBehaviour
         priceText.text = info.price.ToString("F2") + " €";
 
         int boxAmount = boxToSpawn.GetStockAmount(info.typeOfStock);
-        amountInBoxText.text = boxAmount.ToString() + " per box";
+        amountInBoxText.text = perBoxFormat.GetLocalizedString(boxAmount);
 
         boxCost = (boxAmount * info.price) - 1;
-        boxCost = Mathf.Floor(boxCost);
-        boxPriceText.text = "Box: " + boxCost.ToString("F2") + " €";
 
-        buttonText.text = "PAY: " + boxCost.ToString("F2") + " €";
+        boxCost = Mathf.Floor(boxCost);
+        boxPriceText.text = boxPriceFormat.GetLocalizedString(boxCost.ToString("F2"));
+        buttonText.text = payPriceFormat.GetLocalizedString(boxCost.ToString("F2"));
     }
 
     public void BuyBox()

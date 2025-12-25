@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Localization;
 
 public class BuyFurnitureObjFrame : MonoBehaviour
 {
@@ -7,9 +8,14 @@ public class BuyFurnitureObjFrame : MonoBehaviour
 
     public TMP_Text priceText;
 
+    [Header("Localization")]
+    [SerializeField] private LocalizedString priceFormat;
+
     private void Start()
     {
-        priceText.text = "Price : " + furnitureObj.info.price.ToString("F2") + " €";
+        priceText.text = priceFormat.GetLocalizedString(
+            furnitureObj.info.price.ToString("F2")
+        );
     }
 
     public void BuyFurnitureObj()

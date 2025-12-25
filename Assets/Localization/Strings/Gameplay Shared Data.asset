@@ -19,6 +19,94 @@ MonoBehaviour:
     m_Key: ID_Map
     m_Metadata:
       m_Items: []
+  - m_Id: 31842517794816
+    m_Key: ID_CurrentMoney
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32439144955904
+    m_Key: ID_UpdatePrice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32813079740416
+    m_Key: ID_BasePrice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33055984467968
+    m_Key: ID_CurrentPrice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33556281049088
+    m_Key: ID_EnterNewPrice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33923672719360
+    m_Key: ID_Apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34461386686464
+    m_Key: ID_PurchaseItems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34970742964224
+    m_Key: ID_STOCK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35140813602816
+    m_Key: ID_FURNITURE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36443962884096
+    m_Key: ID_BoxPrice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36679926038528
+    m_Key: ID_PayPrice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36828358262784
+    m_Key: ID_PerBox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37572687839232
+    m_Key: Buy Stock Frame/Canvas (Environment)/Buy Stock Frame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37632418922496
+    m_Key: Buy Stock Frame/Canvas (Environment)/Buy Stock Frame 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37646763442176
+    m_Key: Buy Stock Frame/Canvas (Environment)/Buy Stock Frame 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37941341995008
+    m_Key: ID_PRICE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38638997356544
+    m_Key: GameScene/UICanvas/BuyMenuPanel/FurniturePanel/Scroll View/Viewport/Content/Buy
+      Furniture Frame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38656336609280
+    m_Key: GameScene/UICanvas/BuyMenuPanel/FurniturePanel/Scroll View/Viewport/Content/Buy
+      Furniture Frame (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38957504413696
+    m_Key: GameScene/UICanvas/BuyMenuPanel/FurniturePanel/Scroll View/Viewport/Content/Buy
+      Furniture Frame (3)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38957550551040
+    m_Key: GameScene/UICanvas/BuyMenuPanel/FurniturePanel/Scroll View/Viewport/Content/Buy
+      Furniture Frame (2)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40528766189568
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

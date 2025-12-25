@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 7550735601955563971}
   - component: {fileID: 1153381273636807326}
   - component: {fileID: 5111811010639269801}
+  - component: {fileID: 4500073744263787511}
   m_Layer: 5
   m_Name: Buy Stock Frame
   m_TagString: Untagged
@@ -700,6 +701,141 @@ MonoBehaviour:
   boxPriceText: {fileID: 8911116411444777213}
   buttonText: {fileID: 5382930235341419496}
   boxToSpawn: {fileID: 4372806167319868529, guid: cf79d16d8c35bab48bd76f6d8e8650d0, type: 3}
+  perBoxFormat:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  boxPriceFormat:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  payPriceFormat:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &4500073744263787511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2776675779897375400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4366315181158695356
+  references:
+    version: 2
+    RefIds:
+    - rid: 4366315181158695356
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 5111811010639269801}
+        m_TrackedProperties:
+          items:
+          - rid: 4366315181158695357
+          - rid: 4366315181158695358
+          - rid: 4366315181158695359
+          - rid: 4366315181158695360
+          - rid: 4366315181158695361
+          - rid: 4366315181158695362
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 4366315181158695357
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:96998d17a9a5508479892b2729712907
+          m_TableEntryReference:
+            m_KeyId: 37572687839232
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: perBoxFormat.m_TableReference.m_TableCollectionName
+    - rid: 4366315181158695358
+      type: {class: LongTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: perBoxFormat.m_TableEntryReference.m_KeyId
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 0
+        - localeIdentifier:
+            m_Code: fr
+          value: 36828358262784
+    - rid: 4366315181158695359
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:96998d17a9a5508479892b2729712907
+          m_TableEntryReference:
+            m_KeyId: 37632418922496
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: boxPriceFormat.m_TableReference.m_TableCollectionName
+    - rid: 4366315181158695360
+      type: {class: LongTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: boxPriceFormat.m_TableEntryReference.m_KeyId
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 0
+        - localeIdentifier:
+            m_Code: fr
+          value: 36443962884096
+    - rid: 4366315181158695361
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:96998d17a9a5508479892b2729712907
+          m_TableEntryReference:
+            m_KeyId: 37646763442176
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: payPriceFormat.m_TableReference.m_TableCollectionName
+    - rid: 4366315181158695362
+      type: {class: LongTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: payPriceFormat.m_TableEntryReference.m_KeyId
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 0
+        - localeIdentifier:
+            m_Code: fr
+          value: 36679926038528
 --- !u!1 &4277222254946480128
 GameObject:
   m_ObjectHideFlags: 0
