@@ -119,6 +119,17 @@ public class PanelShopMaster : MonoBehaviour
 
     }
 
+    public bool SelectionContainsMall(List<BlueprintGroundElement> selection)
+    {
+        foreach (var tile in selection)
+        {
+            if (tile.isMall)
+                return true;
+        }
+
+        return false;
+    }
+
     public void CleanPanel()
     {
         for (int i = transform.childCount - 3; i >= 0; i--)

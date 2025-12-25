@@ -207,8 +207,8 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, blueprintLayerMask))
         {
 
-            if(hit.collider.gameObject != null)
-                Debug.Log("collider" + hit.collider.name);
+            // if(hit.collider.gameObject != null)
+            //     Debug.Log("collider" + hit.collider.name);
 
              var pivot = hit.collider.GetComponent<WallConstructorPivot>();
             if (pivot != null && activePlaceable is PlacementWallElement lwe)

@@ -16,6 +16,8 @@ public class BlueprintGroundElement : MonoBehaviour
     [SerializeField] private Material matSelected;
     [SerializeField] private Material matBuy;
 
+    public bool isMall;
+
 
     public bool isBuy;
     public string nameShop;

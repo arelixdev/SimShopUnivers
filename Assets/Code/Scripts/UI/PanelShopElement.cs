@@ -253,6 +253,12 @@ public class PanelShopElement : MonoBehaviour
         if (selection.Count == 0)
             return;
 
+        if (!PanelShopMaster.instance.SelectionContainsMall(selection))
+        {
+            Debug.LogError("La sélection doit contenir au moins une case connectée au mall !");
+            return;
+        }
+
         // FIRST BUY
         if (!isBuy)
         {

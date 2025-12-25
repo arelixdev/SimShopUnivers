@@ -62,6 +62,7 @@ public class BlueprintWallElement : MonoBehaviour
     {
 
         GetComponent<BoxCollider>().enabled = true;
+        ShowDisplayWall();
     }
 
     public void ShowDisplayWall()
