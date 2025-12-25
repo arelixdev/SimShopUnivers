@@ -2597,6 +2597,7 @@ MonoBehaviour:
   shopTypeElement: {fileID: 5317468166025491304}
   addElementPart: {fileID: 4795680488771236856}
   sellBtn: {fileID: 6824471083178703382}
+  shopHeight: 3
   allWallShop: []
   allWallGameShop: []
   allShopElement: []
@@ -3046,7 +3047,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1467776211767647298}
         m_TargetAssemblyTypeName: PanelShopElement, Assembly-CSharp
-        m_MethodName: RenameGroundElement
+        m_MethodName: RenameShopElement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
