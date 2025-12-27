@@ -103,6 +103,30 @@ MonoBehaviour:
       Furniture Frame (2)
     m_Metadata:
       m_Items: []
+  - m_Id: 596214633873408
+    m_Key: ID_AddNewShop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 597128946008064
+    m_Key: ID_SELL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 597217521319936
+    m_Key: ID_BUY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 597740488114176
+    m_Key: ID_CustomShop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 598716292939776
+    m_Key: ID_ShopType
+    m_Metadata:
+      m_Items: []
+  - m_Id: 599169009336320
+    m_Key: ID_ElementPlan
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

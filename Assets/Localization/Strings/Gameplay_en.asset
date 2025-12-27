@@ -102,6 +102,30 @@ MonoBehaviour:
     m_Localized: temp
     m_Metadata:
       m_Items: []
+  - m_Id: 596214633873408
+    m_Localized: Add new shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 597128946008064
+    m_Localized: SELL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 597217521319936
+    m_Localized: BUY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 597740488114176
+    m_Localized: 'Custom shop:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 598716292939776
+    m_Localized: 'Shop Type: '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 599169009336320
+    m_Localized: 'Element Plan: '
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

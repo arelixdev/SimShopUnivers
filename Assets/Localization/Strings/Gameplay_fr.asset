@@ -102,6 +102,30 @@ MonoBehaviour:
     m_Localized: GUID:96998d17a9a5508479892b2729712907
     m_Metadata:
       m_Items: []
+  - m_Id: 596214633873408
+    m_Localized: Ajouter un nouveau magasin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 597128946008064
+    m_Localized: VENDRE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 597217521319936
+    m_Localized: ACHETER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 597740488114176
+    m_Localized: 'Zone magasin:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 598716292939776
+    m_Localized: 'Type de magasin: '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 599169009336320
+    m_Localized: 'Element Plan:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

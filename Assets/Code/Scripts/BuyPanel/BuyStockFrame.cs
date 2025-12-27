@@ -26,11 +26,6 @@ public class BuyStockFrame : MonoBehaviour
 
     public void UpdateFrameInfo()
     {
-        if (!UnityEngine.Localization.Settings.LocalizationSettings.InitializationOperation.IsDone)
-        {
-            Debug.LogError("Localization not initialized yet", this);
-            return;
-        }
         info = StockInfoController.instance.GetInfo(info.name);
 
         nameText.text = info.name;
