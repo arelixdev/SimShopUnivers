@@ -29,9 +29,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text shopLvlTxt;
     [SerializeField] private Slider shopLvlBar;
 
-    public GameObject nameShopScreen;
-    [SerializeField] private TMP_InputField nameShopInputfield;
-
     private bool inputfieldSelected;
 
     
@@ -44,7 +41,6 @@ public class UIController : MonoBehaviour
         CloseUpdatePrice();
         buyMenuScreen.SetActive(false);
         shopLvlPanel.SetActive(false);
-        nameShopScreen.SetActive(false);
     }
 
     public void InputfieldSelected(bool isSelected)
@@ -179,36 +175,6 @@ public class UIController : MonoBehaviour
     }
 
     private ShopZone shopTemp;
-
-    public void OpenCloseNameShop(ShopZone shop)
-    {
-        shopTemp = shop;
-
-        if(nameShopScreen.activeSelf)
-        {
-            nameShopScreen.SetActive(false);
-            
-        } else
-        {
-            nameShopScreen.SetActive(true);
-            nameShopInputfield.text = shop.GetNameShop().ToUpper();
-        }
-    }
-
-    public void OpenCloseNameShop()
-    {
-        if(nameShopScreen.activeSelf)
-        {
-            nameShopScreen.SetActive(false);
-            
-        }
-    }
-
-    public void ValidateShopName()
-    {
-        shopTemp.SetNameShop(nameShopInputfield.text);
-        OpenCloseNameShop();
-    }
 
     public void OpenWheelToolMenu()
     {

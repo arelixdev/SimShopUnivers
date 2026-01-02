@@ -121,13 +121,6 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
-        if (UIController.instance.nameShopScreen != null)
-        {
-            if (UIController.instance.nameShopScreen.activeSelf)
-            {
-                return;
-            }
-        }
 
         if(UIController.instance.wheelTools != null)
         {
@@ -288,12 +281,6 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsSignOpen))
                 {
                     StoreController.instance.OpenStore();
-                }
-
-                if (Physics.Raycast(ray, out hit, 10, whatIsShopName))
-                {
-                    UIController.instance.OpenCloseNameShop(hit.transform.parent.GetComponent<ShopZone>());
-                    UnityEngine.Cursor.lockState = CursorLockMode.None;
                 }
                 
             }
