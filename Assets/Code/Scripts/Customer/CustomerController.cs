@@ -85,8 +85,8 @@ public class CustomerController : MonoBehaviour
 
         if (points.Count > 0)
         {
-            transform.position = points[0].point.position;
-
+            agent.Warp(points[0].point.position);
+            agent.ResetPath();
             currentWaitTime = points[0].waitTime;
         }
 
@@ -217,7 +217,10 @@ public class CustomerController : MonoBehaviour
         if (points.Count == 0) return;
 
         Vector3 targetPosition = new Vector3(points[0].point.position.x, transform.position.y, points[0].point.position.z);
-        agent.SetDestination(targetPosition);
+        if (agent.isOnNavMesh)
+        {
+            agent.SetDestination(targetPosition);
+        }
         animator.SetBool("IsMoving", agent.velocity.magnitude > 0.1f);
 
         // Vérifier si le client est arrivé

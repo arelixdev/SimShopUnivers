@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4613932626167484302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5283989979627769077}
+  - component: {fileID: 8921018417633284660}
+  m_Layer: 0
+  m_Name: CustomersManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5283989979627769077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613932626167484302}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0004882635, y: 0, z: -0, w: 0.9999999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -0.056, y: 0, z: 0}
+--- !u!114 &8921018417633284660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613932626167484302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec046769619a1c14596b17dd2c7e4e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerToSpawn:
+  - {fileID: 7143029598216443933, guid: c14bc2e3df91dfd49a7096c08c5181e0, type: 3}
+  - {fileID: 1916303421291925185, guid: c6b783621d4b6374aa84df9af808e054, type: 3}
+  - {fileID: 6458159254984110606, guid: 01a66de7e02b08e47a458cdaba26488b, type: 3}
+  - {fileID: 8988396492290978256, guid: 3c6fa174118db5c409e8e3b8f954e9ee, type: 3}
+  timeBetweenCustomers: 5
+  entryPoints:
+  - point: {fileID: 0}
+    waitTime: 0
+  - point: {fileID: 0}
+    waitTime: 1
+  - point: {fileID: 0}
+    waitTime: 0.25
+  - point: {fileID: 0}
+    waitTime: 1
