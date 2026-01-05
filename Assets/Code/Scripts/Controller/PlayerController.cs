@@ -306,7 +306,7 @@ public class PlayerController : MonoBehaviour
                 {
                     var door = hit.collider.GetComponent<DoorController>();
                     if (door != null)
-                        door.OpenDoor();
+                        door.OpenDoorFromPlayer();
                 }
             }
 
@@ -333,7 +333,7 @@ public class PlayerController : MonoBehaviour
                 {
                     var door = hit.collider.GetComponent<DoorController>();
                     if (door != null)
-                        door.OpenDoor();
+                        door.OpenDoorFromPlayer();
 
                     return;
                 }

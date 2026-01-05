@@ -8025,6 +8025,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1649696111}
     m_Modifications:
+    - target: {fileID: -7728995093489908169, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
+      propertyPath: leftDoor
+      value: 
+      objectReference: {fileID: 1000769010}
+    - target: {fileID: -7728995093489908169, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
+      propertyPath: openAngle
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 1005485792341690, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Shopfront_Door_05
@@ -8091,28 +8099,34 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1005485792341690, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1000769014}
+      addedObject: {fileID: 1000769019}
   m_SourcePrefab: {fileID: 100100000, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
 --- !u!4 &1000769010 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4503543861227314, guid: d332f521018ef9a4ba5bb4e6e5c71b65, type: 3}
   m_PrefabInstance: {fileID: 1000769009}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1000769014
-MonoBehaviour:
+--- !u!65 &1000769019
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958737958}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0536b630af539b43a5100ba861c7525, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openAngle: 110
-  animationDuration: 0.8
-  openTime: 2
+  serializedVersion: 3
+  m_Size: {x: 1.0015357, y: 1.9693928, z: 0.07775146}
+  m_Center: {x: -0.5007678, y: 0.9846964, z: 0.0000012200326}
 --- !u!1001 &1011335884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17060,9 +17074,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c68dcceb5993d43a9a1aeabab8f7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
   openAngle: 110
   animationDuration: 0.8
-  openTime: 2
+  customerLayerName: Customers
+  playerOpenTime: 2
 --- !u!1 &2091689094
 GameObject:
   m_ObjectHideFlags: 0
@@ -19591,6 +19608,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1078698036736936754, guid: 2f987acb16eeb7d44bf22f6f82f260e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228751565972961205, guid: 2f987acb16eeb7d44bf22f6f82f260e7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228751565972961205, guid: 2f987acb16eeb7d44bf22f6f82f260e7, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
