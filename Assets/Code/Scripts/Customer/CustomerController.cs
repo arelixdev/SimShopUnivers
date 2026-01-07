@@ -178,7 +178,7 @@ public class CustomerController : MonoBehaviour
                     MoveToPoint();
                 } else
                 {
-                    //Destroy(gameObject);
+                    Destroy(gameObject);
                 }
                 break;
         }

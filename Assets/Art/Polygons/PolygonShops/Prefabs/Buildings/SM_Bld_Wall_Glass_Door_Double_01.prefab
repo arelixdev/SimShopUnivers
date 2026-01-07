@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33327181185305422}
   - component: {fileID: 23173842892347064}
   - component: {fileID: 65028072060357166}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SM_Bld_Wall_Glass_Door_Double_01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 33126454542440334}
   - component: {fileID: 23630862459444634}
   - component: {fileID: 65658507986340254}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SM_Bld_Wall_Glass_Door_Double_01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 65604865013359174}
   - component: {fileID: 5236479871758719138}
   - component: {fileID: 5769304686989144037}
+  - component: {fileID: 9050410502820371170}
   m_Layer: 13
   m_Name: SM_Bld_Wall_Glass_Door_Double_01
   m_TagString: Untagged
@@ -672,3 +673,19 @@ MonoBehaviour:
   animationDuration: 0.8
   customerLayerName: Customers
   playerOpenTime: 2
+--- !u!208 &9050410502820371170
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990619334888376}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.25, y: 1.5000001, z: 0.112}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.25, y: 1.5000001, z: 0}
+  m_TimeToStationary: 0.5

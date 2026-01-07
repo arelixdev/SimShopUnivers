@@ -42348,6 +42348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallBluePrintExterior (95)
       objectReference: {fileID: 0}
+    - target: {fileID: 5964630364177943831, guid: a10884088532523418edc9a5862473d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -86517,8 +86521,8 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 1048575
-  m_UseGeometry: 0
+    m_Bits: 1040383
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
