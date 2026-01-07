@@ -8,7 +8,9 @@ public class CustomersManager : MonoBehaviour
     [SerializeField] private List<CustomerController> customerToSpawn = new List<CustomerController>();
     [SerializeField] private float timeBetweenCustomers;
 
-    [SerializeField] private List<NavPoint> entryPoints = new List<NavPoint>();
+    public List<Transform> allSpawnPoint = new List<Transform>();
+
+    public List<NavPoint> entryPoints = new List<NavPoint>();
     private float spawnCounter;
 
     private void Awake() {
@@ -32,35 +34,25 @@ public class CustomersManager : MonoBehaviour
 
     public void SpawnCustomer()
     {
-        Instantiate(customerToSpawn[Random.Range(0, customerToSpawn.Count)]);
+        Instantiate(customerToSpawn[Random.Range(0, customerToSpawn.Count)], allSpawnPoint[Random.Range(0, allSpawnPoint.Count)].position, Quaternion.identity);
 
         spawnCounter = timeBetweenCustomers * Random.Range(0.75f, 1.25f);
     }
 
-    public List<NavPoint> GetEntryPoints()
+    /*public List<NavPoint> GetEntryPoints()
     {
         List<NavPoint> points = new List<NavPoint>();
-
-        /*if(Random.value < 0.5)
-        {
-            
-        }*/
 
         points.AddRange(entryPoints);
 
         return points;
-    } 
+    } */
 
-    public List<NavPoint> GetExitPoints()
+    /*public List<NavPoint> GetExitPoints()
     {
         List<NavPoint> points = new List<NavPoint>();
 
         List<NavPoint> temp = new List<NavPoint>();
-
-        /*if(Random.value < 0.5)
-        {
-            
-        }*/
 
         temp.AddRange(entryPoints);
 
@@ -70,5 +62,5 @@ public class CustomersManager : MonoBehaviour
         }
 
         return points;
-    } 
+    } */
 }

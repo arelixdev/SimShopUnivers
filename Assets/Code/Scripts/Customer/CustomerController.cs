@@ -81,12 +81,21 @@ public class CustomerController : MonoBehaviour
         }
 
         points.Clear();
-        points.AddRange(CustomersManager.instance.GetEntryPoints());
+        //points.AddRange(CustomersManager.instance.GetEntryPoints());
+
+        NavPoint entryPoint = new NavPoint
+        {
+            point = CustomersManager.instance.entryPoints[UnityEngine.Random.Range(0, CustomersManager.instance.entryPoints.Count)].point,
+            waitTime = 1.5f
+        };
+
+        points.Add(entryPoint);
+        
 
         if (points.Count > 0)
         {
-            agent.Warp(points[0].point.position);
-            agent.ResetPath();
+            // agent.Warp(points[0].point.position);
+            // agent.ResetPath();
             currentWaitTime = points[0].waitTime;
         }
 
@@ -169,7 +178,7 @@ public class CustomerController : MonoBehaviour
                     MoveToPoint();
                 } else
                 {
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
                 }
                 break;
         }
@@ -258,7 +267,14 @@ public class CustomerController : MonoBehaviour
         currentState = CustomerState.leaving;
 
         points.Clear();
-        points.AddRange(CustomersManager.instance.GetExitPoints());
+        //points.AddRange(CustomersManager.instance.GetExitPoints());
+        NavPoint exitPoint = new NavPoint
+        {
+            point = CustomersManager.instance.allSpawnPoint[UnityEngine.Random.Range(0, CustomersManager.instance.allSpawnPoint.Count)],
+            waitTime = 1.5f
+        };
+
+        points.Add(exitPoint);
     }
 
     void GetBrowsePoint()

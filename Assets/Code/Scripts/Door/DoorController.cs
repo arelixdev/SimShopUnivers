@@ -38,12 +38,12 @@ public class DoorController : MonoBehaviour
         if (other.gameObject.layer != customerLayer)
             return;
 
+
         if (triggerHasOpened)
             return;
 
         triggerHasOpened = true;
 
-        // 🔹 Calcul du sens d’ouverture
         Vector3 doorForward = transform.forward;
         Vector3 toOther = (other.transform.position - transform.position).normalized;
 
@@ -52,7 +52,6 @@ public class DoorController : MonoBehaviour
 
         RequestOpen();
 
-        // 🔹 Fermeture automatique
         playerCloseTween?.Kill();
         playerCloseTween = DOVirtual.DelayedCall(playerOpenTime, () =>
         {
@@ -65,13 +64,23 @@ public class DoorController : MonoBehaviour
     {
         currentOpenAngle = openAngle;
 
+        openRequests = 0;
+        isOpen = false;
+
         RequestOpen();
 
         playerCloseTween?.Kill();
         playerCloseTween = DOVirtual.DelayedCall(playerOpenTime, () =>
         {
-            RequestClose();
+            ForceClose();
         });
+    }
+
+    private void ForceClose()
+    {
+        openRequests = 0;
+        isOpen = false;
+        PlayCloseAnimation();
     }
 
     public void CloseDoor()
