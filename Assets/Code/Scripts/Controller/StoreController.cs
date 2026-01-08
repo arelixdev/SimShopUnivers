@@ -42,6 +42,8 @@ public class StoreController : MonoBehaviour
     public void OpenStore()
     {
         isOpen = true;
+        //ACTION "IsOpen" on customer (change movePoint)
+        NavMeshcontroller.instance.OpenShopUpdate();
         TimeController.instance.isRunning = true;
     }
 

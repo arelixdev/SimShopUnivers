@@ -14,4 +14,16 @@ public class NavMeshcontroller : MonoBehaviour
     {
         GetComponent<NavMeshSurface>().BuildNavMesh();
     }
+
+    public void OpenShopUpdate()
+    {
+        GetComponent<NavMeshSurface>().useGeometry = UnityEngine.AI.NavMeshCollectGeometry.PhysicsColliders;
+        RebuildNavMesh();
+    }
+
+    public void CloseShopUpdate()
+    {
+        GetComponent<NavMeshSurface>().useGeometry = UnityEngine.AI.NavMeshCollectGeometry.RenderMeshes;
+        RebuildNavMesh();
+    }
 }

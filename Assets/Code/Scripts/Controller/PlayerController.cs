@@ -280,6 +280,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsSignOpen))
                 {
+                    //TODO action OpenStore
                     StoreController.instance.OpenStore();
                 }
                 

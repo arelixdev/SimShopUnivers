@@ -112,10 +112,10 @@ public class CustomerController : MonoBehaviour
                     MoveToPoint();
                 } else
                 {
-                    if(StoreController.instance.GetIsOpen())
+                    if(StoreController.instance.GetIsOpen() && StoreController.instance.shelvingCases.Count > 0)
                     {
                         currentState = CustomerState.browsing;
-
+                        //TODO rework system shelves / what customer want
                         browsePointsRemain = UnityEngine.Random.Range(1, maxBrowsePoints + 1);
                         browsePointsRemain = Mathf.Clamp(browsePointsRemain, 1, StoreController.instance.shelvingCases.Count);
 
@@ -128,6 +128,7 @@ public class CustomerController : MonoBehaviour
                 }
                 break;
             case CustomerState.browsing:
+                //TODO rework system shelves / what customer want
                 MoveToPoint();
 
                 if (points.Count == 0)

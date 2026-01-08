@@ -38,6 +38,9 @@ public class DoorController : MonoBehaviour
         if (other.gameObject.layer != customerLayer)
             return;
 
+        if(!StoreController.instance.GetIsOpen())
+            return;
+
 
         if (triggerHasOpened)
             return;
