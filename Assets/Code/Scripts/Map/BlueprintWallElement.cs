@@ -21,11 +21,15 @@ public class BlueprintWallElement : MonoBehaviour
     public WallKey wallKey;
 
     private void OnTriggerStay(Collider other) {
-        BlueprintGroundElement groundElement = other.GetComponent<BlueprintGroundElement>();
-    
-        if(groundElement != null && groundElement.isBuy && groundLink == null)
+        if (groundLink != null)
+        return;
+
+        if (other.TryGetComponent(out BlueprintGroundElement groundElement))
         {
-            groundLink = groundElement.gameObject;
+            if (groundElement.isBuy)
+            {
+                groundLink = groundElement.gameObject;
+            }
         }
     }
 

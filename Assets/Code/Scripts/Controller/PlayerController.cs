@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -463,6 +464,23 @@ public class PlayerController : MonoBehaviour
                         {
                             mopObj.SetParent(null);
                             mopTrashElement = hit.transform.gameObject;
+
+                            MeshRenderer renderer = mopTrashElement.GetComponent<MeshRenderer>();
+                            Material mat = renderer.material;
+
+                            float startValue = mat.GetFloat("_DissolveThreshold");
+
+                            DOTween.To(
+                                () => startValue,
+                                x =>
+                                {
+                                    startValue = x;
+                                    mat.SetFloat("_DissolveThreshold", x);
+                                },
+                                1f,
+                                1f
+                            );
+
                             mopObj.transform.position = hit.transform.position;
                             mopObj.transform.rotation = Quaternion.identity;
                             mopClean = true;
