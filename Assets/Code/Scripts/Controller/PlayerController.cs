@@ -182,10 +182,10 @@ public class PlayerController : MonoBehaviour
 
         if(moveAmount != Vector3.zero)
         {
-            animator.SetBool("isMoving", true);
+            animator.SetBool("IsMoving", true);
         } else
         {
-            animator.SetBool("isMoving", false);
+            animator.SetBool("IsMoving", false);
         }
 
         if (charCon.isGrounded)
