@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Camera playerCam;
 
+    [SerializeField] private Animator animator;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float lookSpeed;
@@ -170,7 +171,6 @@ public class PlayerController : MonoBehaviour
     private void CharMove()
     {
         Vector2 moveInput = moveAction.action.ReadValue<Vector2>();
-        //Vector3 moveAmount = new Vector3(moveInput.x, 0, moveInput.y);
 
         Vector3 vertMove = transform.forward * moveInput.y;
         Vector3 horMove = transform.right * moveInput.x;
@@ -180,6 +180,14 @@ public class PlayerController : MonoBehaviour
 
         moveAmount += moveAmount * moveSpeed;
 
+        if(moveAmount != Vector3.zero)
+        {
+            animator.SetBool("isMoving", true);
+        } else
+        {
+            animator.SetBool("isMoving", false);
+        }
+
         if (charCon.isGrounded)
         {
             ySpeed = 0f;
@@ -187,6 +195,7 @@ public class PlayerController : MonoBehaviour
             {
                 ySpeed = jumpForce;
             }
+            
         }
 
         ySpeed = ySpeed + (Physics.gravity.y * Time.deltaTime);
