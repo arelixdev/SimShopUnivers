@@ -135,7 +135,7 @@ public class BuildingGenerator : MonoBehaviour
             buildingIndex++;
         }
 
-        FitBoxToBuildings();
+        //FitBoxToBuildings();
     }
 
     public void Clear()
