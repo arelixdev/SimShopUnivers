@@ -14,9 +14,13 @@ public class BuildingGenerator : MonoBehaviour
     public bool startCorner;
     public bool endCorner;
 
-    public GameObject[] baseCornerPrefabs;
-    public GameObject[] floorCornerPrefabs;
-    public GameObject[] roofCornerPrefabs;
+    public GameObject[] startBaseCorners;
+    public GameObject[] startFloorCorners;
+    public GameObject[] startRoofCorners;
+
+    public GameObject[] endBaseCorners;
+    public GameObject[] endFloorCorners;
+    public GameObject[] endRoofCorners;
 
     public void Generate()
     {
@@ -66,9 +70,9 @@ public class BuildingGenerator : MonoBehaviour
             // Remplacement par corners si nécessaire
             if (isFirstBuilding && startCorner)
             {
-                basePrefab  = baseCornerPrefabs[Random.Range(0, baseCornerPrefabs.Length)];
-                floorPrefab = floorCornerPrefabs[Random.Range(0, floorCornerPrefabs.Length)];
-                roofPrefab  = roofCornerPrefabs[Random.Range(0, roofCornerPrefabs.Length)];
+                basePrefab  = startBaseCorners[Random.Range(0, startBaseCorners.Length)];
+                floorPrefab = startFloorCorners[Random.Range(0, startFloorCorners.Length)];
+                roofPrefab  = startRoofCorners[Random.Range(0, startRoofCorners.Length)];
 
                 baseBounds  = GetLocalBounds(basePrefab);
                 floorBounds = GetLocalBounds(floorPrefab);
@@ -76,9 +80,9 @@ public class BuildingGenerator : MonoBehaviour
             }
             else if (isLastBuilding && endCorner)
             {
-                basePrefab  = baseCornerPrefabs[Random.Range(0, baseCornerPrefabs.Length)];
-                floorPrefab = floorCornerPrefabs[Random.Range(0, floorCornerPrefabs.Length)];
-                roofPrefab  = roofCornerPrefabs[Random.Range(0, roofCornerPrefabs.Length)];
+                basePrefab  = endBaseCorners[Random.Range(0, endBaseCorners.Length)];
+                floorPrefab = endFloorCorners[Random.Range(0, endFloorCorners.Length)];
+                roofPrefab  = endRoofCorners[Random.Range(0, endRoofCorners.Length)];
 
                 baseBounds  = GetLocalBounds(basePrefab);
                 floorBounds = GetLocalBounds(floorPrefab);
@@ -87,8 +91,8 @@ public class BuildingGenerator : MonoBehaviour
 
             Vector3 basePos = new Vector3(
                 currentX + baseBounds.size.x * 0.5f - baseBounds.center.x,
-                baseY - baseBounds.center.y,
-                center.z - baseBounds.center.z
+                baseBounds.center.y,
+                center.z
             );
 
             GameObject buildingRoot =
@@ -96,6 +100,8 @@ public class BuildingGenerator : MonoBehaviour
 
             buildingRoot.transform.SetParent(transform);
             buildingRoot.transform.localPosition = basePos;
+
+            
 
             float availableHeight = maxHeight - baseBounds.size.y - roofBounds.size.y;
             int floorCount = Mathf.FloorToInt(availableHeight / floorBounds.size.y);
@@ -176,13 +182,12 @@ public class BuildingGenerator : MonoBehaviour
         foreach (Renderer r in renderers)
             worldBounds.Encapsulate(r.bounds);
 
-        Vector3 localCenter = transform.InverseTransformPoint(worldBounds.center);
-        Vector3 localSize   = transform.InverseTransformVector(worldBounds.size);
+        Vector3 localSize = transform.InverseTransformVector(worldBounds.size);
 
-        box.center = localCenter;
+        // On ne touche JAMAIS au center
         box.size = new Vector3(
             Mathf.Abs(localSize.x),
-            Mathf.Abs(localSize.y),
+            box.size.y,
             Mathf.Abs(localSize.z)
         );
     }
