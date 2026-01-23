@@ -43,7 +43,6 @@ public class BuildingGenerator : MonoBehaviour
         {
             bool isFirstBuilding = (buildingIndex == 0);
 
-            // Pré-sélection normale (pour calculs)
             GameObject basePrefab  = basePrefabs[Random.Range(0, basePrefabs.Length)];
             GameObject floorPrefab = floorPrefabs[Random.Range(0, floorPrefabs.Length)];
             GameObject roofPrefab  = roofPrefabs[Random.Range(0, roofPrefabs.Length)];
@@ -67,7 +66,6 @@ public class BuildingGenerator : MonoBehaviour
                 }
             }
 
-            // Remplacement par corners si nécessaire
             if (isFirstBuilding && startCorner)
             {
                 basePrefab  = startBaseCorners[Random.Range(0, startBaseCorners.Length)];
@@ -116,10 +114,10 @@ public class BuildingGenerator : MonoBehaviour
                 floor.transform.SetParent(buildingRoot.transform);
                 floor.transform.localPosition = Vector3.up * currentY;
 
-                BuildingPropsGenerator[] props =
+                BuildingPropsGenerator[] propsf =
                     floor.GetComponentsInChildren<BuildingPropsGenerator>();
 
-                foreach (BuildingPropsGenerator p in props)
+                foreach (BuildingPropsGenerator p in propsf)
                 {
                     p.Generate();
                 }
@@ -133,7 +131,14 @@ public class BuildingGenerator : MonoBehaviour
             roof.transform.SetParent(buildingRoot.transform);
             roof.transform.localPosition = Vector3.up * currentY;
 
-            // Matériau unique par bâtiment
+            BuildingRoofPropsGenerator[] props =
+                roof.GetComponentsInChildren<BuildingRoofPropsGenerator>();
+
+            foreach (BuildingRoofPropsGenerator p in props)
+            {
+                p.Generate();
+            }
+            
             if (materials.Length > 0)
             {
                 Material mat = materials[Random.Range(0, materials.Length)];
