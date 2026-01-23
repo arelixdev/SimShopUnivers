@@ -115,10 +115,14 @@ public class BuildingGenerator : MonoBehaviour
 
                 floor.transform.SetParent(buildingRoot.transform);
                 floor.transform.localPosition = Vector3.up * currentY;
-                
-                BuildingPropsGenerator props = floor.GetComponent<BuildingPropsGenerator>();
-                if (props != null)
-                    props.Generate();
+
+                BuildingPropsGenerator[] props =
+                    floor.GetComponentsInChildren<BuildingPropsGenerator>();
+
+                foreach (BuildingPropsGenerator p in props)
+                {
+                    p.Generate();
+                }
 
                 currentY += floorBounds.size.y;
             }

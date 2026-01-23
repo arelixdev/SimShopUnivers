@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3301182}
   - component: {fileID: 2381460}
   - component: {fileID: 64417464720628494}
+  - component: {fileID: 4853536893613085755}
+  - component: {fileID: 6228358027865434487}
   m_Layer: 0
   m_Name: SM_Bld_Apartment_Corner_01
   m_TagString: Untagged
@@ -111,6 +113,68 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43197437058000784, guid: 5d932c27263caa04d97c8fc9e7da1a78, type: 2}
+--- !u!114 &4853536893613085755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fec5e28f13b13b46a3c3593a8af32c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPropsElement:
+  - {fileID: 172194, guid: e51407a0809d1584ba21208f0acb453f, type: 3}
+  - {fileID: 174048, guid: d61e74287e66d27468f6e53ea0e0038c, type: 3}
+  - {fileID: 150142, guid: 817e942c1f8ae59408e2debc4104926b, type: 3}
+  - {fileID: 128860, guid: ea327a19ffc7db74385ac3d6e1899182, type: 3}
+  windowPropsElement:
+  - {fileID: 194954, guid: 015249c005381134e896458eb3ed0bb1, type: 3}
+  - {fileID: 149448, guid: 16dd2e2d30bf97a4282b745980e24bd8, type: 3}
+  - {fileID: 107268, guid: 385e440e39a69044bbd3453c1caa8158, type: 3}
+  percentFloorPropsElement: 15
+  percentNothingWindowPropsElement: 35
+  percentOneWindowPropsElement: 30
+  percentTwoWindowPropsElement: 25
+  percentThreeWindowPropsElement: 10
+  clotheslinePoint: {fileID: 4320526705066067370}
+  windowsPoint:
+  - {fileID: 994893845012330152}
+  - {fileID: 5691068646153635910}
+  - {fileID: 4350657890730852479}
+--- !u!114 &6228358027865434487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fec5e28f13b13b46a3c3593a8af32c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPropsElement:
+  - {fileID: 172194, guid: e51407a0809d1584ba21208f0acb453f, type: 3}
+  - {fileID: 174048, guid: d61e74287e66d27468f6e53ea0e0038c, type: 3}
+  - {fileID: 150142, guid: 817e942c1f8ae59408e2debc4104926b, type: 3}
+  - {fileID: 128860, guid: ea327a19ffc7db74385ac3d6e1899182, type: 3}
+  windowPropsElement:
+  - {fileID: 149448, guid: 16dd2e2d30bf97a4282b745980e24bd8, type: 3}
+  - {fileID: 107268, guid: 385e440e39a69044bbd3453c1caa8158, type: 3}
+  - {fileID: 194954, guid: 015249c005381134e896458eb3ed0bb1, type: 3}
+  percentFloorPropsElement: 15
+  percentNothingWindowPropsElement: 35
+  percentOneWindowPropsElement: 30
+  percentTwoWindowPropsElement: 25
+  percentThreeWindowPropsElement: 10
+  clotheslinePoint: {fileID: 2736172925778417497}
+  windowsPoint:
+  - {fileID: 1920847464109514244}
+  - {fileID: 5394219392040714132}
+  - {fileID: 1326860427982248385}
 --- !u!1 &2279645074951050614
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 5750883239874116837}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
