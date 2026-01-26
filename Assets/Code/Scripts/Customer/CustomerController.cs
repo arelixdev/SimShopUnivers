@@ -16,13 +16,13 @@ public class CustomerController : MonoBehaviour
     public List<ShopList> shopList;
 
     [Header("Requirements")]
-    public int foodNeed = 100;
-    public int peeNeed = 100;
-    public int comfortNeed = 100;
-    public int energyNeed = 100;
-    public int distractionNeed = 100;
+    public Need foodNeed;
+    public Need peeNeed;
+    public Need comfortNeed;
+    public Need energyNeed;
+    public Need distractionNeed;
 
-    public int satisfaction = 50;
+    public Need satisfaction;
 
     public enum CustomerState
     {
@@ -303,4 +303,44 @@ public class ShopList
 {
     public TypeShop typeShop;
     public List<StockType> listStockType;
+}
+
+[System.Serializable]
+public class Need
+{
+    [Range(0f, 100f)]public float sliderValue;
+    public float minSliderValue;
+    public float maxSliderValue;
+
+    [Header("Random speed ranges")]
+    public float minDecaySpeed = 0.5f;
+    public float maxDecaySpeed = 2f;
+
+    [Header("Random speed ranges")]
+    public float minDecayStrength = 1f;
+    public float maxDecayStrength  = 5f;
+
+    [HideInInspector] public float decaySpeed;
+    [HideInInspector] public float decayStrength;
+
+    public void Init()
+    {
+        sliderValue = UnityEngine.Random.Range(minSliderValue,maxSliderValue);
+        decaySpeed = UnityEngine.Random.Range(minDecaySpeed, maxDecaySpeed);
+        decayStrength = UnityEngine.Random.Range(minDecayStrength, maxDecayStrength);
+    }
+
+    public void Decrease()
+    {
+        sliderValue -= Time.deltaTime * decaySpeed * decayStrength;
+        sliderValue = Mathf.Clamp(sliderValue, 0, 100);
+    }
+
+    public void Increase(float value)
+    {
+        sliderValue += value;
+        sliderValue = Mathf.Clamp(sliderValue, 0, 100);
+    }
+
+    public float Value => sliderValue;
 }
