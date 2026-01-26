@@ -309,16 +309,16 @@ public class ShopList
 public class Need
 {
     [Range(0f, 100f)]public float sliderValue;
-    public float minSliderValue;
-    public float maxSliderValue;
+    [SerializeField] private float minSliderValue;
+    [SerializeField] private float maxSliderValue;
 
     [Header("Random speed ranges")]
-    public float minDecaySpeed = 0.5f;
-    public float maxDecaySpeed = 2f;
+    [SerializeField] private float minDecaySpeed = 0.5f;
+    [SerializeField] private float maxDecaySpeed = 2f;
 
     [Header("Random speed ranges")]
-    public float minDecayStrength = 1f;
-    public float maxDecayStrength  = 5f;
+    [SerializeField] private float minDecayStrength = 1f;
+    [SerializeField] private float maxDecayStrength  = 5f;
 
     [HideInInspector] public float decaySpeed;
     [HideInInspector] public float decayStrength;
