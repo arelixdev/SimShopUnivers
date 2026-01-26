@@ -89101,6 +89101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Road_Arrow_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 108482, guid: 4c588df48d373f5448513a886280f4af, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 411642, guid: 4c588df48d373f5448513a886280f4af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -92.5
