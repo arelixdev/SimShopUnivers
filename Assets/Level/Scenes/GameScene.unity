@@ -103987,6 +103987,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Road_Arrow_01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 108482, guid: 4c588df48d373f5448513a886280f4af, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 411642, guid: 4c588df48d373f5448513a886280f4af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.5
@@ -117950,7 +117954,7 @@ Transform:
   m_GameObject: {fileID: 600524461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21, y: 0, z: 51.5}
+  m_LocalPosition: {x: 7.5, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -284285,6 +284289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Road_Arrow_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 108482, guid: 4c588df48d373f5448513a886280f4af, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 411642, guid: 4c588df48d373f5448513a886280f4af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -62.5
@@ -357059,11 +357067,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7683272591888581138, guid: f18b4845143ba0541a90741dc31adf80, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.5
+      value: -95
       objectReference: {fileID: 0}
     - target: {fileID: 7683272591888581138, guid: f18b4845143ba0541a90741dc31adf80, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.5
+      value: -70.5
       objectReference: {fileID: 0}
     - target: {fileID: 8372750333637709022, guid: f18b4845143ba0541a90741dc31adf80, type: 3}
       propertyPath: m_LocalPosition.x

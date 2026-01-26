@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65583833748085224}
   - component: {fileID: 65474236303755984}
   - component: {fileID: 1637584487003180273}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: SM_Bld_Apartment_Roof_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}

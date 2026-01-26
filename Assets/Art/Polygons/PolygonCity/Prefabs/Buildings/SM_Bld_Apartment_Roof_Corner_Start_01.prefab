@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Apartment_Roof_Corner_Start_01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb6c6650e905724ba75f7f0ed29f999, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
