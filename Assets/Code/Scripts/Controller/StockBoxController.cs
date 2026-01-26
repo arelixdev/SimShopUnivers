@@ -61,13 +61,13 @@ public class StockBoxController : MonoBehaviour
 
         switch (info.typeOfStock)
         {
-            case StockInfoSO.StockType.cereal:
+            case StockType.cereal:
                 activePoints.AddRange(boxPoints);
                 break;
-            case StockInfoSO.StockType.drink:
+            case StockType.drink:
                 activePoints.AddRange(drinkPoints);
                 break;
-            case StockInfoSO.StockType.fruit:
+            case StockType.fruit:
                 break;
         }
 
@@ -137,19 +137,19 @@ public class StockBoxController : MonoBehaviour
         }
     }
     
-    public int GetStockAmount(StockInfoSO.StockType type)
+    public int GetStockAmount(StockType type)
     {
         int toReturn = 0;
 
         switch(type)
         {
-            case StockInfoSO.StockType.cereal:
+            case StockType.cereal:
                 toReturn = boxPoints.Count;
                 break;
-            case StockInfoSO.StockType.drink:
+            case StockType.drink:
                 toReturn = drinkPoints.Count;
                 break;
-            case StockInfoSO.StockType.fruit:
+            case StockType.fruit:
                 break;
         }
         return toReturn;

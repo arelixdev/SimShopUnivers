@@ -34,19 +34,19 @@ public class ShelfSpaceController : MonoBehaviour
 
                 switch(info.typeOfStock)
                 {
-                    case StockInfoSO.StockType.cereal:
+                    case StockType.cereal:
                         if(objectsOnShelf.Count >= boxPoints.Count)
                         {
                             preventPlacing = true;
                         }
                         break;
-                    case StockInfoSO.StockType.drink:
+                    case StockType.drink:
                         if(objectsOnShelf.Count >= drinkPoints.Count)
                         {
                             preventPlacing = true;
                         }
                         break;
-                    case StockInfoSO.StockType.fruit:
+                    case StockType.fruit:
                         if(objectsOnShelf.Count >= drinkPoints.Count)
                         {
                             preventPlacing = true;
@@ -65,13 +65,13 @@ public class ShelfSpaceController : MonoBehaviour
 
             switch(info.typeOfStock)
             {
-                case StockInfoSO.StockType.cereal:
+                case StockType.cereal:
                     objectToPlace.transform.SetParent(boxPoints[objectsOnShelf.Count]);
                     break;
-                case StockInfoSO.StockType.drink:
+                case StockType.drink:
                     objectToPlace.transform.SetParent(drinkPoints[objectsOnShelf.Count]);
                     break;
-                case StockInfoSO.StockType.fruit:
+                case StockType.fruit:
                     /*if(objectsOnShelf.Count >= drinkPoints.Count)
                     {
                         preventPlacing = true;

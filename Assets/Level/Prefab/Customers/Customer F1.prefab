@@ -51,10 +51,8 @@ MonoBehaviour:
   points: []
   moveSpeed: 3
   animator: {fileID: 8258152130668783541}
+  shopList: []
   currentState: 0
-  maxBrowsePoints: 5
-  browseTime: 1.5
-  currentShelfCase: {fileID: 0}
   shoppingBag: {fileID: 5937213763329421275}
   waitAfterGrabbing: 0.5
   waterTrash: {fileID: 7752940050254590865, guid: 6a39496bd68570248b1bfa80a324e67a, type: 3}

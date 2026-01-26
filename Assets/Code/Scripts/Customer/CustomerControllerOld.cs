@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CustomerController : MonoBehaviour
+public class CustomerControllerOld : MonoBehaviour
 {
     [SerializeField] private List<NavPoint> points = new List<NavPoint>();
 
@@ -11,25 +11,17 @@ public class CustomerController : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
-    [Header("Shop Need")]
-    [SerializeField]
-    public List<ShopList> shopList;
-
-    [Header("Requirements")]
-    public int foodNeed = 100;
-    public int peeNeed = 100;
-    public int comfortNeed = 100;
-    public int energyNeed = 100;
-    public int distractionNeed = 100;
-
-    public int satisfaction = 50;
-
     public enum CustomerState
     {
         entering, browsing, queuing, atCheckout, leaving
     }
 
     [SerializeField] private CustomerState currentState;
+    [SerializeField] private int maxBrowsePoints = 5;
+    private int browsePointsRemain;
+
+    [SerializeField] private float browseTime;
+    [SerializeField] private FurnitureController currentShelfCase;
 
     [SerializeField] private GameObject shoppingBag;
 
@@ -89,6 +81,7 @@ public class CustomerController : MonoBehaviour
         }
 
         points.Clear();
+        //points.AddRange(CustomersManager.instance.GetEntryPoints());
 
         NavPoint entryPoint = new NavPoint
         {
@@ -101,6 +94,8 @@ public class CustomerController : MonoBehaviour
 
         if (points.Count > 0)
         {
+            // agent.Warp(points[0].point.position);
+            // agent.ResetPath();
             currentWaitTime = points[0].waitTime;
         }
 
@@ -111,7 +106,6 @@ public class CustomerController : MonoBehaviour
     {
         switch(currentState)
         {
-            //Entrancce
             case CustomerState.entering:
                 if (points.Count > 0)
                 {
@@ -121,6 +115,11 @@ public class CustomerController : MonoBehaviour
                     if(StoreController.instance.GetIsOpen() && StoreController.instance.shelvingCases.Count > 0)
                     {
                         currentState = CustomerState.browsing;
+                        //TODO rework system shelves / what customer want
+                        browsePointsRemain = UnityEngine.Random.Range(1, maxBrowsePoints + 1);
+                        browsePointsRemain = Mathf.Clamp(browsePointsRemain, 1, StoreController.instance.shelvingCases.Count);
+
+                        GetBrowsePoint();
                     } else
                     {
                         StartLeaving();
@@ -128,15 +127,38 @@ public class CustomerController : MonoBehaviour
                     
                 }
                 break;
-            //Take objects
             case CustomerState.browsing:
+                //TODO rework system shelves / what customer want
                 MoveToPoint();
 
                 if (points.Count == 0)
                 {
+                    if(!hasGrabbed)
+                    {
+                        GrabStock();
+                    } else
+                    {
+                        hasGrabbed = false;
+
+                        browsePointsRemain--;
+                        if(browsePointsRemain > 0)
+                        {
+                            GetBrowsePoint();
+                        } else
+                        {
+                            if(stockInBag.Count > 0)
+                            {
+                                //Checkout.instance.AddCustomerToQueue(this);
+
+                                currentState = CustomerState.queuing;
+                            } else
+                            {
+                                StartLeaving();
+                            }
+                        }
+                    }
                 }
                 break;
-            //Go to buy 
             case CustomerState.queuing:
                 transform.position = Vector3.MoveTowards(transform.position, queuePoint, moveSpeed * Time.deltaTime);
                 
@@ -149,7 +171,6 @@ public class CustomerController : MonoBehaviour
                 }
 
                 break;
-            //At Checkout 
             case CustomerState.atCheckout:
                 break;
             case CustomerState.leaving:
@@ -247,7 +268,7 @@ public class CustomerController : MonoBehaviour
         currentState = CustomerState.leaving;
 
         points.Clear();
-
+        //points.AddRange(CustomersManager.instance.GetExitPoints());
         NavPoint exitPoint = new NavPoint
         {
             point = CustomersManager.instance.allSpawnPoint[UnityEngine.Random.Range(0, CustomersManager.instance.allSpawnPoint.Count)],
@@ -257,7 +278,46 @@ public class CustomerController : MonoBehaviour
         points.Add(exitPoint);
     }
 
+    void GetBrowsePoint()
+    {
+        points.Clear();
 
+        int selectedShelf = UnityEngine.Random.Range(0, StoreController.instance.shelvingCases.Count);
+
+        points.Add(new NavPoint());
+        points[0].point = StoreController.instance.shelvingCases[selectedShelf].GetStandPoint();
+
+        points[0].waitTime = browseTime * UnityEngine.Random.Range(0.75f, 1.25f);
+
+        currentWaitTime = points[0].waitTime;
+
+        currentShelfCase = StoreController.instance.shelvingCases[selectedShelf];
+    }
+
+    public void GrabStock()
+    {
+
+        hasGrabbed = true;
+
+        int shelf = UnityEngine.Random.Range(0, currentShelfCase.shelves.Count);
+
+        StockObject stock = currentShelfCase.shelves[shelf].GetStock();
+
+        if (stock != null)
+        {
+            stock.transform.SetParent(shoppingBag.transform);
+            stockInBag.Add(stock);
+            stock.PlaceInBag();
+
+            shoppingBag.SetActive(true);
+
+            points.Clear();
+            points.Add(new NavPoint());
+            points[0].point = currentShelfCase.GetStandPoint();
+            points[0].waitTime = waitAfterGrabbing * UnityEngine.Random.Range(0.75f, 1.25f);
+            currentWaitTime = points[0].waitTime;
+        }
+    }
 
     public void GrabCheckout(StockObject obj)
     {
@@ -291,16 +351,9 @@ public class CustomerController : MonoBehaviour
     }
 }
 
-[Serializable]
-public class NavPoint
-{
-    public Transform point;
-    public float waitTime;
-}
-
-[Serializable]
-public class ShopList
-{
-    public TypeShop typeShop;
-    public List<StockType> listStockType;
-}
+// [Serializable]
+// public class NavPoint
+// {
+//     public Transform point;
+//     public float waitTime;
+// }

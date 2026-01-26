@@ -37,3 +37,11 @@ public class BuyMenuController : MonoBehaviour
         }
     }
 }
+
+public enum TypeShop
+{
+    cloth = 0,
+    videoGame = 1,
+    food = 2
+
+}

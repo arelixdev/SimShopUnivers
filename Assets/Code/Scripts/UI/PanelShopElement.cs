@@ -137,7 +137,7 @@ public class PanelShopElement : MonoBehaviour
             sel.nameShop = GetShopName();
         }
         
-        shopVolume.GetComponent<ShopZone>().SetNameShop(GetShopName());
+        //shopVolume.GetComponent<ShopZone>().SetNameShop(GetShopName());
     }
 
     void InitializePanelShop()
