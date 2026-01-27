@@ -34,6 +34,7 @@ public class UILayoutRebuildManager : MonoBehaviour
 
         foreach (var rt in queued)
         {
+            Debug.Log("RT" + rt.name);
             if (rt != null)
                 LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
         }

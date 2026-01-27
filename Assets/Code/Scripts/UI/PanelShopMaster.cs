@@ -181,7 +181,7 @@ public class PanelShopMaster : MonoBehaviour
             linePanel.SetActive(true);
 
         UILayoutRebuildManager.instance.RequestRebuild(
-            GetComponent<RectTransform>()
+            GetComponentInParent<RectTransform>()
         );
     }
 

@@ -105,6 +105,17 @@ public class CustomerController : MonoBehaviour
         }
 
         nextTrashTime = Time.time + UnityEngine.Random.Range(minTrashInterval, maxTrashInterval);
+
+        NeedsInit();
+    }
+
+    private void NeedsInit()
+    {
+        foodNeed.Init();
+        peeNeed.Init();
+        comfortNeed.Init();
+        distractionNeed.Init();
+        energyNeed.Init();
     }
 
     void Update()
@@ -163,6 +174,16 @@ public class CustomerController : MonoBehaviour
                 break;
         }
         HandleTrashSpawn();
+        NeedsUpdate();
+    }
+
+    private void NeedsUpdate()
+    {
+        foodNeed.Decrease(gameObject);
+        peeNeed.Decrease(gameObject);
+        comfortNeed.Decrease(gameObject);
+        distractionNeed.Decrease(gameObject);
+        energyNeed.Decrease(gameObject);
     }
 
     private void HandleTrashSpawn()
@@ -308,6 +329,7 @@ public class ShopList
 [System.Serializable]
 public class Need
 {
+    [SerializeField] public string valueName;
     [Range(0f, 100f)]public float sliderValue;
     [SerializeField] private float minSliderValue;
     [SerializeField] private float maxSliderValue;
@@ -316,24 +338,47 @@ public class Need
     [SerializeField] private float minDecaySpeed = 0.5f;
     [SerializeField] private float maxDecaySpeed = 2f;
 
-    [Header("Random speed ranges")]
+    [Header("Random Strength ranges")]
     [SerializeField] private float minDecayStrength = 1f;
     [SerializeField] private float maxDecayStrength  = 5f;
+
+    [Header("Limit slider value")]
+    [SerializeField] private float limitSliderValue = 20;
 
     [HideInInspector] public float decaySpeed;
     [HideInInspector] public float decayStrength;
 
+    private float currentTimer;
+    private bool verifyLimit;
+
+
     public void Init()
     {
         sliderValue = UnityEngine.Random.Range(minSliderValue,maxSliderValue);
+
         decaySpeed = UnityEngine.Random.Range(minDecaySpeed, maxDecaySpeed);
         decayStrength = UnityEngine.Random.Range(minDecayStrength, maxDecayStrength);
+
+        currentTimer = decaySpeed; 
     }
 
-    public void Decrease()
+    public void Decrease(GameObject obj)
     {
-        sliderValue -= Time.deltaTime * decaySpeed * decayStrength;
-        sliderValue = Mathf.Clamp(sliderValue, 0, 100);
+        currentTimer -= Time.deltaTime;
+
+        if (currentTimer <= 0f)
+        {
+            sliderValue -= decayStrength;
+            sliderValue = Mathf.Clamp(sliderValue, 0, 100);
+
+            currentTimer = decaySpeed; 
+        }
+
+        if(sliderValue <= limitSliderValue && !verifyLimit)
+        {
+            verifyLimit = true;
+            //Debug.Log("Value " + valueName + "need action for increase value " + obj.name);
+        }
     }
 
     public void Increase(float value)

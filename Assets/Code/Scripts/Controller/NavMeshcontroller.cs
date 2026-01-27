@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,24 +7,29 @@ public class NavMeshcontroller : MonoBehaviour
 {
     public static NavMeshcontroller instance;
 
+    [SerializeField] private List<GameObject> obstacleCloseDoor;
+
     private void Awake() {
         instance = this;
     }
 
     public void RebuildNavMesh()
     {
-        //GetComponent<NavMeshSurface>().UpdateNavMesh(GetComponent<NavMeshSurface>().navMeshData);
     }
 
     public void OpenShopUpdate()
     {
-        //GetComponent<NavMeshSurface>().useGeometry = UnityEngine.AI.NavMeshCollectGeometry.PhysicsColliders;
-        //RebuildNavMesh();
+        foreach(var obj in obstacleCloseDoor)
+        {
+            obj.SetActive(false);
+        }
     }
 
     public void CloseShopUpdate()
     {
-        //GetComponent<NavMeshSurface>().useGeometry = UnityEngine.AI.NavMeshCollectGeometry.RenderMeshes;
-        //RebuildNavMesh();
+        foreach(var obj in obstacleCloseDoor)
+        {
+            obj.SetActive(true);
+        }
     }
 }

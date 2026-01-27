@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsCheckoutStock;
     [SerializeField] private LayerMask whatIsShopName;
     [SerializeField] private LayerMask whatIsEnvironment;
+    [SerializeField] private LayerMask whatIsCustomers;
     [SerializeField] private string whatIsMopActionTag;
     [SerializeField] private string whatIsBroomActionTag;
 
@@ -318,6 +319,10 @@ public class PlayerController : MonoBehaviour
                     var door = hit.collider.GetComponent<DoorController>();
                     if (door != null)
                         door.OpenDoorFromPlayer();
+                }
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsCustomers))
+                {
+                    Debug.Log("Open UI customers");
                 }
             }
 
