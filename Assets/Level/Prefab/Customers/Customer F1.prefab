@@ -62,8 +62,6 @@ MonoBehaviour:
     minDecayStrength: 1
     maxDecayStrength: 5
     limitSliderValue: 20
-    decaySpeed: 0
-    decayStrength: 0
   peeNeed:
     valueName: Pee
     sliderValue: 0
@@ -74,8 +72,6 @@ MonoBehaviour:
     minDecayStrength: 1
     maxDecayStrength: 5
     limitSliderValue: 20
-    decaySpeed: 0
-    decayStrength: 0
   comfortNeed:
     valueName: Comfort
     sliderValue: 0
@@ -86,8 +82,6 @@ MonoBehaviour:
     minDecayStrength: 1
     maxDecayStrength: 5
     limitSliderValue: 20
-    decaySpeed: 0
-    decayStrength: 0
   energyNeed:
     valueName: Energy
     sliderValue: 0
@@ -98,8 +92,6 @@ MonoBehaviour:
     minDecayStrength: 1
     maxDecayStrength: 5
     limitSliderValue: 20
-    decaySpeed: 0
-    decayStrength: 0
   distractionNeed:
     valueName: Distraction
     sliderValue: 0
@@ -110,20 +102,16 @@ MonoBehaviour:
     minDecayStrength: 1
     maxDecayStrength: 5
     limitSliderValue: 20
-    decaySpeed: 0
-    decayStrength: 0
   satisfaction:
-    valueName: 
     sliderValue: 0
-    minSliderValue: 0
-    maxSliderValue: 0
-    minDecaySpeed: 0.5
-    maxDecaySpeed: 2
+    minSliderValue: -30
+    maxSliderValue: 30
     minDecayStrength: 1
     maxDecayStrength: 5
-    limitSliderValue: 20
-    decaySpeed: 0
-    decayStrength: 0
+    minIncreaseStrength: 1
+    maxIncreaseStrength: 5
+    limitSliderValueMin: -30
+    limitSliderValueMax: -100
   currentState: 0
   shoppingBag: {fileID: 5937213763329421275}
   waitAfterGrabbing: 0.5

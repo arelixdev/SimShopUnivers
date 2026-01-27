@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsCustomers))
                 {
-                    Debug.Log("Open UI customers");
+                    hit.collider.GetComponent<CustomerController>().satisfaction.Decrease(1);
                 }
             }
 
@@ -338,6 +338,11 @@ public class PlayerController : MonoBehaviour
 
                     heldFurniture.MakePlaceable();
 
+                }
+
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsCustomers))
+                {
+                    hit.collider.GetComponent<CustomerController>().satisfaction.Increase(1);
                 }
             }
         }

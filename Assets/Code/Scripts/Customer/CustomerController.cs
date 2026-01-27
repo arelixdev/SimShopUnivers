@@ -22,7 +22,7 @@ public class CustomerController : MonoBehaviour
     public Need energyNeed;
     public Need distractionNeed;
 
-    public Need satisfaction;
+    public Satisfy satisfaction;
 
     public enum CustomerState
     {
@@ -106,16 +106,18 @@ public class CustomerController : MonoBehaviour
 
         nextTrashTime = Time.time + UnityEngine.Random.Range(minTrashInterval, maxTrashInterval);
 
-        NeedsInit();
+        RequierementInit();
     }
 
-    private void NeedsInit()
+    private void RequierementInit()
     {
         foodNeed.Init();
         peeNeed.Init();
         comfortNeed.Init();
         distractionNeed.Init();
         energyNeed.Init();
+
+        satisfaction.Init();
     }
 
     void Update()
@@ -326,7 +328,7 @@ public class ShopList
     public List<StockType> listStockType;
 }
 
-[System.Serializable]
+[Serializable]
 public class Need
 {
     [SerializeField] public string valueName;
@@ -345,8 +347,8 @@ public class Need
     [Header("Limit slider value")]
     [SerializeField] private float limitSliderValue = 20;
 
-    [HideInInspector] public float decaySpeed;
-    [HideInInspector] public float decayStrength;
+    private float decaySpeed;
+    private float decayStrength;
 
     private float currentTimer;
     private bool verifyLimit;
@@ -388,4 +390,58 @@ public class Need
     }
 
     public float Value => sliderValue;
+}
+[Serializable]
+public class Satisfy
+{
+    [Range(-100, 100f)]public float sliderValue;
+
+    [SerializeField] private float minSliderValue;
+    [SerializeField] private float maxSliderValue;
+
+    [Header("Random Decay Strength ranges")]
+    [SerializeField] private float minDecayStrength = 1f;
+    [SerializeField] private float maxDecayStrength  = 5f;
+
+    [Header("Random Increase Strength ranges")]
+    [SerializeField] private float minIncreaseStrength = 1f;
+    [SerializeField] private float maxIncreaseStrength  = 5f;
+
+    [Header("Limit slider value ranges")]
+    [SerializeField] private float limitSliderValueMin = -30;
+    [SerializeField] private float limitSliderValueMax = -100;
+
+    private float decayStrength;
+    private float increaseStregth;
+    private float limitSliderValue;
+
+    public void Init()
+    {
+        sliderValue = UnityEngine.Random.Range(minSliderValue,maxSliderValue);
+
+        decayStrength = UnityEngine.Random.Range(minDecayStrength,maxDecayStrength);
+        increaseStregth = UnityEngine.Random.Range(minIncreaseStrength,maxIncreaseStrength);
+
+        limitSliderValue = UnityEngine.Random.Range(limitSliderValueMin,limitSliderValueMax);
+    }
+
+    public void Decrease(int multiplyValue)
+    {
+        sliderValue -= decayStrength * multiplyValue;
+
+        sliderValue = Mathf.Clamp(sliderValue, -100, 100);
+
+        if(sliderValue <= limitSliderValue)
+        {
+            Debug.Log("BACK HOME IM NOT HAPPY !");
+        }
+    }
+
+    public void Increase(int multiplyValue)
+    {
+        sliderValue += increaseStregth * multiplyValue;
+
+        sliderValue = Mathf.Clamp(sliderValue, -100, 100);
+    }
+
 }
