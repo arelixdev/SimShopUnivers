@@ -10,7 +10,7 @@ public class CustomersManager : MonoBehaviour
 
     public List<Transform> allSpawnPoint = new List<Transform>();
 
-    public List<NavPoint> entryPoints = new List<NavPoint>();
+    public List<NavPoint> randomPointClose = new List<NavPoint>();
     private float spawnCounter;
 
     private void Awake() {
@@ -39,11 +39,11 @@ public class CustomersManager : MonoBehaviour
         spawnCounter = timeBetweenCustomers * Random.Range(0.75f, 1.25f);
     }
 
-    /*public List<NavPoint> GetEntryPoints()
+    /*public List<NavPoint> GetrandomPointClose()
     {
         List<NavPoint> points = new List<NavPoint>();
 
-        points.AddRange(entryPoints);
+        points.AddRange(randomPointClose);
 
         return points;
     } */
@@ -54,7 +54,7 @@ public class CustomersManager : MonoBehaviour
 
         List<NavPoint> temp = new List<NavPoint>();
 
-        temp.AddRange(entryPoints);
+        temp.AddRange(randomPointClose);
 
         for (int i = temp.Count - 1; i >= 0 ; i--)
         {

@@ -26566,7 +26566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493038, guid: dab5db0c0226560499e1021898aafb64, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 493038, guid: dab5db0c0226560499e1021898aafb64, type: 3}
       propertyPath: m_LocalPosition.y
@@ -40136,7 +40136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 189902249}
   - component: {fileID: 189902250}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81685,7 +81685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 406529227}
   - component: {fileID: 406529228}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119017,7 +119017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 600329319}
   - component: {fileID: 600329320}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134390,7 +134390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 678053370}
   - component: {fileID: 678053371}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147624,6 +147624,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 600524462}
     - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
+      propertyPath: randomPointClose.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
       propertyPath: entryPoints.Array.data[0].point
       value: 
       objectReference: {fileID: 1780941664}
@@ -147653,6 +147657,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
       propertyPath: entryPoints.Array.data[3].waitTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
+      propertyPath: randomPointClose.Array.data[0].point
+      value: 
+      objectReference: {fileID: 1780941664}
+    - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
+      propertyPath: randomPointClose.Array.data[1].point
+      value: 
+      objectReference: {fileID: 558030165}
+    - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
+      propertyPath: randomPointClose.Array.data[2].point
+      value: 
+      objectReference: {fileID: 1068807862}
+    - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
+      propertyPath: randomPointClose.Array.data[3].point
+      value: 
+      objectReference: {fileID: 1992604639}
+    - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
+      propertyPath: randomPointClose.Array.data[0].waitTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
+      propertyPath: randomPointClose.Array.data[1].waitTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
+      propertyPath: randomPointClose.Array.data[2].waitTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921018417633284660, guid: 2a67636c4d740e34f9bf6399be3ae81f, type: 3}
+      propertyPath: randomPointClose.Array.data[3].waitTime
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -152430,7 +152466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 777032114}
   - component: {fileID: 777032115}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256354,7 +256390,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 1040383
+    m_Bits: 1040367
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -269313,7 +269349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1335509858}
   - component: {fileID: 1335509859}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340625,6 +340661,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterWallIntMall (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5322659904964942600, guid: 33ef59dfc71a54e4bbb8e69570b18a26, type: 3}
+      propertyPath: m_Carve
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -387604,7 +387644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1925160757}
   - component: {fileID: 1925160758}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

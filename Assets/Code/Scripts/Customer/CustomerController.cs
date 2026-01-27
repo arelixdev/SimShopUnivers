@@ -90,13 +90,13 @@ public class CustomerController : MonoBehaviour
 
         points.Clear();
 
-        NavPoint entryPoint = new NavPoint
+        NavPoint randomPointClose = new NavPoint
         {
-            point = CustomersManager.instance.entryPoints[UnityEngine.Random.Range(0, CustomersManager.instance.entryPoints.Count)].point,
+            point = CustomersManager.instance.randomPointClose[UnityEngine.Random.Range(0, CustomersManager.instance.randomPointClose.Count)].point,
             waitTime = 1.5f
         };
 
-        points.Add(entryPoint);
+        points.Add(randomPointClose);
         
 
         if (points.Count > 0)

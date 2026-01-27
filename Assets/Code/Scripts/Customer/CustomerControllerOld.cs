@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -357,3 +357,4 @@ public class CustomerControllerOld : MonoBehaviour
 //     public Transform point;
 //     public float waitTime;
 // }
+*/
