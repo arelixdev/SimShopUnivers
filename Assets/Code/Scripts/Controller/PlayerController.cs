@@ -455,8 +455,6 @@ public class PlayerController : MonoBehaviour
 
                     heldFurniture.PlaceFurniture();
 
-                    NavMeshcontroller.instance.RebuildNavMesh();
-
                     heldFurniture = null;
                 }
             }
