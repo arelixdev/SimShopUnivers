@@ -26,10 +26,10 @@ public class CustomerController : MonoBehaviour
 
     public enum CustomerState
     {
-        entering, browsing, queuing, atCheckout, leaving
+        entering, browsing, need, queuing, atCheckout, leaving
     }
 
-    [SerializeField] private CustomerState currentState;
+    [SerializeField] public CustomerState currentState;
 
     [SerializeField] private GameObject shoppingBag;
 
@@ -42,6 +42,13 @@ public class CustomerController : MonoBehaviour
     [SerializeField] private float maxTrashInterval = 15f;
 
     [SerializeField] private float trashSpawnChance = 0.3f; 
+
+    public List<NeedType> needList;
+
+    private NeedType currentNeed;
+    private bool isSolvingNeed;
+
+    private NeedInteractionPoint currentInteractionPoint;
 
     private float nextTrashTime = 0f;
 
@@ -111,17 +118,23 @@ public class CustomerController : MonoBehaviour
 
     private void RequierementInit()
     {
-        foodNeed.Init();
-        peeNeed.Init();
-        comfortNeed.Init();
-        distractionNeed.Init();
-        energyNeed.Init();
+        foodNeed.Init(this);
+        peeNeed.Init(this);
+        comfortNeed.Init(this);
+        distractionNeed.Init(this);
+        energyNeed.Init(this);
 
         satisfaction.Init();
     }
 
     void Update()
     {
+        if (!isSolvingNeed && needList.Count > 0)
+        {
+            StartSolvingNeed();
+        }
+
+
         switch(currentState)
         {
             //Entrancce
@@ -148,6 +161,10 @@ public class CustomerController : MonoBehaviour
                 if (points.Count == 0)
                 {
                 }
+                break;
+            //Go make what u need 
+            case CustomerState.need:
+                    MoveToPoint();
                 break;
             //Go to buy 
             case CustomerState.queuing:
@@ -177,6 +194,73 @@ public class CustomerController : MonoBehaviour
         }
         HandleTrashSpawn();
         NeedsUpdate();
+    }
+
+    private void StartSolvingNeed()
+    {
+        if (needList.Count == 0) return;
+
+        isSolvingNeed = true;
+        currentState = CustomerState.need;
+
+        // TODO make random between 3 first
+        currentNeed = needList[0];
+
+        currentInteractionPoint = FindClosestSatisfyPoint(currentNeed);
+
+        if (currentInteractionPoint == null)
+        {
+            needList.RemoveAt(0);
+            isSolvingNeed = false;
+            StartSolvingNeed(); 
+            return;
+        }
+
+        points.Clear();
+        points.Add(new NavPoint
+        {
+            point = currentInteractionPoint.standPoint,
+            waitTime = 1f
+        });
+
+        currentWaitTime = points[0].waitTime;
+
+        agent.ResetPath();
+        agent.SetDestination(points[0].point.position);
+    }
+    private Need GetNeed(NeedType type)
+    {
+        return type switch
+        {
+            NeedType.Food => foodNeed,
+            NeedType.Pee => peeNeed,
+            NeedType.Comfort => comfortNeed,
+            NeedType.Energy => energyNeed,
+            NeedType.Distraction => distractionNeed,
+            _ => null
+        };
+    }
+
+    private NeedInteractionPoint FindClosestSatisfyPoint(NeedType need)
+    {
+        NeedInteractionPoint[] points = FindObjectsByType<NeedInteractionPoint>(FindObjectsSortMode.None);
+
+        float minDist = float.MaxValue;
+        NeedInteractionPoint closest = null;
+
+        foreach (var p in points)
+        {
+            if (p.needType != need) continue;
+
+            float d = Vector3.Distance(transform.position, p.transform.position);
+            if (d < minDist)
+            {
+                minDist = d;
+                closest = p;
+            }
+        }
+
+        return closest;
     }
 
     private void NeedsUpdate()
@@ -252,16 +336,49 @@ public class CustomerController : MonoBehaviour
 
     public void StartNextPoint()
     {
-        if (points.Count > 0) points.RemoveAt(0);
+        if (points.Count > 0)
+            points.RemoveAt(0);
 
         if (points.Count > 0)
         {
             currentWaitTime = points[0].waitTime;
             agent.isStopped = false;
         }
-        else if (currentState == CustomerState.leaving)
+        else
         {
-            Destroy(gameObject);
+            if (currentState == CustomerState.need)
+            {
+                ResolveNeed();
+            }
+            else if (currentState == CustomerState.leaving)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void ResolveNeed()
+    {
+        Need need = GetNeed(currentNeed);
+        if (need != null && currentInteractionPoint != null)
+        {
+            need.Increase(currentInteractionPoint.needAmountValue);
+        }
+
+        // Supprimer le need traité de la liste
+        needList.Remove(currentNeed);
+
+        currentInteractionPoint = null;
+        isSolvingNeed = false;
+
+        // S'il reste des besoins -> on passe au suivant
+        if (needList.Count > 0)
+        {
+            StartSolvingNeed();
+        }
+        else
+        {
+            currentState = CustomerState.browsing;
         }
     }
 
@@ -328,10 +445,20 @@ public class ShopList
     public List<StockType> listStockType;
 }
 
+public enum NeedType
+{
+    Food,
+    Pee,
+    Comfort,
+    Energy,
+    Distraction
+}
+
 [Serializable]
 public class Need
 {
-    [SerializeField] public string valueName;
+    [SerializeField] private NeedType needType;
+    [SerializeField] private string valueName;
     [Range(0f, 100f)]public float sliderValue;
     [SerializeField] private float minSliderValue;
     [SerializeField] private float maxSliderValue;
@@ -347,15 +474,21 @@ public class Need
     [Header("Limit slider value")]
     [SerializeField] private float limitSliderValue = 20;
 
+    
+
     private float decaySpeed;
     private float decayStrength;
 
     private float currentTimer;
     private bool verifyLimit;
 
+    private CustomerController owner;
 
-    public void Init()
+
+    public void Init(CustomerController customer)
     {
+        owner = customer;
+
         sliderValue = UnityEngine.Random.Range(minSliderValue,maxSliderValue);
 
         decaySpeed = UnityEngine.Random.Range(minDecaySpeed, maxDecaySpeed);
@@ -381,6 +514,11 @@ public class Need
             verifyLimit = true;
             //TODO add need in list and do action to do list every time take random range between 2 resource to make diff 
             //Debug.Log("Value " + valueName + "need action for increase value " + obj.name);
+            if (!owner.needList.Contains(needType))
+            {
+                owner.needList.Add(needType);
+                owner.currentState = CustomerController.CustomerState.need;
+            }
         }
     }
 
@@ -388,6 +526,24 @@ public class Need
     {
         sliderValue += value;
         sliderValue = Mathf.Clamp(sliderValue, 0, 100);
+
+        if (sliderValue <= limitSliderValue)
+        {
+            if (owner.needList.Contains(needType))
+            {
+                owner.needList.Remove(needType);
+                owner.needList.Add(needType);
+            }
+        }
+        else
+        {
+            verifyLimit = false;
+
+            if (owner.needList.Contains(needType))
+            {
+                owner.needList.Remove(needType);
+            }
+        }
     }
 
     public float Value => sliderValue;

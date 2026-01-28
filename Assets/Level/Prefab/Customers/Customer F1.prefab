@@ -53,6 +53,7 @@ MonoBehaviour:
   animator: {fileID: 8258152130668783541}
   shopList: []
   foodNeed:
+    needType: 0
     valueName: Food
     sliderValue: 0
     minSliderValue: 80
@@ -63,6 +64,7 @@ MonoBehaviour:
     maxDecayStrength: 5
     limitSliderValue: 20
   peeNeed:
+    needType: 1
     valueName: Pee
     sliderValue: 0
     minSliderValue: 80
@@ -73,6 +75,7 @@ MonoBehaviour:
     maxDecayStrength: 5
     limitSliderValue: 20
   comfortNeed:
+    needType: 2
     valueName: Comfort
     sliderValue: 0
     minSliderValue: 80
@@ -83,6 +86,7 @@ MonoBehaviour:
     maxDecayStrength: 5
     limitSliderValue: 20
   energyNeed:
+    needType: 3
     valueName: Energy
     sliderValue: 0
     minSliderValue: 80
@@ -93,6 +97,7 @@ MonoBehaviour:
     maxDecayStrength: 5
     limitSliderValue: 20
   distractionNeed:
+    needType: 4
     valueName: Distraction
     sliderValue: 0
     minSliderValue: 80
@@ -119,6 +124,7 @@ MonoBehaviour:
   minTrashInterval: 8
   maxTrashInterval: 15
   trashSpawnChance: 0.05
+  needList: 
 --- !u!195 &-4671994133124710119
 NavMeshAgent:
   m_ObjectHideFlags: 0

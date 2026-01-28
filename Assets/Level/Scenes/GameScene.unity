@@ -127790,6 +127790,7 @@ GameObject:
   - component: {fileID: 649189322}
   - component: {fileID: 649189321}
   - component: {fileID: 649189320}
+  - component: {fileID: 649189325}
   m_Layer: 0
   m_Name: EnergyDeliveryTest
   m_TagString: Untagged
@@ -127904,6 +127905,21 @@ Transform:
   - {fileID: 1635709997}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649189325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649189319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad628d5a57072745bc9d5c8bdbfc47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needType: 0
+  standPoint: {fileID: 1044396665}
+  needAmountValue: 50
 --- !u!1001 &649301595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235263,6 +235279,7 @@ GameObject:
   - component: {fileID: 1181757189}
   - component: {fileID: 1181757188}
   - component: {fileID: 1181757187}
+  - component: {fileID: 1181757192}
   m_Layer: 0
   m_Name: DistractionDeliveryTest
   m_TagString: Untagged
@@ -235377,6 +235394,21 @@ Transform:
   - {fileID: 612328409}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1181757192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181757186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad628d5a57072745bc9d5c8bdbfc47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needType: 4
+  standPoint: {fileID: 2144568386}
+  needAmountValue: 50
 --- !u!1001 &1181837227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270375,6 +270407,7 @@ GameObject:
   - component: {fileID: 1337161385}
   - component: {fileID: 1337161384}
   - component: {fileID: 1337161383}
+  - component: {fileID: 1337161388}
   m_Layer: 0
   m_Name: FoodDeliveryTest
   m_TagString: Untagged
@@ -270489,6 +270522,21 @@ Transform:
   - {fileID: 396577976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337161388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337161382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad628d5a57072745bc9d5c8bdbfc47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needType: 0
+  standPoint: {fileID: 2005347114}
+  needAmountValue: 50
 --- !u!1001 &1337171544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315133,6 +315181,7 @@ GameObject:
   - component: {fileID: 1552976655}
   - component: {fileID: 1552976654}
   - component: {fileID: 1552976653}
+  - component: {fileID: 1552976658}
   m_Layer: 0
   m_Name: PeeDeliveryTest
   m_TagString: Untagged
@@ -315247,6 +315296,21 @@ Transform:
   - {fileID: 328104268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552976658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552976652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad628d5a57072745bc9d5c8bdbfc47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needType: 1
+  standPoint: {fileID: 1266455175}
+  needAmountValue: 50
 --- !u!1 &1553816348
 GameObject:
   m_ObjectHideFlags: 0
@@ -317414,6 +317478,7 @@ GameObject:
   - component: {fileID: 1565671552}
   - component: {fileID: 1565671551}
   - component: {fileID: 1565671550}
+  - component: {fileID: 1565671555}
   m_Layer: 0
   m_Name: ComfortDeliveryTest
   m_TagString: Untagged
@@ -317528,6 +317593,21 @@ Transform:
   - {fileID: 1970650112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1565671555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565671549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad628d5a57072745bc9d5c8bdbfc47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needType: 2
+  standPoint: {fileID: 1664937706}
+  needAmountValue: 50
 --- !u!1001 &1566189641
 PrefabInstance:
   m_ObjectHideFlags: 0
