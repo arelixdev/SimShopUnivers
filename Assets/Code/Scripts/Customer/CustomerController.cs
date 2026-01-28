@@ -131,13 +131,13 @@ public class CustomerController : MonoBehaviour
                     MoveToPoint();
                 } else
                 {
-                    if(StoreController.instance.GetIsOpen() && StoreController.instance.shelvingCases.Count > 0)
+                    /*if(StoreController.instance.GetIsOpen() && StoreController.instance.shelvingCases.Count > 0)
                     {
                         currentState = CustomerState.browsing;
                     } else
                     {
                         StartLeaving();
-                    }
+                    }*/
                     
                 }
                 break;
@@ -379,6 +379,7 @@ public class Need
         if(sliderValue <= limitSliderValue && !verifyLimit)
         {
             verifyLimit = true;
+            //TODO add need in list and do action to do list every time take random range between 2 resource to make diff 
             //Debug.Log("Value " + valueName + "need action for increase value " + obj.name);
         }
     }
