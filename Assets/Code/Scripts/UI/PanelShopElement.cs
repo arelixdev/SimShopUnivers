@@ -118,7 +118,22 @@ public class PanelShopElement : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(InitializeAfterLayout());
+        //InitializePanelShop();
+    }
+
+    IEnumerator InitializeAfterLayout()
+    {
+        // laisser Unity calculer le layout initial
+        yield return null;
+        yield return new WaitForEndOfFrame();
+
         InitializePanelShop();
+
+        // rebuild du PARENT, pas du panel
+        UILayoutRebuildManager.instance.RequestRebuild(
+            transform.parent as RectTransform
+        );
     }
 
     void Update()

@@ -8,7 +8,7 @@ public class UILayoutRebuildManager : MonoBehaviour
     public static UILayoutRebuildManager instance;
 
     private HashSet<RectTransform> queued = new();
-    private bool coroutineRunning;
+    private bool running;
 
     private void Awake()
     {
@@ -21,26 +21,29 @@ public class UILayoutRebuildManager : MonoBehaviour
 
         queued.Add(target);
 
-        if (!coroutineRunning)
-            StartCoroutine(RebuildEndOfFrame());
+        if (!running)
+            StartCoroutine(RebuildRoutine());
     }
 
-    private IEnumerator RebuildEndOfFrame()
+    private IEnumerator RebuildRoutine()
     {
-        coroutineRunning = true;
+        running = true;
 
-        yield return new WaitForEndOfFrame();
-        Canvas.ForceUpdateCanvases();
+        // FRAME 1 : on marque
+        yield return null;
 
         foreach (var rt in queued)
         {
-            Debug.Log("RT" + rt.name);
             if (rt != null)
-                LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
+                LayoutRebuilder.MarkLayoutForRebuild(rt);
         }
 
+        // FRAME 2 : Unity calcule vraiment
+        yield return new WaitForEndOfFrame();
+        Canvas.ForceUpdateCanvases();
+
         queued.Clear();
-        coroutineRunning = false;
+        running = false;
     }
 
 }
