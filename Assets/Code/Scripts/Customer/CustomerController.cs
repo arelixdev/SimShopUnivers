@@ -218,9 +218,6 @@ public class CustomerController : MonoBehaviour
                 }
                 break;
         }
-
-        
-        
     }
 
     private void StartSolvingNeed()
