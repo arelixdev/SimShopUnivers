@@ -259,7 +259,9 @@ public class CustomerController : MonoBehaviour
         }
 
         isSolvingNeed = false;
-        currentState = CustomerState.leaving;
+        
+        //TODO change to go back to activity 
+        StartLeaving();
 
         
 
