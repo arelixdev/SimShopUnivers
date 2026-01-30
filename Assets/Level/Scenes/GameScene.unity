@@ -73786,15 +73786,15 @@ PrefabInstance:
       objectReference: {fileID: 653381930}
     - target: {fileID: 1551062909874954809, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1551062909874954809, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1551062909874954809, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1708173852461536627, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_SizeDelta.x
@@ -73886,15 +73886,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3703055379969658945, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3703055379969658945, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3703055379969658945, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3992597670418921783, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -261528,14 +261528,30 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 636b03b0a6ee09b41a21998d31b1b92c, type: 2}
     - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
       propertyPath: elementInShop.Array.size
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
       propertyPath: elementInShop.Array.data[1].typeShop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: elementInShop.Array.data[2].typeShop
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: elementInShop.Array.data[3].typeShop
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: elementInShop.Array.data[4].typeShop
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
       propertyPath: elementInShop.Array.data[1].elementInShop.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: elementInShop.Array.data[2].elementInShop.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
@@ -261548,6 +261564,18 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
     - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
       propertyPath: 'elementInShop.Array.data[1].elementInShop.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9cf2c4215d35da143a791068fd9b22d4, type: 2}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'elementInShop.Array.data[2].elementInShop.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f4ed974013dd6499ffdc62ebf7ec3b, type: 2}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'elementInShop.Array.data[2].elementInShop.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d63e3341df0328147a319c5a46f927ca, type: 2}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'elementInShop.Array.data[2].elementInShop.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 9cf2c4215d35da143a791068fd9b22d4, type: 2}
     - target: {fileID: 1171485029679065021, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}

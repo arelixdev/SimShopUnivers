@@ -126,27 +126,53 @@ public class CustomerController : MonoBehaviour
         TypeShop[] sl = (TypeShop[])Enum.GetValues(typeof(TypeShop));
         TypeShop selectRandomType = (TypeShop)UnityEngine.Random.Range(0, sl.Length);
 
-        foreach(var elem in StockInfoController.instance.elementInShop)
-        {
-            if(elem.typeShop == selectRandomType)
-            {
-                Debug.Log("elem number " + elem.elementInShop.Count + " type " + elem.typeShop);
-            }
-        }
-
-        ShopList newShopList = new ShopList
-        {
-            typeShop = selectRandomType,
-            
-            listStockType = new()
-        };
-
-        shopList.Add(newShopList);
+        GenerateShopList(selectRandomType);
 
         // for (int i = 0; i < numberShop; i++)
         // {
             
         // }
+    }
+
+    private void GenerateShopList(TypeShop selectRandomType)
+    {
+        ShopList newShopList = new ShopList
+        {
+            typeShop = selectRandomType,
+            listStockType = new List<StockInfoSO>()
+        };
+
+        List<StockInfoSO> availableStocks = new List<StockInfoSO>();
+
+        foreach (var elem in StockInfoController.instance.elementInShop)
+        {
+            if (elem.typeShop == selectRandomType && elem.elementInShop.Count > 0)
+            {
+                availableStocks.AddRange(elem.elementInShop);
+            }
+        }
+
+        if (availableStocks.Count == 0)
+        {
+            Debug.LogWarning("Aucun stock disponible pour le shop : " + selectRandomType);
+            shopList.Add(newShopList);
+            return;
+        }
+
+        int realNumberShop = Mathf.Min(numberShop, availableStocks.Count);
+
+        for (int i = 0; i < realNumberShop; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, availableStocks.Count);
+
+            StockInfoSO selectedStock = availableStocks[randomIndex];
+
+            newShopList.listStockType.Add(selectedStock);
+
+            availableStocks.RemoveAt(randomIndex);
+        }
+
+        shopList.Add(newShopList);
     }
 
     private void RequierementInit()
