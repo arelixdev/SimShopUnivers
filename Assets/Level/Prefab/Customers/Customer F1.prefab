@@ -52,6 +52,8 @@ MonoBehaviour:
   moveSpeed: 3
   animator: {fileID: 8258152130668783541}
   shopList: []
+  numberShopMin: 1
+  numberShopMax: 4
   foodNeed:
     needType: 0
     valueName: Food

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NUnit.Framework.Interfaces;
 using UnityEngine;
@@ -6,10 +7,13 @@ public class StockInfoController : MonoBehaviour
 {
     public static StockInfoController instance;
     [SerializeField] private List<StockInfoSO> produceInfo;
+    [SerializeField] private List<ListElementInShop> elementInShop;
 
     public List<ElementSO> allDoors = new List<ElementSO>();
 
     private List<StockInfoSO> allStock = new List<StockInfoSO>();
+
+
     private void Awake()
     {
         instance = this;
@@ -67,4 +71,11 @@ public class StockInfoController : MonoBehaviour
             }
         }
     }
+}
+
+[Serializable]
+public class ListElementInShop
+{
+    public TypeShop typeShop;
+    public List<StockInfoSO> elementInShop = new();
 }

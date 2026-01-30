@@ -121,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c68dcceb5993d43a9a1aeabab8f7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftDoor: {fileID: 4703892035906306}
+  rightDoor: {fileID: 0}
   openAngle: -110
   animationDuration: 0.8
-  openTime: 2
+  customerLayerName: Customers
+  playerOpenTime: 2

@@ -15,6 +15,11 @@ public class CustomerController : MonoBehaviour
     [SerializeField]
     public List<ShopList> shopList;
 
+    private int numberShop;
+
+    [SerializeField] private int numberShopMin = 1;
+    [SerializeField] private int numberShopMax = 3;
+
     [Header("Requirements")]
     public Need foodNeed;
     public Need peeNeed;
@@ -116,6 +121,20 @@ public class CustomerController : MonoBehaviour
         nextTrashTime = Time.time + UnityEngine.Random.Range(minTrashInterval, maxTrashInterval);
 
         RequierementInit();
+
+        numberShop = UnityEngine.Random.Range(numberShopMin, numberShopMax);
+        TypeShop[] sl = (TypeShop[])Enum.GetValues(typeof(TypeShop));
+
+        for (int i = 0; i < numberShop; i++)
+        {
+            ShopList newShopList = new ShopList
+            {
+                typeShop = (TypeShop)UnityEngine.Random.Range(0, sl.Length),
+                listStockType = new()
+            };
+
+            shopList.Add(newShopList);
+        }
     }
 
     private void RequierementInit()
@@ -135,11 +154,11 @@ public class CustomerController : MonoBehaviour
         
         if(!leave)
         {
-            if (!isSolvingNeed && needList.Count > 0)
+            /*if (!isSolvingNeed && needList.Count > 0)
             {
                 StartSolvingNeed();
             }
-            NeedsUpdate();
+            NeedsUpdate();*/
         }
         
 
@@ -260,10 +279,8 @@ public class CustomerController : MonoBehaviour
 
         isSolvingNeed = false;
         
-        //TODO change to go back to activity 
+        //TODO change to go back to activity currentState => "Last state"
         StartLeaving();
-
-        
 
         Debug.Log($"{name} est mécontent (tous les points sont occupés)");
     }
@@ -488,7 +505,7 @@ public class NavPoint
 public class ShopList
 {
     public TypeShop typeShop;
-    public List<StockType> listStockType;
+    public List<StockInfoSO> listStockType;
 }
 
 public enum NeedType

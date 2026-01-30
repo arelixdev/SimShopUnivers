@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 507d0dc1afe27a94d9540248c21637bc, type: 3}
-  m_Name: Boite Cereal
+  m_Name: BoxCereal
   m_EditorClassIdentifier: 
   name: Boite Cereal
   typeOfStock: 0
