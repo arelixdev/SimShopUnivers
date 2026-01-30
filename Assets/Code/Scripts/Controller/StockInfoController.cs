@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework.Interfaces;
 using UnityEngine;
 
 public class StockInfoController : MonoBehaviour
 {
     public static StockInfoController instance;
     [SerializeField] private List<StockInfoSO> produceInfo;
-    [SerializeField] private List<ListElementInShop> elementInShop;
+    public List<ListElementInShop> elementInShop;
 
     public List<ElementSO> allDoors = new List<ElementSO>();
 

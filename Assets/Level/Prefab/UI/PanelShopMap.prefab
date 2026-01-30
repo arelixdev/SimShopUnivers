@@ -2718,6 +2718,7 @@ MonoBehaviour:
   customBtn: {fileID: 6554673028491077254}
   customLineBuyElement: {fileID: 3254962300514864978}
   shopTypeElement: {fileID: 5317468166025491304}
+  shopTypeDropdown: {fileID: 8943922411072954748}
   addElementPart: {fileID: 4795680488771236856}
   sellBtn: {fileID: 6824471083178703382}
   shopHeight: 3

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ public class PanelShopElement : MonoBehaviour
     [SerializeField] private Image customBtn;
     [SerializeField] private GameObject customLineBuyElement;
     [SerializeField] private GameObject shopTypeElement;
+    [SerializeField] private TMP_Dropdown shopTypeDropdown;
     [SerializeField] private GameObject addElementPart;
     [SerializeField] private GameObject sellBtn;
     private GameObject shopVolume;
@@ -104,8 +106,6 @@ public class PanelShopElement : MonoBehaviour
         {
             PanelShopMaster.instance.createdWalls.Remove(key);
         }
-
-
 
         groundElementShop.Clear();
         allWallShop.Clear();
@@ -320,6 +320,27 @@ public class PanelShopElement : MonoBehaviour
 
         PanelShopMaster.instance.ClearSelection();
         ToogleCustom();
+    }
+
+    public TypeShop listTypeShop;
+
+    public void ActualizeDd()
+    {
+        ActualizeDropdown(shopTypeDropdown, listTypeShop);
+    }
+
+    public void ActualizeDropdown(TMP_Dropdown dropdown, Enum targetEnum)
+    {
+         Type enumType = targetEnum.GetType();
+         List<TMP_Dropdown.OptionData> newOptions = new();
+         
+         for (int i = 0; i < Enum.GetNames(enumType).Length; i++)
+         {
+            newOptions.Add(new TMP_Dropdown.OptionData(Enum.GetName(enumType, i)));
+         }
+
+         dropdown.ClearOptions();
+         dropdown.AddOptions(newOptions);
     }
 
     void CreateShopVolume()

@@ -8,6 +8,7 @@ public class PanelShopMaster : MonoBehaviour
     public static PanelShopMaster instance;
 
     public List<ShopElementDefinition> elementDatabase = new List<ShopElementDefinition>();
+    public List<ShopCreated> listShopCreated = new();
     public Transform mapMenuPanel;
     public Transform planParent;
     [SerializeField] private GameObject wallPrefab;
@@ -176,6 +177,15 @@ public class PanelShopMaster : MonoBehaviour
         newElement.transform.SetSiblingIndex(transform.childCount - 3);
 
         ChangePanelSelected(newElement);
+
+        newElement.GetComponent<PanelShopElement>().ActualizeDd();
+
+        ShopCreated newShop = new ShopCreated
+        {
+            
+        };
+
+        listShopCreated.Add(newShop);
 
         if (!linePanel.activeSelf)
             linePanel.SetActive(true);
@@ -567,4 +577,12 @@ public class ShopElementDefinition
 {
     public string id;                      // ex: "door", "table"
     public ShopPlaceableElement prefab;    // le prefab contenant ton script
+}
+
+[System.Serializable]
+public class ShopCreated
+{
+    public string shopName;
+    public TypeShop shopType;
+
 }

@@ -40,8 +40,11 @@ public class BuyMenuController : MonoBehaviour
 
 public enum TypeShop
 {
-    cloth = 0,
-    videoGame = 1,
-    food = 2
+    Cloth = 0,
+    VideoGame = 1,
+    Food = 2,
+    Sport=3,
+    Arcade = 4,
+
 
 }

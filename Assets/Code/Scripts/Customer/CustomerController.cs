@@ -124,17 +124,29 @@ public class CustomerController : MonoBehaviour
 
         numberShop = UnityEngine.Random.Range(numberShopMin, numberShopMax);
         TypeShop[] sl = (TypeShop[])Enum.GetValues(typeof(TypeShop));
+        TypeShop selectRandomType = (TypeShop)UnityEngine.Random.Range(0, sl.Length);
 
-        for (int i = 0; i < numberShop; i++)
+        foreach(var elem in StockInfoController.instance.elementInShop)
         {
-            ShopList newShopList = new ShopList
+            if(elem.typeShop == selectRandomType)
             {
-                typeShop = (TypeShop)UnityEngine.Random.Range(0, sl.Length),
-                listStockType = new()
-            };
-
-            shopList.Add(newShopList);
+                Debug.Log("elem number " + elem.elementInShop.Count + " type " + elem.typeShop);
+            }
         }
+
+        ShopList newShopList = new ShopList
+        {
+            typeShop = selectRandomType,
+            
+            listStockType = new()
+        };
+
+        shopList.Add(newShopList);
+
+        // for (int i = 0; i < numberShop; i++)
+        // {
+            
+        // }
     }
 
     private void RequierementInit()
