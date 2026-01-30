@@ -67,6 +67,8 @@ public class CustomerController : MonoBehaviour
 
     private bool payWithCard;
 
+    private bool leave;
+
     public List<StockObject> GetStockInBag()
     {
         return stockInBag;
@@ -124,16 +126,22 @@ public class CustomerController : MonoBehaviour
         distractionNeed.Init(this);
         energyNeed.Init(this);
 
-        satisfaction.Init();
+        satisfaction.Init(this);
     }
 
     void Update()
     {
-        if (!isSolvingNeed && needList.Count > 0)
+        HandleTrashSpawn();
+        
+        if(!leave)
         {
-            StartSolvingNeed();
+            if (!isSolvingNeed && needList.Count > 0)
+            {
+                StartSolvingNeed();
+            }
+            NeedsUpdate();
         }
-
+        
 
         switch(currentState)
         {
@@ -151,13 +159,11 @@ public class CustomerController : MonoBehaviour
                     {
                         StartLeaving();
                     }*/
-                    
                 }
                 break;
             //Take objects
             case CustomerState.browsing:
                 MoveToPoint();
-
                 if (points.Count == 0)
                 {
                 }
@@ -165,6 +171,7 @@ public class CustomerController : MonoBehaviour
             //Go make what u need 
             case CustomerState.need:
                     MoveToPoint();
+                    
                 break;
             //Go to buy 
             case CustomerState.queuing:
@@ -192,41 +199,71 @@ public class CustomerController : MonoBehaviour
                 }
                 break;
         }
-        HandleTrashSpawn();
-        NeedsUpdate();
+
+        
+        
     }
 
     private void StartSolvingNeed()
     {
-        if (needList.Count == 0) return;
-
-        isSolvingNeed = true;
-        currentState = CustomerState.need;
-
-        // TODO make random between 3 first
-        currentNeed = needList[0];
-
-        currentInteractionPoint = FindClosestSatisfyPoint(currentNeed);
-
-        if (currentInteractionPoint == null)
+        if (needList.Count == 0)
         {
-            needList.RemoveAt(0);
-            isSolvingNeed = false;
-            StartSolvingNeed(); 
+            Debug.Log($"{name} est mécontent (aucun besoin)");
             return;
         }
 
-        points.Clear();
-        points.Add(new NavPoint
+        currentState = CustomerState.need;
+        isSolvingNeed = true;
+
+        int attempts = needList.Count;
+
+        while (attempts > 0)
         {
-            point = currentInteractionPoint.standPoint,
-            waitTime = 1f
-        });
+            currentNeed = needList[0];
 
-        currentWaitTime = points[0].waitTime;
+            currentInteractionPoint = FindClosestSatisfyPoint(currentNeed);
 
-        agent.ResetPath();
-        agent.SetDestination(points[0].point.position);
+            if (currentInteractionPoint != null)
+            {
+                currentInteractionPoint.ChangeOccupation(true);
+
+                points.Clear();
+                points.Add(new NavPoint
+                {
+                    point = currentInteractionPoint.standPoint,
+                    waitTime = 1f
+                });
+
+                currentWaitTime = points[0].waitTime;
+
+                agent.ResetPath();
+                agent.SetDestination(points[0].point.position);
+
+                return; 
+            }
+
+            needList.RemoveAt(0);
+            needList.Add(currentNeed);
+
+            attempts--;
+        }
+
+        if(needList.Count > 0 && isSolvingNeed)
+        {
+            NeedType stock = needList[0];
+
+            needList.RemoveAt(0);
+            needList.Add(stock);
+
+            satisfaction.Decrease(1);
+        }
+
+        isSolvingNeed = false;
+        currentState = CustomerState.leaving;
+
+        
+
+        Debug.Log($"{name} est mécontent (tous les points sont occupés)");
     }
     private Need GetNeed(NeedType type)
     {
@@ -245,12 +282,14 @@ public class CustomerController : MonoBehaviour
     {
         NeedInteractionPoint[] points = FindObjectsByType<NeedInteractionPoint>(FindObjectsSortMode.None);
 
+
         float minDist = float.MaxValue;
         NeedInteractionPoint closest = null;
 
         foreach (var p in points)
         {
             if (p.needType != need) continue;
+            if (p.isOccuped) continue;
 
             float d = Vector3.Distance(transform.position, p.transform.position);
             if (d < minDist)
@@ -368,6 +407,9 @@ public class CustomerController : MonoBehaviour
         // Supprimer le need traité de la liste
         needList.Remove(currentNeed);
 
+
+        currentInteractionPoint.ChangeOccupation(false);
+
         currentInteractionPoint = null;
         isSolvingNeed = false;
 
@@ -385,6 +427,8 @@ public class CustomerController : MonoBehaviour
     public void StartLeaving()
     {
         currentState = CustomerState.leaving;
+
+        leave = true;
 
         points.Clear();
 
@@ -571,9 +615,12 @@ public class Satisfy
     private float decayStrength;
     private float increaseStregth;
     private float limitSliderValue;
+    private CustomerController owner;
 
-    public void Init()
+    public void Init(CustomerController customer)
     {
+        owner = customer;
+
         sliderValue = UnityEngine.Random.Range(minSliderValue,maxSliderValue);
 
         decayStrength = UnityEngine.Random.Range(minDecayStrength,maxDecayStrength);
@@ -590,7 +637,8 @@ public class Satisfy
 
         if(sliderValue <= limitSliderValue)
         {
-            Debug.Log("BACK HOME IM NOT HAPPY !");
+            Debug.Log("BACK HOME IM NOT HAPPY !" + owner.name);
+            owner.StartLeaving();
         }
     }
 
@@ -600,5 +648,5 @@ public class Satisfy
 
         sliderValue = Mathf.Clamp(sliderValue, -100, 100);
     }
-
+    public float Value => sliderValue;
 }

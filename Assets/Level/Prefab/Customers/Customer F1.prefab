@@ -56,8 +56,8 @@ MonoBehaviour:
     needType: 0
     valueName: Food
     sliderValue: 0
-    minSliderValue: 80
-    maxSliderValue: 100
+    minSliderValue: 50
+    maxSliderValue: 80
     minDecaySpeed: 0.5
     maxDecaySpeed: 1.5
     minDecayStrength: 1
@@ -114,7 +114,7 @@ MonoBehaviour:
     minDecayStrength: 1
     maxDecayStrength: 5
     minIncreaseStrength: 1
-    maxIncreaseStrength: 5
+    maxIncreaseStrength: 3
     limitSliderValueMin: -30
     limitSliderValueMax: -100
   currentState: 0
