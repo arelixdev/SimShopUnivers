@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ShopZone : MonoBehaviour
 {
+    public Transform centerPoint;
     [SerializeField] private string nameShop;
     [SerializeField] private TypeShop shopType;
     [SerializeField] private Image icnShop;

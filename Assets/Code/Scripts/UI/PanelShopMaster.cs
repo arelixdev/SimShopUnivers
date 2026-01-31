@@ -186,7 +186,9 @@ public class PanelShopMaster : MonoBehaviour
         ShopCreated data = new ShopCreated
         {
             shopName = panel.GetShopName(),
-            shopType = panel.GetSelectedShopType()
+            shopType = panel.GetSelectedShopType(),
+            zoneShop = panel.GetZoneShop()
+
         };
 
         panel.shopData = data; 
@@ -590,5 +592,6 @@ public class ShopCreated
 {
     public string shopName;
     public TypeShop shopType;
+    public Transform zoneShop;
 
 }

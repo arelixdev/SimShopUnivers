@@ -555,7 +555,7 @@ public class CustomerController : MonoBehaviour
 
         if (createdShops == null || createdShops.Count == 0)
         {
-            //Debug.Log($"{name} : aucun shop n'est créé dans le magasin");
+            Debug.Log($"{name} : aucun shop n'est créé dans le magasin");
             return;
         }
 
@@ -569,7 +569,9 @@ public class CustomerController : MonoBehaviour
                 {
                     hasMatchingShop = true;
 
-                    //Debug.Log($"{name} : shop correspondant trouvé → {createdShop.shopType}");
+                    Debug.Log($"{name} : shop correspondant trouvé → {createdShop.shopType}");
+
+                    GoBrowsing(createdShop);
 
                     break;
                 }
@@ -581,15 +583,43 @@ public class CustomerController : MonoBehaviour
 
         if (!hasMatchingShop)
         {
-            //Debug.Log($"{name} : aucun shop ne correspond à ses besoins");
+            Debug.Log($"{name} : aucun shop ne correspond à ses besoins");
         }
+    }
+
+    private void GoBrowsing(ShopCreated shop)
+    {
+        currentState = CustomerState.browsing;
+
+        points.Clear();
+
+        if (shop.zoneShop == null)
+        {
+            Debug.LogWarning($"{shop.shopName} n'a pas de zone");
+            return;
+        }
+
+        NavPoint browsePoint = new NavPoint
+        {
+            point = shop.zoneShop,
+            waitTime = UnityEngine.Random.Range(1.5f, 3f)
+        };
+
+        points.Add(browsePoint);
+        currentWaitTime = browsePoint.waitTime;
+
+        agent.ResetPath();
+        agent.isStopped = false;
+        agent.SetDestination(browsePoint.point.position);
     }
 
     private void OnStoreClosed()
     {
-        //Debug.Log("On rentre a la maison c'est fini !");
+        Debug.Log("On rentre a la maison c'est fini !");
     }
 }
+
+
 
 [Serializable]
 public class NavPoint

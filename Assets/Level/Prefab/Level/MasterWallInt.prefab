@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 8801119684416327013}
   - component: {fileID: 6963446404011388121}
   - component: {fileID: 3425831980114136825}
+  - component: {fileID: 7296603149716346879}
   m_Layer: 0
   m_Name: SM_Bld_House_Wall_04
   m_TagString: Untagged
@@ -266,6 +267,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.500001, y: 2.8999999, z: 0.29999998}
   m_Center: {x: -1.2500001, y: 1.4499999, z: 0.10000096}
+--- !u!208 &7296603149716346879
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2847189835521778275}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.25, y: 1.45, z: 0.15}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.25, y: 1.45, z: 0.1}
+  m_TimeToStationary: 0.5
 --- !u!1 &4022631505142922816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,8 +1135,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1303111850184744, guid: 72c6642161c92fa4aa2c8b802372fd0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4186261418403769951}
   m_SourcePrefab: {fileID: 100100000, guid: 72c6642161c92fa4aa2c8b802372fd0f, type: 3}
+--- !u!1 &9120547090772238920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1303111850184744, guid: 72c6642161c92fa4aa2c8b802372fd0f, type: 3}
+  m_PrefabInstance: {fileID: 9121496158850347616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &4186261418403769951
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120547090772238920}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.25, y: 1.503, z: 0.112}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.25, y: 1.503, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &9122214600105102098 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4096458814454130, guid: 72c6642161c92fa4aa2c8b802372fd0f, type: 3}

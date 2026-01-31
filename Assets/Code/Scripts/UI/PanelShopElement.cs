@@ -75,6 +75,11 @@ public class PanelShopElement : MonoBehaviour
         return nameShopInputfield.text;
     }
 
+    public Transform GetZoneShop()
+    {
+        return shopData.zoneShop;
+    }
+
     public void ToogleSelectInputfield()
     {
         selectInputfield = !selectInputfield;
@@ -421,6 +426,15 @@ public class PanelShopElement : MonoBehaviour
         int selectedIndex = shopTypeDropdown.value;
 
         zone.SetTypeShop(selectedIndex);
+        shopData.zoneShop = zone.transform;
+
+        GameObject centerPoint = new GameObject("ZoneCenter");
+        centerPoint.transform.SetParent(shopVolume.transform);
+
+        centerPoint.transform.position = mc.bounds.center;
+        
+        zone.centerPoint = centerPoint.transform;
+        shopData.zoneShop = centerPoint.transform;
     }
 
     List<Vector3> GetOutline()
