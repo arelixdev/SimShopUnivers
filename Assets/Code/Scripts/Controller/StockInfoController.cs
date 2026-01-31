@@ -8,6 +8,8 @@ public class StockInfoController : MonoBehaviour
     [SerializeField] private List<StockInfoSO> produceInfo;
     public List<ListElementInShop> elementInShop;
 
+    public List<ShopTypeSO> allShopType;
+
     public List<ElementSO> allDoors = new List<ElementSO>();
 
     private List<StockInfoSO> allStock = new List<StockInfoSO>();

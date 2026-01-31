@@ -26,6 +26,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Slider lvlGeneralBar;
     [SerializeField] private GameObject shopLvlPanel;
     [SerializeField] private TMP_Text shopNameTxt;
+    [SerializeField] private Image shopImageIcn;
     [SerializeField] private TMP_Text shopLvlTxt;
     [SerializeField] private Slider shopLvlBar;
 
@@ -159,7 +160,7 @@ public class UIController : MonoBehaviour
         lvlGeneralBar.value = xpAct;
     }
 
-    public void UpdateShopUI(string shopName, int shopLevel, int xpAct)
+    public void UpdateShopUI(string shopName, int shopLevel, int xpAct, TypeShop typeShop)
     {
         if(shopName != "")
         {
@@ -168,6 +169,14 @@ public class UIController : MonoBehaviour
             shopLvlTxt.text = "LVL " + shopLevel;
             shopLvlBar.maxValue = StoreController.instance.GetXpRequiered()[shopLevel-1];
             shopLvlBar.value = xpAct;
+            foreach(var listTypeShop in StockInfoController.instance.allShopType)
+            {
+                if(listTypeShop.shopType == typeShop)
+                {
+                    shopImageIcn.sprite = listTypeShop.icnShopType;
+                    return;
+                }
+            }
         } else
         {
             shopLvlPanel.SetActive(false);

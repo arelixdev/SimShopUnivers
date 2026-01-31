@@ -2726,6 +2726,10 @@ MonoBehaviour:
   allWallGameShop: []
   allShopElement: []
   allElement: []
+  shopData:
+    shopName: 
+    shopType: 0
+  listTypeShop: 0
 --- !u!225 &4846204236681848956
 CanvasGroup:
   m_ObjectHideFlags: 0

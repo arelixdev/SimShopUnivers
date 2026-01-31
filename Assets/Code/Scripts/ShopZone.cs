@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ShopZone : MonoBehaviour
 {
     [SerializeField] private string nameShop;
-    [SerializeField] private TextMeshPro nameObj;
+    [SerializeField] private TypeShop shopType;
+    [SerializeField] private Image icnShop;
     [SerializeField] private float textYOffset = 0.5f; 
     [SerializeField] private Color color = Color.yellow;
     private Material mat;
@@ -26,14 +28,16 @@ public class ShopZone : MonoBehaviour
         //nameObj.text = nameShop.ToUpper();
     }
 
+    public void SetTypeShop(int typeValue)
+    {
+        shopType = (TypeShop)typeValue;
+    }
+
 
      void Awake()
     {
         sphere = GetComponent<SphereCollider>();
         mat = new Material(Shader.Find("Hidden/Internal-Colored"));
-
-        if (nameObj != null)
-            nameObj.text = nameShop.ToUpper();; 
     }
 
     void Update()
@@ -56,13 +60,13 @@ public class ShopZone : MonoBehaviour
             levelShop++;
             xpAct = diffVal;
         }
-        UIController.instance.UpdateShopUI(nameShop, levelShop, xpAct);
+        UIController.instance.UpdateShopUI(nameShop, levelShop, xpAct, shopType);
     }
 
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player")
         {
-            UIController.instance.UpdateShopUI(nameShop, levelShop, xpAct);
+            UIController.instance.UpdateShopUI(nameShop, levelShop, xpAct, shopType);
             playerIn = true;
         }
     }
@@ -70,7 +74,7 @@ public class ShopZone : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            UIController.instance.UpdateShopUI("", 0, 0);
+            UIController.instance.UpdateShopUI("", 0, 0, shopType);
             playerIn = false;
         }
     }

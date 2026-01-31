@@ -100,6 +100,20 @@ public class PanelShopElement : MonoBehaviour
         {
             shopData.shopType = listTypeShop;
         }
+
+        if(shopVolume != null)
+        {
+            ShopZone zone = shopVolume.GetComponent<ShopZone>();
+
+            if(zone != null)
+            {
+                int selectedIndex = shopTypeDropdown.value;
+
+                zone.SetTypeShop(selectedIndex);
+            }
+        }
+
+        
     }
 
     public void ClearShop()
@@ -176,7 +190,17 @@ public class PanelShopElement : MonoBehaviour
         {
             sel.nameShop = GetShopName();
         }
-        
+
+        if(shopVolume != null)
+        {
+            ShopZone zone = shopVolume.GetComponent<ShopZone>();
+
+            if(zone != null)
+            {
+                zone.SetNameShop(GetShopName());
+            }
+        }
+
         if (shopData != null)
             shopData.shopName = GetShopName();
     }
@@ -393,6 +417,10 @@ public class PanelShopElement : MonoBehaviour
 
         ShopZone zone = shopVolume.AddComponent<ShopZone>();
         zone.SetNameShop(GetShopName());
+
+        int selectedIndex = shopTypeDropdown.value;
+
+        zone.SetTypeShop(selectedIndex);
     }
 
     List<Vector3> GetOutline()
