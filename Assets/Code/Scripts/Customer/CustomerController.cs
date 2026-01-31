@@ -74,6 +74,18 @@ public class CustomerController : MonoBehaviour
 
     private bool leave;
 
+    private void OnEnable()
+    {
+        StoreController.OnStoreOpened += OnStoreOpened;
+        StoreController.OnStoreClosed += OnStoreClosed;
+    }
+
+    private void OnDisable()
+    {
+        StoreController.OnStoreOpened -= OnStoreOpened;
+        StoreController.OnStoreClosed -= OnStoreClosed;
+    }
+
     public List<StockObject> GetStockInBag()
     {
         return stockInBag;
@@ -127,11 +139,6 @@ public class CustomerController : MonoBehaviour
         TypeShop selectRandomType = (TypeShop)UnityEngine.Random.Range(0, sl.Length);
 
         GenerateShopList(selectRandomType);
-
-        // for (int i = 0; i < numberShop; i++)
-        // {
-            
-        // }
     }
 
     private void GenerateShopList(TypeShop selectRandomType)
@@ -526,6 +533,16 @@ public class CustomerController : MonoBehaviour
     public void AddObjectToBag(StockObject obj)
     {
         obj.PlaceInBag();
+    }
+
+    private void OnStoreOpened()
+    {
+        Debug.Log("Check si un shop nous correspond");
+    }
+
+    private void OnStoreClosed()
+    {
+        Debug.Log("On rentre a la maison c'est fini !");
     }
 }
 

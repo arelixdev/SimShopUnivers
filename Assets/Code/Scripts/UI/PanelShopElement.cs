@@ -33,12 +33,19 @@ public class PanelShopElement : MonoBehaviour
 
     public List<WallKey> allWallKeys = new List<WallKey>();
 
+    public ShopCreated shopData;
+
     private ShopPlaceableElement element;
 
     private bool selectInputfield;
 
     private bool isRetracted;
     private bool isBuy;
+
+    public TypeShop GetSelectedShopType()
+    {
+        return (TypeShop)shopTypeDropdown.value;
+    }
 
     public bool HasBoughtZone()
     {
@@ -73,6 +80,26 @@ public class PanelShopElement : MonoBehaviour
         selectInputfield = !selectInputfield;
 
         UIController.instance.InputfieldSelected(selectInputfield);
+    }
+
+    private void Awake()
+    {
+        shopTypeDropdown.onValueChanged.AddListener(OnShopTypeChanged);
+    }
+
+    private void OnDestroy()
+    {
+        shopTypeDropdown.onValueChanged.RemoveListener(OnShopTypeChanged);
+    }
+
+    private void OnShopTypeChanged(int index)
+    {
+        listTypeShop = (TypeShop)index;
+
+        if (shopData != null)
+        {
+            shopData.shopType = listTypeShop;
+        }
     }
 
     public void ClearShop()
@@ -150,7 +177,8 @@ public class PanelShopElement : MonoBehaviour
             sel.nameShop = GetShopName();
         }
         
-        //shopVolume.GetComponent<ShopZone>().SetNameShop(GetShopName());
+        if (shopData != null)
+            shopData.shopName = GetShopName();
     }
 
     void InitializePanelShop()

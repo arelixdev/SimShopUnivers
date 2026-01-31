@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,6 +6,9 @@ using UnityEngine.InputSystem;
 public class StoreController : MonoBehaviour
 {
     public static StoreController instance;
+
+    public static event Action OnStoreOpened;
+    public static event Action OnStoreClosed;
     [SerializeField] private float currentMoney = 1000;
     [SerializeField] private Transform stockSpawnPoint, furnitureSpawnPoint;
     [SerializeField] private List<int> levelXpRequiered = new List<int>(); //TODO rename var
@@ -44,6 +48,8 @@ public class StoreController : MonoBehaviour
         isOpen = true;
         NavMeshcontroller.instance.OpenShopUpdate();
         TimeController.instance.isRunning = true;
+
+        OnStoreOpened?.Invoke();
     }
 
     private void Awake()
@@ -131,5 +137,6 @@ public class StoreController : MonoBehaviour
     {
         isOpen = false;
         Debug.Log("La journée est terminée !");
+        OnStoreClosed?.Invoke();
     }
 }

@@ -34,6 +34,8 @@ public class PanelShopMaster : MonoBehaviour
 
     public List<BlueprintGroundElement> lastBoughtZone;
 
+    
+
 
     public List<BlueprintGroundElement> GetCurrentSelection()
     {
@@ -176,16 +178,20 @@ public class PanelShopMaster : MonoBehaviour
         GameObject newElement = Instantiate(mapPanelElement, transform);
         newElement.transform.SetSiblingIndex(transform.childCount - 3);
 
+        PanelShopElement panel = newElement.GetComponent<PanelShopElement>();
+
         ChangePanelSelected(newElement);
+        panel.ActualizeDd();
 
-        newElement.GetComponent<PanelShopElement>().ActualizeDd();
-
-        ShopCreated newShop = new ShopCreated
+        ShopCreated data = new ShopCreated
         {
-            
+            shopName = panel.GetShopName(),
+            shopType = panel.GetSelectedShopType()
         };
 
-        listShopCreated.Add(newShop);
+        panel.shopData = data; 
+
+        listShopCreated.Add(data);
 
         if (!linePanel.activeSelf)
             linePanel.SetActive(true);
