@@ -135,10 +135,18 @@ public class CustomerController : MonoBehaviour
         RequierementInit();
 
         numberShop = UnityEngine.Random.Range(numberShopMin, numberShopMax);
-        TypeShop[] sl = (TypeShop[])Enum.GetValues(typeof(TypeShop));
-        TypeShop selectRandomType = (TypeShop)UnityEngine.Random.Range(0, sl.Length);
+        
 
-        GenerateShopList(selectRandomType);
+        int randNum = UnityEngine.Random.Range(1,4);
+
+        for (int i = 0; i < randNum; i++)
+        {
+            TypeShop[] sl = (TypeShop[])Enum.GetValues(typeof(TypeShop));
+            TypeShop selectRandomType = (TypeShop)UnityEngine.Random.Range(0, sl.Length);
+            GenerateShopList(selectRandomType);
+        }
+
+        
     }
 
     private void GenerateShopList(TypeShop selectRandomType)
@@ -537,12 +545,49 @@ public class CustomerController : MonoBehaviour
 
     private void OnStoreOpened()
     {
-        Debug.Log("Check si un shop nous correspond");
+        if (PanelShopMaster.instance == null)
+        {
+            Debug.LogWarning("PanelShopMaster introuvable");
+            return;
+        }
+
+        List<ShopCreated> createdShops = PanelShopMaster.instance.listShopCreated;
+
+        if (createdShops == null || createdShops.Count == 0)
+        {
+            //Debug.Log($"{name} : aucun shop n'est créé dans le magasin");
+            return;
+        }
+
+        bool hasMatchingShop = false;
+
+        foreach (ShopList wantedShop in shopList)
+        {
+            foreach (ShopCreated createdShop in createdShops)
+            {
+                if (wantedShop.typeShop == createdShop.shopType)
+                {
+                    hasMatchingShop = true;
+
+                    //Debug.Log($"{name} : shop correspondant trouvé → {createdShop.shopType}");
+
+                    break;
+                }
+            }
+
+            if (hasMatchingShop)
+                break;
+        }
+
+        if (!hasMatchingShop)
+        {
+            //Debug.Log($"{name} : aucun shop ne correspond à ses besoins");
+        }
     }
 
     private void OnStoreClosed()
     {
-        Debug.Log("On rentre a la maison c'est fini !");
+        //Debug.Log("On rentre a la maison c'est fini !");
     }
 }
 
