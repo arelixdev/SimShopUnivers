@@ -26,18 +26,14 @@ public class CustomerController : MonoBehaviour
     public Need comfortNeed;
     public Need energyNeed;
     public Need distractionNeed;
-
     public Satisfy satisfaction;
-
     public enum CustomerState
     {
         entering, browsing, need, queuing, atCheckout, leaving
     }
 
     [SerializeField] public CustomerState currentState;
-
     [SerializeField] private GameObject shoppingBag;
-
     [SerializeField] private float waitAfterGrabbing = 0.5f;
 
     [Header("Trash Customer")]
@@ -45,36 +41,24 @@ public class CustomerController : MonoBehaviour
     [SerializeField] private GameObject waterTrash;
     [SerializeField] private float minTrashInterval = 8f;
     [SerializeField] private float maxTrashInterval = 15f;
-
     [SerializeField] private float trashSpawnChance = 0.3f; 
-
     public List<NeedType> needList;
 
     private NeedType currentNeed;
     private bool isSolvingNeed;
-
     private NeedInteractionPoint currentInteractionPoint;
-
     private float nextTrashTime = 0f;
-
     private List<StockObject> stockInBag = new List<StockObject>();
-
     private float currentWaitTime;
     private bool hasGrabbed;
-
     private Vector3 queuePoint;
-
     private NavMeshAgent agent;
-
     private bool objectsTransferred = false;
-
     public bool HasNotTransferredObjectsYet => !objectsTransferred;
-
     private bool payWithCard;
-
     private bool leave;
-
     private bool hasReachedCurrentPoint = false;
+    private ShopZone currentBrowsingZone;
 
     private void OnEnable()
     {
@@ -295,8 +279,92 @@ public class CustomerController : MonoBehaviour
 
                 Debug.Log($"[{name}] est arrivé à son point de browsing " + $"({points[0].GetPosition()})");
 
-                // 👉 ici ton système de waitTime continue de fonctionner
+                if (currentBrowsingZone != null)
+                {
+                    CheckShelvesForWantedItems(currentBrowsingZone);
+                }
+                else
+                {
+                    Debug.LogWarning($"{name} n'a pas de ShopZone courante");
+                }
             }
+        }
+    }
+
+    private void TryGoBrowsingIfStoreIsOpen()
+    {
+        if (!StoreController.instance.GetIsOpen())
+            return;
+
+        if (PanelShopMaster.instance == null)
+            return;
+
+        List<ShopCreated> createdShops = PanelShopMaster.instance.listShopCreated;
+        if (createdShops == null || createdShops.Count == 0)
+            return;
+
+        foreach (ShopList wantedShop in shopList)
+        {
+            foreach (ShopCreated createdShop in createdShops)
+            {
+                if (wantedShop.typeShop == createdShop.shopType)
+                {
+                    Debug.Log($"{name} -> store déjà ouvert, go browsing ({createdShop.shopType})");
+                    GoBrowsing(createdShop);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void CheckShelvesForWantedItems(ShopZone zone)
+    {
+        //liste vide
+        if (shopList == null || shopList.Count == 0)
+        {
+            Debug.Log($"🧍 {name} n'a rien sur sa liste de courses");
+            return;
+        }
+
+        // Flatten de tous les StockInfoSO voulus
+        HashSet<StockInfoSO> wantedStocks = new HashSet<StockInfoSO>();
+
+        foreach (ShopList sl in shopList)
+        {
+            foreach (StockInfoSO stock in sl.listStockType)
+            {
+                wantedStocks.Add(stock);
+            }
+        }
+
+        if (wantedStocks.Count == 0)
+        {
+            Debug.Log($"{name} a une liste vide après filtrage");
+            return;
+        }
+
+        bool foundSomething = false;
+
+        //Parcours des meubles dans la zone
+        foreach (FurnitureController furniture in zone.shelvingsInZone)
+        {
+            foreach (ShelfSpaceController shelf in furniture.shelves)
+            {
+                if (shelf.info == null)
+                    continue;
+
+                if (wantedStocks.Contains(shelf.info))
+                {
+                    Debug.Log($"{name} a trouvé {shelf.info.name} " + $"dans le shop {zone.GetNameShop()}");
+                    foundSomething = true;
+                }
+            }
+        }
+
+        //rien trouvé
+        if (!foundSomething)
+        {
+            Debug.Log($"{name} n'a rien trouvé de sa liste dans le shop {zone.GetNameShop()}");
         }
     }
 
@@ -486,7 +554,11 @@ public class CustomerController : MonoBehaviour
         }
         else
         {
-            if (currentState == CustomerState.need)
+            if (currentState == CustomerState.entering)
+            {
+                TryGoBrowsingIfStoreIsOpen();
+            }
+            else if (currentState == CustomerState.need)
             {
                 ResolveNeed();
             }
@@ -641,6 +713,8 @@ public class CustomerController : MonoBehaviour
             Debug.LogWarning($"{shop.shopName} : ShopZone invalide");
             return;
         }
+
+        currentBrowsingZone = zone; 
 
         Vector3 randomInside = zone.GetRandomPointInside();
 
