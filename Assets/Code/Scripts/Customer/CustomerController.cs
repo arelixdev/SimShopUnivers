@@ -74,6 +74,8 @@ public class CustomerController : MonoBehaviour
 
     private bool leave;
 
+    private bool hasReachedCurrentPoint = false;
+
     private void OnEnable()
     {
         StoreController.OnStoreOpened += OnStoreOpened;
@@ -238,6 +240,10 @@ public class CustomerController : MonoBehaviour
                 MoveToPoint();
                 if (points.Count == 0)
                 {
+                    
+                } else
+                {
+                    CheckArrivalAtPoint();
                 }
                 break;
             //Go make what u need 
@@ -270,6 +276,27 @@ public class CustomerController : MonoBehaviour
                     Destroy(gameObject);
                 }
                 break;
+        }
+    }
+
+    private void CheckArrivalAtPoint()
+    {
+        if (hasReachedCurrentPoint)
+            return;
+
+        if (agent.pathPending)
+            return;
+
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (agent.velocity.sqrMagnitude == 0f)
+            {
+                hasReachedCurrentPoint = true;
+
+                Debug.Log($"[{name}] est arrivé à son point de browsing " + $"({points[0].GetPosition()})");
+
+                // 👉 ici ton système de waitTime continue de fonctionner
+            }
         }
     }
 
@@ -426,6 +453,7 @@ public class CustomerController : MonoBehaviour
         if (agent.isOnNavMesh)
         {
             agent.SetDestination(targetPosition);
+            
         }
         animator.SetBool("IsMoving", agent.velocity.magnitude > 0.1f);
 
@@ -448,6 +476,8 @@ public class CustomerController : MonoBehaviour
     {
         if (points.Count > 0)
             points.RemoveAt(0);
+
+        hasReachedCurrentPoint = false;
 
         if (points.Count > 0)
         {
