@@ -420,7 +420,9 @@ public class CustomerController : MonoBehaviour
     {
         if (points.Count == 0) return;
 
-        Vector3 targetPosition = new Vector3(points[0].point.position.x, transform.position.y, points[0].point.position.z);
+        Vector3 targetPosition = points[0].GetPosition();
+        targetPosition.y = transform.position.y;
+
         if (agent.isOnNavMesh)
         {
             agent.SetDestination(targetPosition);
@@ -587,10 +589,14 @@ public class CustomerController : MonoBehaviour
         }
     }
 
+    private void OnStoreClosed()
+    {
+        Debug.Log("On rentre a la maison c'est fini !");
+    }
+
     private void GoBrowsing(ShopCreated shop)
     {
         currentState = CustomerState.browsing;
-
         points.Clear();
 
         if (shop.zoneShop == null)
@@ -599,9 +605,18 @@ public class CustomerController : MonoBehaviour
             return;
         }
 
+        ShopZone zone = shop.zoneShop.GetComponentInParent<ShopZone>();
+        if (zone == null || zone.meshCollider == null)
+        {
+            Debug.LogWarning($"{shop.shopName} : ShopZone invalide");
+            return;
+        }
+
+        Vector3 randomInside = zone.GetRandomPointInside();
+
         NavPoint browsePoint = new NavPoint
         {
-            point = shop.zoneShop,
+            position = randomInside,
             waitTime = UnityEngine.Random.Range(1.5f, 3f)
         };
 
@@ -610,12 +625,7 @@ public class CustomerController : MonoBehaviour
 
         agent.ResetPath();
         agent.isStopped = false;
-        agent.SetDestination(browsePoint.point.position);
-    }
-
-    private void OnStoreClosed()
-    {
-        Debug.Log("On rentre a la maison c'est fini !");
+        agent.SetDestination(randomInside);
     }
 }
 
@@ -625,7 +635,16 @@ public class CustomerController : MonoBehaviour
 public class NavPoint
 {
     public Transform point;
+    public Vector3 position;
     public float waitTime;
+
+    public Vector3 GetPosition()
+    {
+        if (point != null)
+            return point.position;
+
+        return position;
+    }
 }
 
 [Serializable]

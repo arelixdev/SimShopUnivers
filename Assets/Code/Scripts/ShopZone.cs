@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ShopZone : MonoBehaviour
 {
     public Transform centerPoint;
+    public MeshCollider meshCollider;
     [SerializeField] private string nameShop;
     [SerializeField] private TypeShop shopType;
     [SerializeField] private Image icnShop;
@@ -29,6 +30,26 @@ public class ShopZone : MonoBehaviour
     public void SetTypeShop(int typeValue)
     {
         shopType = (TypeShop)typeValue;
+    }
+
+    public Vector3 GetRandomPointInside()
+    {
+        Bounds b = meshCollider.bounds;
+
+        for (int i = 0; i < 10; i++) // plusieurs tentatives
+        {
+            Vector3 randomPoint = new Vector3(
+                Random.Range(b.min.x, b.max.x),
+                b.center.y,
+                Random.Range(b.min.z, b.max.z)
+            );
+
+            if (meshCollider.bounds.Contains(randomPoint))
+                return randomPoint;
+        }
+
+        // fallback sécurité
+        return b.center;
     }
 
     void Update()

@@ -428,6 +428,8 @@ public class PanelShopElement : MonoBehaviour
         zone.SetTypeShop(selectedIndex);
         shopData.zoneShop = zone.transform;
 
+        zone.meshCollider = mc;
+
         GameObject centerPoint = new GameObject("ZoneCenter");
         centerPoint.transform.SetParent(shopVolume.transform);
 
