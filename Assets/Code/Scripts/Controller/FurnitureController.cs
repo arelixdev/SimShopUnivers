@@ -9,6 +9,8 @@ public class FurnitureController : MonoBehaviour
 
     public float price;
 
+    private ShopZone currentShopZone;
+
     private Collider col;
 
     public Transform GetStandPoint()
@@ -45,5 +47,24 @@ public class FurnitureController : MonoBehaviour
         placementObject.SetActive(false);
 
         col.enabled = true;
+    }
+
+    public void SetCurrentShopZone(ShopZone zone)
+    {
+        currentShopZone = zone;
+    }
+
+    public void ClearShopZone()
+    {
+        currentShopZone = null;
+    }
+
+    public void LeaveShopZone()
+    {
+        if (currentShopZone != null)
+        {
+            currentShopZone.UnregisterFurniture(this);
+            currentShopZone = null;
+        }
     }
 }

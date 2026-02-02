@@ -555,7 +555,7 @@ public class CustomerController : MonoBehaviour
 
         if (createdShops == null || createdShops.Count == 0)
         {
-            Debug.Log($"{name} : aucun shop n'est créé dans le magasin");
+            //Debug.Log($"{name} : aucun shop n'est créé dans le magasin");
             return;
         }
 
@@ -569,7 +569,7 @@ public class CustomerController : MonoBehaviour
                 {
                     hasMatchingShop = true;
 
-                    Debug.Log($"{name} : shop correspondant trouvé → {createdShop.shopType}");
+                    Debug.Log($"{name} : shop correspondant trouvé -> {createdShop.shopType}");
 
                     GoBrowsing(createdShop);
 
@@ -583,7 +583,7 @@ public class CustomerController : MonoBehaviour
 
         if (!hasMatchingShop)
         {
-            Debug.Log($"{name} : aucun shop ne correspond à ses besoins");
+            //Debug.Log($"{name} : aucun shop ne correspond à ses besoins");
         }
     }
 

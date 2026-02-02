@@ -332,6 +332,8 @@ public class PlayerController : MonoBehaviour
                 {
                     heldFurniture = hit.transform.GetComponent<FurnitureController>();
 
+                    heldFurniture.LeaveShopZone();
+
                     heldFurniture.transform.SetParent(furniturePoint);
                     heldFurniture.transform.localPosition = Vector3.zero;
                     heldFurniture.transform.localRotation = Quaternion.identity;

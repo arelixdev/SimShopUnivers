@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,8 @@ public class ShopZone : MonoBehaviour
 
     private int levelShop = 1;
     private int xpAct = 0;
-    private bool playerIn;
+
+    public List<FurnitureController> shelvingsInZone = new List<FurnitureController>();
 
     public string GetNameShop()
     {
@@ -51,11 +53,35 @@ public class ShopZone : MonoBehaviour
         UIController.instance.UpdateShopUI(nameShop, levelShop, xpAct, shopType);
     }
 
+    public void RegisterFurniture(FurnitureController furniture)
+    {
+        if (!shelvingsInZone.Contains(furniture))
+        {
+            shelvingsInZone.Add(furniture);
+        }
+    }
+
+    public void UnregisterFurniture(FurnitureController furniture)
+    {
+        shelvingsInZone.Remove(furniture);
+    }
+
+    public bool ContainsFurniture(FurnitureController furniture)
+    {
+        return shelvingsInZone.Contains(furniture);
+    }
+
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player")
         {
             UIController.instance.UpdateShopUI(nameShop, levelShop, xpAct, shopType);
-            playerIn = true;
+        }
+
+        FurnitureController furniture = other.GetComponent<FurnitureController>();
+        if (furniture != null)
+        {
+            furniture.SetCurrentShopZone(this);
+            RegisterFurniture(furniture);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -63,7 +89,6 @@ public class ShopZone : MonoBehaviour
         if(other.tag == "Player")
         {
             UIController.instance.UpdateShopUI("", 0, 0, shopType);
-            playerIn = false;
         }
     }
 }
