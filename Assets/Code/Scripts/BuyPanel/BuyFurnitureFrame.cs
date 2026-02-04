@@ -13,6 +13,7 @@ public class BuyFurnitureFrame : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("f" + furniture.price);
         priceText.text = priceFormat.GetLocalizedString(
             furniture.price.ToString("F2")
         );

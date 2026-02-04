@@ -111,7 +111,7 @@ MonoBehaviour:
   - {fileID: 2324820890279532819}
   - {fileID: 7822213659403808055}
   - {fileID: 473210185091859568}
-  price: 500
+  price: 300
 --- !u!114 &6315426864366864711
 MonoBehaviour:
   m_ObjectHideFlags: 0

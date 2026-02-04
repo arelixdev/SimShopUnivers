@@ -110,7 +110,7 @@ MonoBehaviour:
   - {fileID: 9104422762689274511}
   - {fileID: 4187757562203039446}
   - {fileID: 4164938760292333703}
-  price: 250
+  price: 150
 --- !u!208 &4428453761694411102
 NavMeshObstacle:
   m_ObjectHideFlags: 0
