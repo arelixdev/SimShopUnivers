@@ -19,7 +19,7 @@ public class FurnitureController : MonoBehaviour
     }
     
 
-    private void Awake()
+    protected virtual void Awake()
     {
         col = GetComponent<Collider>();
     }
@@ -27,10 +27,15 @@ public class FurnitureController : MonoBehaviour
     private void Start()
     {
         
-        if(shelves.Count > 0)
+        if(shelves != null && shelves.Count > 0)
         {
             StoreController.instance.shelvingCases.Add(this);
         }
+    }
+
+    public virtual bool CanBeMoved()
+    {
+        return true;
     }
 
     public void MakePlaceable()

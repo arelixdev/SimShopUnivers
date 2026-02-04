@@ -8,12 +8,14 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.InputSystem;
 
-public class Checkout : MonoBehaviour
+public class Checkout : FurnitureController
 {
     //TODO a changer dans le futur si on veut plusieurs checkout
     public static Checkout instance; 
 
-    private void Awake() {
+    protected override void Awake()
+    {
+        base.Awake();   // 🔥 OBLIGATOIRE
         instance = this;
     }
 
@@ -59,6 +61,12 @@ public class Checkout : MonoBehaviour
     private string enteredValue = "";
     private int numberObjectScan;
     private float diffTotalCustomer;
+
+    public override bool CanBeMoved()
+    {
+        // Exemple : interdit si clients en file
+        return customersInQueue.Count == 0;
+    }
     void Start()
     {
         for (int i = contentZone.childCount - 1; i >= 0; i--)

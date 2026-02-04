@@ -328,17 +328,20 @@ public class PlayerController : MonoBehaviour
 
             if (Keyboard.current.rKey.wasPressedThisFrame)
             {
-                if (Physics.Raycast(ray, out hit, interactionRange, whatIsFurniture))
+                if (Physics.Raycast(ray, out hit, interactionRange))
                 {
-                    heldFurniture = hit.transform.GetComponent<FurnitureController>();
+                    FurnitureController furniture = hit.transform.GetComponentInParent<FurnitureController>();
 
-                    heldFurniture.LeaveShopZone();
+                    if (furniture != null && furniture.CanBeMoved())
+                    {
+                        heldFurniture = furniture;
 
-                    heldFurniture.transform.SetParent(furniturePoint);
-                    heldFurniture.transform.localPosition = Vector3.zero;
-                    heldFurniture.transform.localRotation = Quaternion.identity;
-
-                    heldFurniture.MakePlaceable();
+                        heldFurniture.LeaveShopZone();
+                        heldFurniture.transform.SetParent(furniturePoint);
+                        heldFurniture.transform.localPosition = Vector3.zero;
+                        heldFurniture.transform.localRotation = Quaternion.identity;
+                        heldFurniture.MakePlaceable();
+                    }
 
                 }
 
