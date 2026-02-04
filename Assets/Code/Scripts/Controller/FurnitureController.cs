@@ -1,11 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FurnitureType
+{
+    Shelf,
+    Checkout
+}
+
 public class FurnitureController : MonoBehaviour
 {
+    [SerializeField] protected FurnitureType furnitureType;
     [SerializeField] private GameObject mainObject, placementObject;
     [SerializeField] private Transform standPoint;
     public List<ShelfSpaceController> shelves = new List<ShelfSpaceController>();
+
+    public FurnitureType GetFurnitureType() => furnitureType;
 
     public float price;
 

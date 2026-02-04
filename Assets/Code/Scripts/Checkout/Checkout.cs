@@ -17,6 +17,7 @@ public class Checkout : FurnitureController
     {
         base.Awake();   // 🔥 OBLIGATOIRE
         instance = this;
+        furnitureType = FurnitureType.Checkout;
     }
 
     [SerializeField] private TMP_Text priceText;

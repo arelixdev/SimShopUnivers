@@ -16,6 +16,7 @@ public class ShopZone : MonoBehaviour
     private int xpAct = 0;
 
     public List<FurnitureController> shelvingsInZone = new List<FurnitureController>();
+    public List<Checkout> checkoutsInZone = new();
 
     public string GetNameShop()
     {
@@ -76,15 +77,33 @@ public class ShopZone : MonoBehaviour
 
     public void RegisterFurniture(FurnitureController furniture)
     {
-        if (!shelvingsInZone.Contains(furniture))
+        switch (furniture.GetFurnitureType())
         {
-            shelvingsInZone.Add(furniture);
+            case FurnitureType.Checkout:
+                Checkout checkout = furniture as Checkout;
+                if (checkout != null && !checkoutsInZone.Contains(checkout))
+                    checkoutsInZone.Add(checkout);
+                break;
+
+            case FurnitureType.Shelf:
+                if (!shelvingsInZone.Contains(furniture))
+                    shelvingsInZone.Add(furniture);
+                break;
         }
     }
 
     public void UnregisterFurniture(FurnitureController furniture)
     {
-        shelvingsInZone.Remove(furniture);
+        switch (furniture.GetFurnitureType())
+        {
+            case FurnitureType.Checkout:
+                checkoutsInZone.Remove(furniture as Checkout);
+                break;
+
+            case FurnitureType.Shelf:
+                shelvingsInZone.Remove(furniture);
+                break;
+        }
     }
 
     public bool ContainsFurniture(FurnitureController furniture)
@@ -99,6 +118,7 @@ public class ShopZone : MonoBehaviour
         }
 
         FurnitureController furniture = other.GetComponent<FurnitureController>();
+
         if (furniture != null)
         {
             furniture.SetCurrentShopZone(this);
