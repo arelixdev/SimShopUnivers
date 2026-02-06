@@ -125,12 +125,12 @@ public class Checkout : FurnitureController
                 if(moneyPayScreen.activeSelf)
                 {
                     MoneyItem item = hit.collider.GetComponentInParent<MoneyItem>();
-                    Debug.Log("BIBOUP" + item + " hit " + hit.collider.name);
+                    //Debug.Log("BIBOUP" + item + " hit " + hit.collider.name);
                     if (item != null)
                     {
                         float v = item.GetValue();
 
-                        Debug.Log("value " + v.ToString());
+                        //Debug.Log("value " + v.ToString());
                         HandleMoneyClick(v);
                     }
                 }
@@ -145,7 +145,7 @@ public class Checkout : FurnitureController
 
         differenceValueTxt.text = "-" + diffTotalCustomer.ToString("F2") + " €";
 
-        Debug.Log(diffTotalCustomer.ToString("F2") + " v " + value);
+        //Debug.Log(diffTotalCustomer.ToString("F2") + " v " + value);
 
         if (diffTotalCustomer < 0.01f)
         {

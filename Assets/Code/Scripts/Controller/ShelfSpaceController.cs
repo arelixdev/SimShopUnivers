@@ -16,6 +16,11 @@ public class ShelfSpaceController : MonoBehaviour
         shelfLabel.text = string.Empty; 
     }
 
+    public bool HasStock()
+    {
+        return info != null && objectsOnShelf.Count > 0;
+    }
+
 
     public void PlaceStock(StockObject objectToPlace)
     {
@@ -101,6 +106,7 @@ public class ShelfSpaceController : MonoBehaviour
         if (objectsOnShelf.Count == 0)
         {
             shelfLabel.text = string.Empty;
+            info = null;
         }
 
         return objectToReturn;
