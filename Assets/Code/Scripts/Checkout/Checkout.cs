@@ -63,6 +63,8 @@ public class Checkout : FurnitureController
     private int numberObjectScan;
     private float diffTotalCustomer;
 
+    private int numberMaxInQueue = 3;
+
     public override bool CanBeMoved()
     {
         // Exemple : interdit si clients en file
@@ -122,10 +124,13 @@ public class Checkout : FurnitureController
             {
                 if(moneyPayScreen.activeSelf)
                 {
-                    MoneyItem item = hit.transform.GetComponent<MoneyItem>();
+                    MoneyItem item = hit.collider.GetComponentInParent<MoneyItem>();
+                    Debug.Log("BIBOUP" + item + " hit " + hit.collider.name);
                     if (item != null)
                     {
                         float v = item.GetValue();
+
+                        Debug.Log("value " + v.ToString());
                         HandleMoneyClick(v);
                     }
                 }
@@ -136,14 +141,13 @@ public class Checkout : FurnitureController
 
     private void HandleMoneyClick(float value)
     {
-        // On retire la valeur donnée
         diffTotalCustomer -= value;
 
-        // Mise à jour UI
         differenceValueTxt.text = "-" + diffTotalCustomer.ToString("F2") + " €";
 
-        // Si montant réglé → valider paiement
-        if (diffTotalCustomer < 0.1f)
+        Debug.Log(diffTotalCustomer.ToString("F2") + " v " + value);
+
+        if (diffTotalCustomer < 0.01f)
         {
             ValidatePayment();
         }
@@ -171,6 +175,14 @@ public class Checkout : FurnitureController
 
     public void AddCustomerToQueue(CustomerController newCust)
     {
+        if(customersInQueue.Count > numberMaxInQueue)
+        {
+            //TODO what happend if wait or leave 
+            return;
+        }
+            
+        
+
         customersInQueue.Add(newCust);
         UpdateQueue();
     }

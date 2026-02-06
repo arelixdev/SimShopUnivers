@@ -61,6 +61,7 @@ public class CustomerController : MonoBehaviour
     private ShopZone currentBrowsingZone;
     private ShelfSpaceController targetShelf;
     private StockInfoSO targetStockInfo;
+    private Checkout targetCheckout;
 
     private void OnEnable()
     {
@@ -239,16 +240,7 @@ public class CustomerController : MonoBehaviour
                 break;
             //Go to buy 
             case CustomerState.queuing:
-                /*transform.position = Vector3.MoveTowards(transform.position, queuePoint, moveSpeed * Time.deltaTime);
-                
-                if(Vector3.Distance(transform.position, queuePoint) > .1f)
-                {
-                    animator.SetBool("IsMoving", true);
-                } else
-                {
-                    animator.SetBool("IsMoving", false);
-                }*/
-
+                        MoveToPoint();
                 break;
             //At Checkout 
             case CustomerState.atCheckout:
@@ -340,9 +332,8 @@ public class CustomerController : MonoBehaviour
                 if (!wantedStocks.Contains(shelf.info))
                     continue;
 
-                Debug.Log($"{name} a trouvé {shelf.info.name} dans le shop {zone.GetNameShop()}");
+                //Debug.Log($"{name} a trouvé {shelf.info.name} dans le shop {zone.GetNameShop()}");
 
-                // mémoriser la cible
                 targetShelf = shelf;
                 targetStockInfo = shelf.info;
 
@@ -351,7 +342,7 @@ public class CustomerController : MonoBehaviour
             }
         }
 
-        Debug.Log($"{name} n'a rien trouvé dans {zone.GetNameShop()}");
+        //Debug.Log($"{name} n'a rien trouvé dans {zone.GetNameShop()}");
     }
 
     private void GoToShelf(FurnitureController furniture)
@@ -372,11 +363,39 @@ public class CustomerController : MonoBehaviour
         agent.SetDestination(shelfPoint.point.position);
     }
 
+    private void GoToCheckout()
+    {
+        if (currentBrowsingZone == null)
+        {
+            //Debug.LogWarning($"{name} n'a pas de ShopZone pour checkout");
+            StartLeaving();
+            return;
+        }
+
+        if (currentBrowsingZone.checkoutsInZone.Count == 0)
+        {
+            //Debug.LogWarning($"{name} : aucun checkout dans la zone {currentBrowsingZone.GetNameShop()}");
+            StartLeaving();
+            return;
+        }
+
+        // Choix du checkout (simple aléatoire, améliorable plus tard)
+        targetCheckout = currentBrowsingZone.checkoutsInZone[
+            UnityEngine.Random.Range(0, currentBrowsingZone.checkoutsInZone.Count)
+        ];
+
+        currentState = CustomerState.queuing;
+
+
+        // On laisse le checkout gérer la position exacte
+        targetCheckout.AddCustomerToQueue(this);
+    }
+
     private void StartSolvingNeed()
     {
         if (needList.Count == 0)
         {
-            Debug.Log($"{name} est mécontent (aucun besoin)");
+            //Debug.Log($"{name} est mécontent (aucun besoin)");
             return;
         }
 
@@ -431,7 +450,7 @@ public class CustomerController : MonoBehaviour
         //TODO change to go back to activity currentState => "Last state"
         StartLeaving();
 
-        Debug.Log($"{name} est mécontent (tous les points sont occupés)");
+        //Debug.Log($"{name} est mécontent (tous les points sont occupés)");
     }
     private Need GetNeed(NeedType type)
     {
@@ -587,6 +606,8 @@ public class CustomerController : MonoBehaviour
         if (stock == null)
         {
             Debug.Log($"{name} : plus de stock sur la shelf");
+            //Todo maybe check list if empty if empty leave else go next element
+            StartLeaving();
             ClearTarget();
             return;
         }
@@ -630,9 +651,8 @@ public class CustomerController : MonoBehaviour
         }*/
         if (stockInBag.Count > 0)
         {
-            currentState = CustomerState.queuing;
-            Debug.Log("Go to checkout");
-            // Checkout.instance.AddCustomerToQueue(this);
+            Debug.Log($"{name} a fini de browse → checkout");
+            GoToCheckout();
         }
         else
         {
@@ -696,7 +716,22 @@ public class CustomerController : MonoBehaviour
     public void UpdateQueuePoint(Vector3 newPoint)
     {
         queuePoint = newPoint;
-        transform.LookAt(queuePoint);
+        points.Clear();
+
+        NavPoint queueNavPoint = new NavPoint
+        {
+            position = newPoint,
+            waitTime = 0f
+        };
+
+        points.Add(queueNavPoint);
+        currentWaitTime = queueNavPoint.waitTime;
+
+        agent.ResetPath();
+        agent.isStopped = false;
+        agent.SetDestination(newPoint);
+
+        transform.LookAt(targetCheckout.transform);
     }
     
     public float GetTotalSpend()
@@ -792,7 +827,7 @@ public class CustomerController : MonoBehaviour
         NavPoint browsePoint = new NavPoint
         {
             position = randomInside,
-            waitTime = UnityEngine.Random.Range(1.5f, 3f)
+            waitTime = UnityEngine.Random.Range(0.25f, 0.7f)
         };
 
         points.Add(browsePoint);

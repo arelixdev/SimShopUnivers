@@ -31,6 +31,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Slider shopLvlBar;
 
     private bool inputfieldSelected;
+    private GameObject menuSelectedOpen;
 
     
 
@@ -56,8 +57,28 @@ public class UIController : MonoBehaviour
 
         if(Keyboard.current.tabKey.wasPressedThisFrame)
         {
+            if(menuSelectedOpen != null)
+            {
+                //Close menuSelectedOpen
+                menuSelectedOpen.SetActive(false);
+                menuSelectedOpen = null;
+                Cursor.lockState = CursorLockMode.None;
+            }
             OpenCloseBuyMenu();
         }
+
+        if(Keyboard.current.yKey.wasPressedThisFrame)
+        {
+            if(menuSelectedOpen != null)
+            {
+                //Close menuSelectedOpen
+                menuSelectedOpen.SetActive(false);
+                menuSelectedOpen = null;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            OpenCloseMapMenu();
+        }
+
         if(Keyboard.current.tKey.wasPressedThisFrame)
         {
             OpenWheelToolMenu();
@@ -68,10 +89,18 @@ public class UIController : MonoBehaviour
             CloseWheelToolMenu();
         }
 
-        if(Keyboard.current.yKey.wasPressedThisFrame)
+        if(Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            OpenCloseMapMenu();
+            if(menuSelectedOpen != null)
+            {
+                //Close menuSelectedOpen
+                menuSelectedOpen.SetActive(false);
+                menuSelectedOpen = null;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
+
+        
     }
 
     public void OpenUpdatePrice(StockInfoSO stockToUpdate)
@@ -121,10 +150,14 @@ public class UIController : MonoBehaviour
             mapMenuScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             panelShopMaster.CloseSellPanel();
+            
+            
         } else
         {
             mapMenuScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+
+            menuSelectedOpen = mapMenuScreen;
         }
     }
     
@@ -139,6 +172,8 @@ public class UIController : MonoBehaviour
             buyMenuScreen.SetActive(true);
             buyMenuScreen.GetComponent<BuyMenuController>().InitStock();
             Cursor.lockState = CursorLockMode.None;
+
+            menuSelectedOpen = buyMenuScreen;
         }
     }
 
