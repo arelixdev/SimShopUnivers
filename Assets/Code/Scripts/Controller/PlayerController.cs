@@ -216,7 +216,6 @@ public class PlayerController : MonoBehaviour
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsCheckoutStock))
                 {
                     StockObject obj = hit.collider.GetComponent<StockObject>();
@@ -371,17 +370,29 @@ public class PlayerController : MonoBehaviour
             {
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
-                    {
-                        if (hit.transform.GetComponent<ShelfSpaceController>() != null)
-                        {
-                            hit.transform.GetComponent<ShelfSpaceController>().PlaceStock(heldPickup);
-                            if (heldPickup.GetIsPlaced())
-                            {
-                                heldPickup = null;
-                            }
-                        }
+                    RaycastHit[] hits = Physics.RaycastAll(ray, interactionRange);
 
+                    ShelfSpaceController shelf = null;
+                    float closest = float.MaxValue;
+
+                    foreach (RaycastHit h in hits)
+                    {
+                        ShelfSpaceController s = h.collider.GetComponentInParent<ShelfSpaceController>();
+
+                        if (s != null && h.distance < closest)
+                        {
+                            shelf = s;
+                            closest = h.distance;
+                        }
+                    }
+
+                    if (shelf != null)
+                    {
+                        Debug.Log("Bip");
+                        shelf.PlaceStock(heldPickup);
+
+                        if (heldPickup.GetIsPlaced())
+                            heldPickup = null;
                     }
 
                     if (Physics.Raycast(ray, out hit, interactionRange, whatIsTrash))

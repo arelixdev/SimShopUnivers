@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShelfSpaceController : MonoBehaviour
 {
     public StockInfoSO info;
-    public List<StockObject> objectsOnShelf;
+    public List<StockObject> objectsOnShelf = new ();
 
     [SerializeField] private List<Transform> boxPoints;
     [SerializeField] private List<Transform> drinkPoints;
@@ -24,6 +24,9 @@ public class ShelfSpaceController : MonoBehaviour
 
     public void PlaceStock(StockObject objectToPlace)
     {
+        if (objectsOnShelf == null)
+            objectsOnShelf = new List<StockObject>();
+
         bool preventPlacing = true;
 
         if (objectsOnShelf.Count == 0)
@@ -33,61 +36,46 @@ public class ShelfSpaceController : MonoBehaviour
         }
         else
         {
-            if (info.name == objectToPlace.info.name)
+            if (info != null && info.name == objectToPlace.info.name)
             {
                 preventPlacing = false;
 
-                switch(info.typeOfStock)
+                switch (info.typeOfStock)
                 {
                     case StockType.cereal:
-                        if(objectsOnShelf.Count >= boxPoints.Count)
-                        {
+                        if (objectsOnShelf.Count >= boxPoints.Count)
                             preventPlacing = true;
-                        }
                         break;
+
                     case StockType.drink:
-                        if(objectsOnShelf.Count >= drinkPoints.Count)
-                        {
-                            preventPlacing = true;
-                        }
-                        break;
                     case StockType.fruit:
-                        if(objectsOnShelf.Count >= drinkPoints.Count)
-                        {
+                        if (objectsOnShelf.Count >= drinkPoints.Count)
                             preventPlacing = true;
-                        }
                         break;
                 }
-
-                
             }
         }
 
         if (!preventPlacing)
         {
-            //objectToPlace.transform.SetParent(transform);
             objectToPlace.MakePlace();
 
-            switch(info.typeOfStock)
+            switch (info.typeOfStock)
             {
                 case StockType.cereal:
                     objectToPlace.transform.SetParent(boxPoints[objectsOnShelf.Count]);
                     break;
+
                 case StockType.drink:
-                    objectToPlace.transform.SetParent(drinkPoints[objectsOnShelf.Count]);
-                    break;
                 case StockType.fruit:
-                    /*if(objectsOnShelf.Count >= drinkPoints.Count)
-                    {
-                        preventPlacing = true;
-                    }*/
+                    objectToPlace.transform.SetParent(drinkPoints[objectsOnShelf.Count]);
                     break;
             }
 
-
+            objectToPlace.transform.localPosition = Vector3.zero;
+            objectToPlace.transform.localRotation = Quaternion.identity;
 
             objectsOnShelf.Add(objectToPlace);
-
             UpdateDisplayPrice(info.currentPrice);
         }
     }

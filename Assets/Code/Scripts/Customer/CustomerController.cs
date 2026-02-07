@@ -329,12 +329,17 @@ public class CustomerController : MonoBehaviour
         {
             foreach (ShopCreated createdShop in createdShops)
             {
-                if (wantedShop.typeShop == createdShop.shopType)
-                {
-                    //Debug.Log($"{name} -> store déjà ouvert, go browsing ({createdShop.shopType})");
-                    GoBrowsing(createdShop);
-                    return;
-                }
+                if (wantedShop.typeShop != createdShop.shopType)
+                    continue;
+
+                ShopZone zone = createdShop.zoneShop
+                    ?.GetComponentInParent<ShopZone>();
+
+                if (zone == null || !zone.HasCheckout())
+                    continue;
+
+                GoBrowsing(createdShop);
+                return;
             }
         }
     }
@@ -820,52 +825,41 @@ public class CustomerController : MonoBehaviour
     }
 
     private void OnStoreOpened()
+{
+    if (PanelShopMaster.instance == null)
+        return;
+
+    List<ShopCreated> createdShops = PanelShopMaster.instance.listShopCreated;
+    if (createdShops == null || createdShops.Count == 0)
+        return;
+
+    foreach (ShopList wantedShop in shopList)
     {
-        if (PanelShopMaster.instance == null)
+        foreach (ShopCreated createdShop in createdShops)
         {
-            Debug.LogWarning("PanelShopMaster introuvable");
-            return;
-        }
+            if (wantedShop.typeShop != createdShop.shopType)
+                continue;
 
-        List<ShopCreated> createdShops = PanelShopMaster.instance.listShopCreated;
+            ShopZone zone = createdShop.zoneShop?.GetComponentInParent<ShopZone>();
 
-        if (createdShops == null || createdShops.Count == 0)
-        {
-            //Debug.Log($"{name} : aucun shop n'est créé dans le magasin");
-            return;
-        }
-
-        bool hasMatchingShop = false;
-
-        foreach (ShopList wantedShop in shopList)
-        {
-            foreach (ShopCreated createdShop in createdShops)
+            if (zone == null || !zone.HasCheckout())
             {
-                if (wantedShop.typeShop == createdShop.shopType)
-                {
-                    hasMatchingShop = true;
-
-                    Debug.Log($"{name} : shop correspondant trouvé -> {createdShop.shopType}");
-
-                    GoBrowsing(createdShop);
-
-                    break;
-                }
+                Debug.Log($"{name} ignore {createdShop.shopType} (aucun checkout)");
+                continue;
             }
 
-            if (hasMatchingShop)
-                break;
-        }
-
-        if (!hasMatchingShop)
-        {
-            //Debug.Log($"{name} : aucun shop ne correspond à ses besoins");
+            Debug.Log($"{name} va dans {createdShop.shopType} (checkout OK)");
+            GoBrowsing(createdShop);
+            return;
         }
     }
 
+    StartLeaving();
+}
+
     private void OnStoreClosed()
     {
-        Debug.Log("On rentre a la maison c'est fini !");
+        //Debug.Log("On rentre a la maison c'est fini !");
     }
 
     private void GoBrowsing(ShopCreated shop)
@@ -875,14 +869,14 @@ public class CustomerController : MonoBehaviour
 
         if (shop.zoneShop == null)
         {
-            Debug.LogWarning($"{shop.shopName} n'a pas de zone");
+            //Debug.LogWarning($"{shop.shopName} n'a pas de zone");
             return;
         }
 
         ShopZone zone = shop.zoneShop.GetComponentInParent<ShopZone>();
         if (zone == null || zone.meshCollider == null)
         {
-            Debug.LogWarning($"{shop.shopName} : ShopZone invalide");
+            //Debug.LogWarning($"{shop.shopName} : ShopZone invalide");
             return;
         }
 

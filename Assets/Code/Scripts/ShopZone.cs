@@ -18,6 +18,11 @@ public class ShopZone : MonoBehaviour
     public List<FurnitureController> shelvingsInZone = new List<FurnitureController>();
     public List<Checkout> checkoutsInZone = new();
 
+    public bool HasCheckout()
+    {
+        return checkoutsInZone != null && checkoutsInZone.Count > 0;
+    }
+
     public string GetNameShop()
     {
         return nameShop;
