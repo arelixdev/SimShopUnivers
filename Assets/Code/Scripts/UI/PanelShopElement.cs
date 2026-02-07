@@ -65,6 +65,15 @@ public class PanelShopElement : MonoBehaviour
         }
     }
 
+    void SetGroundOpacity(float alpha)
+    {
+        foreach (var ground in groundElementShop)
+        {
+            if (ground != null)
+                ground.SetOpacity(alpha);
+        }
+    }
+
     public bool GetIsRetracted()
     {
         return isRetracted;
@@ -287,6 +296,7 @@ public class PanelShopElement : MonoBehaviour
             retractTxt.text = ">";
 
             nameShopInputfield.interactable = false;
+            SetGroundOpacity(0.35f);
         } else
         {
             customElement.SetActive(true);
@@ -309,6 +319,7 @@ public class PanelShopElement : MonoBehaviour
             retractTxt.text = "<";
 
             nameShopInputfield.interactable = true;
+            SetGroundOpacity(1f);
         }
         
         //if deploy

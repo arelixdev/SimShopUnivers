@@ -35,7 +35,15 @@ public class PanelShopMaster : MonoBehaviour
     public List<BlueprintGroundElement> lastBoughtZone;
 
     
-
+    bool IsConnectedToList(BlueprintGroundElement element,List<BlueprintGroundElement> list)
+    {
+        foreach (var neigh in element.GetNeighbors(grid))
+        {
+            if (list.Contains(neigh))
+                return true;
+        }
+        return false;
+    }
 
     public List<BlueprintGroundElement> GetCurrentSelection()
     {
@@ -215,17 +223,35 @@ public class PanelShopMaster : MonoBehaviour
 
     public void TrySelect(BlueprintGroundElement element)
     {
+        var shop = GetPanelShopSelected();
+        if (shop == null)
+            return;
+
+        var shopGrounds = shop.GetGroundElements();
 
         if (selectedElements.Count == 0)
         {
+            if (shopGrounds.Count > 0)
+            {
+                if (!IsConnectedToList(element, shopGrounds))
+                {
+                    Debug.Log("Element non connecté au shop -> impossible à selectionner");
+                    return;
+                }
+            }
+
             AddToSelection(element);
             return;
         }
-
+        
         if (IsConnectedToSelection(element))
+        {
             AddToSelection(element);
+        }
         else
+        {
             Debug.Log("Element non connecté -> impossible à selectionner");
+        }
     }
 
     void AddToSelection(BlueprintGroundElement element)

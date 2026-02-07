@@ -22,6 +22,9 @@ public class BlueprintGroundElement : MonoBehaviour
     public bool isBuy;
     public string nameShop;
 
+    private MeshRenderer meshRenderer;
+    private float currentOpacity = 1f;
+
     //TODO savoir quelle magasin l'a acheter peut etre utile pour eviter de faire n'importe quoi avec la pose des portes 
 
     private void Awake()
@@ -32,20 +35,39 @@ public class BlueprintGroundElement : MonoBehaviour
             Mathf.RoundToInt(transform.position.x / cellSize),
             Mathf.RoundToInt(transform.position.z / cellSize)
         );
+
+        meshRenderer = objGround.GetComponent<MeshRenderer>();
+
+        meshRenderer.material = new Material(meshRenderer.material);
+    }
+
+    public void SetOpacity(float alpha)
+    {
+        currentOpacity = Mathf.Clamp01(alpha);
+
+        Material mat = meshRenderer.material;
+        Color c = mat.color;
+        c.a = currentOpacity;
+        mat.color = c;
+
+        mat.SetFloat("_Mode", 2); // Fade
+        mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        mat.SetInt("_ZWrite", 0);
+        mat.DisableKeyword("_ALPHATEST_ON");
+        mat.EnableKeyword("_ALPHABLEND_ON");
+        mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+        mat.renderQueue = 3000;
     }
 
     public void ToogleSelected()
     {
         isSelected = !isSelected;
-        if(!isBuy)
+
+        if (!isBuy)
         {
-            if(isSelected)
-            {
-                objGround.GetComponent<MeshRenderer>().material = matSelected;
-            } else
-            {
-                objGround.GetComponent<MeshRenderer>().material = matUnselected;
-            }
+            meshRenderer.material = isSelected ? matSelected : matUnselected;
+            SetOpacity(currentOpacity); // 🔹 conserve l’opacité
         }
     }
 
