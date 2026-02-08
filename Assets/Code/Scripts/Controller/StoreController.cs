@@ -19,8 +19,6 @@ public class StoreController : MonoBehaviour
 
     public int xpAct;
 
-    public List<FurnitureController> shelvingCases = new List<FurnitureController>();
-
     private bool isOpen;
 
     public List<int> GetXpRequiered()

@@ -35,11 +35,6 @@ public class FurnitureController : MonoBehaviour
 
     private void Start()
     {
-        
-        if(shelves != null && shelves.Count > 0)
-        {
-            StoreController.instance.shelvingCases.Add(this);
-        }
     }
 
     public virtual bool CanBeMoved()

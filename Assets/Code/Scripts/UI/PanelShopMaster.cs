@@ -18,6 +18,7 @@ public class PanelShopMaster : MonoBehaviour
     public Transform wallsParentGame;
     public float cellSize = 2.5f;
     [SerializeField] private GameObject mapPanelElement;
+    public Transform mapPanelElementParent;
     [SerializeField] private GameObject linePanel;
 
     [SerializeField] private GameObject sellPanel;
@@ -143,8 +144,8 @@ public class PanelShopMaster : MonoBehaviour
 
     public void CleanPanel()
     {
-        for (int i = transform.childCount - 3; i >= 0; i--)
-            Destroy(transform.GetChild(i).gameObject);
+        for (int i = mapPanelElementParent.childCount - 3; i >= 0; i--)
+            Destroy(mapPanelElementParent.GetChild(i).gameObject);
 
         linePanel.SetActive(false);
     }
@@ -183,8 +184,8 @@ public class PanelShopMaster : MonoBehaviour
 
     public void AddShop()
     {
-        GameObject newElement = Instantiate(mapPanelElement, transform);
-        newElement.transform.SetSiblingIndex(transform.childCount - 3);
+        GameObject newElement = Instantiate(mapPanelElement, mapPanelElementParent);
+        newElement.transform.SetSiblingIndex(mapPanelElementParent.childCount - 3);
 
         PanelShopElement panel = newElement.GetComponent<PanelShopElement>();
 
@@ -206,9 +207,12 @@ public class PanelShopMaster : MonoBehaviour
         if (!linePanel.activeSelf)
             linePanel.SetActive(true);
 
-        UILayoutRebuildManager.instance.RequestRebuild(
-            GetComponentInParent<RectTransform>()
-        );
+        if(mapMenuPanel.gameObject.activeSelf)
+        {
+            UILayoutRebuildManager.instance.RequestRebuild(
+                mapPanelElementParent.GetComponentInParent<RectTransform>()
+            );
+        }
     }
 
     public void ChangePanelSelected(GameObject newElement)

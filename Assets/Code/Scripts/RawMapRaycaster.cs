@@ -29,6 +29,10 @@ public class RawMapRaycaster : MonoBehaviour, IPointerClickHandler
         instance = this;
     }
 
+
+    private void Start() {
+        UILayoutRebuildManager.instance.RequestRebuild(GetComponent<RectTransform>());
+    }
     private void Update()
     {
         HandleHover();
