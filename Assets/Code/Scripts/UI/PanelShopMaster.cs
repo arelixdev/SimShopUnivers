@@ -180,6 +180,15 @@ public class PanelShopMaster : MonoBehaviour
         panelShopSelected.allElement.Add(obj);
     }
 
+    public PanelShopElement CreateEmptyShopPanel()
+    {
+        GameObject newElement = Instantiate(mapPanelElement, mapPanelElementParent);
+        newElement.transform.SetSiblingIndex(mapPanelElementParent.childCount - 3);
+        PanelShopElement panel = newElement.GetComponent<PanelShopElement>();
+        ChangePanelSelected(newElement);
+        return panel;
+    }
+
     
 
     public void AddShop()

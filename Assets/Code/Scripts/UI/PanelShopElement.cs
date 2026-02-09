@@ -411,7 +411,7 @@ public class PanelShopElement : MonoBehaviour
          dropdown.AddOptions(newOptions);
     }
 
-    void CreateShopVolume()
+    public void CreateShopVolume()
     {
         if (shopVolume != null)
             Destroy(shopVolume);
@@ -448,6 +448,16 @@ public class PanelShopElement : MonoBehaviour
         
         zone.centerPoint = centerPoint.transform;
         shopData.zoneShop = centerPoint.transform;
+    }
+
+    public void LoadFromSave(ShopSaveData data)
+    {
+        nameShopInputfield.text = data.shopName;
+        shopTypeDropdown.value = data.shopType;
+        listTypeShop = (TypeShop)data.shopType;
+
+        isBuy = false;
+        groundElementShop.Clear();
     }
 
     List<Vector3> GetOutline()

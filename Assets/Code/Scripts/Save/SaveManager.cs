@@ -93,36 +93,30 @@ public class SaveManager : MonoBehaviour
 
     void LoadShop(ShopSaveData data)
     {
-        PanelShopMaster.instance.AddShop();
-        PanelShopElement panel = PanelShopMaster.instance.GetPanelShopSelected();
+        // 1️⃣ Créer panel vide
+        PanelShopElement panel = PanelShopMaster.instance.CreateEmptyShopPanel();
+        panel.LoadFromSave(data);
 
-        panel.GetComponentInChildren<TMPro.TMP_InputField>().text = data.shopName;
-        panel.RenameShopElement();
-
-        panel.ActualizeDd();
-        panel.GetComponentInChildren<TMPro.TMP_Dropdown>().value = data.shopType;
-
+        // 2️⃣ Récupérer tiles
         List<BlueprintGroundElement> tiles = new();
 
-        foreach(var index in data.boughtTiles)
+        foreach (var index in data.boughtTiles)
         {
-            if(PanelShopMaster.instance.grid.TryGetValue(index, out var tile))
+            if (PanelShopMaster.instance.grid.TryGetValue(index, out var tile))
             {
                 tiles.Add(tile);
             }
         }
 
-        panel.GetGroundElements().Clear();
-        panel.GetGroundElements().AddRange(tiles);
-
-        //TODO not sure about this because we save "money" 
-        foreach(var tile in tiles)
+        // 3️⃣ Appliquer les tiles
+        foreach (var tile in tiles)
         {
             tile.GroundBuy(data.shopName);
+            panel.GetGroundElements().Add(tile);
         }
 
+        // 4️⃣ Construire murs + volume UNE FOIS
         PanelShopMaster.instance.BuildWallsAroundZone(tiles, panel);
-
-        panel.RebuildShopWalls();
+        panel.CreateShopVolume(); // ← RENDRE LA MÉTHODE PUBLIC
     }
 }
