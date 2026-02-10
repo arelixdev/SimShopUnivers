@@ -8,7 +8,7 @@ public class WallInMallElement : MonoBehaviour
 
     public GameObject elementBlueprintOnWall;
 
-    private WorldCustomElement downElement;
+    public WorldCustomElement downElement;
 
     void Start()
     {
@@ -37,7 +37,7 @@ public class WallInMallElement : MonoBehaviour
         downElement.listWalls[1].SetActive(false);
         downElement.listWalls[2].SetActive(true);
         downElement.listWalls[3].SetActive(false);
-        downElement.elementType = ElementType.Door;
+        downElement.elementType = ElementType.Window;
     }
     public void ShowShopWindow()
     {

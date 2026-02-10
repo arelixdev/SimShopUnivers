@@ -27,32 +27,139 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void SaveGame()
+   public void SaveGame()
+{
+    SaveData data = new();
+    PanelShopElement[] shops = FindObjectsOfType<PanelShopElement>();
+
+    Debug.Log($"🔍 Nombre de shops trouvés : {shops.Length}");
+
+    foreach(var shop in shops)
     {
-        SaveData data = new();
-        PanelShopElement[] shops = FindObjectsOfType<PanelShopElement>();
+        if(!shop.HasBoughtZone())
+            continue;
 
-        foreach(var shop in shops)
+        Debug.Log($"🏪 Shop '{shop.GetShopName()}' - Éléments: {shop.allShopElement.Count}");
+
+        ShopSaveData shopData = new();
+        shopData.shopName = shop.GetShopName();
+        shopData.shopType = (int) shop.GetSelectedShopType();
+
+        foreach(var ground in shop.GetGroundElements())
         {
-            if(!shop.HasBoughtZone())
-                continue;
-
-            ShopSaveData shopData = new();
-            shopData.shopName = shop.GetShopName();
-            shopData.shopType = (int) shop.GetSelectedShopType();
-
-            foreach(var ground in shop.GetGroundElements())
-            {
-                shopData.boughtTiles.Add(ground.gridIndex);
-            }
-
-            data.shops.Add(shopData);
+            shopData.boughtTiles.Add(ground.gridIndex);
         }
 
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(SavePath, json);
+        // VOTRE CODE ORIGINAL QUI MARCHE
+        foreach(var element in shop.allShopElement)
+        {
+            Debug.Log($"  📦 Traitement élément : {element?.name ?? "NULL"}");
+            
+            if(element == null)
+            {
+                Debug.LogWarning("  ⚠️ element est NULL, skip");
+                continue;
+            }
+            
+            if(element.wallElement == null)
+            {
+                Debug.LogWarning($"  ⚠️ wallElement est NULL sur {element.name}, skip");
+                continue;
+            }
+            
+            Debug.Log($"     ✓ wallElement OK: {element.wallElement.name}");
+
+            // ===== CORRECTION ICI =====
+            BlueprintWallElement wall = element.wallElement.GetComponent<BlueprintWallElement>();
+            if(wall == null)
+            {
+                Debug.LogWarning($"  ⚠️ BlueprintWallElement null sur {element.wallElement.name}, skip");
+                continue;
+            }
+            
+            Debug.Log($"     ✓ BlueprintWallElement OK, wallKey: a={wall.wallKey.a}, b={wall.wallKey.b}");
+
+            if(wall.wallInGame == null)
+            {
+                Debug.LogWarning($"  ⚠️ wallInGame null sur {wall.name}, skip");
+                continue;
+            }
+            
+            Debug.Log($"     ✓ wallInGame OK: {wall.wallInGame.name}");
+
+            WallInMallElement worldElement = wall.wallInGame.GetComponent<WallInMallElement>();
+            if(worldElement == null)
+            {
+                Debug.LogWarning($"  ⚠️ WallInMallElement manquant sur {wall.wallInGame.name}, skip");
+                continue;
+            }
+            
+            Debug.Log($"     ✓ WallInMallElement OK, type: {worldElement.downElement.elementType}");
+
+            PlacedElementData elemData = new()
+            {
+                wallCellA = wall.wallKey.a,
+                wallCellB = wall.wallKey.b,
+                elementType = (int)worldElement.downElement.elementType,
+            };
+
+            shopData.placedElements.Add(elemData);
+            Debug.Log($"  ✅ Élément sauvegardé : Type={worldElement.downElement.elementType}, A={wall.wallKey.a}, B={wall.wallKey.b}");
+        }
+
+        // SAUVER LES MURS MODIFIÉS (portes/fenêtres sans MapTooltipsElement)
+        foreach(var wallKey in shop.allWallKeys)
+        {
+            if(!PanelShopMaster.instance.createdWalls.TryGetValue(wallKey, out GameObject wallObj))
+                continue;
+
+            BlueprintWallElement blueprintWall = wallObj.GetComponent<BlueprintWallElement>();
+            if(blueprintWall == null || blueprintWall.wallInGame == null)
+                continue;
+
+            WallInMallElement wallInMall = blueprintWall.wallInGame.GetComponent<WallInMallElement>();
+            if(wallInMall == null || wallInMall.downElement == null)
+                continue;
+
+            ElementType wallType = wallInMall.downElement.elementType;
+            
+            // Sauvegarder seulement si ce n'est PAS un mur normal ET qu'il n'a pas déjà été sauvegardé via allShopElement
+            if(wallType != ElementType.Wall)
+            {
+                // Vérifier si cet élément n'est pas déjà dans la liste (éviter les doublons)
+                bool alreadySaved = false;
+                foreach(var existing in shopData.placedElements)
+                {
+                    if(existing.wallCellA == wallKey.a && existing.wallCellB == wallKey.b)
+                    {
+                        alreadySaved = true;
+                        break;
+                    }
+                }
+                
+                if(!alreadySaved)
+                {
+                    PlacedElementData wallData = new()
+                    {
+                        wallCellA = wallKey.a,
+                        wallCellB = wallKey.b,
+                        elementType = (int)wallType
+                    };
+                    
+                    shopData.placedElements.Add(wallData);
+                    Debug.Log($"  🧱 Mur modifié sauvegardé : Type={wallType}, A={wallKey.a}, B={wallKey.b}");
+                }
+            }
+        }
+
+        Debug.Log($"💾 Éléments sauvegardés pour ce shop : {shopData.placedElements.Count}");
+        data.shops.Add(shopData);
     }
 
+    string json = JsonUtility.ToJson(data, true);
+    File.WriteAllText(SavePath, json);
+    Debug.Log($"✅ Sauvegarde terminée : {SavePath}");
+}
     public void LoadGame()
     {
         if(!File.Exists(SavePath))
@@ -93,13 +200,12 @@ public class SaveManager : MonoBehaviour
 
     void LoadShop(ShopSaveData data)
     {
-        // 1️⃣ Créer panel vide
         PanelShopElement panel = PanelShopMaster.instance.CreateEmptyShopPanel();
         panel.LoadFromSave(data);
 
-        // 2️⃣ Récupérer tiles
         List<BlueprintGroundElement> tiles = new();
 
+        // Charger les tuiles achetées
         foreach (var index in data.boughtTiles)
         {
             if (PanelShopMaster.instance.grid.TryGetValue(index, out var tile))
@@ -108,15 +214,17 @@ public class SaveManager : MonoBehaviour
             }
         }
 
-        // 3️⃣ Appliquer les tiles
         foreach (var tile in tiles)
         {
             tile.GroundBuy(data.shopName);
             panel.GetGroundElements().Add(tile);
         }
 
-        // 4️⃣ Construire murs + volume UNE FOIS
+        // Créer les murs autour de la zone
         PanelShopMaster.instance.BuildWallsAroundZone(tiles, panel);
-        panel.CreateShopVolume(); // ← RENDRE LA MÉTHODE PUBLIC
+        panel.CreateShopVolume();
+
+        
+        Debug.Log($"✅ Shop '{data.shopName}' chargé avec succès");
     }
 }

@@ -173,26 +173,49 @@ public abstract class ShopPlaceableElement : MonoBehaviour
     public virtual void Place()
     {
         isPlacing = false;
-
         RawMapRaycaster.instance.CleanActivePlaceable();
-        
-
-        if (uiInstance != null)
-        {
-        }
 
         if (planInstance != null)
         {
+            MapTooltipsElement tooltip = planInstance.GetComponent<MapTooltipsElement>();
+            
+            if(tooltip == null)
+            {
+                Debug.LogError("❌ MapTooltipsElement manquant sur " + planInstance.name);
+                return;
+            }
 
-            planInstance.GetComponent<MapTooltipsElement>().wallElement = currentWallSnap;
+            tooltip.wallElement = currentWallSnap;
 
-            GameObject elementBlueprintOnWall = planInstance.GetComponent<MapTooltipsElement>().wallElement.GetComponent<BlueprintWallElement>().wallInGame.GetComponent<WallInMallElement>().elementBlueprintOnWall;
-            if(elementBlueprintOnWall != null)
-                Destroy(elementBlueprintOnWall);
+            BlueprintWallElement blueprintWall = currentWallSnap.GetComponent<BlueprintWallElement>();
+            if(blueprintWall == null)
+            {
+                Debug.LogError("❌ BlueprintWallElement manquant sur le mur");
+                return;
+            }
 
-            planInstance.GetComponent<MapTooltipsElement>().wallElement.GetComponent<BlueprintWallElement>().wallInGame.GetComponent<WallInMallElement>().elementBlueprintOnWall = planInstance;
+            if(blueprintWall.wallInGame == null)
+            {
+                Debug.LogError("❌ wallInGame est null sur " + blueprintWall.name);
+                return;
+            }
 
-            PanelShopMaster.instance.GetPanelShopSelected().allShopElement.Add(planInstance.GetComponent<MapTooltipsElement>());
+            // Détruire l'ancien élément s'il existe
+            WallInMallElement wallInMall = blueprintWall.wallInGame.GetComponent<WallInMallElement>();
+            if(wallInMall.elementBlueprintOnWall != null)
+                Destroy(wallInMall.elementBlueprintOnWall);
+
+            wallInMall.elementBlueprintOnWall = planInstance;
+
+            PanelShopElement selectedShop = PanelShopMaster.instance.GetPanelShopSelected();
+            if(selectedShop == null)
+            {
+                Debug.LogError("❌ Aucun shop sélectionné !");
+                return;
+            }
+
+            selectedShop.allShopElement.Add(tooltip);
+            Debug.Log($"✅ Élément ajouté à allShopElement. Total: {selectedShop.allShopElement.Count}");
         }
 
         OnPlaced();

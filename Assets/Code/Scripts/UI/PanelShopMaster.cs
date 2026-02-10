@@ -469,6 +469,16 @@ public class PanelShopMaster : MonoBehaviour
         GameObject wall = Instantiate(wallPrefab, wallPos, rot, wallsParent);
         GameObject wallGame = Instantiate(wallPrefabGame, wallPos, rotGame, wallsParentGame);
 
+        BlueprintWallElement blueprintWall = wall.GetComponent<BlueprintWallElement>();
+        if(blueprintWall != null)
+        {
+            WallInMallElement wallInMall = wallGame.GetComponent<WallInMallElement>();
+            blueprintWall.wallInGame = wallInMall;
+
+            blueprintWall.wallKey = key;
+            blueprintWall.ownerShop = shop;
+        }
+
         if (shop != null)
         {
             shop.allWallShop.Add(wall);
@@ -605,6 +615,8 @@ public struct WallKey
             (a, b) = (b, a);
         }
     }
+
+    
 
     public override bool Equals(object obj)
     {

@@ -436,6 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2687203368507045098}
   - component: {fileID: 6711861418428479231}
+  - component: {fileID: 4638845470469103318}
   m_Layer: 0
   m_Name: MasterWallIntMall
   m_TagString: Untagged
@@ -476,6 +477,20 @@ MonoBehaviour:
   wallDownObject: {fileID: 2188484527027240249}
   doorPivot: {fileID: 2141857858503371829}
   elementBlueprintOnWall: {fileID: 0}
+--- !u!114 &4638845470469103318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3108469376653581258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96de08fd5a00efc4cb889fb40f6822dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 0
+  listWalls: []
 --- !u!1 &3386275572711060570
 GameObject:
   m_ObjectHideFlags: 0
