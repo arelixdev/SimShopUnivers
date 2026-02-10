@@ -32,14 +32,14 @@ public class SaveManager : MonoBehaviour
     SaveData data = new();
     PanelShopElement[] shops = FindObjectsOfType<PanelShopElement>();
 
-    Debug.Log($"🔍 Nombre de shops trouvés : {shops.Length}");
+    Debug.Log($"Nombre de shops trouvés : {shops.Length}");
 
     foreach(var shop in shops)
     {
         if(!shop.HasBoughtZone())
             continue;
 
-        Debug.Log($"🏪 Shop '{shop.GetShopName()}' - Éléments: {shop.allShopElement.Count}");
+        Debug.Log($"Shop '{shop.GetShopName()}' - Éléments: {shop.allShopElement.Count}");
 
         ShopSaveData shopData = new();
         shopData.shopName = shop.GetShopName();
@@ -53,48 +53,48 @@ public class SaveManager : MonoBehaviour
         // VOTRE CODE ORIGINAL QUI MARCHE
         foreach(var element in shop.allShopElement)
         {
-            Debug.Log($"  📦 Traitement élément : {element?.name ?? "NULL"}");
+            Debug.Log($"Traitement élément : {element?.name ?? "NULL"}");
             
             if(element == null)
             {
-                Debug.LogWarning("  ⚠️ element est NULL, skip");
+                Debug.LogWarning("element est NULL, skip");
                 continue;
             }
             
             if(element.wallElement == null)
             {
-                Debug.LogWarning($"  ⚠️ wallElement est NULL sur {element.name}, skip");
+                Debug.LogWarning($"wallElement est NULL sur {element.name}, skip");
                 continue;
             }
             
-            Debug.Log($"     ✓ wallElement OK: {element.wallElement.name}");
+            Debug.Log($"wallElement OK: {element.wallElement.name}");
 
             // ===== CORRECTION ICI =====
             BlueprintWallElement wall = element.wallElement.GetComponent<BlueprintWallElement>();
             if(wall == null)
             {
-                Debug.LogWarning($"  ⚠️ BlueprintWallElement null sur {element.wallElement.name}, skip");
+                Debug.LogWarning($"BlueprintWallElement null sur {element.wallElement.name}, skip");
                 continue;
             }
             
-            Debug.Log($"     ✓ BlueprintWallElement OK, wallKey: a={wall.wallKey.a}, b={wall.wallKey.b}");
+            Debug.Log($"BlueprintWallElement OK, wallKey: a={wall.wallKey.a}, b={wall.wallKey.b}");
 
             if(wall.wallInGame == null)
             {
-                Debug.LogWarning($"  ⚠️ wallInGame null sur {wall.name}, skip");
+                Debug.LogWarning($"wallInGame null sur {wall.name}, skip");
                 continue;
             }
             
-            Debug.Log($"     ✓ wallInGame OK: {wall.wallInGame.name}");
+            Debug.Log($"wallInGame OK: {wall.wallInGame.name}");
 
             WallInMallElement worldElement = wall.wallInGame.GetComponent<WallInMallElement>();
             if(worldElement == null)
             {
-                Debug.LogWarning($"  ⚠️ WallInMallElement manquant sur {wall.wallInGame.name}, skip");
+                Debug.LogWarning($"WallInMallElement manquant sur {wall.wallInGame.name}, skip");
                 continue;
             }
             
-            Debug.Log($"     ✓ WallInMallElement OK, type: {worldElement.downElement.elementType}");
+            Debug.Log($"WallInMallElement OK, type: {worldElement.downElement.elementType}");
 
             PlacedElementData elemData = new()
             {
@@ -104,10 +104,37 @@ public class SaveManager : MonoBehaviour
             };
 
             shopData.placedElements.Add(elemData);
-            Debug.Log($"  ✅ Élément sauvegardé : Type={worldElement.downElement.elementType}, A={wall.wallKey.a}, B={wall.wallKey.b}");
+            Debug.Log($"Élément sauvegardé : Type={worldElement.downElement.elementType}, A={wall.wallKey.a}, B={wall.wallKey.b}");
         }
 
-        // SAUVER LES MURS MODIFIÉS (portes/fenêtres sans MapTooltipsElement)
+        foreach (var shelf in shop.GetComponent<PanelShopElement>().GetShopVolume().GetComponent<ShopZone>().shelvingsInZone)
+        {
+            if(shelf == null) continue;
+
+            FurnitureSaveData shelfData = new()
+            {
+                position = shelf.transform.position,
+                rotation = shelf.transform.rotation,
+                furnitureType = 3 // Shelf
+            };
+            shopData.shelvings.Add(shelfData);
+            Debug.Log($"Shelf sauvegardée à {shelfData.position}");
+        }
+
+        foreach (var checkout in shop.GetComponent<PanelShopElement>().GetShopVolume().GetComponent<ShopZone>().checkoutsInZone)
+        {
+            if(checkout == null) continue;
+
+            FurnitureSaveData checkoutData = new()
+            {
+                position = checkout.transform.position,
+                rotation = checkout.transform.rotation,
+                furnitureType = 0 // Checkout
+            };
+            shopData.checkouts.Add(checkoutData);
+            Debug.Log($"Checkout sauvegardé à {checkoutData.position}");
+        }
+
         foreach(var wallKey in shop.allWallKeys)
         {
             if(!PanelShopMaster.instance.createdWalls.TryGetValue(wallKey, out GameObject wallObj))
@@ -147,18 +174,18 @@ public class SaveManager : MonoBehaviour
                     };
                     
                     shopData.placedElements.Add(wallData);
-                    Debug.Log($"  🧱 Mur modifié sauvegardé : Type={wallType}, A={wallKey.a}, B={wallKey.b}");
+                    Debug.Log($"Mur modifié sauvegardé : Type={wallType}, A={wallKey.a}, B={wallKey.b}");
                 }
             }
         }
 
-        Debug.Log($"💾 Éléments sauvegardés pour ce shop : {shopData.placedElements.Count}");
+        Debug.Log($"Éléments sauvegardés pour ce shop : {shopData.placedElements.Count}");
         data.shops.Add(shopData);
     }
 
     string json = JsonUtility.ToJson(data, true);
     File.WriteAllText(SavePath, json);
-    Debug.Log($"✅ Sauvegarde terminée : {SavePath}");
+    Debug.Log($"Sauvegarde terminée : {SavePath}");
 }
     public void LoadGame()
     {
@@ -219,12 +246,43 @@ public class SaveManager : MonoBehaviour
             tile.GroundBuy(data.shopName);
             panel.GetGroundElements().Add(tile);
         }
-
+        
         // Créer les murs autour de la zone
         PanelShopMaster.instance.BuildWallsAroundZone(tiles, panel);
         panel.CreateShopVolume();
 
+        ShopZone shopZone = panel.GetShopVolume().GetComponent<ShopZone>();
+
+        // Charger les shelves
+        foreach (var shelfData in data.shelvings)
+        {
+            FurnitureController prefab = StockInfoController.instance.allFurniture[shelfData.furnitureType];
+            if(prefab == null) continue;
+
+            FurnitureController instance = Instantiate(prefab, shelfData.position, shelfData.rotation);
+            
+            // Assigner la zone et enregistrer dans la liste
+            instance.SetCurrentShopZone(shopZone);
+            shopZone.RegisterFurniture(instance);
+
+            Debug.Log($"Shelf chargée à {shelfData.position}");
+        }
+
+        // Charger les checkouts
+        foreach (var checkoutData in data.checkouts)
+        {
+            FurnitureController prefab = StockInfoController.instance.allFurniture[checkoutData.furnitureType];
+            if(prefab == null) continue;
+
+            FurnitureController instance = Instantiate(prefab, checkoutData.position, checkoutData.rotation);
+
+            instance.SetCurrentShopZone(shopZone);
+            shopZone.RegisterFurniture(instance);
+
+            Debug.Log($"Checkout chargée à {checkoutData.position}");
+        }
+
         
-        Debug.Log($"✅ Shop '{data.shopName}' chargé avec succès");
+        Debug.Log($"Shop '{data.shopName}' chargé avec succès");
     }
 }

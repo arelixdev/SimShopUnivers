@@ -52,6 +52,11 @@ public class PanelShopElement : MonoBehaviour
         return groundElementShop != null && groundElementShop.Count > 0;
     }
 
+    public GameObject GetShopVolume()
+    {
+        return shopVolume;
+    }
+
     public List<BlueprintGroundElement> GetGroundElements()
     {
         return groundElementShop;

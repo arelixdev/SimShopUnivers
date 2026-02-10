@@ -12,6 +12,8 @@ public class StockInfoController : MonoBehaviour
 
     public List<ElementSO> allDoors = new List<ElementSO>();
 
+    public List<FurnitureController> allFurniture = new();
+
     private List<StockInfoSO> allStock = new List<StockInfoSO>();
 
 
