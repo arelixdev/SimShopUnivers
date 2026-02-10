@@ -6,8 +6,14 @@ public class GenerateCustomers : MonoBehaviour
 {
     public List<Material> mat;
 
-    public Transform accessoryTransform;
-    public int percentHaveAccessory;
+    public Transform accesHeadTransform;
+    public Transform accesMouthTransform;
+    public Transform accesEarTransform;
+    public Transform accesEyesTransform;
+    public int percentHaveAccesHead;
+    public int percentHaveAccesMouth;
+    public int percentHaveAccesEar;
+    public int percentHaveAccesEyes;
     public Transform hairTransform;
     public int percentHaveHair;
 
@@ -35,21 +41,90 @@ public class GenerateCustomers : MonoBehaviour
 
         transform.GetChild(rand).GetComponent<SkinnedMeshRenderer>().material = mat[matRand];
 
-        if(accessoryTransform != null)
+        if(accesHeadTransform != null)
         {
-            for (int i = 0; i < accessoryTransform.childCount; i++)
+            rand = 0;
+            for (int i = 0; i < accesHeadTransform.childCount; i++)
             {
-                accessoryTransform.GetChild(i).gameObject.SetActive(false);
+                accesHeadTransform.GetChild(i).gameObject.SetActive(false);
             }
 
             int randPercent = Random.Range(0, 100);
 
-            if(randPercent <= percentHaveAccessory)
+            if(randPercent <= percentHaveAccesHead)
             {
-                rand = Random.Range(0, accessoryTransform.childCount);
+                rand = Random.Range(0, accesHeadTransform.childCount);
 
-                accessoryTransform.GetChild(rand).gameObject.SetActive(true);
+                accesHeadTransform.GetChild(rand).gameObject.SetActive(true);
             }
+
+            matRand = Random.Range(0, mat.Count);
+
+            accesHeadTransform.GetChild(rand).GetComponent<MeshRenderer>().material = mat[matRand];
+        }
+
+        if(accesEarTransform != null)
+        {
+            rand = 0;
+            for (int i = 0; i < accesEarTransform.childCount; i++)
+            {
+                accesEarTransform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            int randPercent = Random.Range(0, 100);
+
+            if(randPercent <= percentHaveAccesEar)
+            {
+                rand = Random.Range(0, accesEarTransform.childCount);
+
+                accesEarTransform.GetChild(rand).gameObject.SetActive(true);
+            }
+            matRand = Random.Range(0, mat.Count);
+
+            accesEarTransform.GetChild(rand).GetComponent<MeshRenderer>().material = mat[matRand];
+        }
+
+        if(accesEyesTransform != null)
+        {
+            rand = 0;
+            for (int i = 0; i < accesEyesTransform.childCount; i++)
+            {
+                accesEyesTransform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            int randPercent = Random.Range(0, 100);
+
+            if(randPercent <= percentHaveAccesEyes)
+            {
+                rand = Random.Range(0, accesEyesTransform.childCount);
+
+                accesEyesTransform.GetChild(rand).gameObject.SetActive(true);
+            }
+            matRand = Random.Range(0, mat.Count);
+
+            accesEyesTransform.GetChild(rand).GetComponent<MeshRenderer>().material = mat[matRand];
+        }
+
+        if(accesMouthTransform != null)
+        {
+            rand = 0;
+            for (int i = 0; i < accesMouthTransform.childCount; i++)
+            {
+                accesMouthTransform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            int randPercent = Random.Range(0, 100);
+
+            if(randPercent <= percentHaveAccesMouth)
+            {
+                rand = Random.Range(0, accesMouthTransform.childCount);
+
+                accesMouthTransform.GetChild(rand).gameObject.SetActive(true);
+            }
+
+            matRand = Random.Range(0, mat.Count);
+
+            accesEyesTransform.GetChild(rand).GetComponent<MeshRenderer>().material = mat[matRand];
         }
 
         if(hairTransform != null)

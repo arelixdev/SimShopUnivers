@@ -263228,6 +263228,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: allFurniture.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
       propertyPath: elementInShop.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -263251,6 +263255,18 @@ PrefabInstance:
       propertyPath: 'allShopType.Array.data[4]'
       value: 
       objectReference: {fileID: 11400000, guid: 1b10105e79d5afa4cbc32d421d5fd8c8, type: 2}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'allFurniture.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1567758169923444698, guid: 5d2ca101b32a83c4d9b47f941d67ed08, type: 3}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'allFurniture.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3812975002374540925, guid: 261c7728f8f905047a4aa1d52dce72de, type: 3}
+    - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
+      propertyPath: 'allFurniture.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2043989985748960945, guid: 5d80827da22c2db47bd3b0e5b8bdb863, type: 3}
     - target: {fileID: 881558458227048181, guid: 2938be7f61b1aa54a9548cb32668c6e5, type: 3}
       propertyPath: elementInShop.Array.data[1].typeShop
       value: 1
