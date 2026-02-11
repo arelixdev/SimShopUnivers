@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEditorInternal;
 using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
 
 public class SpriteExporterWindow : EditorWindow
 {
+    [SerializeField]
     private List<GameObject> prefabsToExport = new List<GameObject>();
+
+    private SerializedProperty prefabExport;
 
     private Camera captureCamera;
 
@@ -15,67 +19,128 @@ public class SpriteExporterWindow : EditorWindow
 
     private Vector3 cameraRotation = new Vector3(0, 0, 0);
 
+    private SerializedObject so;
+    private SerializedProperty prefabListProperty;
+    private ReorderableList prefabList;
+
     [MenuItem("Tools/Sprite Exporter")]
     public static void ShowWindow()
     {
         GetWindow<SpriteExporterWindow>("Sprite Exporter");
     }
 
+    private void OnEnable()
+    {
+        so = new SerializedObject(this);
+        prefabListProperty = so.FindProperty("prefabsToExport");
+
+        prefabList = new ReorderableList(
+            so,
+            prefabListProperty,
+            true,   // draggable
+            true,   // display header
+            true,   // display add button
+            true    // display remove button
+        );
+
+        prefabList.drawHeaderCallback = rect =>
+        {
+            EditorGUI.LabelField(rect, "List prefab export");
+        };
+
+        prefabList.drawElementCallback = (rect, index, active, focused) =>
+        {
+            SerializedProperty element = prefabListProperty.GetArrayElementAtIndex(index);
+            rect.y += 2;
+            EditorGUI.PropertyField(
+                new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight),
+                element,
+                GUIContent.none
+            );
+        };
+
+        prefabList.elementHeight = EditorGUIUtility.singleLineHeight + 6;
+    }
+
     private void OnGUI()
     {
-        GUILayout.Label("EXPORTER PLUSIEURS PREFABS EN PNG", EditorStyles.boldLabel);
+        
+        GUILayout.Label("EXPORT LIST OF PREFAB => PNG", EditorStyles.boldLabel);
 
         GUILayout.Space(10);
 
-        // --- Liste des prefabs ---
-        GUILayout.Label("Liste des Prefabs à exporter :", EditorStyles.boldLabel);
+        so.Update();
 
-        if (prefabsToExport.Count == 0)
+        
+
+        prefabList.DoLayoutList();
+        HandleDragAndDrop();
+
+        so.ApplyModifiedProperties();
+
+        if(GUILayout.Button("Clear all prefab"))
         {
-            EditorGUILayout.HelpBox("Aucun prefab ajouté.", MessageType.Info);
-        }
-
-        // Affiche la liste
-        for (int i = 0; i < prefabsToExport.Count; i++)
-        {
-            EditorGUILayout.BeginHorizontal();
-
-            prefabsToExport[i] = (GameObject)EditorGUILayout.ObjectField(prefabsToExport[i], typeof(GameObject), false);
-
-            if (GUILayout.Button("X", GUILayout.Width(25)))
-            {
-                prefabsToExport.RemoveAt(i);
-                i--;
-            }
-
-            EditorGUILayout.EndHorizontal();
-        }
-
-        GUILayout.Space(5);
-
-        // Bouton pour ajouter un prefab
-        if (GUILayout.Button("Ajouter un Prefab"))
-        {
-            prefabsToExport.Add(null);
+            ClearList();
         }
 
         GUILayout.Space(15);
 
-        // Réglages
-        resolution = EditorGUILayout.IntSlider("Résolution PNG", resolution, 256, 4096);
-        targetSize = EditorGUILayout.FloatField("Taille uniforme", targetSize);
-        outputFolder = EditorGUILayout.TextField("Dossier d'export", outputFolder);
+        resolution = EditorGUILayout.IntSlider("PNG resolution", resolution, 64, 4096);
+        //targetSize = EditorGUILayout.FloatField("Taille uniforme", targetSize);
+        outputFolder = EditorGUILayout.TextField("Export Folder", outputFolder);
+
+        
 
         GUILayout.Space(10);
 
-        GUILayout.Label("Rotation de la caméra :", EditorStyles.boldLabel);
+        GUILayout.Label("Camera Angle", EditorStyles.boldLabel);
+        //ADD icn preset
+        GUILayout.Label("Camera Angle Custom", EditorStyles.boldLabel);
         cameraRotation = EditorGUILayout.Vector3Field("Rotation (X/Y/Z)", cameraRotation);
 
         GUILayout.Space(20);
 
-        if (GUILayout.Button("Exporter tous les Prefabs"))
+        if (GUILayout.Button("Export"))
         {
             ExportAllPrefabs();
+        }
+    }
+
+    private void ClearList()
+    {
+        prefabsToExport.Clear();  
+    }
+
+    private void HandleDragAndDrop()
+    {
+        Event evt = Event.current;
+        Rect listRect = GUILayoutUtility.GetLastRect();
+
+        if (!listRect.Contains(evt.mousePosition))
+            return;
+
+        if (evt.type == EventType.DragUpdated || evt.type == EventType.DragPerform)
+        {
+            DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+
+            if (evt.type == EventType.DragPerform)
+            {
+                DragAndDrop.AcceptDrag();
+
+                foreach (Object dragged in DragAndDrop.objectReferences)
+                {
+                    if (dragged is GameObject go &&
+                        PrefabUtility.IsPartOfPrefabAsset(go))
+                    {
+                        prefabListProperty.arraySize++;
+                        prefabListProperty.GetArrayElementAtIndex(
+                            prefabListProperty.arraySize - 1
+                        ).objectReferenceValue = go;
+                    }
+                }
+            }
+
+            evt.Use();
         }
     }
 
@@ -83,7 +148,7 @@ public class SpriteExporterWindow : EditorWindow
     {
         if (prefabsToExport.Count == 0)
         {
-            Debug.LogError("La liste est vide !");
+            Debug.LogError("Prefab list is empty");
             return;
         }
 
@@ -100,9 +165,7 @@ public class SpriteExporterWindow : EditorWindow
             ExportSinglePrefab(prefab, folderPath);
         }
 
-        prefabsToExport.Clear();  // 🔥 vide la liste après export
-
-        Debug.Log("Export terminé ! La liste a été vidée.");
+        Debug.Log("Export Finish !");
     }
 
     private void ExportSinglePrefab(GameObject prefab, string folderPath)
