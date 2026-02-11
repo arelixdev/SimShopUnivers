@@ -23,6 +23,9 @@ public class SpriteExporterWindow : EditorWindow
     private SerializedProperty prefabListProperty;
     private ReorderableList prefabList;
 
+    private Texture2D iconFront;
+    private Texture2D iconRight;
+
     [MenuItem("Tools/Sprite Exporter")]
     public static void ShowWindow()
     {
@@ -60,6 +63,9 @@ public class SpriteExporterWindow : EditorWindow
         };
 
         prefabList.elementHeight = EditorGUIUtility.singleLineHeight + 6;
+
+        iconFront = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Editor/SpriteExporter/Icons/iconfront.png");
+        iconRight = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Editor/SpriteExporter/Icons/iconright.png");
     }
 
     private void OnGUI()
@@ -94,7 +100,17 @@ public class SpriteExporterWindow : EditorWindow
         GUILayout.Space(10);
 
         GUILayout.Label("Camera Angle", EditorStyles.boldLabel);
-        //ADD icn preset
+        GUILayout.BeginHorizontal();
+        
+        GUILayout.Space(10);
+
+        DrawCameraButton(iconFront, Vector3.zero, 64);
+
+        GUILayout.Space(10);
+
+        DrawCameraButton(iconRight, new Vector3(30,0,0), 64);
+
+        GUILayout.EndHorizontal();
         GUILayout.Label("Camera Angle Custom", EditorStyles.boldLabel);
         cameraRotation = EditorGUILayout.Vector3Field("Rotation (X/Y/Z)", cameraRotation);
 
@@ -103,6 +119,27 @@ public class SpriteExporterWindow : EditorWindow
         if (GUILayout.Button("Export"))
         {
             ExportAllPrefabs();
+        }
+    }
+
+    private void DrawCameraButton(Texture2D icon, Vector3 rotation, int size)
+    {
+        Rect rect = GUILayoutUtility.GetRect(size, size, GUILayout.ExpandWidth(false));
+        bool isSelected = cameraRotation == rotation;
+
+        Color oldColor = GUI.color;
+
+        if (isSelected)
+        {
+            GUI.color = Color.white; 
+            GUI.DrawTexture(new Rect(rect.x - 2, rect.y - 2, rect.width + 4, rect.height + 4), Texture2D.whiteTexture);
+            GUI.color = oldColor; 
+        }
+
+        // Dessine le bouton avec l'icône
+        if (GUI.Button(rect, icon))
+        {
+            cameraRotation = rotation;
         }
     }
 
@@ -170,30 +207,23 @@ public class SpriteExporterWindow : EditorWindow
 
     private void ExportSinglePrefab(GameObject prefab, string folderPath)
     {
-        // Scène temporaire
         GameObject tempRoot = new GameObject("TempExportRoot");
 
         GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab, tempRoot.transform);
 
-        // Normalisation des tailles
         NormalizeObjectSize(instance, targetSize);
 
-        // Rotation caméra
         captureCamera.transform.rotation = Quaternion.Euler(cameraRotation);
 
         // Auto framing
         FrameObject(captureCamera, instance);
 
-        // Export PNG
         string path = folderPath + "/" + prefab.name + ".png";
         CapturePNG(path);
 
         DestroyImmediate(tempRoot);
     }
 
-    // ---------------------
-    //  CAMERA SETUP
-    // ---------------------
     private void SetupCaptureCamera()
     {
         if (captureCamera == null)
@@ -209,9 +239,6 @@ public class SpriteExporterWindow : EditorWindow
         }
     }
 
-    // ---------------------
-    //  AUTO-FRAMING
-    // ---------------------
     public static void FrameObject(Camera cam, GameObject obj)
     {
         Renderer rend = obj.GetComponentInChildren<Renderer>();
@@ -224,9 +251,6 @@ public class SpriteExporterWindow : EditorWindow
         cam.orthographicSize = maxSize * 0.6f;
     }
 
-    // ---------------------
-    //  NORMALISATION D’ÉCHELLE
-    // ---------------------
     public static void NormalizeObjectSize(GameObject obj, float targetSize)
     {
         Renderer rend = obj.GetComponentInChildren<Renderer>();
@@ -238,9 +262,6 @@ public class SpriteExporterWindow : EditorWindow
         obj.transform.localScale *= scaleFactor;
     }
 
-    // ---------------------
-    //  CAPTURE PNG
-    // ---------------------
     private void CapturePNG(string filePath)
     {
         RenderTexture rt = new RenderTexture(resolution, resolution, 24);
