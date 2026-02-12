@@ -26,7 +26,9 @@ public class SpriteExporterWindow : EditorWindow
     private float targetSize = 1f;
     private string outputFolder = "SpritesExported";
 
-    private int valueTest;
+    private int prefabValue;
+
+    private float orthoSize = 0.7f;
 
     private Vector3 cameraRotation = new Vector3(0, 0, 0);
 
@@ -101,11 +103,6 @@ public class SpriteExporterWindow : EditorWindow
 
         so.ApplyModifiedProperties();
 
-        if (prefabsToExport.Count == 0 && previewInstance != null)
-        {
-            ClearPreview();
-        }
-
         if(GUILayout.Button("Clear all prefab"))
         {
             ClearList();
@@ -113,37 +110,99 @@ public class SpriteExporterWindow : EditorWindow
 
         GUILayout.Space(15);
 
-        resolution = EditorGUILayout.IntSlider("PNG resolution", resolution, 64, 4096);
-        //targetSize = EditorGUILayout.FloatField("Taille uniforme", targetSize);
-        outputFolder = EditorGUILayout.TextField("Export Folder", outputFolder);
-
         
+        GUILayout.Label("Camera Parameters", EditorStyles.boldLabel);
+        GUILayout.Space(5);
+        backgroundColor = EditorGUILayout.ColorField("Background Color", backgroundColor);
+        GUILayout.Space(5);
+        isTransparent = EditorGUILayout.Toggle("Is Transparent ?", isTransparent);
+        GUILayout.Space(5);
+        orthoSize = EditorGUILayout.FloatField("Change Ortho Size", orthoSize);
 
         GUILayout.Space(10);
+        if(prefabsToExport.Count > 0)
+        {
+            GUILayout.Label("Camera Preview", EditorStyles.boldLabel);
 
-        backgroundColor = EditorGUILayout.ColorField("Background Color", backgroundColor);
+            EditorGUILayout.BeginHorizontal();
 
-        GUILayout.Label("Camera Preview", EditorStyles.boldLabel);
+            GUILayout.FlexibleSpace();
 
-        Rect previewRect = GUILayoutUtility.GetRect(PREVIEW_SIZE,PREVIEW_SIZE,GUILayout.ExpandWidth(false));
+            Rect previewRect = GUILayoutUtility.GetRect(PREVIEW_SIZE,PREVIEW_SIZE,GUILayout.ExpandWidth(false));
 
-        previewRect.x += 80;
+            EditorGUI.DrawRect(previewRect, backgroundColor);
 
-        EditorGUI.DrawRect(previewRect, backgroundColor);
+            HandlePreviewMouse(previewRect);
+            DrawPreview(previewRect);
 
-        HandlePreviewMouse(previewRect);
-        DrawPreview(previewRect);
+            GUILayout.FlexibleSpace();
 
-        GUILayout.Space(20);
+            EditorGUILayout.EndHorizontal();
+
+            GUILayout.Space(5);
+
+            EditorGUILayout.BeginHorizontal();
+
+            GUILayout.FlexibleSpace();
+
+            if(GUILayout.Button("<", GUILayout.Width(60)))
+            {
+                prefabValue --;
+                if(prefabValue < 0)
+                {
+                    prefabValue = prefabsToExport.Count-1;
+                }
+                ChangePrefab();
+            }
+            if(GUILayout.Button(">", GUILayout.Width(60)))
+            {
+                prefabValue ++;
+                if(prefabValue >= prefabsToExport.Count)
+                {
+                    prefabValue = 0;
+                }
+                ChangePrefab();
+            }
+
+            GUILayout.FlexibleSpace();
+
+            EditorGUILayout.EndHorizontal();
+
+            GUILayout.Space(5);
+
+            EditorGUILayout.BeginHorizontal();
+
+            GUILayout.FlexibleSpace();
+
+            GUILayout.Label($"{prefabsToExport[prefabValue].name}");
+
+            GUILayout.FlexibleSpace();
+
+            EditorGUILayout.EndHorizontal();
+
+            GUILayout.Space(10);
+        }
+
+        GUILayout.Label("Export Parameters", EditorStyles.boldLabel);
+
+        GUILayout.Space(5);
+
+        resolution = EditorGUILayout.IntSlider("PNG Resolution", resolution, 64, 4096);
+        GUILayout.Space(5);
+        outputFolder = EditorGUILayout.TextField("Export Folder", outputFolder);
+
+        GUILayout.Space(15);
 
         if (GUILayout.Button("Export"))
         {
             ExportAllPrefabs();
         }
+    }
 
-        
-
-        
+    private void ChangePrefab()
+    {
+        DestroyImmediate(previewInstance);
+        previewInstance = null;
     }
 
     private void HandlePreviewMouse(Rect rect)
@@ -196,7 +255,7 @@ public class SpriteExporterWindow : EditorWindow
     {
         CleanupPreviewInstance();
 
-        previewInstance = (GameObject)PrefabUtility.InstantiatePrefab(prefabsToExport[0]);
+        previewInstance = (GameObject)PrefabUtility.InstantiatePrefab(prefabsToExport[prefabValue]);
 
         NormalizeObjectSize(previewInstance, targetSize);
     }
@@ -212,7 +271,7 @@ public class SpriteExporterWindow : EditorWindow
         cam.transform.position = b.center - cam.transform.forward * previewDistance;
 
         float maxSize = Mathf.Max(b.size.x, b.size.y, b.size.z);
-        cam.orthographicSize = maxSize * 0.6f;
+        cam.orthographicSize = maxSize * orthoSize;
     }
 
     private void SetupPreviewCamera()
@@ -224,7 +283,7 @@ public class SpriteExporterWindow : EditorWindow
         previewCamera = camObj.AddComponent<Camera>();
         previewCamera.orthographic = true;
         previewCamera.clearFlags = CameraClearFlags.SolidColor;
-        previewCamera.backgroundColor = backgroundColor;
+        previewCamera.backgroundColor = new Color(0,0,0,0);
         previewCamera.nearClipPlane = 0.01f;
         previewCamera.farClipPlane = 100f;
     }
@@ -249,45 +308,8 @@ public class SpriteExporterWindow : EditorWindow
     private void ClearList()
     {
         prefabsToExport.Clear();  
-        
+        DestroyImmediate(previewInstance);
         previewInstance = null;
-        ClearPreview();
-        ClearAllHideAndDontSave();
-    }
-
-    static void ClearAllHideAndDontSave()
-    {
-        Object[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
-
-        foreach (GameObject go in allObjects)
-        {
-            if ((go.hideFlags & HideFlags.HideAndDontSave) != 0)
-            {
-                Debug.Log("Destroying: " + go.name);
-                Object.DestroyImmediate(go);
-            }
-        }
-    }
-
-    private void ClearPreview()
-    {
-        if (previewInstance != null)
-        {
-            DestroyImmediate(previewInstance);
-            previewInstance = null;
-        }
-
-        if (previewCamera != null)
-            previewCamera.targetTexture = null;
-
-        if (previewRT != null)
-        {
-            ClearRT(previewRT);
-            previewRT.Release();
-            previewRT = null;
-        }
-
-        Repaint();
     }
 
     private void ClearRT(RenderTexture rt)
@@ -368,7 +390,7 @@ public class SpriteExporterWindow : EditorWindow
 
         GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab, tempRoot.transform);
 
-        NormalizeObjectSize(instance, targetSize);
+        //NormalizeObjectSize(instance, targetSize);
 
         cameraRotation = previewRotation; 
 
@@ -382,31 +404,29 @@ public class SpriteExporterWindow : EditorWindow
 
     private void SetupCaptureCamera()
     {
+        if(captureCamera != null) DestroyImmediate(captureCamera);
+
         if (captureCamera == null)
         {
             GameObject camObj = new GameObject("ExportCamera");
             captureCamera = camObj.AddComponent<Camera>();
 
             captureCamera.clearFlags = CameraClearFlags.SolidColor;
-            captureCamera.backgroundColor = backgroundColor;
+            
+            
             captureCamera.orthographic = true;
             captureCamera.nearClipPlane = 0.01f;
             captureCamera.farClipPlane = 100f;
         }
+
+        if(isTransparent)
+        {
+            captureCamera.backgroundColor = new Color(0,0,0,0);
+        } else
+        {
+            captureCamera.backgroundColor = backgroundColor;
+        }
     }
-
-    public static void FrameObject(Camera cam, GameObject obj)
-    {
-        Renderer rend = obj.GetComponentInChildren<Renderer>();
-        Bounds b = rend.bounds;
-
-        // Position camera selon sa rotation
-        cam.transform.position = b.center - cam.transform.forward * 10f;
-
-        float maxSize = Mathf.Max(b.size.x, b.size.y, b.size.z);
-        cam.orthographicSize = maxSize * 0.6f;
-    }
-
     public static void NormalizeObjectSize(GameObject obj, float targetSize)
     {
         Renderer rend = obj.GetComponentInChildren<Renderer>();
