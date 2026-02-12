@@ -6,6 +6,22 @@ using System.Collections.Generic;
 
 public class SpriteExporterWindow : EditorWindow
 {
+
+    // Preview
+    private Camera previewCamera;
+    private RenderTexture previewRT;
+    private GameObject previewInstance;
+
+    private GameObject previewBackground;
+
+    // Camera control
+    private Vector2 previewRotation = new Vector2(30f, 45f); // X = pitch, Y = yaw
+    private float previewDistance = 10f;
+
+    // Preview size
+    private const int PREVIEW_SIZE = 256;
+    Editor gameObjectEditor;
+
     [SerializeField]
     private List<GameObject> prefabsToExport = new List<GameObject>();
 
@@ -16,6 +32,8 @@ public class SpriteExporterWindow : EditorWindow
     private int resolution = 1024;
     private float targetSize = 1f;
     private string outputFolder = "SpritesExported";
+
+    private int valueTest;
 
     private Vector3 cameraRotation = new Vector3(0, 0, 0);
 
@@ -99,20 +117,14 @@ public class SpriteExporterWindow : EditorWindow
 
         GUILayout.Space(10);
 
-        GUILayout.Label("Camera Angle", EditorStyles.boldLabel);
-        GUILayout.BeginHorizontal();
-        
-        GUILayout.Space(10);
+        GUILayout.Label("Camera Preview", EditorStyles.boldLabel);
 
-        DrawCameraButton(iconFront, Vector3.zero, 64);
+        Rect previewRect = GUILayoutUtility.GetRect(PREVIEW_SIZE,PREVIEW_SIZE,GUILayout.ExpandWidth(false));
 
-        GUILayout.Space(10);
+        previewRect.x += 80;
 
-        DrawCameraButton(iconRight, new Vector3(30,0,0), 64);
-
-        GUILayout.EndHorizontal();
-        GUILayout.Label("Camera Angle Custom", EditorStyles.boldLabel);
-        cameraRotation = EditorGUILayout.Vector3Field("Rotation (X/Y/Z)", cameraRotation);
+        HandlePreviewMouse(previewRect);
+        DrawPreview(previewRect);
 
         GUILayout.Space(20);
 
@@ -120,32 +132,113 @@ public class SpriteExporterWindow : EditorWindow
         {
             ExportAllPrefabs();
         }
+
+        
+
+        
     }
 
-    private void DrawCameraButton(Texture2D icon, Vector3 rotation, int size)
+    private void HandlePreviewMouse(Rect rect)
     {
-        Rect rect = GUILayoutUtility.GetRect(size, size, GUILayout.ExpandWidth(false));
-        bool isSelected = cameraRotation == rotation;
+        Event e = Event.current;
 
-        Color oldColor = GUI.color;
+        if (!rect.Contains(e.mousePosition))
+            return;
 
-        if (isSelected)
+        if (e.type == EventType.MouseDrag && e.button == 0)
         {
-            GUI.color = Color.white; 
-            GUI.DrawTexture(new Rect(rect.x - 2, rect.y - 2, rect.width + 4, rect.height + 4), Texture2D.whiteTexture);
-            GUI.color = oldColor; 
-        }
+            previewRotation.y += e.delta.x;
+            previewRotation.x += e.delta.y;
 
-        // Dessine le bouton avec l'icône
-        if (GUI.Button(rect, icon))
-        {
-            cameraRotation = rotation;
+            previewRotation.x = Mathf.Clamp(previewRotation.x, -80f, 80f);
+
+            e.Use();
+            Repaint();
         }
+    }
+
+    private void DrawPreview(Rect rect)
+    {
+        if (prefabsToExport.Count == 0 || prefabsToExport[0] == null)
+            return;
+
+        SetupPreviewCamera();
+
+        if (previewRT == null)
+            previewRT = new RenderTexture(PREVIEW_SIZE, PREVIEW_SIZE, 24);
+
+        previewCamera.targetTexture = previewRT;
+
+        if (previewInstance == null)
+            CreatePreviewInstance();
+
+        ApplyCameraTransform(previewCamera, previewInstance);
+
+        previewCamera.Render();
+
+        GUI.DrawTexture(rect, previewRT, ScaleMode.ScaleToFit, true);
+    }
+
+    private void CreatePreviewInstance()
+    {
+        CleanupPreviewInstance();
+
+        previewInstance = (GameObject)PrefabUtility.InstantiatePrefab(prefabsToExport[0]);
+        previewInstance.hideFlags = HideFlags.HideAndDontSave;
+
+        NormalizeObjectSize(previewInstance, targetSize);
+    }
+
+    private void ApplyCameraTransform(Camera cam, GameObject obj)
+    {
+        Renderer rend = obj.GetComponentInChildren<Renderer>();
+        Bounds b = rend.bounds;
+
+        Quaternion rot = Quaternion.Euler(previewRotation.x, previewRotation.y, 0f);
+        cam.transform.rotation = rot;
+
+        cam.transform.position = b.center - cam.transform.forward * previewDistance;
+
+        float maxSize = Mathf.Max(b.size.x, b.size.y, b.size.z);
+        cam.orthographicSize = maxSize * 0.6f;
+    }
+
+    private void SetupPreviewCamera()
+    {
+        if (previewCamera != null) return;
+
+        GameObject camObj = new GameObject("PreviewCamera");
+        camObj.hideFlags = HideFlags.HideAndDontSave;
+
+        previewCamera = camObj.AddComponent<Camera>();
+        previewCamera.orthographic = true;
+        previewCamera.clearFlags = CameraClearFlags.SolidColor;
+        previewCamera.backgroundColor = new Color(0, 0, 0, 0);
+        previewCamera.nearClipPlane = 0.01f;
+        previewCamera.farClipPlane = 100f;
+    }
+
+    private void CleanupPreviewInstance()
+    {
+        if (previewInstance != null)
+            DestroyImmediate(previewInstance);
+    }
+
+    private void OnDisable()
+    {
+        CleanupPreviewInstance();
+
+        if (previewCamera != null)
+            DestroyImmediate(previewCamera.gameObject);
+
+        if (previewRT != null)
+            previewRT.Release();
     }
 
     private void ClearList()
     {
         prefabsToExport.Clear();  
+        gameObjectEditor = null;
     }
 
     private void HandleDragAndDrop()
@@ -189,6 +282,8 @@ public class SpriteExporterWindow : EditorWindow
             return;
         }
 
+        CleanupPreviewInstance();
+
         SetupCaptureCamera();
 
         string folderPath = Application.dataPath + "/" + outputFolder;
@@ -213,10 +308,9 @@ public class SpriteExporterWindow : EditorWindow
 
         NormalizeObjectSize(instance, targetSize);
 
-        captureCamera.transform.rotation = Quaternion.Euler(cameraRotation);
+        cameraRotation = previewRotation; 
 
-        // Auto framing
-        FrameObject(captureCamera, instance);
+        ApplyCameraTransform(captureCamera, instance);
 
         string path = folderPath + "/" + prefab.name + ".png";
         CapturePNG(path);
