@@ -6,26 +6,19 @@ using System.Collections.Generic;
 
 public class SpriteExporterWindow : EditorWindow
 {
-
+    private const int PREVIEW_SIZE = 256;
     // Preview
     private Camera previewCamera;
     private RenderTexture previewRT;
     private GameObject previewInstance;
 
-    private GameObject previewBackground;
-
     // Camera control
     private Vector2 previewRotation = new Vector2(30f, 45f); // X = pitch, Y = yaw
     private float previewDistance = 10f;
 
-    // Preview size
-    private const int PREVIEW_SIZE = 256;
-    Editor gameObjectEditor;
 
     [SerializeField]
     private List<GameObject> prefabsToExport = new List<GameObject>();
-
-    private SerializedProperty prefabExport;
 
     private Camera captureCamera;
 
@@ -40,6 +33,10 @@ public class SpriteExporterWindow : EditorWindow
     private SerializedObject so;
     private SerializedProperty prefabListProperty;
     private ReorderableList prefabList;
+
+    private Color backgroundColor;
+
+    private bool isTransparent;
 
     private Texture2D iconFront;
     private Texture2D iconRight;
@@ -84,6 +81,8 @@ public class SpriteExporterWindow : EditorWindow
 
         iconFront = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Editor/SpriteExporter/Icons/iconfront.png");
         iconRight = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Editor/SpriteExporter/Icons/iconright.png");
+
+        backgroundColor = new Color(0,0,0, 1);
     }
 
     private void OnGUI()
@@ -102,6 +101,11 @@ public class SpriteExporterWindow : EditorWindow
 
         so.ApplyModifiedProperties();
 
+        if (prefabsToExport.Count == 0 && previewInstance != null)
+        {
+            ClearPreview();
+        }
+
         if(GUILayout.Button("Clear all prefab"))
         {
             ClearList();
@@ -117,11 +121,15 @@ public class SpriteExporterWindow : EditorWindow
 
         GUILayout.Space(10);
 
+        backgroundColor = EditorGUILayout.ColorField("Background Color", backgroundColor);
+
         GUILayout.Label("Camera Preview", EditorStyles.boldLabel);
 
         Rect previewRect = GUILayoutUtility.GetRect(PREVIEW_SIZE,PREVIEW_SIZE,GUILayout.ExpandWidth(false));
 
         previewRect.x += 80;
+
+        EditorGUI.DrawRect(previewRect, backgroundColor);
 
         HandlePreviewMouse(previewRect);
         DrawPreview(previewRect);
@@ -160,7 +168,10 @@ public class SpriteExporterWindow : EditorWindow
     private void DrawPreview(Rect rect)
     {
         if (prefabsToExport.Count == 0 || prefabsToExport[0] == null)
+        {
             return;
+        }
+            
 
         SetupPreviewCamera();
 
@@ -168,6 +179,8 @@ public class SpriteExporterWindow : EditorWindow
             previewRT = new RenderTexture(PREVIEW_SIZE, PREVIEW_SIZE, 24);
 
         previewCamera.targetTexture = previewRT;
+
+        ClearRT(previewRT);
 
         if (previewInstance == null)
             CreatePreviewInstance();
@@ -184,7 +197,6 @@ public class SpriteExporterWindow : EditorWindow
         CleanupPreviewInstance();
 
         previewInstance = (GameObject)PrefabUtility.InstantiatePrefab(prefabsToExport[0]);
-        previewInstance.hideFlags = HideFlags.HideAndDontSave;
 
         NormalizeObjectSize(previewInstance, targetSize);
     }
@@ -208,12 +220,11 @@ public class SpriteExporterWindow : EditorWindow
         if (previewCamera != null) return;
 
         GameObject camObj = new GameObject("PreviewCamera");
-        camObj.hideFlags = HideFlags.HideAndDontSave;
 
         previewCamera = camObj.AddComponent<Camera>();
         previewCamera.orthographic = true;
         previewCamera.clearFlags = CameraClearFlags.SolidColor;
-        previewCamera.backgroundColor = new Color(0, 0, 0, 0);
+        previewCamera.backgroundColor = backgroundColor;
         previewCamera.nearClipPlane = 0.01f;
         previewCamera.farClipPlane = 100f;
     }
@@ -238,7 +249,58 @@ public class SpriteExporterWindow : EditorWindow
     private void ClearList()
     {
         prefabsToExport.Clear();  
-        gameObjectEditor = null;
+        
+        previewInstance = null;
+        ClearPreview();
+        ClearAllHideAndDontSave();
+    }
+
+    static void ClearAllHideAndDontSave()
+    {
+        Object[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+        foreach (GameObject go in allObjects)
+        {
+            if ((go.hideFlags & HideFlags.HideAndDontSave) != 0)
+            {
+                Debug.Log("Destroying: " + go.name);
+                Object.DestroyImmediate(go);
+            }
+        }
+    }
+
+    private void ClearPreview()
+    {
+        if (previewInstance != null)
+        {
+            DestroyImmediate(previewInstance);
+            previewInstance = null;
+        }
+
+        if (previewCamera != null)
+            previewCamera.targetTexture = null;
+
+        if (previewRT != null)
+        {
+            ClearRT(previewRT);
+            previewRT.Release();
+            previewRT = null;
+        }
+
+        Repaint();
+    }
+
+    private void ClearRT(RenderTexture rt)
+    {
+        if(rt == null) return;
+
+
+        RenderTexture previous = RenderTexture.active;
+        RenderTexture.active = rt;
+
+        GL.Clear(true, true, Color.clear);
+
+        RenderTexture.active = previous;
     }
 
     private void HandleDragAndDrop()
@@ -326,7 +388,7 @@ public class SpriteExporterWindow : EditorWindow
             captureCamera = camObj.AddComponent<Camera>();
 
             captureCamera.clearFlags = CameraClearFlags.SolidColor;
-            captureCamera.backgroundColor = new Color(0, 0, 0, 0);
+            captureCamera.backgroundColor = backgroundColor;
             captureCamera.orthographic = true;
             captureCamera.nearClipPlane = 0.01f;
             captureCamera.farClipPlane = 100f;
