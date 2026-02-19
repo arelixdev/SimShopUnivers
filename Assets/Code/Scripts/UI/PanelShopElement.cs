@@ -47,6 +47,11 @@ public class PanelShopElement : MonoBehaviour
         return (TypeShop)shopTypeDropdown.value;
     }
 
+    public bool GetIsBuy()
+    {
+        return isBuy;
+    }
+
     public bool HasBoughtZone()
     {
         return groundElementShop != null && groundElementShop.Count > 0;
@@ -133,6 +138,24 @@ public class PanelShopElement : MonoBehaviour
         }
 
         
+    }
+
+    public void SetIsBuy(bool value)
+    {
+        isBuy = value;
+
+        Debug.Log("isb" + isBuy);
+
+        if (isBuy)
+        {
+            sellBtn.SetActive(true);
+            addElementPart.SetActive(true);
+        }
+        else
+        {
+            sellBtn.SetActive(false);
+            addElementPart.SetActive(false);
+        }
     }
 
     public void ClearShop()
@@ -227,8 +250,12 @@ public class PanelShopElement : MonoBehaviour
     void InitializePanelShop()
     {
         customLineBuyElement.SetActive(false);
-        addElementPart.SetActive(false);
-        sellBtn.SetActive(false);
+        if(!isBuy)
+        {
+            addElementPart.SetActive(false);
+            sellBtn.SetActive(false);
+        }
+        
 
         var tempColor = customBtn.color;
         tempColor.a = 0f;
@@ -457,6 +484,7 @@ public class PanelShopElement : MonoBehaviour
 
     public void LoadFromSave(ShopSaveData data)
     {
+        ActualizeDd();
         nameShopInputfield.text = data.shopName;
         shopTypeDropdown.value = data.shopType;
         listTypeShop = (TypeShop)data.shopType;

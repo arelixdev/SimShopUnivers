@@ -91,12 +91,13 @@ public class UIController : MonoBehaviour
 
         if(Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            Cursor.lockState = CursorLockMode.Locked;
             if(menuSelectedOpen != null)
             {
                 //Close menuSelectedOpen
                 menuSelectedOpen.SetActive(false);
                 menuSelectedOpen = null;
-                Cursor.lockState = CursorLockMode.None;
+                
             }
         }
 

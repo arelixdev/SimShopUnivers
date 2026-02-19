@@ -44,6 +44,7 @@ public class SaveManager : MonoBehaviour
         ShopSaveData shopData = new();
         shopData.shopName = shop.GetShopName();
         shopData.shopType = (int) shop.GetSelectedShopType();
+        shopData.isBuy = shop.GetIsBuy();
 
         foreach(var ground in shop.GetGroundElements())
         {
@@ -115,7 +116,7 @@ public class SaveManager : MonoBehaviour
             {
                 position = shelf.transform.position,
                 rotation = shelf.transform.rotation,
-                furnitureType = 3 // Shelf
+                furnitureType = 2 // Shelf
             };
             shopData.shelvings.Add(shelfData);
             Debug.Log($"Shelf sauvegardée à {shelfData.position}");
@@ -250,6 +251,7 @@ public class SaveManager : MonoBehaviour
         // Créer les murs autour de la zone
         PanelShopMaster.instance.BuildWallsAroundZone(tiles, panel);
         panel.CreateShopVolume();
+        panel.SetIsBuy(data.isBuy);
 
         ShopZone shopZone = panel.GetShopVolume().GetComponent<ShopZone>();
 

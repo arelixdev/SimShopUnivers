@@ -13,6 +13,8 @@ public class ShopSaveData
 {
     public string shopName;
     public int shopType;
+
+    public bool isBuy;
     public List<Vector2Int> boughtTiles = new();
     public List<PlacedElementData> placedElements = new(); 
 
