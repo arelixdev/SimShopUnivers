@@ -11,5 +11,6 @@ public enum TypeWorkers
     Storage,
     Janitor,
     Officier,
-    Cooker
+    Cooker,
+    Standby
 }
