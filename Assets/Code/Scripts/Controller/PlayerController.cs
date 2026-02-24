@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsShopName;
     [SerializeField] private LayerMask whatIsEnvironment;
     [SerializeField] private LayerMask whatIsCustomers;
+    [SerializeField] private LayerMask whatIsWorkers;
     [SerializeField] private string whatIsMopActionTag;
     [SerializeField] private string whatIsBroomActionTag;
 
@@ -128,6 +129,14 @@ public class PlayerController : MonoBehaviour
         if(UIController.instance.wheelTools != null)
         {
             if(UIController.instance.wheelTools.activeSelf)
+            {
+                return;
+            }
+        }
+
+        if(WorkerMenu.instance.GetWorkerMenu() != null)
+        {
+            if(WorkerMenu.instance.GetWorkerMenu().activeSelf)
             {
                 return;
             }
@@ -322,6 +331,11 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsCustomers))
                 {
                     hit.collider.GetComponent<CustomerController>().satisfaction.Decrease(1);
+                }
+                if(Physics.Raycast(ray, out hit, interactionRange, whatIsWorkers))
+                {
+                    Debug.Log("Hit work " + hit.collider.gameObject.name );
+                    hit.collider.GetComponent<WorkerController>().OpenUIMenu();
                 }
             }
 
