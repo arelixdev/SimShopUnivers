@@ -46,6 +46,18 @@ public class PanelShopMaster : MonoBehaviour
         return false;
     }
 
+    public ShopCreated GetShopByName(string shopName)
+    {
+        foreach (var shop in listShopCreated)
+        {
+            if (shop.shopName == shopName)
+                return shop;
+        }
+
+        Debug.LogWarning("Shop not found: " + shopName);
+        return null;
+    }
+
     public List<BlueprintGroundElement> GetCurrentSelection()
     {
         return new List<BlueprintGroundElement>(selectedElements);
@@ -188,8 +200,6 @@ public class PanelShopMaster : MonoBehaviour
         ChangePanelSelected(newElement);
         return panel;
     }
-
-    
 
     public void AddShop()
     {

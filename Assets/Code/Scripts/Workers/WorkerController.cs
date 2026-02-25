@@ -29,8 +29,22 @@ public class WorkerController : MonoBehaviour
         switch(work)
         {
             case TypeWorkers.Sellers:
+                ShopCreated shop = PanelShopMaster.instance.GetShopByName(shopName);
+
+                if (shop == null)
+                    return;
+
                 Debug.Log($"Go to {shopName} and go sell");
+
+                Transform zone = shop.zoneShop;
+
+                if (zone != null)
+                {
+                    Vector3 targetPosition = zone.position;
+                    agent.SetDestination(targetPosition);
+                }
                 break;
+
         }
     }
 
@@ -48,7 +62,6 @@ public class WorkerController : MonoBehaviour
         }
         animator.SetBool("IsMoving", agent.velocity.magnitude > 0.1f);
 
-        // Vérifier si le client est arrivé
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             agent.isStopped = true;
