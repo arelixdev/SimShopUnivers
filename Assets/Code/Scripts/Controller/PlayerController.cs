@@ -334,7 +334,6 @@ public class PlayerController : MonoBehaviour
                 }
                 if(Physics.Raycast(ray, out hit, interactionRange, whatIsWorkers))
                 {
-                    Debug.Log("Hit work " + hit.collider.gameObject.name );
                     hit.collider.GetComponent<WorkerController>().OpenUIMenu();
                 }
             }

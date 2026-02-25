@@ -23,6 +23,8 @@ public class Checkout : FurnitureController
     [SerializeField] private TMP_Text priceText;
     [SerializeField] private GameObject checkoutScreen;
 
+    [SerializeField] private Transform sellerPoint;
+
     [SerializeField] private Transform queuePoint;
     [SerializeField] private Transform objectPoint;
 

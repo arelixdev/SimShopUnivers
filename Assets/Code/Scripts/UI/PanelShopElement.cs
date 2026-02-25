@@ -431,16 +431,16 @@ public class PanelShopElement : MonoBehaviour
 
     public void ActualizeDropdown(TMP_Dropdown dropdown, Enum targetEnum)
     {
-         Type enumType = targetEnum.GetType();
-         List<TMP_Dropdown.OptionData> newOptions = new();
-         
-         for (int i = 0; i < Enum.GetNames(enumType).Length; i++)
-         {
+        Type enumType = targetEnum.GetType();
+        List<TMP_Dropdown.OptionData> newOptions = new();
+        
+        for (int i = 0; i < Enum.GetNames(enumType).Length; i++)
+        {
             newOptions.Add(new TMP_Dropdown.OptionData(Enum.GetName(enumType, i)));
-         }
+        }
 
-         dropdown.ClearOptions();
-         dropdown.AddOptions(newOptions);
+        dropdown.ClearOptions();
+        dropdown.AddOptions(newOptions);
     }
 
     public void CreateShopVolume()

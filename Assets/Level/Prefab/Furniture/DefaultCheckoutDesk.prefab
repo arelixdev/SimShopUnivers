@@ -169,6 +169,37 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &3378273089115517287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2053484823973725492}
+  m_Layer: 12
+  m_Name: SellerPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2053484823973725492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378273089115517287}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.309, y: 0.03222704, z: -0.815}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7280506669855243267}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3425763643287586034
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +231,7 @@ Transform:
   m_Children:
   - {fileID: 488955997764674575}
   - {fileID: 2778965456276525944}
+  - {fileID: 2053484823973725492}
   - {fileID: 1263150498031151028}
   - {fileID: 716751871112040458}
   m_Father: {fileID: 24094651013532747}
@@ -323,7 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2778965456276525944}
   m_Layer: 12
-  m_Name: QueuePoint (1)
+  m_Name: QueuePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -566,6 +598,7 @@ MonoBehaviour:
   price: 500
   priceText: {fileID: 7311097842260607385}
   checkoutScreen: {fileID: 8068281046550779207}
+  sellerPoint: {fileID: 2053484823973725492}
   queuePoint: {fileID: 2778965456276525944}
   objectPoint: {fileID: 1263150498031151028}
   checkoutCamera: {fileID: 301646708693262425}
@@ -668,7 +701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1263150498031151028}
   m_Layer: 12
-  m_Name: ObjectPoint (1)
+  m_Name: ObjectPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
