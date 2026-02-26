@@ -299,7 +299,6 @@ public class CustomerController : MonoBehaviour
             {
                 hasReachedCurrentPoint = true;
 
-                //Debug.Log($"[{name}] est arrivé à son point de browsing " + $"({points[0].GetPosition()})");
 
                 if (currentBrowsingZone != null)
                 {

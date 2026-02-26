@@ -24,6 +24,7 @@ public class Checkout : FurnitureController
     [SerializeField] private GameObject checkoutScreen;
 
     [SerializeField] private Transform sellerPoint;
+    public WorkerController sellerInCheckout;
 
     [SerializeField] private Transform queuePoint;
     [SerializeField] private Transform objectPoint;
@@ -71,6 +72,10 @@ public class Checkout : FurnitureController
     {
         // Exemple : interdit si clients en file
         return customersInQueue.Count == 0;
+    }
+    public Transform GetSellerPoint()
+    {
+        return sellerPoint;
     }
     void Start()
     {

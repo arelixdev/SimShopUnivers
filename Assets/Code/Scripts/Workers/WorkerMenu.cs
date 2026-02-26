@@ -49,10 +49,10 @@ public class WorkerMenu : MonoBehaviour
         List<TMP_Dropdown.OptionData> newOptions = new();
 
         shopDropDown.ClearOptions();
-        
 
         if(PanelShopMaster.instance.listShopCreated.Count > 0)
         {
+            newOptions.Add(new TMP_Dropdown.OptionData());
             for (int i = 0; i < PanelShopMaster.instance.listShopCreated.Count; i++)
             {
                 newOptions.Add(new TMP_Dropdown.OptionData(PanelShopMaster.instance.listShopCreated[i].shopName));

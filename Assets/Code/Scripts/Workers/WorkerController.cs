@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.PlayerLoop;
 
 public class WorkerController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class WorkerController : MonoBehaviour
     [SerializeField] private List<NavPoint> points = new List<NavPoint>();
     [SerializeField] private Animator animator;
     [SerializeField] private float moveSpeed;
+
+    private Checkout currentCheckout;
 
     private NavMeshAgent agent;
     private float currentWaitTime;
@@ -24,6 +27,14 @@ public class WorkerController : MonoBehaviour
         WorkerMenu.instance.OpenMenu(this);
     }
 
+    private void Update()
+    {
+        if(points.Count > 0)
+        {
+            MoveToPoint();
+        }
+    }
+
     public void DoAction(string shopName, TypeWorkers work)
     {
         switch(work)
@@ -34,14 +45,34 @@ public class WorkerController : MonoBehaviour
                 if (shop == null)
                     return;
 
-                Debug.Log($"Go to {shopName} and go sell");
-
-                Transform zone = shop.zoneShop;
+                ShopZone zone = shop.zoneShop.GetComponentInParent<ShopZone>();
 
                 if (zone != null)
                 {
-                    Vector3 targetPosition = zone.position;
-                    agent.SetDestination(targetPosition);
+                    //Check if checkout 
+                    Vector3 targetPosition = Vector3.zero;
+
+                    if(zone.checkoutsInZone.Count > 0)
+                    {
+                        for (int i = 0; i < zone.checkoutsInZone.Count; i++)
+                        {
+                            if(zone.checkoutsInZone[i].sellerInCheckout == null)
+                            {
+                                points.Clear();
+                                NavPoint checkoutPoint = new NavPoint
+                                {
+                                    point = zone.checkoutsInZone[i].GetSellerPoint(),
+                                    waitTime = 0.5f
+                                };
+                                points.Add(checkoutPoint);
+                                zone.checkoutsInZone[i].sellerInCheckout = this;
+                                currentCheckout = zone.checkoutsInZone[i];
+                                currentWaitTime = checkoutPoint.waitTime;
+                                return;
+                            }
+                        }
+                    }
+                    
                 }
                 break;
 
@@ -52,13 +83,12 @@ public class WorkerController : MonoBehaviour
     {
         if (points.Count == 0) return;
 
-        Vector3 targetPosition = points[0].GetPosition();
+        Vector3 targetPosition = points[0].point.transform.position;
         targetPosition.y = transform.position.y;
 
         if (agent.isOnNavMesh)
         {
             agent.SetDestination(targetPosition);
-            
         }
         animator.SetBool("IsMoving", agent.velocity.magnitude > 0.1f);
 
@@ -68,7 +98,14 @@ public class WorkerController : MonoBehaviour
             currentWaitTime -= Time.deltaTime;
 
             if (currentWaitTime <= 0)
+            {
+                if (currentCheckout != null)
+                {
+                    DoCheckoutAction();
+                }
                 StartNextPoint();
+            }
+                
         }
         else
         {
@@ -91,6 +128,31 @@ public class WorkerController : MonoBehaviour
         else
         {
             
+        }
+    }
+
+    private void DoCheckoutAction()
+    {
+        Debug.Log($"{name} is performing checkout action at {currentCheckout.name}");
+
+        if (currentCheckout != null)
+        {
+            RotateTowards(currentCheckout.transform.position);
+        }
+
+        // Plus tard tu pourras appeler :
+        // currentCheckout.ProcessCustomer();
+    }
+
+    private void RotateTowards(Vector3 targetPosition)
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        direction.y = 0f;
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
         }
     }
 }

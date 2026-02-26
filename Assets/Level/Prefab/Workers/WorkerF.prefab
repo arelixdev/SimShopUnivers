@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3102308931512851109}
+  - component: {fileID: 3299021116625474332}
   - component: {fileID: 6382764577700150080}
   - component: {fileID: 3307139956505094191}
   - component: {fileID: 4649294962661127945}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: WorkerF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,6 +36,22 @@ Transform:
   - {fileID: 3910848401915021980}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3299021116625474332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630715390181121909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b40508f72a72d4e92c379dc5050567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeWork: 5
+  points: []
+  animator: {fileID: 3970916548931112390}
+  moveSpeed: 3
 --- !u!195 &6382764577700150080
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -55,7 +72,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &3307139956505094191
 Rigidbody:
@@ -163,6 +180,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ad93bed6cc07506418038c0b7ed73860, type: 2}
+    - target: {fileID: 95219715976578348, guid: dc34433148f44d94d87cc0f030d1ac60, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -171,5 +192,10 @@ PrefabInstance:
 --- !u!4 &3910848401915021980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4452724115178102, guid: dc34433148f44d94d87cc0f030d1ac60, type: 3}
+  m_PrefabInstance: {fileID: 3911884646847580394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3970916548931112390 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95219715976578348, guid: dc34433148f44d94d87cc0f030d1ac60, type: 3}
   m_PrefabInstance: {fileID: 3911884646847580394}
   m_PrefabAsset: {fileID: 0}
