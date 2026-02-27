@@ -231,15 +231,15 @@ public class PlayerController : MonoBehaviour
 
                     if (obj != null)
                     {
-                        if (Checkout.instance.customersInQueue.Count > 0)
+                        if (checkOutElement.customersInQueue.Count > 0)
                         {
                             obj.OutCheckout();
-                            Checkout.instance.customersInQueue[0].GrabCheckout(obj);
-                            Checkout.instance.UpdateScreen(obj);
+                            checkOutElement.customersInQueue[0].GrabCheckout(obj);
+                            checkOutElement.UpdateScreen(obj);
 
-                            Checkout.instance.RemoveObjectFromQueue(obj);
+                            checkOutElement.RemoveObjectFromQueue(obj);
 
-                            Checkout.instance.UpdateObjectsQueue();
+                            checkOutElement.UpdateObjectsQueue();
                         }
                     }
                 }

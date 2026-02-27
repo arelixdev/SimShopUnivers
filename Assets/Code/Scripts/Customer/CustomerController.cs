@@ -43,6 +43,7 @@ public class CustomerController : MonoBehaviour
     [SerializeField] private float maxTrashInterval = 15f;
     [SerializeField] private float trashSpawnChance = 0.3f; 
     public List<NeedType> needList;
+    public bool goToCheckout;
 
     private NeedType currentNeed;
     private bool isSolvingNeed;
@@ -253,13 +254,7 @@ public class CustomerController : MonoBehaviour
             //Take objects
             case CustomerState.browsing:
                 MoveToPoint();
-                if (points.Count == 0)
-                {
-                    
-                } else
-                {
-                    CheckArrivalAtPoint();
-                }
+                CheckArrivalAtPoint();
                 break;
             //Go make what u need 
             case CustomerState.need:
@@ -410,16 +405,14 @@ public class CustomerController : MonoBehaviour
             StartLeaving();
             return;
         }
-
-        // Choix du checkout (simple aléatoire, améliorable plus tard)
         targetCheckout = currentBrowsingZone.checkoutsInZone[
             UnityEngine.Random.Range(0, currentBrowsingZone.checkoutsInZone.Count)
         ];
 
         currentState = CustomerState.queuing;
+        goToCheckout = true;
 
 
-        // On laisse le checkout gérer la position exacte
         targetCheckout.AddCustomerToQueue(this);
     }
 
@@ -688,7 +681,7 @@ public class CustomerController : MonoBehaviour
 
         RemoveStockFromShopList(targetStockInfo);
 
-        Debug.Log($"{name} a pris {stock.info.name}");
+        //Debug.Log($"{name} a pris {stock.info.name}");
 
         ClearTarget();
 

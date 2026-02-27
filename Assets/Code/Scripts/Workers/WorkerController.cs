@@ -11,6 +11,9 @@ public class WorkerController : MonoBehaviour
     [SerializeField] private List<NavPoint> points = new List<NavPoint>();
     [SerializeField] private Animator animator;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float checkoutTimerAction;
+
+    private float currentCheckoutTimerAction;
 
     private Checkout currentCheckout;
 
@@ -67,6 +70,7 @@ public class WorkerController : MonoBehaviour
                                 points.Add(checkoutPoint);
                                 zone.checkoutsInZone[i].sellerInCheckout = this;
                                 currentCheckout = zone.checkoutsInZone[i];
+                                currentCheckoutTimerAction = checkoutTimerAction;
                                 currentWaitTime = checkoutPoint.waitTime;
                                 return;
                             }
@@ -95,16 +99,32 @@ public class WorkerController : MonoBehaviour
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             agent.isStopped = true;
+
+            if (currentCheckout != null)
+            {
+                RotateTowards(currentCheckout.transform.position);
+            }
+
             currentWaitTime -= Time.deltaTime;
 
-            if (currentWaitTime <= 0)
+            if(currentCheckout != null)
+            {
+                currentCheckoutTimerAction -= Time.deltaTime;
+                if(currentCheckoutTimerAction <= 0)
+                {
+                    DoCheckoutAction();
+                     currentCheckoutTimerAction = checkoutTimerAction;
+                } 
+            }
+
+            /*if (currentWaitTime <= 0)
             {
                 if (currentCheckout != null)
                 {
                     DoCheckoutAction();
                 }
                 StartNextPoint();
-            }
+            }*/
                 
         }
         else
@@ -133,15 +153,10 @@ public class WorkerController : MonoBehaviour
 
     private void DoCheckoutAction()
     {
-        Debug.Log($"{name} is performing checkout action at {currentCheckout.name}");
-
-        if (currentCheckout != null)
-        {
-            RotateTowards(currentCheckout.transform.position);
-        }
-
-        // Plus tard tu pourras appeler :
-        // currentCheckout.ProcessCustomer();
+        if(currentCheckout.customersInQueue.Count == 0)
+            return;
+        
+        currentCheckout.WorkerActions();
     }
 
     private void RotateTowards(Vector3 targetPosition)

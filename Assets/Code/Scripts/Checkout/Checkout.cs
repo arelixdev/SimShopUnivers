@@ -10,13 +10,9 @@ using UnityEngine.InputSystem;
 
 public class Checkout : FurnitureController
 {
-    //TODO a changer dans le futur si on veut plusieurs checkout
-    public static Checkout instance; 
-
     protected override void Awake()
     {
-        base.Awake();   // 🔥 OBLIGATOIRE
-        instance = this;
+        base.Awake(); 
         furnitureType = FurnitureType.Checkout;
     }
 
@@ -456,5 +452,39 @@ public class Checkout : FurnitureController
     public void CloseCheckout()
     {
         PlayerController.instance.CloseCheckout();
+    }
+
+    internal void WorkerActions()
+    {
+        if(objectsInQueue.Count > 0 && customersInQueue[0].goToCheckout)
+        {
+            StockObject obj = objectsInQueue[0];
+            obj.OutCheckout();
+            customersInQueue[0].GrabCheckout(obj);
+            UpdateScreen(obj);
+
+            RemoveObjectFromQueue(obj);
+
+            if(objectsInQueue.Count == 0)
+            {
+                customersInQueue[0].goToCheckout = false;
+            }
+
+            UpdateObjectsQueue();
+        } else if(objectsInQueue.Count == 0 && !customersInQueue[0].goToCheckout)
+        {
+            StoreController.instance.AddMoney(totalValue);
+
+            // Le client part
+            customersInQueue[0].StartLeaving();
+            customersInQueue.RemoveAt(0);
+
+            ResetCheckout();
+
+            terminalScreen.SetActive(false);
+            enteredValue = "";
+
+            UpdateQueue();
+        }
     }
 }
