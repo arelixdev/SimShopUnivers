@@ -16,6 +16,8 @@ public class Checkout : FurnitureController
         furnitureType = FurnitureType.Checkout;
     }
 
+    public bool playerWorkPriority;
+
     [SerializeField] private TMP_Text priceText;
     [SerializeField] private GameObject checkoutScreen;
 
@@ -442,11 +444,13 @@ public class Checkout : FurnitureController
     public void ActiveCam()
     {
         checkoutCamera.gameObject.SetActive(true);
+        playerWorkPriority = true;
     }
 
     internal void DesactivateCam()
     {
         checkoutCamera.gameObject.SetActive(false);
+        playerWorkPriority = false;
     }
 
     public void CloseCheckout()
@@ -456,6 +460,9 @@ public class Checkout : FurnitureController
 
     internal void WorkerActions()
     {
+        if(playerWorkPriority)
+            return;
+
         if(objectsInQueue.Count > 0 && customersInQueue[0].goToCheckout)
         {
             StockObject obj = objectsInQueue[0];

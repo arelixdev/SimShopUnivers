@@ -233,6 +233,7 @@ public class PlayerController : MonoBehaviour
                     {
                         if (checkOutElement.customersInQueue.Count > 0)
                         {
+                            
                             obj.OutCheckout();
                             checkOutElement.customersInQueue[0].GrabCheckout(obj);
                             checkOutElement.UpdateScreen(obj);

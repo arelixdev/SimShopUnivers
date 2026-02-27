@@ -290,7 +290,7 @@ public class CustomerController : MonoBehaviour
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            if (agent.velocity.sqrMagnitude == 0f)
+            if (agent.velocity.sqrMagnitude < 0.01f)
             {
                 hasReachedCurrentPoint = true;
 
