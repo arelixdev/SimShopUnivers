@@ -127,6 +127,7 @@ MonoBehaviour:
   maxTrashInterval: 15
   trashSpawnChance: 0.05
   needList: 
+  goToCheckout: 0
 --- !u!195 &-4671994133124710119
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1206,6 +1207,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1492610174123012, guid: 3743746611f3b1b4fa60ff14e6a5ed0d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 817508722417554553}
+    - targetCorrespondingSourceObject: {fileID: 1492610174123012, guid: 3743746611f3b1b4fa60ff14e6a5ed0d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2763291176517385701}
   m_SourcePrefab: {fileID: 100100000, guid: 3743746611f3b1b4fa60ff14e6a5ed0d, type: 3}
 --- !u!95 &8258152130668783541 stripped
 Animator:
@@ -1290,3 +1294,15 @@ MonoBehaviour:
   percentHaveHair: 80
   beardTransform: {fileID: 0}
   percentHaveBeard: 0
+--- !u!114 &2763291176517385701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344356743892947313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf690f5d45c79d4db31e776090f97a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

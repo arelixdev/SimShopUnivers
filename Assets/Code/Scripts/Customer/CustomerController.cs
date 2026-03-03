@@ -64,6 +64,7 @@ public class CustomerController : MonoBehaviour
     private StockInfoSO targetStockInfo;
     private Checkout targetCheckout;
     private bool isInQueuePosition = false;
+    private bool isAtShelf = false;
     private HashSet<ShelfSpaceController> triedShelves = new();
 
     private void OnEnable()
@@ -274,7 +275,7 @@ public class CustomerController : MonoBehaviour
                     MoveToPoint();
                 } else
                 {
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
                 }
                 break;
         }
@@ -374,6 +375,7 @@ public class CustomerController : MonoBehaviour
 
     private void GoToShelf(FurnitureController furniture)
     {
+        isAtShelf = true;
         points.Clear();
 
         NavPoint shelfPoint = new NavPoint
@@ -392,6 +394,8 @@ public class CustomerController : MonoBehaviour
 
     private void GoToCheckout()
     {
+        if (goToCheckout) return;
+
         if (currentBrowsingZone == null)
         {
             //Debug.LogWarning($"{name} n'a pas de ShopZone pour checkout");
@@ -608,9 +612,9 @@ public class CustomerController : MonoBehaviour
                 isInQueuePosition = false;
                 return;
             }
-            if (currentState == CustomerState.browsing && targetShelf != null)
+            else if (currentState == CustomerState.browsing && isAtShelf)
             {
-                GrabTargetStock();
+                animator.SetTrigger("IsBrowsing");
             }
             else if (currentState == CustomerState.entering)
             {
@@ -620,10 +624,10 @@ public class CustomerController : MonoBehaviour
             {
                 ResolveNeed();
             }
-            else if (currentState == CustomerState.leaving)
+            /*else if (currentState == CustomerState.leaving)
             {
                 Destroy(gameObject);
-            }
+            }*/
         }
     }
 
@@ -639,7 +643,7 @@ public class CustomerController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(lookDir);
     }
 
-    private void GrabTargetStock()
+    public void GrabTargetStock()
     {
         if (targetShelf == null)
             return;
@@ -664,12 +668,6 @@ public class CustomerController : MonoBehaviour
             }
 
             Debug.Log($"{name} : plus aucune shelf avec {targetStockInfo.name}");
-
-            // Seulement maintenant on retire l'item de la shopping list
-            RemoveStockFromShopList(targetStockInfo);
-
-            ClearTarget();
-            DecideNextAction();
             return;
         }
 
@@ -679,9 +677,12 @@ public class CustomerController : MonoBehaviour
         stockInBag.Add(stock);
         shoppingBag.SetActive(true);
 
-        RemoveStockFromShopList(targetStockInfo);
+        
+    }
 
-        //Debug.Log($"{name} a pris {stock.info.name}");
+    public void EndTakeProduct()
+    {
+        RemoveStockFromShopList(targetStockInfo);
 
         ClearTarget();
 
@@ -690,6 +691,7 @@ public class CustomerController : MonoBehaviour
 
     private void ClearTarget()
     {
+        isAtShelf = false;
         targetShelf = null;
         targetStockInfo = null;
         triedShelves.Clear();
@@ -706,19 +708,51 @@ public class CustomerController : MonoBehaviour
 
     private void DecideNextAction()
     {
-        /*if (shopList.Count > 0)
+        ShelfSpaceController nextShelf = FindNextWantedShelf();
+
+        if (nextShelf != null)
         {
-            TryGoBrowsingIfStoreIsOpen();
-        }*/
+            targetShelf = nextShelf;
+            targetStockInfo = nextShelf.info;
+
+            GoToShelf(nextShelf.GetComponentInParent<FurnitureController>());
+            return;
+        }
+
+        // Plus rien à récupérer
         if (stockInBag.Count > 0)
         {
-            Debug.Log($"{name} a fini de browse → checkout");
             GoToCheckout();
         }
         else
         {
             StartLeaving();
         }
+    }
+
+    private ShelfSpaceController FindNextWantedShelf()
+    {
+        if (currentBrowsingZone == null)
+            return null;
+
+        foreach (ShopList sl in shopList)
+        {
+            foreach (StockInfoSO wantedStock in sl.listStockType)
+            {
+                foreach (FurnitureController furniture in currentBrowsingZone.shelvingsInZone)
+                {
+                    foreach (ShelfSpaceController shelf in furniture.shelves)
+                    {
+                        if (shelf.info == wantedStock && shelf.HasStock())
+                        {
+                            return shelf;
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     private void ResolveNeed()
@@ -776,6 +810,9 @@ public class CustomerController : MonoBehaviour
 
     public void UpdateQueuePoint(Vector3 newPoint)
     {
+        if (currentState != CustomerState.queuing)
+        return;
+
         isInQueuePosition = true;
 
         queuePoint = newPoint;

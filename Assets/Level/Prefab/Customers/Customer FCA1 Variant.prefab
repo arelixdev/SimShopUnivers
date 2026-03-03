@@ -771,6 +771,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6504250162417182711, guid: fa85f71c148386546b285f8d8453cdb8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7734181895687702253}
+    - targetCorrespondingSourceObject: {fileID: 6504250162417182711, guid: fa85f71c148386546b285f8d8453cdb8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3777505975175932274}
   m_SourcePrefab: {fileID: 100100000, guid: fa85f71c148386546b285f8d8453cdb8, type: 3}
 --- !u!1 &397237375499569791 stripped
 GameObject:
@@ -835,6 +838,18 @@ MonoBehaviour:
   percentHaveHair: 80
   beardTransform: {fileID: 0}
   percentHaveBeard: 0
+--- !u!114 &3777505975175932274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397237375499569791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf690f5d45c79d4db31e776090f97a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1065266123871178949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5839037465202490701, guid: fa85f71c148386546b285f8d8453cdb8, type: 3}
