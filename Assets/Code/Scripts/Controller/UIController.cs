@@ -7,6 +7,11 @@ public class UIController : MonoBehaviour
 {
     public static UIController instance;
 
+    [SerializeField] private InputActionReference shopAction;
+    [SerializeField] private InputActionReference mapAction;
+    [SerializeField] private InputActionReference wheelAction;
+    [SerializeField] private InputActionReference escapeAction;
+
     [SerializeField] private TMP_Text moneyText;
 
     public GameObject updatePricePanel;
@@ -55,7 +60,7 @@ public class UIController : MonoBehaviour
         if(inputfieldSelected)
             return;
 
-        if(Keyboard.current.tabKey.wasPressedThisFrame)
+        if(shopAction.action.WasPressedThisFrame())
         {
             if (menuSelectedOpen == buyMenuScreen)
             {
@@ -74,7 +79,7 @@ public class UIController : MonoBehaviour
             }
         }
 
-        if(Keyboard.current.yKey.wasPressedThisFrame)
+        if(mapAction.action.WasPressedThisFrame())
         {
             if (menuSelectedOpen == mapMenuScreen)
             {
@@ -93,17 +98,17 @@ public class UIController : MonoBehaviour
             }
         }
 
-        if(Keyboard.current.tKey.wasPressedThisFrame)
+        if(wheelAction.action.WasPressedThisFrame())
         {
             OpenWheelToolMenu();
 
         }
-        if(Keyboard.current.tKey.wasReleasedThisFrame)
+        if(wheelAction.action.WasReleasedThisFrame())
         {
             CloseWheelToolMenu();
         }
 
-        if(Keyboard.current.escapeKey.wasPressedThisFrame)
+        if(escapeAction.action.WasPressedThisFrame())
         {
             Cursor.lockState = CursorLockMode.Locked;
             if(menuSelectedOpen != null)

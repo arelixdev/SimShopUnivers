@@ -578,6 +578,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TabKey",
+                    "type": "Button",
+                    "id": "a6ef01f3-ab4f-48fb-9720-14a59a3edabb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Map",
+                    "type": "Button",
+                    "id": "b40b221b-fe6b-4c0d-a84f-8d7c08a04a22",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1007,6 +1025,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "189d464f-b151-4015-93e2-022646bfe1d3",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TabKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1dea178-4c66-456a-809a-e5694ce34ade",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Map",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
