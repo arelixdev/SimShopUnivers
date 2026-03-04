@@ -57,26 +57,40 @@ public class UIController : MonoBehaviour
 
         if(Keyboard.current.tabKey.wasPressedThisFrame)
         {
-            if(menuSelectedOpen != null)
+            if (menuSelectedOpen == buyMenuScreen)
             {
-                //Close menuSelectedOpen
-                menuSelectedOpen.SetActive(false);
+                buyMenuScreen.SetActive(false);
                 menuSelectedOpen = null;
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Locked;
             }
-            OpenCloseBuyMenu();
+            else
+            {
+                if (menuSelectedOpen != null)
+                {
+                    menuSelectedOpen.SetActive(false);
+                }
+
+                OpenCloseBuyMenu();
+            }
         }
 
         if(Keyboard.current.yKey.wasPressedThisFrame)
         {
-            if(menuSelectedOpen != null)
+            if (menuSelectedOpen == mapMenuScreen)
             {
-                //Close menuSelectedOpen
-                menuSelectedOpen.SetActive(false);
+                mapMenuScreen.SetActive(false);
                 menuSelectedOpen = null;
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Locked;
             }
-            OpenCloseMapMenu();
+            else
+            {
+                if (menuSelectedOpen != null)
+                {
+                    menuSelectedOpen.SetActive(false);
+                }
+
+                OpenCloseMapMenu();
+            }
         }
 
         if(Keyboard.current.tKey.wasPressedThisFrame)
