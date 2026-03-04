@@ -74893,6 +74893,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 773346018033843526, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+      propertyPath: mapAction
+      value: 
+      objectReference: {fileID: 7325269942675221135, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 773346018033843526, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
+      propertyPath: shopAction
+      value: 
+      objectReference: {fileID: -5664805130089583671, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 773346018033843526, guid: d8998ceefddfd834598e9def511f01c5, type: 3}
       propertyPath: escapeAction
       value: 
       objectReference: {fileID: -577980570752113457, guid: 052faaac586de48259a63d0c4782560b, type: 3}
